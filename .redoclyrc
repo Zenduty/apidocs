@@ -1,0 +1,8 @@
+
+apiTitle: zenduty
+splitSpec: false
+codeSamples: true
+swaggerUI: true
+travis: true
+repo: Zenduty/apidocs
+oasVersion: 3.0.0
