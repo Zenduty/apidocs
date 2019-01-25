@@ -1,97 +1,41 @@
-# This is an **example** API to demonstrate features of OpenAPI specification.
-# It doesn't cover all OpenAPI features. For more full example check out: https://github.com/APIs-guru/petstore_extended
 
 openapi: 3.0.0
 info:
   version: '1.0.0' # Your API version
-  # It can be any string but it is better to use semantic versioning: http://semver.org/
-  # Warning: OpenAPI require version to be string, but without quotation YAML can recognize it as number.
-  
-  title: Example.com # Replace with your API title
-  # Keep it simple. Don't add "API" or version at the end of the string.
+  title: Zenduty 
 
-  termsOfService: 'https://example.com/terms/' # [Optional] Replace with an URL to your ToS
+  termsOfService: 'https://zenduty.com'
   contact:
-    email: contact@example.com # [Optional] Replace with your contact email
-    url: 'http://example.com/contact' # [Optional] Replace with link to your contact form
+    email: vishwa@zenduty.com
   license:
     name: Apache 2.0
-    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
   x-logo:
-    url: 'https://apis.guru/openapi-template/logo.png'
-  
-  # Describe your API here, you can use GFM (https://guides.github.com/features/mastering-markdown) here
+    url: 'https://zenduty.com'
   description: |
-    This is an **example** API to demonstrate features of OpenAPI specification
     # Introduction
-    This specification is intended to to be a good starting point for describing your API in 
-    [OpenAPI/Swagger format](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md).
-    It also demonstrates features of [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo) tool and 
-    [ReDoc](https://github.com/Rebilly/ReDoc) documentation engine. So beyond the standard OpenAPI syntax we use a few 
-    [vendor extensions](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md).
-
-    # OpenAPI Specification
-    The goal of The OpenAPI Specification is to define a standard, language-agnostic interface to REST APIs which
-    allows both humans and computers to discover and understand the capabilities of the service without access to source
-    code, documentation, or through network traffic inspection. When properly defined via OpenAPI, a consumer can 
-    understand and interact with the remote service with a minimal amount of implementation logic. Similar to what
-    interfaces have done for lower-level programming, OpenAPI removes the guesswork in calling the service.
-externalDocs:
-  description: Find out how to create Github repo for your OpenAPI spec.
-  url: 'https://github.com/Rebilly/generator-openapi-repo'
+    Zenduty is a cutting edge platform for incident management. With high level automation, Zenduty enables faster and better incident resolution keeping developers first.
 
 # A list of tags used by the specification with additional metadata.
 # The order of the tags can be used to reflect on their order by the parsing tools.
 tags:
-  - name: Echo
-    description: Example echo operations
-  - name: User
-    description: Operations about user
-servers:
-  - url: 'http://example.com/api/v1'
-  - url: 'https://example.com/api/v1'
-
-# Holds the relative paths to the individual endpoints. The path is appended to the
-# basePath in order to construct the full URL. 
+  - name: Teams
+    description: Operations about teams
+  - name: Members
+    description: Operations about team members
+  - name: Services
+    description: Operations about team services
+  
+# servers:
+# - url: 'http://example.com/api/v1'
 paths:
-  '/users/{username}': # path parameter in curly braces
-
-    # parameters list that are used with each operation for this path
-    parameters:
-      - name: pretty_print
-        in: query
-        description: Pretty print response
-        schema:
-          type: boolean
-    get: # documentation for GET operation for this path
+  '/api/account/teams':
+    # documentation for get teams
+    get: 
       tags:
-        - User
-      
-      # summary is up to 120 symbold but we recommend to be shortest as possible
-      summary: Get user by user name
-      
-      # you can use GFM in operation description too: https://guides.github.com/features/mastering-markdown
-      description: |
-        Some description of the operation. 
-        You can use `markdown` here.
-      
-      # operationId should be unique across the whole specification
-      operationId: getUserByName
-      
-      # list of parameters for the operation
-      parameters:
-        - name: username
-          in: path
-          description: The name that needs to be fetched
-          required: true
-          schema:
-            type: string
-        - name: with_email
-          in: query
-          description: Filter users without email
-          schema:
-            type: boolean
-      
+      - Teams
+      summary: Get teams
+      operationId: getTeams
+    
       # security schemas applied to this operation
       security:
         - main_auth:
@@ -103,25 +47,21 @@ paths:
           content:
             application/json: # operation response mime type
               schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/User'
-              example: # response example
-                username: user1
-                email: user@example.com
+                $ref: '#/components/schemas/TeamWMember'
         '403':
           description: Forbidden
         '404':
-          description: User not found
-    # documentation for PUT operation for this path
-    put:
+          description: Not found
+    # documentation for create teams
+    post:
       tags:
-        - User
-      summary: Updated user
-      description: This can only be done by the logged in user.
-      operationId: updateUser
+        - Teams
+      summary: Create Team
+      operationId: createTeam
       parameters:
-        - name: username
-          in: path
-          description: The name that needs to be updated
+        - name: name
+          in: query
+          description: New Team Name
           required: true
           schema:
             type: string
@@ -132,7 +72,7 @@ paths:
         '200':
           description: OK
         '400':
-          description: Invalid user supplied
+          description: Invalid 
         '404':
           description: User not found
       # request body documentation
@@ -140,73 +80,273 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/Team'
           application/xml:
             schema:
-              $ref: '#/components/schemas/User'
-        description: Updated user object
+              $ref: '#/components/schemas/Team'
+        description: New Team Details
         required: true
-  /echo: # path parameter in curly braces
-    post: # documentation for POST operation for this path
-      tags:
-        - Echo
-      summary: Echo test
-      description: Receive the exact message you've sent
-      operationId: echo
-      security:
-        - api_key: []
-        - basic_auth: []
-      responses:
-        '200':
-          description: OK
-          # document headers for this response
-          headers:
-            X-Rate-Limit: # Header name
-              description: calls per hour allowed by the user
-              schema: # Header schema
-                type: integer
-                format: int32
-            X-Expires-After:
-              $ref: '#/components/headers/ExpiresAfter'
+  '/api/account/teams/{team_id}':
+      parameters: 
+        - name: 'team_id'
+          in: path
+          description: Unique ID of team
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Teams
+        summary: Get team details
+        operationId: getTeamDetails
+      
+        # security schemas applied to this operation
+        security:
+          - main_auth:
+              - 'read:users' # for auth2 provide list of scopes here
+          - api_key: []
+        responses: # list of responses
+          '200':
+            description: Success
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/TeamWMember'
+          '400':
+            description: Invalid
+          '404':
+            description: Not found
+      delete: 
+        tags:
+        - Teams
+        summary: Delete a Team
+        operationId: deleteTeam
+      
+        # security schemas applied to this operation
+        security:
+          - main_auth:
+              - 'read:users' # for auth2 provide list of scopes here
+          - api_key: []
+        responses: # list of responses
+          '200':
+            description: Success
+          '400':
+            description: Invalid
+          '404':
+            description: Not found
+        
+  '/api/account/teams/{team_id}/members':
+      parameters: 
+        - name: 'team_id'
+          in: path
+          description: Unique ID of team
+          schema:
+            type: string
+          required: true
+      post: 
+        tags:
+        - Members
+        summary: Add members to a team
+        operationId: addMembers
+        parameters:
+          - name: user_id
+            in: query
+            description: ID of the user to be added.
+            schema:
+              type: string
+            required: true
+        # security schemas applied to this operation
+        security:
+          - main_auth:
+              - 'read:users' # for auth2 provide list of scopes here
+          - api_key: []
+        responses: # list of responses
+          '200':
+            description: Success
+          '403':
+            description: Forbidden
+          '404':
+            description: Not found
+        requestBody:
           content:
             application/json:
               schema:
-                type: string
-              examples:
-                response:
-                  value: Hello world!
+                $ref: '#/components/schemas/NewMember'
             application/xml:
               schema:
-                type: string
-            text/csv:
-              schema:
-                type: string
-      requestBody:
-        content:
-          application/json:
+                $ref: '#/components/schemas/NewMember'
+          description: New Team Details
+          required: true
+  '/api/account/teams/{team_id}/members/{member_id}':
+      parameters: 
+        - name: 'team_id'
+          in: path
+          description: Unique ID of team
+          schema:
+            type: string
+          required: true
+        - name: 'member_id'
+          in: path
+          description: Unique ID of member
+          schema:
+            type: string
+          required: true
+      delete: 
+        tags:
+        - Members
+        summary: Delete members from a team
+        operationId: delMembers
+      
+        # security schemas applied to this operation
+        security:
+          - main_auth:
+              - 'read:users' # for auth2 provide list of scopes here
+          - api_key: []
+        responses: # list of responses
+          '200':
+            description: Success
+          '403':
+            description: Forbidden
+          '404':
+            description: Not found
+  '/api/account/teams/{team_id}/services':
+      parameters: 
+        - name: 'team_id'
+          in: path
+          description: Unique ID of team
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Services
+        summary: Get Services for a team
+        operationId: getServices
+        # security schemas applied to this operation
+        security:
+          - main_auth:
+              - 'read:users' # for auth2 provide list of scopes here
+          - api_key: []
+        responses: # list of responses
+          '200':
+            description: Success
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/ServiceInfo'
+          '403':
+            description: Forbidden
+          '404':
+            description: Not found
+  '/api/account/teams/{team_id}/services/{service_id}':
+      parameters: 
+        - name: 'team_id'
+          in: path
+          description: Unique ID of team
+          schema:
+            type: string
+          required: true
+        - name: 'service_id'
+          in: path
+          description: Unique Service ID
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Services
+        summary: Get Services by ID
+        operationId: getServiceID
+        # security schemas applied to this operation
+        security:
+          - main_auth:
+              - 'read:users' # for auth2 provide list of scopes here
+          - api_key: []
+        responses: # list of responses
+          '200':
+            description: Success
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/ServiceInfo'
+          '403':
+            description: Forbidden
+          '404':
+            description: Not found
+      patch: 
+        tags:
+        - Services
+        summary: Update Service
+        operationId: updateService
+        # security schemas applied to this operation
+        parameters:
+          - name: service_info
+            in: query
             schema:
-              type: string
-              example: Hello world!
-          application/xml:
-            schema:
-              type: string
-              example: Hello world!
-        description: Echo payload
-        required: true
-        
+              $ref: '#/components/schemas/ServiceInfo'
+        security:
+          - main_auth:
+              - 'read:users' # for auth2 provide list of scopes here
+          - api_key: []
+        responses: # list of responses
+          '200':
+            description: Success
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/ServiceInfo'
+          '403':
+            description: Forbidden
+          '404':
+            description: Not found
+  '/api/account/teams/{team_id}/services/{service_id}/integrations':
+      parameters: 
+        - name: 'team_id'
+          in: path
+          description: Unique ID of team
+          schema:
+            type: string
+          required: true
+        - name: 'service_id'
+          in: path
+          description: Unique Service ID
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Integrations
+        summary: Get Integrations in a service
+        operationId: getIntegrations
+        # security schemas applied to this operation
+        security:
+          - main_auth:
+              - 'read:users' # for auth2 provide list of scopes here
+          - api_key: []
+        responses: # list of responses
+          '200':
+            description: Success
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/Integration'
+          '403':
+            description: Forbidden
+          '404':
+            description: Not found
+
 # An object to hold reusable parts that can be used across the spec
 components:
   schemas:
     Email:
       description: User email address
       type: string
-      format: test
       example: john.smith@example.com
     User:
       type: object
       properties:
         username:
-          description: User supplied username
+          description: System generated username
           type: string
           minLength: 4
           example: John78
@@ -222,6 +362,149 @@ components:
           example: Smith
         email:
           $ref: '#/components/schemas/Email'
+    Member:
+      description: Member in an account
+      type: object
+      properties:
+        unique_id:
+          description: Unique ID
+          type: string
+        time_zone:
+          description: Time Zone of account
+          type: string
+        user:
+            $ref: '#/components/schemas/User'
+        joining_date:
+          description: Joining date
+          type: string
+          format: date-time
+        role:
+          type: integer
+    Team:
+      description: Team in an account
+      type: object
+      properties:
+        unique_id:
+          description: ID of team
+          type: string
+        owner:
+          description: Owner of teams
+          type: string
+        account: 
+          description: Account ID
+          type: string
+        name:
+          description: Name of the team
+          type: string
+        creation_date:
+          description: Date of creation
+          type: string
+          format: date-time
+    TeamWMember:
+      description: All Team Details
+      type: object
+      properties:
+        team: 
+          $ref: '#/components/schemas/Team'
+        member:
+          $ref: '#/components/schemas/Member'
+    NewMember:
+      description: New Member in a Team
+      type: object
+      properties:
+        unique_id:
+          type: string
+        team:
+          type: string
+        user:
+          type: string
+        joining_date:
+          type: string
+          format: date-time
+    ServiceInfo:
+      description: Information about a service
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Test Service"
+        creation date:
+          type: string
+          format: date-time
+        summary:
+          type: string
+          example: "Test Summary"
+        description:
+          type: string
+          example: "TS Description"
+        unique_id:
+          type: string
+        auto_resolve_timeout:
+          type: integer
+        created_by:
+          type: string
+        acknowlegement_timeout:
+          type: integer
+        status:
+          type: integer
+        escalation_policy: 
+          type: string
+        team:
+          type: string
+    ApplicationRef:
+      description: Details of the app
+      type: object 
+      properties:
+        name:
+          type: string
+          example: "Sentry"
+        icon_url:
+          type: string
+          example: "www.url.com"
+        summary:
+          type: string
+          example: "Zenduty Sentry App"
+        description:
+          type: string
+          example: "Sentry for Zenduty"
+        unique_id:
+          type: string
+        availability_plan_id:
+          type: integer
+          example: 1
+        setup_instructions:
+          type: string
+    Integration:
+      description: Details of integration
+      type: object
+      properties:
+        name: 
+          type: string
+          example: "Sentry 2"
+        creation_date:
+          type: string
+          format: date-time
+        summary:
+          type: string
+          example: "Sentry prod 2"
+        unique_id:
+          type: string
+        application: 
+          type: string
+        application_reference:
+          $ref: '#/components/schemas/ApplicationRef'
+        integration_key:
+          type: string
+        created_by:
+          type: string
+        is_enabled:
+          type: boolean
+        create_incidents_for:
+          type: integer
+          example: 2
+      
+        
+        
   headers:
     ExpiresAfter:
       description: date in UTC when token expires
