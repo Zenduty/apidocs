@@ -2,6 +2,7 @@
   "name": "zenduty",
   "version": "1.0.0",
   "dependencies": {
+    "swagger-parser": "^6.0.5",
     "swagger-repo": "^2.0.0-rc.11"
   },
   "private": true,
