@@ -24,6 +24,10 @@ tags:
     description: Operations about team members
   - name: Services
     description: Operations about team services
+  - name: Integrations
+    description: Operations about service integrations
+  - name: Incidents
+    description: Operations about incidents
   
 # servers:
 # - url: 'http://example.com/api/v1'
@@ -34,7 +38,7 @@ paths:
       tags:
       - Teams
       summary: Get teams
-      operationId: getTeams
+      # operationId: getTeams
     
       # security schemas applied to this operation
       security:
@@ -48,6 +52,9 @@ paths:
             application/json: # operation response mime type
               schema: # response schema can be specified for each response
                 $ref: '#/components/schemas/TeamWMember'
+            application/xml: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/TeamWMember'
         '403':
           description: Forbidden
         '404':
@@ -57,20 +64,20 @@ paths:
       tags:
         - Teams
       summary: Create Team
-      operationId: createTeam
-      parameters:
-        - name: name
-          in: query
-          description: New Team Name
-          required: true
-          schema:
-            type: string
+      # operationId: createTeam
       security:
         - main_auth:
             - 'write:users'
       responses:
         '200':
           description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/Team'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Team'
         '400':
           description: Invalid 
         '404':
@@ -80,11 +87,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Team'
+              $ref: '#/components/schemas/NewTeamName'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Team'
-        description: New Team Details
+              $ref: '#/components/schemas/NewTeamName'
+        description: New Team Name
         required: true
   '/api/account/teams/{team_id}':
       parameters: 
@@ -98,7 +105,7 @@ paths:
         tags:
         - Teams
         summary: Get team details
-        operationId: getTeamDetails
+        # operationId: getTeamDetails
       
         # security schemas applied to this operation
         security:
@@ -112,6 +119,9 @@ paths:
               application/json: # operation response mime type
                 schema: # response schema can be specified for each response
                   $ref: '#/components/schemas/TeamWMember'
+              application/xml: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/TeamWMember'
           '400':
             description: Invalid
           '404':
@@ -120,7 +130,7 @@ paths:
         tags:
         - Teams
         summary: Delete a Team
-        operationId: deleteTeam
+        # operationId: deleteTeam
       
         # security schemas applied to this operation
         security:
@@ -147,14 +157,7 @@ paths:
         tags:
         - Members
         summary: Add members to a team
-        operationId: addMembers
-        parameters:
-          - name: user_id
-            in: query
-            description: ID of the user to be added.
-            schema:
-              type: string
-            required: true
+        # operationId: addMembers
         # security schemas applied to this operation
         security:
           - main_auth:
@@ -163,6 +166,13 @@ paths:
         responses: # list of responses
           '200':
             description: Success
+            content:
+              application/json: # operation response mime type
+                schema:
+                  $ref: '#/components/schemas/NewMember'
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/NewMember'
           '403':
             description: Forbidden
           '404':
@@ -171,10 +181,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NewMember'
+                $ref: '#/components/schemas/UserID'
             application/xml:
               schema:
-                $ref: '#/components/schemas/NewMember'
+                $ref: '#/components/schemas/UserID'
           description: New Team Details
           required: true
   '/api/account/teams/{team_id}/members/{member_id}':
@@ -195,7 +205,7 @@ paths:
         tags:
         - Members
         summary: Delete members from a team
-        operationId: delMembers
+        # operationId: delMembers
       
         # security schemas applied to this operation
         security:
@@ -221,7 +231,7 @@ paths:
         tags:
         - Services
         summary: Get Services for a team
-        operationId: getServices
+        # operationId: getServices
         # security schemas applied to this operation
         security:
           - main_auth:
@@ -234,10 +244,48 @@ paths:
               application/json: # operation response mime type
                 schema: # response schema can be specified for each response
                   $ref: '#/components/schemas/ServiceInfo'
+              application/xml: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/ServiceInfo'
           '403':
             description: Forbidden
           '404':
             description: Not found
+      post: 
+        tags:
+        - Services
+        summary: Add new Service in a team
+        # operationId: createService
+        
+        # security schemas applied to this operation
+        security:
+          - main_auth:
+              - 'read:users' # for auth2 provide list of scopes here
+          - api_key: []
+        responses: # list of responses
+          '200':
+            description: Success
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ServiceInfo'
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/ServiceInfo'
+          '403':
+            description: Forbidden
+          '404':
+            description: Not found
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewService'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/NewService'
+          description: New Team Details
+          required: true
   '/api/account/teams/{team_id}/services/{service_id}':
       parameters: 
         - name: 'team_id'
@@ -256,7 +304,7 @@ paths:
         tags:
         - Services
         summary: Get Services by ID
-        operationId: getServiceID
+        # operationId: getServiceID
         # security schemas applied to this operation
         security:
           - main_auth:
@@ -269,6 +317,9 @@ paths:
               application/json: # operation response mime type
                 schema: # response schema can be specified for each response
                   $ref: '#/components/schemas/ServiceInfo'
+              application/xml: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/ServiceInfo'
           '403':
             description: Forbidden
           '404':
@@ -277,7 +328,7 @@ paths:
         tags:
         - Services
         summary: Update Service
-        operationId: updateService
+        # operationId: updateService
         # security schemas applied to this operation
         parameters:
           - name: service_info
@@ -295,6 +346,27 @@ paths:
               application/json: # operation response mime type
                 schema: # response schema can be specified for each response
                   $ref: '#/components/schemas/ServiceInfo'
+              application/xml: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/ServiceInfo'
+          '403':
+            description: Forbidden
+          '404':
+            description: Not found
+      delete: 
+        tags:
+        - Services
+        summary: Delete Service from a team
+        # operationId: delService
+      
+        # security schemas applied to this operation
+        security:
+          - main_auth:
+              - 'read:users' # for auth2 provide list of scopes here
+          - api_key: []
+        responses: # list of responses
+          '200':
+            description: Success
           '403':
             description: Forbidden
           '404':
@@ -317,7 +389,7 @@ paths:
         tags:
         - Integrations
         summary: Get Integrations in a service
-        operationId: getIntegrations
+        # operationId: getIntegrations
         # security schemas applied to this operation
         security:
           - main_auth:
@@ -330,11 +402,315 @@ paths:
               application/json: # operation response mime type
                 schema: # response schema can be specified for each response
                   $ref: '#/components/schemas/Integration'
+              application/xml: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/Integration'
           '403':
             description: Forbidden
           '404':
             description: Not found
-
+      post:
+        tags:
+          - Integrations
+        summary: Create Integration
+        # operationId: createIntegration
+        security:
+          - main_auth:
+              - 'write:users'
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Integration'
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/Integration'
+          '400':
+            description: Invalid 
+          '404':
+            description: User not found
+        # request body documentation
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewIntegration'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/NewIntegration'
+          description: New Integration Details
+          required: true
+  '/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}':
+      parameters: 
+        - name: 'team_id'
+          in: path
+          description: Unique ID of team
+          schema:
+            type: string
+          required: true
+        - name: 'service_id'
+          in: path
+          description: Unique Service ID
+          schema:
+            type: string
+          required: true
+        - name: 'integration_id'
+          in: path
+          description: Unique Service ID
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Integrations
+        summary: Get Integrations by ID
+        # operationId: getIntegrationsID
+        # security schemas applied to this operation
+        security:
+          - main_auth:
+              - 'read:users' # for auth2 provide list of scopes here
+          - api_key: []
+        responses: # list of responses
+          '200':
+            description: Success
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/Integration'
+              application/xml: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/Integration'
+          '403':
+            description: Forbidden
+          '404':
+            description: Not found
+  '/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/alerts':
+      parameters: 
+        - name: 'team_id'
+          in: path
+          description: Unique ID of team
+          schema:
+            type: string
+          required: true
+        - name: 'service_id'
+          in: path
+          description: Unique Service ID
+          schema:
+            type: string
+          required: true
+        - name: 'integration_id'
+          in: path
+          description: Unique Service ID
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Integrations
+        summary: Get Alerts in an integration
+        # operationId: getAlerts
+        # security schemas applied to this operation
+        security:
+          - main_auth:
+              - 'read:users' # for auth2 provide list of scopes here
+          - api_key: []
+        responses: # list of responses
+          '200':
+            description: Success
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/AlertList'
+              application/xml: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/AlertList'
+          '403':
+            description: Forbidden
+          '404':
+            description: Not found
+  '/api/incidents':
+      get: 
+        tags:
+        - Incidents
+        summary: Get Incidents
+        # operationId: getIncidents
+        # security schemas applied to this operation
+        parameters:
+          - name: page
+            in: query
+            schema:
+              type: integer
+            example: 1
+          - name: status
+            in: query
+            schema:
+              type: integer
+            example: 1
+          - name: team_ids
+            in: query
+            schema: 
+              type: array
+              items:
+                type: string
+          - name: service_ids
+            in: query
+            schema:
+              type: array
+              items:
+                type: string
+          - name: user_ids
+            in: query
+            schema:
+              type: array
+              items:
+                type: string
+        security:
+          - main_auth:
+              - 'read:users' # for auth2 provide list of scopes here
+          - api_key: []
+        responses: # list of responses
+          '200':
+            description: Success
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/IncidentList'
+              application/xml: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/IncidentList'
+          '403':
+            description: Forbidden
+          '404':
+            description: Not found
+  '/api/incidents/{incident_number}':
+      parameters:
+        - name: incident_number
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: Incident number
+      get: 
+        tags:
+        - Incidents
+        summary: Get Incident by number
+        # operationId: getIncidents
+        # security schemas applied to this operation
+        security:
+          - main_auth:
+              - 'read:users' # for auth2 provide list of scopes here
+          - api_key: []
+        responses: # list of responses
+          '200':
+            description: Success
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/Incident'
+              application/xml: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/Incident'
+          '403':
+            description: Forbidden
+          '404':
+            description: Not found
+  '/api/incidents/{incident_number}/alerts':
+      parameters:
+        - name: incident_number
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: Incident number
+      get: 
+        tags:
+        - Incidents
+        summary: Get Incident Alerts
+        # operationId: getIncidents
+        # security schemas applied to this operation
+        security:
+          - main_auth:
+              - 'read:users' # for auth2 provide list of scopes here
+          - api_key: []
+        responses: # list of responses
+          '200':
+            description: Success
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/ServiceAlert'
+              application/xml: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/ServiceAlert'
+          '403':
+            description: Forbidden
+          '404':
+            description: Not found
+  '/api/incidents/{incident_number}/note':
+      parameters:
+        - name: incident_number
+          in: path
+          schema:
+            type: integer
+          required: true
+          description: Incident number
+      get: 
+        tags:
+        - Incidents
+        summary: Get Incident Notes
+        # operationId: getIncidents
+        # security schemas applied to this operation
+        security:
+          - main_auth:
+              - 'read:users' # for auth2 provide list of scopes here
+          - api_key: []
+        responses: # list of responses
+          '200':
+            description: Success
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/IncidentNoteList'
+              application/xml: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/IncidentNoteList'
+          '403':
+            description: Forbidden
+          '404':
+            description: Not found
+      patch: 
+          tags:
+          - Incidents
+          summary: Acknowledge or resolve Incidents
+          # operationId: updateService
+          # security schemas applied to this operation
+          parameters:
+            - name: incident_info
+              in: query
+              schema:
+                $ref: '#/components/schemas/Incident'
+          security:
+            - main_auth:
+                - 'read:users' # for auth2 provide list of scopes here
+            - api_key: []
+          responses: # list of responses
+            '200':
+              description: Success
+              content:
+                application/json: # operation response mime type
+                  schema: # response schema can be specified for each response
+                    $ref: '#/components/schemas/Incident'
+                application/xml: # operation response mime type
+                  schema: # response schema can be specified for each response
+                    $ref: '#/components/schemas/Incident'
+            '403':
+              description: Forbidden
+            '404':
+              description: Not found
+            
+            
 # An object to hold reusable parts that can be used across the spec
 components:
   schemas:
@@ -489,6 +865,8 @@ components:
           example: "Sentry prod 2"
         unique_id:
           type: string
+        service:
+          type: string
         application: 
           type: string
         application_reference:
@@ -502,9 +880,206 @@ components:
         create_incidents_for:
           type: integer
           example: 2
-      
-        
-        
+    Payload:
+      description: payload of alert
+      type: object
+      properties: 
+        a:
+          type: integer
+        b: 
+          type: integer
+        c: 
+          type: integer
+    ServiceAlert:
+      description: alert from a service
+      type: object
+      properties:
+        integration_name:
+          type: string
+          example: "Sentry"
+        incident:
+          type: integer
+          example: 37
+        creation_date:
+          type: string
+          format: date-time
+        status:
+          type: integer
+          example: 1
+        message: 
+          type: string
+          example: "Testing Sentry 49"
+        integration_id:
+          type: string
+        suppressed: 
+          type: boolean
+          default: false
+        entity_id:
+          type: string
+        payload:
+          $ref: '#/components/schemas/Payload'
+        severity:
+          type: integer
+          description: 1 for info, 2 for warning, 3 for error, 4 for critical
+          example: 4
+    AlertList:
+      description: List of alerts
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 15
+        next:
+          type: string
+          format: url
+        previous:
+          type: string
+          format: url
+        results:
+          $ref: '#/components/schemas/ServiceAlert'
+    NewTeamName:
+      description: Name of the new team
+      type: string
+    UserID:
+      description: ID of the user to be added.
+      type: string
+    NewService:
+      description: Details of the new service
+      type: object
+      properties:
+        name:
+          description: Name of new service
+          type: string
+        description:
+          description: Details of service
+          type: string
+        acknowledgement_timeout:
+          type: integer
+        auto_resolve_timeout:
+          type: integer
+        escalation_policy:
+          type: string
+        integration_id:
+          type: string
+    NewIntegration:
+      description: Details of the new integration
+      type: object
+      properties:
+        name:
+          description: Name of new integration
+          type: string
+        summary:
+          description: Summary of new integration
+          type: string
+        application:
+          description: application ID
+          type: string
+    Incident:
+      description: Details of the incident
+      type: object
+      properties:
+        summary:
+          description: Summary of the incident
+          type: string
+        incident_number:
+          description: Service number
+          type: integer
+          example: 38
+        creation_date: 
+          description: Date and Time of incident created
+          type: string
+          format: date-time
+        status:
+          type: integer
+          example: 1
+          description: 1 for Open, 2 for Acknowledged, 3 for resolved, 0 for all
+        unique_id:
+          description: Incident ID
+          type: string
+        service_object:
+          $ref: '#/components/schemas/ServiceInfo'
+        title: 
+          type: string
+          description: Title of the incident
+        incident_key:
+          type: string
+          description: TBC
+        priority:
+          description: 1 for critical, 2 for high, 3 for moderate, 4 for low
+          type: integer
+          example: 1
+        urgency: 
+          description: 1 for high, 0 for low
+          type: integer
+          example: 1
+        merged_with:
+          description: Incident number merged with
+          type: integer
+          example: 50
+        assigned_to:
+          description: ID of the user assigned to
+          type: string
+        assigned_to_name:
+          description: Name of the assignee
+          type: string
+          example: John Doe
+        resolved_date:
+          type: string
+          format: date-time
+        acknowledged_date:
+          type: string
+          format: date-time
+    IncidentList:
+      description: List of incidents
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 15
+        next:
+          type: string
+          format: url
+        previous:
+          type: string
+          format: url
+        results:
+          $ref: '#/components/schemas/Incident'
+    IncidentNote:
+      description: notes for an incident
+      type: object
+      properties:
+        unique_id: 
+          type: string
+          description: Incident ID
+        incident:
+          type: integer
+          description: Incident Number
+          example: 38
+        user:
+          type: string
+          description: User ID of the assignee
+        note:
+          type: string
+          description: Note on the incident
+        user_name: 
+          type: string
+          description: Name of the assignee
+    IncidentNoteList:
+      type: object
+      description: List of notes on an incident
+      properties:
+        count:
+          type: integer
+          description: Number of notes
+        next:
+          type: string
+          format: url
+        previous:
+          type: string
+          format: url
+        results:
+          $ref: '#/components/schemas/IncidentNote'
+          
   headers:
     ExpiresAfter:
       description: date in UTC when token expires
