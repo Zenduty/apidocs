@@ -11,5 +11,8 @@
     "build": "swagger-repo build -o web_deploy",
     "test": "swagger-repo validate",
     "gh-pages": "swagger-repo gh-pages"
+  },
+  "devDependencies": {
+    "ws": "3.3.2"
   }
 }
