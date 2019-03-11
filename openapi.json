@@ -2,78 +2,509 @@
   "openapi": "3.0.0",
   "info": {
     "version": "1.0.0",
-    "title": "Example.com",
-    "termsOfService": "https://example.com/terms/",
+    "title": "Zenduty",
+    "termsOfService": "https://zenduty.com",
     "contact": {
-      "email": "contact@example.com",
-      "url": "http://example.com/contact"
+      "email": "vishwa@zenduty.com"
     },
     "license": {
-      "name": "Apache 2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      "name": "Apache 2.0"
     },
     "x-logo": {
-      "url": "https://apis.guru/openapi-template/logo.png"
+      "url": "https://zenduty.com"
     },
-    "description": "This is an **example** API to demonstrate features of OpenAPI specification\n# Introduction\nThis specification is intended to to be a good starting point for describing your API in \n[OpenAPI/Swagger format](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md).\nIt also demonstrates features of [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo) tool and \n[ReDoc](https://github.com/Rebilly/ReDoc) documentation engine. So beyond the standard OpenAPI syntax we use a few \n[vendor extensions](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md).\n\n# OpenAPI Specification\nThe goal of The OpenAPI Specification is to define a standard, language-agnostic interface to REST APIs which\nallows both humans and computers to discover and understand the capabilities of the service without access to source\ncode, documentation, or through network traffic inspection. When properly defined via OpenAPI, a consumer can \nunderstand and interact with the remote service with a minimal amount of implementation logic. Similar to what\ninterfaces have done for lower-level programming, OpenAPI removes the guesswork in calling the service.\n"
-  },
-  "externalDocs": {
-    "description": "Find out how to create Github repo for your OpenAPI spec.",
-    "url": "https://github.com/Rebilly/generator-openapi-repo"
+    "description": "# Introduction\nZenduty is a cutting edge platform for incident management. With high level automation, Zenduty enables faster and better incident resolution keeping developers first.\n"
   },
   "tags": [
     {
-      "name": "Echo",
-      "description": "Example echo operations"
+      "name": "Teams",
+      "description": "Operations about teams"
     },
     {
-      "name": "User",
-      "description": "Operations about user"
-    }
-  ],
-  "servers": [
-    {
-      "url": "http://example.com/api/v1"
+      "name": "Members",
+      "description": "Operations about team members"
     },
     {
-      "url": "https://example.com/api/v1"
+      "name": "Services",
+      "description": "Operations about team services"
+    },
+    {
+      "name": "Integrations",
+      "description": "Operations about service integrations"
+    },
+    {
+      "name": "Incidents",
+      "description": "Operations about incidents"
     }
   ],
   "paths": {
-    "/users/{username}": {
+    "/api/account/teams": {
+      "get": {
+        "tags": [
+          "Teams"
+        ],
+        "summary": "Get teams",
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamWMember"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamWMember"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Teams"
+        ],
+        "summary": "Create Team",
+        "security": [
+          {
+            "main_auth": [
+              "write:users"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Team"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Team"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewTeamName"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/NewTeamName"
+              }
+            }
+          },
+          "description": "New Team Name",
+          "required": true
+        }
+      }
+    },
+    "/api/account/teams/{team_id}": {
       "parameters": [
         {
-          "name": "pretty_print",
-          "in": "query",
-          "description": "Pretty print response",
+          "name": "team_id",
+          "in": "path",
+          "description": "Unique ID of team",
           "schema": {
-            "type": "boolean"
-          }
+            "type": "string"
+          },
+          "required": true
         }
       ],
       "get": {
         "tags": [
-          "User"
+          "Teams"
         ],
-        "summary": "Get user by user name",
-        "description": "Some description of the operation. \nYou can use `markdown` here.\n",
-        "operationId": "getUserByName",
-        "parameters": [
+        "summary": "Get team details",
+        "security": [
           {
-            "name": "username",
-            "in": "path",
-            "description": "The name that needs to be fetched",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "main_auth": [
+              "read:users"
+            ]
           },
           {
-            "name": "with_email",
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamWMember"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamWMember"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Teams"
+        ],
+        "summary": "Delete a Team",
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/api/account/teams/{team_id}/members": {
+      "parameters": [
+        {
+          "name": "team_id",
+          "in": "path",
+          "description": "Unique ID of team",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "post": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "Add members to a team",
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewMember"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewMember"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserID"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UserID"
+              }
+            }
+          },
+          "description": "New Team Details",
+          "required": true
+        }
+      }
+    },
+    "/api/account/teams/{team_id}/members/{member_id}": {
+      "parameters": [
+        {
+          "name": "team_id",
+          "in": "path",
+          "description": "Unique ID of team",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "member_id",
+          "in": "path",
+          "description": "Unique ID of member",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "delete": {
+        "tags": [
+          "Members"
+        ],
+        "summary": "Delete members from a team",
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/api/account/teams/{team_id}/services": {
+      "parameters": [
+        {
+          "name": "team_id",
+          "in": "path",
+          "description": "Unique ID of team",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Get Services for a team",
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceInfo"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceInfo"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Add new Service in a team",
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceInfo"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceInfo"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewService"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/NewService"
+              }
+            }
+          },
+          "description": "New Team Details",
+          "required": true
+        }
+      }
+    },
+    "/api/account/teams/{team_id}/services/{service_id}": {
+      "parameters": [
+        {
+          "name": "team_id",
+          "in": "path",
+          "description": "Unique ID of team",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "service_id",
+          "in": "path",
+          "description": "Unique Service ID",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "get": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Get Services by ID",
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceInfo"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceInfo"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Services"
+        ],
+        "summary": "Update Service",
+        "parameters": [
+          {
+            "name": "service_info",
             "in": "query",
-            "description": "Filter users without email",
             "schema": {
-              "type": "boolean"
+              "$ref": "#/components/schemas/ServiceInfo"
             }
           }
         ],
@@ -93,11 +524,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
-                },
-                "example": {
-                  "username": "user1",
-                  "email": "user@example.com"
+                  "$ref": "#/components/schemas/ServiceInfo"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceInfo"
                 }
               }
             }
@@ -106,28 +538,103 @@
             "description": "Forbidden"
           },
           "404": {
-            "description": "User not found"
+            "description": "Not found"
           }
         }
       },
-      "put": {
+      "delete": {
         "tags": [
-          "User"
+          "Services"
         ],
-        "summary": "Updated user",
-        "description": "This can only be done by the logged in user.",
-        "operationId": "updateUser",
-        "parameters": [
+        "summary": "Delete Service from a team",
+        "security": [
           {
-            "name": "username",
-            "in": "path",
-            "description": "The name that needs to be updated",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/api/account/teams/{team_id}/services/{service_id}/integrations": {
+      "parameters": [
+        {
+          "name": "team_id",
+          "in": "path",
+          "description": "Unique ID of team",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "service_id",
+          "in": "path",
+          "description": "Unique Service ID",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "get": {
+        "tags": [
+          "Integrations"
+        ],
+        "summary": "Get Integrations in a service",
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Integration"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Integration"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Integrations"
+        ],
+        "summary": "Create Integration",
         "security": [
           {
             "main_auth": [
@@ -137,10 +644,22 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Integration"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Integration"
+                }
+              }
+            }
           },
           "400": {
-            "description": "Invalid user supplied"
+            "description": "Invalid"
           },
           "404": {
             "description": "User not found"
@@ -150,103 +669,451 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/User"
+                "$ref": "#/components/schemas/NewIntegration"
               }
             },
             "application/xml": {
               "schema": {
-                "$ref": "#/components/schemas/User"
+                "$ref": "#/components/schemas/NewIntegration"
               }
             }
           },
-          "description": "Updated user object",
+          "description": "New Integration Details",
           "required": true
         }
       }
     },
-    "/echo": {
-      "post": {
+    "/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}": {
+      "parameters": [
+        {
+          "name": "team_id",
+          "in": "path",
+          "description": "Unique ID of team",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "service_id",
+          "in": "path",
+          "description": "Unique Service ID",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "integration_id",
+          "in": "path",
+          "description": "Unique Service ID",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "get": {
         "tags": [
-          "Echo"
+          "Integrations"
         ],
-        "summary": "Echo test",
-        "description": "Receive the exact message you've sent",
-        "operationId": "echo",
+        "summary": "Get Integrations by ID",
         "security": [
           {
-            "api_key": []
+            "main_auth": [
+              "read:users"
+            ]
           },
           {
-            "basic_auth": []
+            "api_key": []
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "headers": {
-              "X-Rate-Limit": {
-                "description": "calls per hour allowed by the user",
-                "schema": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              },
-              "X-Expires-After": {
-                "$ref": "#/components/headers/ExpiresAfter"
-              }
-            },
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
-                },
-                "examples": {
-                  "response": {
-                    "value": "Hello world!"
-                  }
+                  "$ref": "#/components/schemas/Integration"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/Integration"
                 }
-              },
-              "text/csv": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "string",
-                "example": "Hello world!"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "type": "string",
-                "example": "Hello world!"
               }
             }
           },
-          "description": "Echo payload",
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/alerts": {
+      "parameters": [
+        {
+          "name": "team_id",
+          "in": "path",
+          "description": "Unique ID of team",
+          "schema": {
+            "type": "string"
+          },
           "required": true
         },
-        "x-code-samples": [
+        {
+          "name": "service_id",
+          "in": "path",
+          "description": "Unique Service ID",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "integration_id",
+          "in": "path",
+          "description": "Unique Service ID",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "get": {
+        "tags": [
+          "Integrations"
+        ],
+        "summary": "Get Alerts in an integration",
+        "security": [
           {
-            "lang": "C#",
-            "source": "API.v1.Echo echo = new API.v1.Echo();\necho.message = \"Hello World!\");\nEchoResponse response = echo.post();\nif (response.statusCode == HttpStatusCode.Created)\n{\n  // Success\n}\nelse\n{\n  // Something wrong -- check response for errors\n  Console.WriteLine(response.getRawResponse());\n}\n"
+            "main_auth": [
+              "read:users"
+            ]
           },
           {
-            "lang": "PHP",
-            "source": "$form = new \\API\\Entities\\Echo();\n$form->setMessage(\"Hello World!\");\ntry {\n    $pet = $client->echo()->post($form);\n} catch (UnprocessableEntityException $e) {\n    var_dump($e->getErrors());\n}\n"
+            "api_key": []
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlertList"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlertList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/api/incidents": {
+      "get": {
+        "tags": [
+          "Incidents"
+        ],
+        "summary": "Get Incidents",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          },
+          {
+            "name": "team_ids",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "service_ids",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "user_ids",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IncidentList"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/IncidentList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/api/incidents/{incident_number}": {
+      "parameters": [
+        {
+          "name": "incident_number",
+          "in": "path",
+          "schema": {
+            "type": "integer"
+          },
+          "required": true,
+          "description": "Incident number"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Incidents"
+        ],
+        "summary": "Get Incident by number",
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Incident"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Incident"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/api/incidents/{incident_number}/alerts": {
+      "parameters": [
+        {
+          "name": "incident_number",
+          "in": "path",
+          "schema": {
+            "type": "integer"
+          },
+          "required": true,
+          "description": "Incident number"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Incidents"
+        ],
+        "summary": "Get Incident Alerts",
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceAlert"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceAlert"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/api/incidents/{incident_number}/note": {
+      "parameters": [
+        {
+          "name": "incident_number",
+          "in": "path",
+          "schema": {
+            "type": "integer"
+          },
+          "required": true,
+          "description": "Incident number"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Incidents"
+        ],
+        "summary": "Get Incident Notes",
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IncidentNoteList"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/IncidentNoteList"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Incidents"
+        ],
+        "summary": "Acknowledge or resolve Incidents",
+        "parameters": [
+          {
+            "name": "incident_info",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/Incident"
+            }
+          }
+        ],
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Incident"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Incident"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
       }
     }
   },
@@ -255,14 +1122,13 @@
       "Email": {
         "description": "User email address",
         "type": "string",
-        "format": "test",
         "example": "john.smith@example.com"
       },
       "User": {
         "type": "object",
         "properties": {
           "username": {
-            "description": "User supplied username",
+            "description": "System generated username",
             "type": "string",
             "minLength": 4,
             "example": "John78"
@@ -281,6 +1147,480 @@
           },
           "email": {
             "$ref": "#/components/schemas/Email"
+          }
+        }
+      },
+      "Member": {
+        "description": "Member in an account",
+        "type": "object",
+        "properties": {
+          "unique_id": {
+            "description": "Unique ID",
+            "type": "string"
+          },
+          "time_zone": {
+            "description": "Time Zone of account",
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "joining_date": {
+            "description": "Joining date",
+            "type": "string",
+            "format": "date-time"
+          },
+          "role": {
+            "type": "integer"
+          }
+        }
+      },
+      "Team": {
+        "description": "Team in an account",
+        "type": "object",
+        "properties": {
+          "unique_id": {
+            "description": "ID of team",
+            "type": "string"
+          },
+          "owner": {
+            "description": "Owner of teams",
+            "type": "string"
+          },
+          "account": {
+            "description": "Account ID",
+            "type": "string"
+          },
+          "name": {
+            "description": "Name of the team",
+            "type": "string"
+          },
+          "creation_date": {
+            "description": "Date of creation",
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "TeamWMember": {
+        "description": "All Team Details",
+        "type": "object",
+        "properties": {
+          "team": {
+            "$ref": "#/components/schemas/Team"
+          },
+          "member": {
+            "$ref": "#/components/schemas/Member"
+          }
+        }
+      },
+      "NewMember": {
+        "description": "New Member in a Team",
+        "type": "object",
+        "properties": {
+          "unique_id": {
+            "type": "string"
+          },
+          "team": {
+            "type": "string"
+          },
+          "user": {
+            "type": "string"
+          },
+          "joining_date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ServiceInfo": {
+        "description": "Information about a service",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Test Service"
+          },
+          "creation date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "summary": {
+            "type": "string",
+            "example": "Test Summary"
+          },
+          "description": {
+            "type": "string",
+            "example": "TS Description"
+          },
+          "unique_id": {
+            "type": "string"
+          },
+          "auto_resolve_timeout": {
+            "type": "integer"
+          },
+          "created_by": {
+            "type": "string"
+          },
+          "acknowlegement_timeout": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "integer"
+          },
+          "escalation_policy": {
+            "type": "string"
+          },
+          "team": {
+            "type": "string"
+          }
+        }
+      },
+      "ApplicationRef": {
+        "description": "Details of the app",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Sentry"
+          },
+          "icon_url": {
+            "type": "string",
+            "example": "www.url.com"
+          },
+          "summary": {
+            "type": "string",
+            "example": "Zenduty Sentry App"
+          },
+          "description": {
+            "type": "string",
+            "example": "Sentry for Zenduty"
+          },
+          "unique_id": {
+            "type": "string"
+          },
+          "availability_plan_id": {
+            "type": "integer",
+            "example": 1
+          },
+          "setup_instructions": {
+            "type": "string"
+          }
+        }
+      },
+      "Integration": {
+        "description": "Details of integration",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Sentry 2"
+          },
+          "creation_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "summary": {
+            "type": "string",
+            "example": "Sentry prod 2"
+          },
+          "unique_id": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string"
+          },
+          "application": {
+            "type": "string"
+          },
+          "application_reference": {
+            "$ref": "#/components/schemas/ApplicationRef"
+          },
+          "integration_key": {
+            "type": "string"
+          },
+          "created_by": {
+            "type": "string"
+          },
+          "is_enabled": {
+            "type": "boolean"
+          },
+          "create_incidents_for": {
+            "type": "integer",
+            "example": 2
+          }
+        }
+      },
+      "Payload": {
+        "description": "payload of alert",
+        "type": "object",
+        "properties": {
+          "a": {
+            "type": "integer"
+          },
+          "b": {
+            "type": "integer"
+          },
+          "c": {
+            "type": "integer"
+          }
+        }
+      },
+      "ServiceAlert": {
+        "description": "alert from a service",
+        "type": "object",
+        "properties": {
+          "integration_name": {
+            "type": "string",
+            "example": "Sentry"
+          },
+          "incident": {
+            "type": "integer",
+            "example": 37
+          },
+          "creation_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "integer",
+            "example": 1
+          },
+          "message": {
+            "type": "string",
+            "example": "Testing Sentry 49"
+          },
+          "integration_id": {
+            "type": "string"
+          },
+          "suppressed": {
+            "type": "boolean",
+            "default": false
+          },
+          "entity_id": {
+            "type": "string"
+          },
+          "payload": {
+            "$ref": "#/components/schemas/Payload"
+          },
+          "severity": {
+            "type": "integer",
+            "description": "1 for info, 2 for warning, 3 for error, 4 for critical",
+            "example": 4
+          }
+        }
+      },
+      "AlertList": {
+        "description": "List of alerts",
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 15
+          },
+          "next": {
+            "type": "string",
+            "format": "url"
+          },
+          "previous": {
+            "type": "string",
+            "format": "url"
+          },
+          "results": {
+            "$ref": "#/components/schemas/ServiceAlert"
+          }
+        }
+      },
+      "NewTeamName": {
+        "description": "Name of the new team",
+        "type": "string"
+      },
+      "UserID": {
+        "description": "ID of the user to be added.",
+        "type": "string"
+      },
+      "NewService": {
+        "description": "Details of the new service",
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Name of new service",
+            "type": "string"
+          },
+          "description": {
+            "description": "Details of service",
+            "type": "string"
+          },
+          "acknowledgement_timeout": {
+            "type": "integer"
+          },
+          "auto_resolve_timeout": {
+            "type": "integer"
+          },
+          "escalation_policy": {
+            "type": "string"
+          },
+          "integration_id": {
+            "type": "string"
+          }
+        }
+      },
+      "NewIntegration": {
+        "description": "Details of the new integration",
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Name of new integration",
+            "type": "string"
+          },
+          "summary": {
+            "description": "Summary of new integration",
+            "type": "string"
+          },
+          "application": {
+            "description": "application ID",
+            "type": "string"
+          }
+        }
+      },
+      "Incident": {
+        "description": "Details of the incident",
+        "type": "object",
+        "properties": {
+          "summary": {
+            "description": "Summary of the incident",
+            "type": "string"
+          },
+          "incident_number": {
+            "description": "Service number",
+            "type": "integer",
+            "example": 38
+          },
+          "creation_date": {
+            "description": "Date and Time of incident created",
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "integer",
+            "example": 1,
+            "description": "1 for Open, 2 for Acknowledged, 3 for resolved, 0 for all"
+          },
+          "unique_id": {
+            "description": "Incident ID",
+            "type": "string"
+          },
+          "service_object": {
+            "$ref": "#/components/schemas/ServiceInfo"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the incident"
+          },
+          "incident_key": {
+            "type": "string",
+            "description": "TBC"
+          },
+          "priority": {
+            "description": "1 for critical, 2 for high, 3 for moderate, 4 for low",
+            "type": "integer",
+            "example": 1
+          },
+          "urgency": {
+            "description": "1 for high, 0 for low",
+            "type": "integer",
+            "example": 1
+          },
+          "merged_with": {
+            "description": "Incident number merged with",
+            "type": "integer",
+            "example": 50
+          },
+          "assigned_to": {
+            "description": "ID of the user assigned to",
+            "type": "string"
+          },
+          "assigned_to_name": {
+            "description": "Name of the assignee",
+            "type": "string",
+            "example": "John Doe"
+          },
+          "resolved_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "acknowledged_date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "IncidentList": {
+        "description": "List of incidents",
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 15
+          },
+          "next": {
+            "type": "string",
+            "format": "url"
+          },
+          "previous": {
+            "type": "string",
+            "format": "url"
+          },
+          "results": {
+            "$ref": "#/components/schemas/Incident"
+          }
+        }
+      },
+      "IncidentNote": {
+        "description": "notes for an incident",
+        "type": "object",
+        "properties": {
+          "unique_id": {
+            "type": "string",
+            "description": "Incident ID"
+          },
+          "incident": {
+            "type": "integer",
+            "description": "Incident Number",
+            "example": 38
+          },
+          "user": {
+            "type": "string",
+            "description": "User ID of the assignee"
+          },
+          "note": {
+            "type": "string",
+            "description": "Note on the incident"
+          },
+          "user_name": {
+            "type": "string",
+            "description": "Name of the assignee"
+          }
+        }
+      },
+      "IncidentNoteList": {
+        "type": "object",
+        "description": "List of notes on an incident",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "description": "Number of notes"
+          },
+          "next": {
+            "type": "string",
+            "format": "url"
+          },
+          "previous": {
+            "type": "string",
+            "format": "url"
+          },
+          "results": {
+            "$ref": "#/components/schemas/IncidentNote"
           }
         }
       }
