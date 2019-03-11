@@ -1,4 +1,4 @@
-# zenduty OpenAPI Specification
+# Zenduty OpenAPI Specification
 [![Build Status](https://travis-ci.com/Zenduty/apidocs.svg?branch=master)](https://travis-ci.com/Zenduty/apidocs)
 ## Steps to finish
 
