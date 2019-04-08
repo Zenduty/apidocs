@@ -33,6 +33,10 @@
       "description": "Operations about service integrations"
     },
     {
+      "name": "Events",
+      "description": "Events are a way for applications and services to send alerts to Zenduty"
+    },
+    {
       "name": "Incidents",
       "description": "Operations about incidents"
     }
@@ -1115,6 +1119,59 @@
           }
         }
       }
+    },
+    "/api/events/{integration-key}": {
+      "parameters": [
+        {
+          "name": "integration-key",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true,
+          "description": "Replace the integration-key with the Integration key you copied in Step 1"
+        }
+      ],
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Create Event",
+        "security": [
+          {
+            "main_auth": [
+              "write:users"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Invalid"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewEvent"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/NewEvent"
+              }
+            }
+          },
+          "description": "New Event",
+          "required": true
+        }
+      }
     }
   },
   "components": {
@@ -1621,6 +1678,38 @@
           },
           "results": {
             "$ref": "#/components/schemas/IncidentNote"
+          }
+        }
+      },
+      "NewEvent": {
+        "type": "object",
+        "description": "Custom payload for an event",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "This becomes the incident title. This field is required."
+          },
+          "summary": {
+            "type": "string",
+            "description": "This is the incident summary"
+          },
+          "alert_type": {
+            "type": "string",
+            "default": "info",
+            "description": "Choices - critical, acknowledged, resolved, error, warning, info. This field is required."
+          },
+          "suppressed": {
+            "type": "string",
+            "default": "no",
+            "description": "Yes or No"
+          },
+          "entity_id": {
+            "type": "string",
+            "description": "A unique id for the alert.If not provided, the Zenduty API will create one"
+          },
+          "payload": {
+            "type": "object",
+            "description": "A JSON payload containing additional information about the alert"
           }
         }
       }
