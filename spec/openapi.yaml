@@ -1129,9 +1129,9 @@ components:
           default: info
           description: Choices - critical, acknowledged, resolved, error, warning, info. This field is required.
         suppressed:
-          type: string
-          default: no
-          description: Yes or No
+          type: boolean
+          default: False
+          description: True or False
         entity_id:
           type: string
           description: A unique id for the alert.If not provided, the Zenduty API will create one
