@@ -1699,9 +1699,9 @@
             "description": "Choices - critical, acknowledged, resolved, error, warning, info. This field is required."
           },
           "suppressed": {
-            "type": "string",
-            "default": "no",
-            "description": "Yes or No"
+            "type": "boolean",
+            "default": false,
+            "description": "True or False"
           },
           "entity_id": {
             "type": "string",
