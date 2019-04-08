@@ -1129,7 +1129,7 @@ components:
           default: info
           description: Choices - critical, acknowledged, resolved, error, warning, info. This field is required.
         suppressed:
-          type: boolean
+          type: string
           default: no
           description: Yes or No
         entity_id:
