@@ -750,7 +750,7 @@ paths:
           application/xml:
             schema:
               $ref: '#/components/schemas/EP'
-        description: New Integration Details
+        description: New Escalation Policy Details
         required: true
   '/api/account/teams/{team_id}/escalation_policies/{ep_id}':
     parameters:
@@ -856,6 +856,115 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Schedule'
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
+    post:
+      tags:
+        - Schedules
+      summary: Create a Schedule
+      security:
+        - main_auth:
+            - 'write:users'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+        '400':
+          description: Invalid
+        '404':
+          description: User not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Schedule'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Schedule'
+        description: New Schedule Details
+        required: true
+  '/api/account/teams/{team_id}/schedules/{schedule_id}':
+    parameters:
+      - name: team_id
+        in: path
+        description: Unique ID of team
+        schema:
+          type: string
+        required: true
+      - name: schedule_id
+        in: path
+        description: Unique ID of the schedule
+        schema:
+          type: string
+        required: true
+    get:
+      tags:
+        - Schedules
+      summary: Get Schedule by ID
+      security:
+        - main_auth:
+            - 'read:users'
+        - api_key: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
+    patch:
+      tags:
+        - Schedules
+      summary: Update a Schedule
+      parameters:
+        - name: schedule
+          in: query
+          schema:
+            $ref: '#/components/schemas/Schedule'
+      security:
+        - main_auth:
+            - 'read:users'
+        - api_key: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
+    delete:
+      tags:
+        - Schedules
+      summary: Delete a Schedule
+      security:
+        - main_auth:
+            - 'read:users'
+        - api_key: []
+      responses:
+        '200':
+          description: Success
         '403':
           description: Forbidden
         '404':
@@ -1382,6 +1491,9 @@ components:
           description: Team ID
         layers:
           $ref: '#/components/schemas/Layer'
+        unique_id:
+          type: string
+          description: Unique ID of the schedule
   headers:
     ExpiresAfter:
       description: date in UTC when token expires
