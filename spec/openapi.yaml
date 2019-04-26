@@ -10,7 +10,7 @@ info:
   license:
     name: Apache 2.0
   x-logo:
-    url: 'https://zenduty.com'
+    url: 'https://drive.google.com/file/d/1mziyz9JcPilQBYQb-PMW8qc6Z7scWLMN/view?usp=sharing'
   description: |
     # Introduction
     
@@ -912,7 +912,7 @@ paths:
         tags:
         - Schedules
         summary: Get Schedules
-        # operationId: getEP
+        # operationId: getSchedule
         # security schemas applied to this operation
         security:
           - main_auth:
@@ -1340,7 +1340,6 @@ components:
         target:
           $ref: '#/components/schemas/EP_target'
         position:
-          default: null
           type: integer
         unique_id:
           type: string
