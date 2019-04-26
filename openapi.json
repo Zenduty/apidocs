@@ -11,7 +11,7 @@
       "name": "Apache 2.0"
     },
     "x-logo": {
-      "url": "https://zenduty.com"
+      "url": "https://drive.google.com/file/d/1mziyz9JcPilQBYQb-PMW8qc6Z7scWLMN/view?usp=sharing"
     },
     "description": "# Introduction\n\nZenduty is a cutting edge platform for incident management. With high level automation, Zenduty enables faster and better incident resolution keeping developers first.\n"
   },
@@ -39,6 +39,14 @@
     {
       "name": "Incidents",
       "description": "Operations about incidents"
+    },
+    {
+      "name": "Escalation Policies",
+      "description": "Operations about escalation policies"
+    },
+    {
+      "name": "Schedules",
+      "description": "Operations about schedules"
     }
   ],
   "paths": {
@@ -1172,6 +1180,298 @@
           "required": true
         }
       }
+    },
+    "/api/account/teams/{team_id}/escalation_policies": {
+      "parameters": [
+        {
+          "name": "team_id",
+          "in": "path",
+          "description": "Unique ID of team",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "get": {
+        "tags": [
+          "Escalation Policies"
+        ],
+        "summary": "Get Escalation Policies",
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EP"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EP"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Escalation Policies"
+        ],
+        "summary": "Create Escalation Policy",
+        "security": [
+          {
+            "main_auth": [
+              "write:users"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EP"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EP"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EP"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/EP"
+              }
+            }
+          },
+          "description": "New Integration Details",
+          "required": true
+        }
+      }
+    },
+    "/api/account/teams/{team_id}/escalation_policies/{ep_id}": {
+      "parameters": [
+        {
+          "name": "team_id",
+          "in": "path",
+          "description": "Unique ID of team",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        },
+        {
+          "name": "ep_id",
+          "in": "path",
+          "description": "Unique ID of the escalation policy",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "get": {
+        "tags": [
+          "Escalation Policies"
+        ],
+        "summary": "Get Escalation Policy by ID",
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EP"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EP"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Escalation Policies"
+        ],
+        "summary": "Update an Escalation Policy",
+        "parameters": [
+          {
+            "name": "escalation_policy",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/EP"
+            }
+          }
+        ],
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EP"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/EP"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Escalation Policies"
+        ],
+        "summary": "Delete an Escalation Policy",
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/api/account/teams/{team_id}/schedules": {
+      "parameters": [
+        {
+          "name": "team_id",
+          "in": "path",
+          "description": "Unique ID of team",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "get": {
+        "tags": [
+          "Schedules"
+        ],
+        "summary": "Get Schedules",
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schedule"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schedule"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1710,6 +2010,186 @@
           "payload": {
             "type": "object",
             "description": "A JSON payload containing additional information about the alert"
+          }
+        }
+      },
+      "EP_target": {
+        "type": "object",
+        "properties": {
+          "target_type": {
+            "type": "integer"
+          },
+          "target_id": {
+            "type": "string"
+          }
+        }
+      },
+      "EP_rules": {
+        "type": "object",
+        "properties": {
+          "delay": {
+            "type": "integer",
+            "default": 0
+          },
+          "target": {
+            "$ref": "#/components/schemas/EP_target"
+          },
+          "position": {
+            "type": "integer"
+          },
+          "unique_id": {
+            "type": "string"
+          }
+        }
+      },
+      "EP": {
+        "type": "object",
+        "description": "Payload for escalation policies",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the Escalation policy",
+            "example": "Default Escalation Policy"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of the EP",
+            "example": "This is the default escalation policy of the team"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the EP"
+          },
+          "rules": {
+            "$ref": "#/components/schemas/EP_rules"
+          },
+          "unique_id": {
+            "type": "string"
+          },
+          "team": {
+            "type": "string",
+            "description": "Team ID"
+          }
+        }
+      },
+      "Restriction": {
+        "type": "object",
+        "description": "Payload of a Schedule Restriction",
+        "properties": {
+          "duration": {
+            "type": "integer",
+            "description": "Duration of Restriction"
+          },
+          "start_day_of_week": {
+            "type": "integer",
+            "description": "Day of the week. Takes integer values from 0 to 6 (inclusive)",
+            "minimum": 0,
+            "maximum": 6
+          },
+          "start_time_of day": {
+            "type": "string",
+            "description": "Time of the day",
+            "example": 75600
+          },
+          "unique_id": {
+            "type": "string",
+            "description": "Unique ID of the restriction"
+          }
+        }
+      },
+      "ScheduleUser": {
+        "type": "object",
+        "description": "Payload of a User attached to the schedule",
+        "properties": {
+          "user": {
+            "type": "string",
+            "description": "User ID of the user"
+          },
+          "position": {
+            "type": "integer",
+            "description": "Position in the rotation"
+          },
+          "unique_id": {
+            "type": "string",
+            "description": "unique ID of the User in the layer"
+          }
+        }
+      },
+      "Layer": {
+        "type": "object",
+        "description": "Payload of a Schedule Layer",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "name of the layer"
+          },
+          "shift_length": {
+            "type": "integer",
+            "description": "Length of shift"
+          },
+          "restrictions": {
+            "$ref": "#/components/schemas/Restriction"
+          },
+          "rotation_start_time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "start time of the shift"
+          },
+          "rotation_end_time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "End time of the shift"
+          },
+          "restriction_type": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2,
+            "description": "0 for no restriction, 1 for daily restrictions, 2 for weekly restrictions"
+          },
+          "is_active": {
+            "type": "boolean",
+            "default": true
+          },
+          "last_edited": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "unique_id": {
+            "type": "string",
+            "description": "unique ID of the layer"
+          },
+          "users": {
+            "$ref": "#/components/schemas/ScheduleUser"
+          }
+        }
+      },
+      "Schedule": {
+        "type": "object",
+        "description": "Payload of a Schedule",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the Schedule"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of the Schedule"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the Schedule"
+          },
+          "time_zone": {
+            "type": "string",
+            "description": "Time Zone of the Schedule",
+            "example": "Asia/Calcutta"
+          },
+          "team": {
+            "type": "string",
+            "description": "Team ID"
+          },
+          "layers": {
+            "$ref": "#/components/schemas/Layer"
           }
         }
       }
