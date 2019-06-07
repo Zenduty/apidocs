@@ -2169,6 +2169,45 @@
           }
         }
       },
+      "EventImage": {
+        "type": "object",
+        "description": "Image attachments",
+        "properties": {
+          "image_src": {
+            "type": "string"
+          },
+          "image_url": {
+            "type": "string"
+          },
+          "image_text": {
+            "type": "string"
+          }
+        }
+      },
+      "EventUrl": {
+        "type": "object",
+        "description": "Link attachments",
+        "properties": {
+          "link_url": {
+            "type": "string"
+          },
+          "link_text": {
+            "type": "string"
+          }
+        }
+      },
+      "EventNote": {
+        "type": "object",
+        "description": "Notes attachments",
+        "properties": {
+          "note_title": {
+            "type": "string"
+          },
+          "note_text": {
+            "type": "string"
+          }
+        }
+      },
       "NewEvent": {
         "type": "object",
         "description": "Custom payload for an event",
@@ -2198,6 +2237,15 @@
           "payload": {
             "type": "object",
             "description": "A JSON payload containing additional information about the alert"
+          },
+          "images": {
+            "$ref": "#/components/schemas/EventImage"
+          },
+          "links": {
+            "$ref": "#/components/schemas/EventUrl"
+          },
+          "notes": {
+            "$ref": "#/components/schemas/EventNote"
           }
         }
       },
