@@ -10,7 +10,7 @@ info:
   license:
     name: Apache 2.0
   x-logo:
-    url: 'https://drive.google.com/file/d/1mziyz9JcPilQBYQb-PMW8qc6Z7scWLMN/view?usp=sharing'
+    url: 'http://zenduty.s3.amazonaws.com/media/logos/386_Zenduty_Logo_DA-Thumbnail_03.png'
   description: |
     # Introduction
     
@@ -36,8 +36,8 @@ tags:
   - name: Schedules
     description: Operations about schedules
   
-# servers:
-# - url: 'http://example.com/api/v1'
+servers:
+ - url: 'http://zenduty.com/v1'
 paths:
   '/api/account/teams':
     # documentation for get teams
@@ -1618,6 +1618,7 @@ components:
       schema:
         type: string
         format: date-time
+        
   # Security scheme definitions that can be used across the specification.
   securitySchemes:
     main_auth: # security definition name (you can name it as you want)
