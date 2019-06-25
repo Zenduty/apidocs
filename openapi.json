@@ -11,7 +11,7 @@
       "name": "Apache 2.0"
     },
     "x-logo": {
-      "url": "https://drive.google.com/file/d/1mziyz9JcPilQBYQb-PMW8qc6Z7scWLMN/view?usp=sharing"
+      "url": "http://zenduty.s3.amazonaws.com/media/logos/386_Zenduty_Logo_DA-Thumbnail_03.png"
     },
     "description": "# Introduction\n\nZenduty is a cutting edge platform for incident management. With high level automation, Zenduty enables faster and better incident resolution keeping developers first.\n"
   },
@@ -47,6 +47,11 @@
     {
       "name": "Schedules",
       "description": "Operations about schedules"
+    }
+  ],
+  "servers": [
+    {
+      "url": "http://zenduty.com/v1"
     }
   ],
   "paths": {
