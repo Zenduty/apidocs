@@ -37,7 +37,7 @@ tags:
     description: Operations about schedules
   
 servers:
- - url: 'http://zenduty.com/v1'
+ - url: 'http://zenduty.com/dashboard'
 paths:
   '/api/account/teams':
     # documentation for get teams
@@ -591,6 +591,31 @@ paths:
             description: Forbidden
           '404':
             description: Not found
+      post:
+        tags:
+          - Incidents
+        summary: Create Incident
+          # operationId: createIncident
+        security:
+          - main_auth:
+            - 'write:users'
+        responses:
+          '200':
+            description: OK
+          '400':
+            description: Invalid 
+          '404':
+            description: User not found
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewIncident'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/NewIncident'
+          description: New Incident
+          required: true
   '/api/incidents/{incident_number}':
       parameters:
         - name: incident_number
@@ -1475,6 +1500,22 @@ components:
           $ref: '#/components/schemas/EventUrl'
         notes:
           $ref: '#/components/schemas/EventNote'
+    NewIncident:
+      type: object
+      description: Custom payload for new incident
+      properties:
+        service: 
+          type: string
+          description: Service to which the incident is attached. This field is required
+        title:
+          type: string
+          description: This becomes the incident title. This field is required.
+        summary:
+          type: string
+          description: This is the incident summary
+        urgency:
+          type: integer
+          description: 1 for high, 0 for low
     EP_target:
       type: object
       properties:
