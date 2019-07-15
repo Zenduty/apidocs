@@ -13,7 +13,7 @@
     "x-logo": {
       "url": "http://zenduty.s3.amazonaws.com/media/logos/386_Zenduty_Logo_DA-Thumbnail_03.png"
     },
-    "description": "# Introduction\n\nZenduty is a cutting edge platform for incident management. With high level automation, Zenduty enables faster and better incident resolution keeping developers first.\n"
+    "description": "# Introduction\n\nZenduty is a cutting edge platform for incident management. With high level automation, Zenduty enables faster and better incident resolution keeping developers first.\n  \n  \n  Javascript Libraries: https://github.com/Zenduty/zenduty-js\n  \n  Ruby Libraries: https://github.com/Zenduty/zenduty-ruby\n  \n  Python Libraries: https://github.com/Zenduty/zenduty-python-sdk\n"
   },
   "tags": [
     {
