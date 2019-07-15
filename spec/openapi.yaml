@@ -15,7 +15,14 @@ info:
     # Introduction
     
     Zenduty is a cutting edge platform for incident management. With high level automation, Zenduty enables faster and better incident resolution keeping developers first.
-
+      
+      
+      Javascript Libraries: https://github.com/Zenduty/zenduty-js
+      
+      Ruby Libraries: https://github.com/Zenduty/zenduty-ruby
+      
+      Python Libraries: https://github.com/Zenduty/zenduty-python-sdk
+    
 # A list of tags used by the specification with additional metadata.
 # The order of the tags can be used to reflect on their order by the parsing tools.
 tags:
