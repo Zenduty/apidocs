@@ -38,7 +38,7 @@ tags:
   - name: Schedules
     description: Operations about schedules
 servers:
-  - url: 'http://www.zenduty.com'
+  - url: 'https://www.zenduty.com'
 paths:
   /api/account/teams:
     get:
