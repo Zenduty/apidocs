@@ -44,7 +44,7 @@ tags:
     description: Operations about schedules
   
 servers:
- - url: 'http://zenduty.com/dashboard'
+ - url: 'http://www.zenduty.com'
 paths:
   '/api/account/teams':
     # documentation for get teams
