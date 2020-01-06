@@ -47,6 +47,18 @@
     {
       "name": "Schedules",
       "description": "Operations about schedules"
+    },
+    {
+      "name": "Roles",
+      "description": "Roles are a way of categorization of tasks to handle an Incident."
+    },
+    {
+      "name": "Tags",
+      "description": "Tags are a way to highlight specifics about an incident."
+    },
+    {
+      "name": "Task Templates",
+      "description": "A ready to go template to create Tasks for incidents."
     }
   ],
   "servers": [
@@ -1019,6 +1031,54 @@
             "description": "Not found"
           }
         }
+      },
+      "patch": {
+        "tags": [
+          "Incidents"
+        ],
+        "summary": "Acknowledge or resolve Incidents",
+        "parameters": [
+          {
+            "name": "incident_info",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/Incident"
+            }
+          }
+        ],
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Incident"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Incident"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
       }
     },
     "/api/incidents/{incident_number}/alerts": {
@@ -1112,54 +1172,6 @@
               "application/xml": {
                 "schema": {
                   "$ref": "#/components/schemas/IncidentNoteList"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not found"
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Incidents"
-        ],
-        "summary": "Acknowledge or resolve Incidents",
-        "parameters": [
-          {
-            "name": "incident_info",
-            "in": "query",
-            "schema": {
-              "$ref": "#/components/schemas/Incident"
-            }
-          }
-        ],
-        "security": [
-          {
-            "main_auth": [
-              "read:users"
-            ]
-          },
-          {
-            "api_key": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Incident"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/Incident"
                 }
               }
             }
@@ -1705,6 +1717,640 @@
           }
         }
       }
+    },
+    "/api/account/teams/{team_id}/roles": {
+      "parameters": [
+        {
+          "name": "team_id",
+          "in": "path",
+          "description": "Unique ID of the team",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "get": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Get Roles for a team",
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rolesresp"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rolesresp"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Create a new Role for a team",
+        "security": [
+          {
+            "main_auth": [
+              "write:users"
+            ]
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rolespay"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rolespay"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid"
+          },
+          "404": {
+            "description": "User Not Found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Rolesref"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Rolesref"
+              }
+            }
+          },
+          "description": "New Role Details",
+          "required": true
+        }
+      }
+    },
+    "/api/account/teams/{team_id}/roles/{role_id}": {
+      "patch": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Update a Role",
+        "parameters": [
+          {
+            "name": "team_id",
+            "in": "path",
+            "description": "Unique ID of the Team",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "role_id",
+            "in": "path",
+            "description": "Unique ID of the Role",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "appilcation/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rolesresp"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rolesresp"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Delete a Role",
+        "parameters": [
+          {
+            "name": "team_id",
+            "in": "path",
+            "description": "Unique ID of the Team",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "role_id",
+            "in": "path",
+            "description": "Unique ID of the Role",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully Deleted"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/account/teams/{team_id}/tags": {
+      "parameters": [
+        {
+          "name": "team_id",
+          "in": "path",
+          "description": "Unique ID of the team",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "get": {
+        "tags": [
+          "Tags"
+        ],
+        "summary": "Get Tags associated with the team",
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tagsresp"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tagsresp"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Tags"
+        ],
+        "summary": "Create a New Tag for a Team",
+        "security": [
+          {
+            "main_auth": [
+              "write:users"
+            ]
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tagspay"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tagspay"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid"
+          },
+          "404": {
+            "description": "User Not Found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Tagsref"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Tagsref"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/account/teams/{team_id}/tags/{tags_id}": {
+      "patch": {
+        "tags": [
+          "Tags"
+        ],
+        "summary": "Update a Tag",
+        "parameters": [
+          {
+            "name": "team_id",
+            "in": "path",
+            "description": "Unique ID of the team",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "tags_id",
+            "in": "path",
+            "description": "Unique ID of the Tag",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tagsresp"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tagsresp"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Tags"
+        ],
+        "summary": "Delete a Tag",
+        "parameters": [
+          {
+            "name": "team_id",
+            "in": "path",
+            "description": "Unique ID of the team",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "tags_id",
+            "in": "path",
+            "description": "Unique ID of the Tag",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/api/account/teams/{team_id}/task_templates": {
+      "parameters": [
+        {
+          "name": "team_id",
+          "in": "path",
+          "description": "Unique of ID of the Team",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "get": {
+        "tags": [
+          "Task Templates"
+        ],
+        "summary": "Get the Task Templates",
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskTemplatesresp"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskTemplatesresp"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Task Templates"
+        ],
+        "summary": "Create a new Task Template",
+        "security": [
+          {
+            "main_auth": [
+              "write:users"
+            ]
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskTemplatespay"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskTemplatespay"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid"
+          },
+          "404": {
+            "description": "User not Found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskTemplatesref"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskTemplatesref"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/api/account/teams/{team_id}/task_templates/{task_template_id}": {
+      "patch": {
+        "tags": [
+          "Task Templates"
+        ],
+        "summary": "Update a Task Template",
+        "parameters": [
+          {
+            "name": "team_id",
+            "in": "path",
+            "description": "Unique ID of the team",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "task_template_id",
+            "in": "path",
+            "description": "Unique ID of the Task Temaplates",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskTemplatesresp"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskTemplatesresp"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Task Templates"
+        ],
+        "summary": "Delete a Task Template",
+        "parameters": [
+          {
+            "name": "team_id",
+            "in": "path",
+            "description": "Unique ID of the team",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "task_template_id",
+            "in": "path",
+            "description": "Unique ID of the Task Temaplates",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "main_auth": [
+              "read:users"
+            ]
+          },
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -2026,8 +2672,22 @@
         "type": "string"
       },
       "UserID": {
-        "description": "ID of the user to be added.",
-        "type": "string"
+        "description": "Member details to add to a Team.",
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "description": "Unique ID of the team to which the member is to be added",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "Unique ID of the user which is to added to the team",
+            "type": "string"
+          },
+          "role_id": {
+            "description": "Unique ID of the role of the user",
+            "type": "string"
+          }
+        }
       },
       "NewService": {
         "description": "Details of the new service",
@@ -2313,6 +2973,10 @@
           "urgency": {
             "type": "integer",
             "description": "1 for high, 0 for low"
+          },
+          "escalation_policy": {
+            "type": "string",
+            "description": "Unique ID of the escalation policy of the team"
           }
         }
       },
@@ -2466,6 +3130,20 @@
           }
         }
       },
+      "Roles": {
+        "type": "object",
+        "description": "Rank of the user",
+        "properties": {
+          "rank": {
+            "type": "integer",
+            "example": 5
+          },
+          "role_id": {
+            "type": "string",
+            "description": "Unique ID of the role"
+          }
+        }
+      },
       "Schedule": {
         "type": "object",
         "description": "Payload of a Schedule",
@@ -2497,6 +3175,222 @@
           "unique_id": {
             "type": "string",
             "description": "Unique ID of the schedule"
+          }
+        }
+      },
+      "Rolesresp": {
+        "type": "object",
+        "description": "Roles in a team",
+        "properties": {
+          "unique_id": {
+            "type": "string",
+            "description": "unique ID of the Role"
+          },
+          "team": {
+            "type": "string",
+            "description": "Unique ID of the team"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title/Name of the Role"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the role"
+          },
+          "creation_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date of creation of the Role"
+          },
+          "rank": {
+            "type": "integer",
+            "description": "Rank of the role in the hierarchy"
+          }
+        }
+      },
+      "Rolespay": {
+        "type": "object",
+        "description": "Payload to create a team Role",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title/Name of the Role"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the Role"
+          },
+          "rank": {
+            "type": "integer",
+            "description": "Rank of the Role ranging from 1 to 10, 1 being the highest and 10 being the lowest."
+          }
+        }
+      },
+      "Rolesref": {
+        "type": "object",
+        "description": "Response after creating the role successfully",
+        "properties": {
+          "unique_id": {
+            "type": "string",
+            "description": "Description of the role"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title/Name of the Role"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the Role"
+          },
+          "creation_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date and time of creation of the role"
+          },
+          "rank": {
+            "type": "integer",
+            "description": "Rank of the role"
+          }
+        }
+      },
+      "Tagsresp": {
+        "type": "object",
+        "description": "Tags in a team",
+        "properties": {
+          "unique_id": {
+            "type": "string",
+            "description": "Unique ID of the Tag"
+          },
+          "team": {
+            "type": "string",
+            "description": "Description of the Tag"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name/Title of the Tag"
+          },
+          "creation_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date and Time if creation of the Tag"
+          },
+          "color": {
+            "type": "string",
+            "description": "Color of the Tag"
+          }
+        }
+      },
+      "Tagspay": {
+        "type": "object",
+        "description": "Payload to create a new Tag for a Team",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Title/Name of the Tag"
+          },
+          "color": {
+            "type": "string",
+            "description": "Color of the tag"
+          }
+        }
+      },
+      "Tagsref": {
+        "type": "object",
+        "description": "Response after creating the Tag successfully",
+        "properties": {
+          "unique_id": {
+            "type": "string",
+            "description": "Unique ID of the Tag"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name/Title of the Tag"
+          },
+          "creation_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date and Time of creation of the Tag"
+          },
+          "color": {
+            "type": "string",
+            "description": "Color of the Tag"
+          },
+          "team": {
+            "type": "integer",
+            "description": "Number of the team the Tag is made for"
+          }
+        }
+      },
+      "TaskTemplatesresp": {
+        "type": "object",
+        "description": "Available Task Templates",
+        "properties": {
+          "unique_id": {
+            "type": "string",
+            "description": "Unique ID of the Task Template"
+          },
+          "team": {
+            "type": "string",
+            "description": "Unique ID of the team of the team for which the teask template is being made"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name/Title of the Task Template"
+          },
+          "creation_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date and Time of creation of the Task Template"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of the Task Template"
+          },
+          "due_immediately": {
+            "type": "integer",
+            "description": "If the task template is due immediately"
+          }
+        }
+      },
+      "TaskTemplatespay": {
+        "type": "object",
+        "description": "Payload to create a new Task Template",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name/Title of the Task Template"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of the Task Template"
+          }
+        }
+      },
+      "TaskTemplatesref": {
+        "type": "object",
+        "description": "Response after creatin a task template successfully",
+        "properties": {
+          "unique_id": {
+            "type": "string",
+            "description": "Unique ID of the Task Template"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name/Title of the Task Template"
+          },
+          "creation_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date and Time of creation of the Task Template"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of the Task Template"
+          },
+          "due_immediately": {
+            "type": "integer",
+            "description": "If its immediately due"
           }
         }
       }
