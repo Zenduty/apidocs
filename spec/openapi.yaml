@@ -1089,7 +1089,7 @@ paths:
         '404':
           description: Not found 
 
-  'api/account/teams/{team_id}/roles':
+  '/api/account/teams/{team_id}/roles':
       parameters:
         - name: 'team_id'
           in: path
@@ -1097,6 +1097,7 @@ paths:
           schema: 
             type: string
           required: true
+
       get:
         tags:
         - Roles 
@@ -1121,7 +1122,7 @@ paths:
             description: Not Found
       post:
         tags:
-          - Roles
+        - Roles
         summary:  Create a new Role for a team
         security: 
           - main_auth:  
@@ -1151,16 +1152,25 @@ paths:
                 $ref: '#/components/schemas/Rolesref'
           description:  New Role Details
           required: true
-  'api/account/teams/{team_id}/roles/{role_id}':
+  '/api/account/teams/{team_id}/roles/{role_id}':
       patch:
         tags:
         - Roles
         summary: Update a Role
         parameters:
-          - name: roles
-            in: query
+          - name: 'team_id'
+            in: path
+            description:  Unique ID of the Team
+            schema: 
+              type: string
+            required: true
+
+          - name: role_id
+            in: path
+            description:  Unique ID of the Role
             schema:
-              $ref: '#/components/schemas/Rolesresp'
+              type: string
+            required: true
         security:
           - main_auth:
               - 'read:users'
@@ -1184,6 +1194,20 @@ paths:
         tags:
         - Roles
         summary:  Delete a Role
+        parameters:
+          - name: team_id
+            in: path
+            description:  Unique ID of the Team
+            schema: 
+              type: string
+            required: true
+
+          - name: role_id
+            in: path
+            description:  Unique ID of the Role
+            schema:
+              type: string
+            required: true
         security:
           - main_auth:
               - 'read:users'
@@ -1196,14 +1220,14 @@ paths:
           '404':
             description:  Not Found
 
-  'api/accout/teams/{team_id}/tags':
+  '/api/account/teams/{team_id}/tags':
       parameters:
         - name: 'team_id'
           in: path
           description:  Unique ID of the team
           schema:
             type: string
-            required: true
+          required: true
       get:
         tags:
           - Tags
@@ -1235,7 +1259,7 @@ paths:
               - 'write:users'
         responses:
           '201':
-            desciption: OK
+            description: OK
             content:
               application/json:
                 schema:
@@ -1256,16 +1280,26 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Tagsref'
-  'api/accout/teams/{team_id}/tags/{tags_id}':
+          required: true
+
+  '/api/account/teams/{team_id}/tags/{tags_id}':
       patch: 
         tags:
         - Tags
         summary: Update a Tag
         parameters:
-          - name: tag_id
-            in: query
+          - name: 'team_id'
+            in: path
+            description:  Unique ID of the team
             schema:
-              $ref: '#/components/schemas/Tagsresp'
+              type: string
+            required: true
+          - name: 'tags_id'
+            in: path
+            description:  Unique ID of the Tag
+            schema:
+              type: string
+            required: true
         security:
           - main_auth:
               - 'read:users'
@@ -1288,7 +1322,19 @@ paths:
         tags:
         - Tags
         summary: Delete a Tag
-      
+        parameters:
+          - name: 'team_id'
+            in: path
+            description:  Unique ID of the team
+            schema:
+              type: string
+            required: true
+          - name: 'tags_id'
+            in: path
+            description:  Unique ID of the Tag
+            schema:
+              type: string
+            required: true
         security:
           - main_auth:
               - 'read:users'
@@ -1301,14 +1347,14 @@ paths:
           '404':
             description: Not found 
 
-  'api/account/teams/{team_id}/task_templates':
+  '/api/account/teams/{team_id}/task_templates':
       parameters:
         - name: 'team_id'
           in: path
           description:  Unique of ID of the Team
           schema: 
             type: string
-            required: true
+          required: true
 
       get:
         tags:
@@ -1362,16 +1408,26 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/TaskTemplatesref'
-  'api/account/teams/{team_id}/task_templates/{task_template_id}':
+          required: true
+
+  '/api/account/teams/{team_id}/task_templates/{task_template_id}':
       patch: 
         tags:
         - Task Templates
-        summary: Update an Escalation Policy
+        summary: Update a Task Template
         parameters:
-          - name: task_templates
-            in: query
+          - name: team_id
+            in: path
+            description:  Unique ID of the team
+            schema: 
+              type: string
+            required: true
+          - name: task_template_id
+            in: path
+            description:  Unique ID of the Task Temaplates
             schema:
-              $ref: '#/components/schemas/TaskTemplatesresp'
+              type: string
+            required: true
         security:
           - main_auth:
               - 'read:users'
@@ -1394,7 +1450,19 @@ paths:
         tags:
         - Task Templates
         summary: Delete a Task Template
-        
+        parameters:
+          - name: 'team_id'
+            in: path
+            description:  Unique ID of the team
+            schema:
+              type: string
+            required: true
+          - name: task_template_id
+            in: path
+            description:  Unique ID of the Task Temaplates
+            schema:
+              type: string
+            required: true
         security:
           - main_auth:
               - 'read:users' 
@@ -1645,6 +1713,9 @@ components:
           type: string
         user_id:
           description:  Unique ID of the user which is to added to the team
+          type: string
+        role_id:
+          description:  Unique ID of the role of the user
           type: string
     NewService:
       description: Details of the new service
@@ -1966,7 +2037,17 @@ components:
           description: unique ID of the layer
         users: 
           $ref: '#/components/schemas/ScheduleUser'
-          
+    Roles:      
+      type: object
+      description:  Rank of the user
+      properties:
+        rank:
+          type: integer
+          example:  5
+        role_id:  
+          type: string
+          description:  Unique ID of the role
+
     Schedule:
       type: object
       description: Payload of a Schedule
@@ -2010,7 +2091,7 @@ components:
           type: string
           description: Description of the role
         creation_date: 
-          type: integer
+          type: string
           format: date-time
           description: Date of creation of the Role
         rank:
@@ -2045,7 +2126,8 @@ components:
           type: string
           description:  Description of the Role
         creation_date:
-          type: date-time
+          type: string
+          format: date-time
           description:  Date and time of creation of the role
         rank:
           type: integer
@@ -2065,7 +2147,8 @@ components:
           type: string
           description:  Name/Title of the Tag
         creation_date:
-          type: date-time
+          type: string
+          format: date-time
           description:  Date and Time if creation of the Tag
         color:
           type: string
@@ -2093,7 +2176,8 @@ components:
           type: string
           description:  Name/Title of the Tag
         creation_date:
-          type: date-time
+          type: string
+          format: date-time
           description:  Date and Time of creation of the Tag
         color: 
           type: string
@@ -2116,7 +2200,8 @@ components:
           type: string
           description:  Name/Title of the Task Template
         creation_date:
-          type: date-time
+          type: string
+          format: date-time
           description:  Date and Time of creation of the Task Template
         summary:
           type: string
@@ -2147,7 +2232,8 @@ components:
           type: string
           description:  Name/Title of the Task Template
         creation_date:
-          type: date-time
+          type: string
+          format: date-time
           description:  Date and Time of creation of the Task Template
         summary:
           type: string

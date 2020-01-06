@@ -35,7 +35,20 @@
     {
       "name": "Incidents",
       "description": "Operations about incidents"
+    },
+    {
+      "name": "Roles",
+      "description":  "Roles are a way of categorization of tasks to handle an Incident."
+    },
+    {
+      "name": "Task Templates",
+      "description":  "A ready to go template to create Tasks for incidents."
+    },
+    {
+      "name": "Tags",
+      "description":  "Tags are a way to highlight specifics about an incident."
     }
+
   ],
   "paths": {
     "/api/account/teams": {
