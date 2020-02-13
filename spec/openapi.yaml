@@ -129,9 +129,7 @@ paths:
       
         # security schemas applied to this operation
         security:
-          - main_auth:
-              - '`JWT ${token}`' # for auth2 provide list of scopes here
-          - api_key: []
+          - bearerAuth: []
         responses: # list of responses
           '200':
             description: Success
@@ -154,9 +152,7 @@ paths:
       
         # security schemas applied to this operation
         security:
-          - main_auth:
-              - '`JWT ${token}`' # for auth2 provide list of scopes here
-          - api_key: []
+          - bearerAuth: []
         responses: # list of responses
           '200':
             description: Success
@@ -180,9 +176,7 @@ paths:
         # operationId: addMembers
         # security schemas applied to this operation
         security:
-          - main_auth:
-              - '`JWT ${token}`' # for auth2 provide list of scopes here
-          - api_key: []
+          - bearerAuth: []
         responses: # list of responses
           '200':
             description: Success
@@ -229,9 +223,7 @@ paths:
       
         # security schemas applied to this operation
         security:
-          - main_auth:
-              - '`JWT ${token}`' # for auth2 provide list of scopes here
-          - api_key: []
+          - bearerAuth: []
         responses: # list of responses
           '200':
             description: Success
@@ -254,9 +246,7 @@ paths:
         # operationId: getServices
         # security schemas applied to this operation
         security:
-          - main_auth:
-              - '`JWT ${token}`' # for auth2 provide list of scopes here
-          - api_key: []
+          - bearerAuth: []
         responses: # list of responses
           '200':
             description: Success
@@ -279,9 +269,7 @@ paths:
         
         # security schemas applied to this operation
         security:
-          - main_auth:
-              - '`JWT ${token}`' # for auth2 provide list of scopes here
-          - api_key: []
+          - bearerAuth: []
         responses: # list of responses
           '200':
             description: Success
@@ -327,9 +315,7 @@ paths:
         # operationId: getServiceID
         # security schemas applied to this operation
         security:
-          - main_auth:
-              - '`JWT ${token}`' # for auth2 provide list of scopes here
-          - api_key: []
+          - bearerAuth: []
         responses: # list of responses
           '200':
             description: Success
@@ -356,9 +342,7 @@ paths:
             schema:
               $ref: '#/components/schemas/ServiceInfo'
         security:
-          - main_auth:
-              - '`JWT ${token}`' # for auth2 provide list of scopes here
-          - api_key: []
+          - bearerAuth: []
         responses: # list of responses
           '200':
             description: Success
@@ -381,9 +365,7 @@ paths:
       
         # security schemas applied to this operation
         security:
-          - main_auth:
-              - '`JWT ${token}`' # for auth2 provide list of scopes here
-          - api_key: []
+          - bearerAuth: []
         responses: # list of responses
           '200':
             description: Success
@@ -412,9 +394,7 @@ paths:
         # operationId: getIntegrations
         # security schemas applied to this operation
         security:
-          - main_auth:
-              - '`JWT ${token}`' # for auth2 provide list of scopes here
-          - api_key: []
+          - bearerAuth: []
         responses: # list of responses
           '200':
             description: Success
@@ -489,9 +469,7 @@ paths:
         # operationId: getIntegrationsID
         # security schemas applied to this operation
         security:
-          - main_auth:
-              - '`JWT ${token}`' # for auth2 provide list of scopes here
-          - api_key: []
+          - bearerAuth: []
         responses: # list of responses
           '200':
             description: Success
@@ -533,9 +511,7 @@ paths:
         # operationId: getAlerts
         # security schemas applied to this operation
         security:
-          - main_auth:
-              - '`JWT ${token}`' # for auth2 provide list of scopes here
-          - api_key: []
+          - bearerAuth: []
         responses: # list of responses
           '200':
             description: Success
@@ -587,9 +563,7 @@ paths:
               items:
                 type: string
         security:
-          - main_auth:
-              - '`JWT ${token}`' # for auth2 provide list of scopes here
-          - api_key: []
+          - bearerAuth: []
         responses: # list of responses
           '200':
             description: Success
@@ -644,9 +618,7 @@ paths:
         # operationId: getIncidents
         # security schemas applied to this operation
         security:
-          - main_auth:
-              - '`JWT ${token}`' # for auth2 provide list of scopes here
-          - api_key: []
+          - bearerAuth: []
         responses: # list of responses
           '200':
             description: Success
@@ -673,9 +645,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Incident'
         security:
-          - main_auth:
-              - '`JWT ${token}`' # for auth2 provide list of scopes here
-          - api_key: []
+          - bearerAuth: []
         responses: # list of responses
           '200':
             description: Success
@@ -705,9 +675,7 @@ paths:
         # operationId: getIncidents
         # security schemas applied to this operation
         security:
-          - main_auth:
-              - '`JWT ${token}`' # for auth2 provide list of scopes here
-          - api_key: []
+          - bearerAuth: []
         responses: # list of responses
           '200':
             description: Success
@@ -737,9 +705,7 @@ paths:
         # operationId: getIncidents
         # security schemas applied to this operation
         security:
-          - main_auth:
-              - '`JWT ${token}`' # for auth2 provide list of scopes here
-          - api_key: []
+          - bearerAuth: []
         responses: # list of responses
           '200':
             description: Success
@@ -803,9 +769,7 @@ paths:
         # operationId: getEP
         # security schemas applied to this operation
         security:
-          - main_auth:
-              - '`JWT ${token}`' # for auth2 provide list of scopes here
-          - api_key: []
+          - bearerAuth: []
         responses: # list of responses
           '200':
             description: Success
@@ -954,9 +918,7 @@ paths:
         # operationId: getSchedule
         # security schemas applied to this operation
         security:
-          - main_auth:
-              - '`JWT ${token}`' # for auth2 provide list of scopes here
-          - api_key: []
+          - bearerAuth: []
         responses: # list of responses
           '200':
             description: Success
@@ -2254,21 +2216,8 @@ components:
         
   # Security scheme definitions that can be used across the specification.
   securitySchemes:
-    main_auth: # security definition name (you can name it as you want)
-      # the following options are specific to oauth2 type
-      type: oauth2 # authorization type, one of: oauth2, apiKey, http
-      flows:
-        implicit:
-          authorizationUrl: 'http://example.com/api/oauth/dialog'
-          scopes:
-            '`JWT ${token}`': 'JSON Web Token for authorization(Format: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9)
-                               To set the token in postman while creating the request, under Headers, set the key 
-                               as "Authorization" and pass the JWT token of the given format.'
-    api_key:  # security definition name (you can name it as you want)
-      type: apiKey 
-      # The following options are specific to apiKey type
-      in: header # Where API key will be passed: header or query
-      name: api_key # API key parameter name
-    basic_auth: # security definition name (you can name it as you want)
+    bearerAuth:  # security definition name (you can name it as you want)
       type: http
-      scheme: basic
+      scheme: bearer
+      bearerFormat: token
+    
