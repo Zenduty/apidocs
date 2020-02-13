@@ -52,9 +52,7 @@ paths:
         - Teams
       summary: Get teams
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -74,8 +72,7 @@ paths:
         - Teams
       summary: Create Team
       security:
-        - main_auth:
-            - '`JWT ${token}`'
+        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -113,9 +110,7 @@ paths:
         - Teams
       summary: Get team details
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -135,9 +130,7 @@ paths:
         - Teams
       summary: Delete a Team
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -158,9 +151,7 @@ paths:
         - Members
       summary: Add members to a team
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -204,9 +195,7 @@ paths:
         - Members
       summary: Delete members from a team
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -227,9 +216,7 @@ paths:
         - Services
       summary: Get Services for a team
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -249,9 +236,7 @@ paths:
         - Services
       summary: Add new Service in a team
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -295,9 +280,7 @@ paths:
         - Services
       summary: Get Services by ID
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -322,9 +305,7 @@ paths:
           schema:
             $ref: '#/components/schemas/ServiceInfo'
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -344,9 +325,7 @@ paths:
         - Services
       summary: Delete Service from a team
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -373,9 +352,7 @@ paths:
         - Integrations
       summary: Get Integrations in a service
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -395,8 +372,7 @@ paths:
         - Integrations
       summary: Create Integration
       security:
-        - main_auth:
-            - '`JWT ${token}`'
+        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -446,9 +422,7 @@ paths:
         - Integrations
       summary: Get Integrations by ID
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -488,9 +462,7 @@ paths:
         - Integrations
       summary: Get Alerts in an integration
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -540,9 +512,7 @@ paths:
             items:
               type: string
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -562,8 +532,7 @@ paths:
         - Incidents
       summary: Create Incident
       security:
-        - main_auth:
-            - '`JWT ${token}`'
+        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -594,9 +563,7 @@ paths:
         - Incidents
       summary: Get Incident by number
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -621,9 +588,7 @@ paths:
           schema:
             $ref: '#/components/schemas/Incident'
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -651,9 +616,7 @@ paths:
         - Incidents
       summary: Get Incident Alerts
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -681,9 +644,7 @@ paths:
         - Incidents
       summary: Get Incident Notes
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -711,8 +672,7 @@ paths:
         - Events
       summary: Create Event
       security:
-        - main_auth:
-            - '`JWT ${token}`'
+        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -743,9 +703,7 @@ paths:
         - Escalation Policies
       summary: Get Escalation Policies
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -765,8 +723,7 @@ paths:
         - Escalation Policies
       summary: Create Escalation Policy
       security:
-        - main_auth:
-            - '`JWT ${token}`'
+        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -810,9 +767,7 @@ paths:
         - Escalation Policies
       summary: Get Escalation Policy by ID
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -837,9 +792,7 @@ paths:
           schema:
             $ref: '#/components/schemas/EP'
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -859,9 +812,7 @@ paths:
         - Escalation Policies
       summary: Delete an Escalation Policy
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -882,9 +833,7 @@ paths:
         - Schedules
       summary: Get Schedules
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -904,8 +853,7 @@ paths:
         - Schedules
       summary: Create a Schedule
       security:
-        - main_auth:
-            - '`JWT ${token}`'
+        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -949,9 +897,7 @@ paths:
         - Schedules
       summary: Get Schedule by ID
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -976,9 +922,7 @@ paths:
           schema:
             $ref: '#/components/schemas/Schedule'
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -998,9 +942,7 @@ paths:
         - Schedules
       summary: Delete a Schedule
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -1021,9 +963,7 @@ paths:
         - Roles
       summary: Get Roles for a team
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -1043,8 +983,7 @@ paths:
         - Roles
       summary: Create a new Role for a team
       security:
-        - main_auth:
-            - '`JWT ${token}`'
+        - bearerAuth: []
       responses:
         '201':
           description: OK
@@ -1088,9 +1027,7 @@ paths:
             type: string
           required: true
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -1123,9 +1060,7 @@ paths:
             type: string
           required: true
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '204':
           description: Successfully Deleted
@@ -1146,9 +1081,7 @@ paths:
         - Tags
       summary: Get Tags associated with the team
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -1168,8 +1101,7 @@ paths:
         - Tags
       summary: Create a New Tag for a Team
       security:
-        - main_auth:
-            - '`JWT ${token}`'
+        - bearerAuth: []
       responses:
         '201':
           description: OK
@@ -1212,9 +1144,7 @@ paths:
             type: string
           required: true
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -1247,9 +1177,7 @@ paths:
             type: string
           required: true
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -1270,9 +1198,7 @@ paths:
         - Task Templates
       summary: Get the Task Templates
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -1292,8 +1218,7 @@ paths:
         - Task Templates
       summary: Create a new Task Template
       security:
-        - main_auth:
-            - '`JWT ${token}`'
+        - bearerAuth: []
       responses:
         '201':
           description: OK
@@ -1336,9 +1261,7 @@ paths:
             type: string
           required: true
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -1371,9 +1294,7 @@ paths:
             type: string
           required: true
       security:
-        - main_auth:
-            - '`JWT ${token}`'
-        - api_key: []
+        - bearerAuth: []
       responses:
         '200':
           description: Success
@@ -2143,17 +2064,7 @@ components:
         type: string
         format: date-time
   securitySchemes:
-    main_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: 'http://example.com/api/oauth/dialog'
-          scopes:
-            '`JWT ${token}`': 'JSON Web Token for authorization(Format: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9) To set the token in postman while creating the request, under Headers, set the key  as "Authorization" and pass the JWT token of the given format.'
-    api_key:
-      type: apiKey
-      in: header
-      name: api_key
-    basic_auth:
+    bearerAuth:
       type: http
-      scheme: basic
+      scheme: bearer
+      bearerFormat: token

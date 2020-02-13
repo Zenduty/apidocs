@@ -75,12 +75,7 @@
         "summary": "Get teams",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -114,9 +109,7 @@
         "summary": "Create Team",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -179,12 +172,7 @@
         "summary": "Get team details",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -218,12 +206,7 @@
         "summary": "Delete a Team",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -258,12 +241,7 @@
         "summary": "Add members to a team",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -335,12 +313,7 @@
         "summary": "Delete members from a team",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -375,12 +348,7 @@
         "summary": "Get Services for a team",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -414,12 +382,7 @@
         "summary": "Add new Service in a team",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -491,12 +454,7 @@
         "summary": "Get Services by ID",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -539,12 +497,7 @@
         ],
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -578,12 +531,7 @@
         "summary": "Delete Service from a team",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -627,12 +575,7 @@
         "summary": "Get Integrations in a service",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -666,9 +609,7 @@
         "summary": "Create Integration",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -749,12 +690,7 @@
         "summary": "Get Integrations by ID",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -819,12 +755,7 @@
         "summary": "Get Alerts in an integration",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -908,12 +839,7 @@
         ],
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -947,9 +873,7 @@
         "summary": "Create Incident",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1000,12 +924,7 @@
         "summary": "Get Incident by number",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1048,12 +967,7 @@
         ],
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1100,12 +1014,7 @@
         "summary": "Get Incident Alerts",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1152,12 +1061,7 @@
         "summary": "Get Incident Notes",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1204,9 +1108,7 @@
         "summary": "Create Event",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1257,12 +1159,7 @@
         "summary": "Get Escalation Policies",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1296,9 +1193,7 @@
         "summary": "Create Escalation Policy",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1370,12 +1265,7 @@
         "summary": "Get Escalation Policy by ID",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1418,12 +1308,7 @@
         ],
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1457,12 +1342,7 @@
         "summary": "Delete an Escalation Policy",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1497,12 +1377,7 @@
         "summary": "Get Schedules",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1536,9 +1411,7 @@
         "summary": "Create a Schedule",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1610,12 +1483,7 @@
         "summary": "Get Schedule by ID",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1658,12 +1526,7 @@
         ],
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1697,12 +1560,7 @@
         "summary": "Delete a Schedule",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1737,12 +1595,7 @@
         "summary": "Get Roles for a team",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1776,9 +1629,7 @@
         "summary": "Create a new Role for a team",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1850,12 +1701,7 @@
         ],
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1909,12 +1755,7 @@
         ],
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1949,12 +1790,7 @@
         "summary": "Get Tags associated with the team",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1988,9 +1824,7 @@
         "summary": "Create a New Tag for a Team",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -2061,12 +1895,7 @@
         ],
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -2120,12 +1949,7 @@
         ],
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -2160,12 +1984,7 @@
         "summary": "Get the Task Templates",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -2199,9 +2018,7 @@
         "summary": "Create a new Task Template",
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -2272,12 +2089,7 @@
         ],
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -2331,12 +2143,7 @@
         ],
         "security": [
           {
-            "main_auth": [
-              "`JWT ${token}`"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -3405,25 +3212,10 @@
       }
     },
     "securitySchemes": {
-      "main_auth": {
-        "type": "oauth2",
-        "flows": {
-          "implicit": {
-            "authorizationUrl": "http://example.com/api/oauth/dialog",
-            "scopes": {
-              "`JWT ${token}`": "JSON Web Token for authorization(Format: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9) To set the token in postman while creating the request, under Headers, set the key  as \"Authorization\" and pass the JWT token of the given format."
-            }
-          }
-        }
-      },
-      "api_key": {
-        "type": "apiKey",
-        "in": "header",
-        "name": "api_key"
-      },
-      "basic_auth": {
+      "bearerAuth": {
         "type": "http",
-        "scheme": "basic"
+        "scheme": "bearer",
+        "bearerFormat": "token"
       }
     }
   }
