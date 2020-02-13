@@ -2149,7 +2149,7 @@ components:
         implicit:
           authorizationUrl: 'http://example.com/api/oauth/dialog'
           scopes:
-            '`JWT ${token}`': 'JSON Web Token for authorization(Format: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9)'
+            '`JWT ${token}`': 'JSON Web Token for authorization(Format: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9) To set the token in postman while creating the request, under Headers, set the key  as "Authorization" and pass the JWT token of the given format.'
     api_key:
       type: apiKey
       in: header
