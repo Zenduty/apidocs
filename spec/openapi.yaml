@@ -2177,5 +2177,5 @@ components:
     bearerAuth:  # security definition name (you can name it as you want)
       type: http
       scheme: bearer
-      bearerFormat: token
+      bearerFormat: Token
     
