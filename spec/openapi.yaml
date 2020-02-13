@@ -1385,6 +1385,7 @@ paths:
         security:
           - main_auth:
               - '`JWT ${token}`'
+                
         responses:
           '201':
             description: OK
@@ -2260,7 +2261,9 @@ components:
         implicit:
           authorizationUrl: 'http://example.com/api/oauth/dialog'
           scopes:
-            '`JWT ${token}`': 'JSON Web Token for authorization(Format: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9)'
+            '`JWT ${token}`': 'JSON Web Token for authorization(Format: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9)
+                               To set the token in postman while creating the request, under Headers, set the key 
+                               as "Authorization" and pass the JWT token of the given format.'
     api_key:  # security definition name (you can name it as you want)
       type: apiKey 
       # The following options are specific to apiKey type
