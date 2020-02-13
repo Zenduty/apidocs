@@ -62,9 +62,7 @@ paths:
     
       # security schemas applied to this operation
       security:
-        - main_auth:
-            - '`JWT ${token}`' # for auth2 provide list of scopes here
-        - api_key: []
+        - bearerAuth: []
       responses: # list of responses
         '200':
           description: Success
@@ -86,8 +84,7 @@ paths:
       summary: Create Team
       # operationId: createTeam
       security:
-        - main_auth:
-            - '`JWT ${token}`'
+        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -415,8 +412,7 @@ paths:
         summary: Create Integration
         # operationId: createIntegration
         security:
-          - main_auth:
-              - '`JWT ${token}`'
+          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -584,8 +580,7 @@ paths:
         summary: Create Incident
           # operationId: createIncident
         security:
-          - main_auth:
-            - '`JWT ${token}`'
+          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -735,8 +730,7 @@ paths:
       summary: Create Event
         # operationId: createEvent
       security:
-        - main_auth:
-          - '`JWT ${token}`'
+        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -790,8 +784,7 @@ paths:
         summary: Create Escalation Policy
         # operationId: createEP
         security:
-          - main_auth:
-              - '`JWT ${token}`'
+          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -838,9 +831,7 @@ paths:
         # operationId: getEPID
         # security schemas applied to this operation
       security:
-        - main_auth:
-            - '`JWT ${token}`' # for auth2 provide list of scopes here
-        - api_key: []
+        - bearerAuth: []
       responses: # list of responses
         '200':
           description: Success
@@ -867,9 +858,7 @@ paths:
           schema:
             $ref: '#/components/schemas/EP'
       security:
-        - main_auth:
-            - '`JWT ${token}`' # for auth2 provide list of scopes here
-        - api_key: []
+        - bearerAuth: []
       responses: # list of responses
         '200':
           description: Success
@@ -892,9 +881,7 @@ paths:
     
       # security schemas applied to this operation
       security:
-        - main_auth:
-            - '`JWT ${token}`' # for auth2 provide list of scopes here
-        - api_key: []
+        - bearerAuth: []
       responses: # list of responses
         '200':
           description: Success
@@ -939,8 +926,7 @@ paths:
         summary: Create a Schedule
         # operationId: createSchedule
         security:
-          - main_auth:
-              - '`JWT ${token}`'
+          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -987,9 +973,7 @@ paths:
         # operationId: getScheduleID
         # security schemas applied to this operation
       security:
-        - main_auth:
-            - '`JWT ${token}`' # for auth2 provide list of scopes here
-        - api_key: []
+        - bearerAuth: []
       responses: # list of responses
         '200':
           description: Success
@@ -1016,9 +1000,7 @@ paths:
           schema:
             $ref: '#/components/schemas/Schedule'
       security:
-        - main_auth:
-            - '`JWT ${token}`' # for auth2 provide list of scopes here
-        - api_key: []
+        - bearerAuth: []
       responses: # list of responses
         '200':
           description: Success
@@ -1040,9 +1022,7 @@ paths:
       # operationId: delSchedule
       # security schemas applied to this operation
       security:
-        - main_auth:
-            - '`JWT ${token}`' # for auth2 provide list of scopes here
-        - api_key: []
+        - bearerAuth: []
       responses: # list of responses
         '200':
           description: Success
@@ -1065,9 +1045,7 @@ paths:
         - Roles 
         summary: Get Roles for a team
         security: 
-          - main_auth:
-              - '`JWT ${token}`'
-          - api_key: [] 
+          - bearerAuth: [] 
         responses: #list of responses
           '200': 
             description: Success
@@ -1087,8 +1065,7 @@ paths:
         - Roles
         summary:  Create a new Role for a team
         security: 
-          - main_auth:  
-              - '`JWT ${token}`'
+          - bearerAuth: []
         responses:
           '201':
             description: OK
@@ -1134,9 +1111,7 @@ paths:
               type: string
             required: true
         security:
-          - main_auth:
-              - '`JWT ${token}`'
-          - api_key: []
+          - bearerAuth: []
         responses:
           '200':
             description:  Success
@@ -1171,9 +1146,7 @@ paths:
               type: string
             required: true
         security:
-          - main_auth:
-              - '`JWT ${token}`'
-          - api_key: []
+          - bearerAuth: []
         responses:
           '204':
             description:  Successfully Deleted
@@ -1195,9 +1168,7 @@ paths:
           - Tags
         summary:  Get Tags associated with the team
         security:
-          - main_auth:
-              - '`JWT ${token}`'
-          - api_key:  []
+          - bearerAuth: []
         responses: #list of responses
           '200':
             description:  Success
@@ -1217,8 +1188,7 @@ paths:
           - Tags
         summary:  Create a New Tag for a Team
         security:
-          - main_auth:
-              - '`JWT ${token}`'
+          - bearerAuth: []
         responses:
           '201':
             description: OK
@@ -1263,9 +1233,7 @@ paths:
               type: string
             required: true
         security:
-          - main_auth:
-              - '`JWT ${token}`'
-          - api_key: []
+          - bearerAuth: []
         responses:
           '200':
             description: Success
@@ -1298,9 +1266,7 @@ paths:
               type: string
             required: true
         security:
-          - main_auth:
-              - '`JWT ${token}`'
-          - api_key: []
+          - bearerAuth: []
         responses:
           '200':
             description: Success
@@ -1323,9 +1289,7 @@ paths:
           - Task Templates
         summary:  Get the Task Templates
         security: 
-          - main_auth:
-              - '`JWT ${token}`'
-          - api_key:  []
+          - bearerAuth: []
         responses:  
           '200':
             description:  Success
@@ -1345,9 +1309,7 @@ paths:
           - Task Templates
         summary:  Create a new Task Template
         security:
-          - main_auth:
-              - '`JWT ${token}`'
-                
+          - bearerAuth: []                
         responses:
           '201':
             description: OK
@@ -1392,9 +1354,7 @@ paths:
               type: string
             required: true
         security:
-          - main_auth:
-              - '`JWT ${token}`'
-          - api_key: []
+          - bearerAuth: []
         responses: 
           '200':
             description: Success
@@ -1427,9 +1387,7 @@ paths:
               type: string
             required: true
         security:
-          - main_auth:
-              - '`JWT ${token}`' 
-          - api_key: []
+          - bearerAuth: []
         responses:
           '200':
             description: Success
