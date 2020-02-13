@@ -53,7 +53,7 @@ paths:
       summary: Get teams
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -75,7 +75,7 @@ paths:
       summary: Create Team
       security:
         - main_auth:
-            - 'write:users'
+            - '`JWT ${token}`'
       responses:
         '200':
           description: OK
@@ -114,7 +114,7 @@ paths:
       summary: Get team details
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -136,7 +136,7 @@ paths:
       summary: Delete a Team
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -159,7 +159,7 @@ paths:
       summary: Add members to a team
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -205,7 +205,7 @@ paths:
       summary: Delete members from a team
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -228,7 +228,7 @@ paths:
       summary: Get Services for a team
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -250,7 +250,7 @@ paths:
       summary: Add new Service in a team
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -296,7 +296,7 @@ paths:
       summary: Get Services by ID
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -323,7 +323,7 @@ paths:
             $ref: '#/components/schemas/ServiceInfo'
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -345,7 +345,7 @@ paths:
       summary: Delete Service from a team
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -374,7 +374,7 @@ paths:
       summary: Get Integrations in a service
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -396,7 +396,7 @@ paths:
       summary: Create Integration
       security:
         - main_auth:
-            - 'write:users'
+            - '`JWT ${token}`'
       responses:
         '200':
           description: OK
@@ -447,7 +447,7 @@ paths:
       summary: Get Integrations by ID
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -489,7 +489,7 @@ paths:
       summary: Get Alerts in an integration
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -541,7 +541,7 @@ paths:
               type: string
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -563,7 +563,7 @@ paths:
       summary: Create Incident
       security:
         - main_auth:
-            - 'write:users'
+            - '`JWT ${token}`'
       responses:
         '200':
           description: OK
@@ -595,7 +595,7 @@ paths:
       summary: Get Incident by number
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -622,7 +622,7 @@ paths:
             $ref: '#/components/schemas/Incident'
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -652,7 +652,7 @@ paths:
       summary: Get Incident Alerts
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -682,7 +682,7 @@ paths:
       summary: Get Incident Notes
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -712,7 +712,7 @@ paths:
       summary: Create Event
       security:
         - main_auth:
-            - 'write:users'
+            - '`JWT ${token}`'
       responses:
         '200':
           description: OK
@@ -744,7 +744,7 @@ paths:
       summary: Get Escalation Policies
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -766,7 +766,7 @@ paths:
       summary: Create Escalation Policy
       security:
         - main_auth:
-            - 'write:users'
+            - '`JWT ${token}`'
       responses:
         '200':
           description: OK
@@ -811,7 +811,7 @@ paths:
       summary: Get Escalation Policy by ID
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -838,7 +838,7 @@ paths:
             $ref: '#/components/schemas/EP'
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -860,7 +860,7 @@ paths:
       summary: Delete an Escalation Policy
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -883,7 +883,7 @@ paths:
       summary: Get Schedules
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -905,7 +905,7 @@ paths:
       summary: Create a Schedule
       security:
         - main_auth:
-            - 'write:users'
+            - '`JWT ${token}`'
       responses:
         '200':
           description: OK
@@ -950,7 +950,7 @@ paths:
       summary: Get Schedule by ID
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -977,7 +977,7 @@ paths:
             $ref: '#/components/schemas/Schedule'
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -999,7 +999,7 @@ paths:
       summary: Delete a Schedule
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -1022,7 +1022,7 @@ paths:
       summary: Get Roles for a team
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -1044,7 +1044,7 @@ paths:
       summary: Create a new Role for a team
       security:
         - main_auth:
-            - 'write:users'
+            - '`JWT ${token}`'
       responses:
         '201':
           description: OK
@@ -1089,7 +1089,7 @@ paths:
           required: true
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -1124,7 +1124,7 @@ paths:
           required: true
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '204':
@@ -1147,7 +1147,7 @@ paths:
       summary: Get Tags associated with the team
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -1169,7 +1169,7 @@ paths:
       summary: Create a New Tag for a Team
       security:
         - main_auth:
-            - 'write:users'
+            - '`JWT ${token}`'
       responses:
         '201':
           description: OK
@@ -1213,7 +1213,7 @@ paths:
           required: true
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -1248,7 +1248,7 @@ paths:
           required: true
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -1271,7 +1271,7 @@ paths:
       summary: Get the Task Templates
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -1293,7 +1293,7 @@ paths:
       summary: Create a new Task Template
       security:
         - main_auth:
-            - 'write:users'
+            - '`JWT ${token}`'
       responses:
         '201':
           description: OK
@@ -1337,7 +1337,7 @@ paths:
           required: true
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -1372,7 +1372,7 @@ paths:
           required: true
       security:
         - main_auth:
-            - 'read:users'
+            - '`JWT ${token}`'
         - api_key: []
       responses:
         '200':
@@ -2149,8 +2149,7 @@ components:
         implicit:
           authorizationUrl: 'http://example.com/api/oauth/dialog'
           scopes:
-            'read:users': read users info
-            'write:users': modify or remove users
+            '`JWT ${token}`': 'JSON Web Token for authorization(Format: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9)'
     api_key:
       type: apiKey
       in: header

@@ -76,7 +76,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -115,7 +115,7 @@
         "security": [
           {
             "main_auth": [
-              "write:users"
+              "`JWT ${token}`"
             ]
           }
         ],
@@ -180,7 +180,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -219,7 +219,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -259,7 +259,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -336,7 +336,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -376,7 +376,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -415,7 +415,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -492,7 +492,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -540,7 +540,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -579,7 +579,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -628,7 +628,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -667,7 +667,7 @@
         "security": [
           {
             "main_auth": [
-              "write:users"
+              "`JWT ${token}`"
             ]
           }
         ],
@@ -750,7 +750,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -820,7 +820,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -909,7 +909,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -948,7 +948,7 @@
         "security": [
           {
             "main_auth": [
-              "write:users"
+              "`JWT ${token}`"
             ]
           }
         ],
@@ -1001,7 +1001,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -1049,7 +1049,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -1101,7 +1101,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -1153,7 +1153,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -1205,7 +1205,7 @@
         "security": [
           {
             "main_auth": [
-              "write:users"
+              "`JWT ${token}`"
             ]
           }
         ],
@@ -1258,7 +1258,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -1297,7 +1297,7 @@
         "security": [
           {
             "main_auth": [
-              "write:users"
+              "`JWT ${token}`"
             ]
           }
         ],
@@ -1371,7 +1371,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -1419,7 +1419,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -1458,7 +1458,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -1498,7 +1498,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -1537,7 +1537,7 @@
         "security": [
           {
             "main_auth": [
-              "write:users"
+              "`JWT ${token}`"
             ]
           }
         ],
@@ -1611,7 +1611,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -1659,7 +1659,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -1698,7 +1698,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -1738,7 +1738,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -1777,7 +1777,7 @@
         "security": [
           {
             "main_auth": [
-              "write:users"
+              "`JWT ${token}`"
             ]
           }
         ],
@@ -1851,7 +1851,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -1910,7 +1910,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -1950,7 +1950,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -1989,7 +1989,7 @@
         "security": [
           {
             "main_auth": [
-              "write:users"
+              "`JWT ${token}`"
             ]
           }
         ],
@@ -2062,7 +2062,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -2121,7 +2121,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -2161,7 +2161,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -2200,7 +2200,7 @@
         "security": [
           {
             "main_auth": [
-              "write:users"
+              "`JWT ${token}`"
             ]
           }
         ],
@@ -2273,7 +2273,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -2332,7 +2332,7 @@
         "security": [
           {
             "main_auth": [
-              "read:users"
+              "`JWT ${token}`"
             ]
           },
           {
@@ -3411,8 +3411,7 @@
           "implicit": {
             "authorizationUrl": "http://example.com/api/oauth/dialog",
             "scopes": {
-              "read:users": "read users info",
-              "write:users": "modify or remove users"
+              "`JWT ${token}`": "JSON Web Token for authorization(Format: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9)"
             }
           }
         }
