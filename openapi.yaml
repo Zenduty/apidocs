@@ -46,12 +46,8 @@
         "summary": "Get teams",
         "security": [
           {
-            "main_auth": [
-              "read:users"
-            ]
-          },
-          {
-            "api_key": []
+            
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -148,14 +144,9 @@
           "Teams"
         ],
         "summary": "Get team details",
-        "security": [
+        "security": [          
           {
-            "main_auth": [
-              "read:users"
-            ]
-          },
-          {
-            "api_key": []
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -189,12 +180,8 @@
         "summary": "Delete a Team",
         "security": [
           {
-            "main_auth": [
-              "read:users"
-            ]
-          },
-          {
-            "api_key": []
+            
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -229,12 +216,8 @@
         "summary": "Add members to a team",
         "security": [
           {
-            "main_auth": [
-              "read:users"
-            ]
-          },
-          {
-            "api_key": []
+            
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -306,12 +289,8 @@
         "summary": "Delete members from a team",
         "security": [
           {
-            "main_auth": [
-              "read:users"
-            ]
-          },
-          {
-            "api_key": []
+            
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -346,12 +325,8 @@
         "summary": "Get Services for a team",
         "security": [
           {
-            "main_auth": [
-              "read:users"
-            ]
-          },
-          {
-            "api_key": []
+            
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -385,12 +360,8 @@
         "summary": "Add new Service in a team",
         "security": [
           {
-            "main_auth": [
-              "read:users"
-            ]
-          },
-          {
-            "api_key": []
+            
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -462,12 +433,8 @@
         "summary": "Get Services by ID",
         "security": [
           {
-            "main_auth": [
-              "read:users"
-            ]
-          },
-          {
-            "api_key": []
+            
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -510,12 +477,8 @@
         ],
         "security": [
           {
-            "main_auth": [
-              "read:users"
-            ]
-          },
-          {
-            "api_key": []
+            
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -549,12 +512,8 @@
         "summary": "Delete Service from a team",
         "security": [
           {
-            "main_auth": [
-              "read:users"
-            ]
-          },
-          {
-            "api_key": []
+            
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -598,12 +557,8 @@
         "summary": "Get Integrations in a service",
         "security": [
           {
-            "main_auth": [
-              "read:users"
-            ]
-          },
-          {
-            "api_key": []
+            
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -720,12 +675,8 @@
         "summary": "Get Integrations by ID",
         "security": [
           {
-            "main_auth": [
-              "read:users"
-            ]
-          },
-          {
-            "api_key": []
+            
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -790,12 +741,8 @@
         "summary": "Get Alerts in an integration",
         "security": [
           {
-            "main_auth": [
-              "read:users"
-            ]
-          },
-          {
-            "api_key": []
+            
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -879,12 +826,8 @@
         ],
         "security": [
           {
-            "main_auth": [
-              "read:users"
-            ]
-          },
-          {
-            "api_key": []
+            
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -931,12 +874,8 @@
         "summary": "Get Incident by number",
         "security": [
           {
-            "main_auth": [
-              "read:users"
-            ]
-          },
-          {
-            "api_key": []
+            
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -983,12 +922,8 @@
         "summary": "Get Incident Alerts",
         "security": [
           {
-            "main_auth": [
-              "read:users"
-            ]
-          },
-          {
-            "api_key": []
+            
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1035,12 +970,8 @@
         "summary": "Get Incident Notes",
         "security": [
           {
-            "main_auth": [
-              "read:users"
-            ]
-          },
-          {
-            "api_key": []
+            
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1083,12 +1014,8 @@
         ],
         "security": [
           {
-            "main_auth": [
-              "read:users"
-            ]
-          },
-          {
-            "api_key": []
+            
+            "bearerAuth": []
           }
         ],
         "responses": {
@@ -1635,26 +1562,10 @@
       }
     },
     "securitySchemes": {
-      "main_auth": {
-        "type": "oauth2",
-        "flows": {
-          "implicit": {
-            "authorizationUrl": "http://example.com/api/oauth/dialog",
-            "scopes": {
-              "read:users": "read users info",
-              "write:users": "modify or remove users"
-            }
-          }
-        }
-      },
-      "api_key": {
-        "type": "apiKey",
-        "in": "header",
-        "name": "api_key"
-      },
-      "basic_auth": {
+      "bearerAuth": {
         "type": "http",
-        "scheme": "basic"
+        "scheme":"bearer",
+        "bearerFormat":"Token"
       }
     }
   }
