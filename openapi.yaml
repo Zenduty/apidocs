@@ -43,6 +43,8 @@ tags:
     description: Tags are a way to highlight specifics about an incident.
   - name: Task Templates
     description: A ready to go template to create Tasks for incidents.
+  - name: On Call
+    description: To view and maintain an On Call schedule
 servers:
   - url: 'https://www.zenduty.com'
 paths:
@@ -1302,6 +1304,34 @@ paths:
           description: Forbidden
         '404':
           description: Not found
+  '/api/account/teams/{team_id}/oncall':
+    parameters:
+      - name: team_id
+        in: path
+        description: Unique ID of the team
+        schema:
+          type: string
+        required: true
+    get:
+      tags:
+        - On Call
+      summary: Get details about who is on call
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/onCall'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/onCall'
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
 components:
   schemas:
     Email:
@@ -2057,6 +2087,45 @@ components:
         due_immediately:
           type: integer
           description: If its immediately due
+    onCall:
+      type: object
+      description: On Call
+      properties:
+        escalation_policies:
+          $ref: '#/components/schemas/lesEscPolicies'
+        team:
+          $ref: '#/components/schemas/lesTeam'
+        user:
+          $ref: '#/components/schemas/User'
+    lesEscPolicies:
+      type: object
+      description: Escalation Policy details for on call.
+      properties:
+        name:
+          description: name of the escalation policy
+          type: string
+        summary:
+          description: summary for the escaltion policy
+          type: string
+        description:
+          description: description of the escalation policy
+          type: string
+        unique_id:
+          description: Unique ID of the Escalation Policy
+          type: string
+        repeat_policy:
+          description: details about the repetition of the escalation policy
+          type: integer
+    lesTeam:
+      type: object
+      description: lesser details of the team for On Call details
+      properties:
+        unique_id:
+          description: Unique ID of the team
+          type: string
+        name:
+          description: Name of the team
+          type: string
   headers:
     ExpiresAfter:
       description: date in UTC when token expires
