@@ -1412,9 +1412,8 @@ paths:
           - On Call
         summary:  Get details about who is on call
         security:
-          - main_auth:
-              - '`JWT ${token}`'
-          - api_key:  []
+          - bearerAuth: []
+          
         responses: #list of responses
           '200':
             description: Success
@@ -1429,7 +1428,6 @@ paths:
             description: Forbidden
           '404':
             description: Not found
-
 
 # An object to hold reusable parts that can be used across the spec
 components:
