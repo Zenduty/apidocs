@@ -20,6 +20,8 @@ info:
       Ruby Libraries: https://github.com/Zenduty/zenduty-ruby
       
       Python Libraries: https://github.com/Zenduty/zenduty-python-sdk
+
+      Postman Collection for Zenduty API: https://github.com/Zenduty/zenduty-api-postman.git
 tags:
   - name: Teams
     description: Operations about teams
