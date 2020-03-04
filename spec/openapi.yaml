@@ -22,6 +22,8 @@ info:
       Ruby Libraries: https://github.com/Zenduty/zenduty-ruby
       
       Python Libraries: https://github.com/Zenduty/zenduty-python-sdk
+
+      Postman Collection for Zenduty API: https://github.com/Zenduty/zenduty-api-postman.git
     
 # A list of tags used by the specification with additional metadata.
 # The order of the tags can be used to reflect on their order by the parsing tools.
