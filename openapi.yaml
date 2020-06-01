@@ -1762,11 +1762,11 @@ components:
           type: object
           description: A JSON payload containing additional information about the alert
         images:
+          type: array
           $ref: '#/components/schemas/EventImage'
         links:
+          type: array
           $ref: '#/components/schemas/EventUrl'
-        notes:
-          $ref: '#/components/schemas/EventNote'
     NewIncident:
       type: object
       description: Custom payload for new incident
