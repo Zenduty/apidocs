@@ -1863,7 +1863,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EventImage'
-        links:
+        urls:
           type: array
           items:
             $ref: '#/components/schemas/EventUrl'        
