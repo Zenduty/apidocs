@@ -2803,11 +2803,15 @@
           },
           "images": {
             "type": "array",
-            "$ref": "#/components/schemas/EventImage"
+            "items": {
+              "$ref": "#/components/schemas/EventImage"
+            }
           },
-          "links": {
+          "urls": {
             "type": "array",
-            "$ref": "#/components/schemas/EventUrl"
+            "items": {
+              "$ref": "#/components/schemas/EventUrl"
+            }
           }
         }
       },
