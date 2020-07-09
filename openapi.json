@@ -71,7 +71,7 @@
     }
   ],
   "paths": {
-    "/api/account/teams": {
+    "/api/account/teams/": {
       "get": {
         "tags": [
           "Teams"
@@ -157,7 +157,7 @@
         }
       }
     },
-    "/api/account/teams/{team_id}": {
+    "/api/account/teams/{team_id}/": {
       "parameters": [
         {
           "name": "team_id",
@@ -226,7 +226,7 @@
         }
       }
     },
-    "/api/account/teams/{team_id}/members": {
+    "/api/account/teams/{team_id}/members/": {
       "parameters": [
         {
           "name": "team_id",
@@ -289,7 +289,7 @@
         }
       }
     },
-    "/api/account/teams/{team_id}/members/{member_id}": {
+    "/api/account/teams/{team_id}/members/{member_id}/": {
       "parameters": [
         {
           "name": "team_id",
@@ -333,7 +333,7 @@
         }
       }
     },
-    "/api/account/teams/{team_id}/services": {
+    "/api/account/teams/{team_id}/services/": {
       "parameters": [
         {
           "name": "team_id",
@@ -430,7 +430,7 @@
         }
       }
     },
-    "/api/account/teams/{team_id}/services/{service_id}": {
+    "/api/account/teams/{team_id}/services/{service_id}/": {
       "parameters": [
         {
           "name": "team_id",
@@ -551,7 +551,7 @@
         }
       }
     },
-    "/api/account/teams/{team_id}/services/{service_id}/integrations": {
+    "/api/account/teams/{team_id}/services/{service_id}/integrations/": {
       "parameters": [
         {
           "name": "team_id",
@@ -657,7 +657,7 @@
         }
       }
     },
-    "/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}": {
+    "/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/": {
       "parameters": [
         {
           "name": "team_id",
@@ -722,7 +722,7 @@
         }
       }
     },
-    "/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/alerts": {
+    "/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/alerts/": {
       "parameters": [
         {
           "name": "team_id",
@@ -787,7 +787,7 @@
         }
       }
     },
-    "/api/incidents": {
+    "/api/incidents/": {
       "get": {
         "tags": [
           "Incidents"
@@ -909,7 +909,7 @@
         }
       }
     },
-    "/api/incidents/{incident_number}": {
+    "/api/incidents/{incident_number}/": {
       "parameters": [
         {
           "name": "incident_number",
@@ -999,7 +999,7 @@
         }
       }
     },
-    "/api/incidents/{incident_number}/alerts": {
+    "/api/incidents/{incident_number}/alerts/": {
       "parameters": [
         {
           "name": "incident_number",
@@ -1046,7 +1046,7 @@
         }
       }
     },
-    "/api/incidents/{incident_number}/note": {
+    "/api/incidents/{incident_number}/note/": {
       "parameters": [
         {
           "name": "incident_number",
@@ -1093,7 +1093,7 @@
         }
       }
     },
-    "/api/events/{integration-key}": {
+    "/api/events/{integration-key}/": {
       "parameters": [
         {
           "name": "integration-key",
@@ -1144,7 +1144,7 @@
         }
       }
     },
-    "/api/account/teams/{team_id}/escalation_policies": {
+    "/api/account/teams/{team_id}/escalation_policies/": {
       "parameters": [
         {
           "name": "team_id",
@@ -1241,7 +1241,7 @@
         }
       }
     },
-    "/api/account/teams/{team_id}/escalation_policies/{ep_id}": {
+    "/api/account/teams/{team_id}/escalation_policies/{ep_id}/": {
       "parameters": [
         {
           "name": "team_id",
@@ -1362,7 +1362,7 @@
         }
       }
     },
-    "/api/account/teams/{team_id}/schedules": {
+    "/api/account/teams/{team_id}/schedules/": {
       "parameters": [
         {
           "name": "team_id",
@@ -1459,7 +1459,7 @@
         }
       }
     },
-    "/api/account/teams/{team_id}/schedules/{schedule_id}": {
+    "/api/account/teams/{team_id}/schedules/{schedule_id}/": {
       "parameters": [
         {
           "name": "team_id",
@@ -1580,7 +1580,7 @@
         }
       }
     },
-    "/api/account/teams/{team_id}/roles": {
+    "/api/account/teams/{team_id}/roles/": {
       "parameters": [
         {
           "name": "team_id",
@@ -1677,7 +1677,7 @@
         }
       }
     },
-    "/api/account/teams/{team_id}/roles/{role_id}": {
+    "/api/account/teams/{team_id}/roles/{role_id}/": {
       "patch": {
         "tags": [
           "Roles"
@@ -1775,7 +1775,7 @@
         }
       }
     },
-    "/api/account/teams/{team_id}/tags": {
+    "/api/account/teams/{team_id}/tags/": {
       "parameters": [
         {
           "name": "team_id",
@@ -1871,7 +1871,7 @@
         }
       }
     },
-    "/api/account/teams/{team_id}/tags/{tags_id}": {
+    "/api/account/teams/{team_id}/tags/{tags_id}/": {
       "patch": {
         "tags": [
           "Tags"
@@ -1969,7 +1969,7 @@
         }
       }
     },
-    "/api/account/teams/{team_id}/task_templates": {
+    "/api/account/teams/{team_id}/task_templates/": {
       "parameters": [
         {
           "name": "team_id",
@@ -2065,7 +2065,7 @@
         }
       }
     },
-    "/api/account/teams/{team_id}/task_templates/{task_template_id}": {
+    "/api/account/teams/{team_id}/task_templates/{task_template_id}/": {
       "patch": {
         "tags": [
           "Task Templates"
@@ -2163,7 +2163,7 @@
         }
       }
     },
-    "/api/account/teams/{team_id}/oncall": {
+    "/api/account/teams/{team_id}/oncall/": {
       "parameters": [
         {
           "name": "team_id",
