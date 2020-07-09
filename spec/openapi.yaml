@@ -57,7 +57,7 @@ tags:
 servers:
  - url: 'https://www.zenduty.com'
 paths:
-  '/api/account/teams':
+  '/api/account/teams/':
     # documentation for get teams
     get: 
       tags:
@@ -115,7 +115,7 @@ paths:
               $ref: '#/components/schemas/NewTeamName'
         description: New Team Name
         required: true
-  '/api/account/teams/{team_id}':
+  '/api/account/teams/{team_id}/':
       parameters: 
         - name: 'team_id'
           in: path
@@ -163,7 +163,7 @@ paths:
           '404':
             description: Not found
         
-  '/api/account/teams/{team_id}/members':
+  '/api/account/teams/{team_id}/members/':
       parameters: 
         - name: 'team_id'
           in: path
@@ -203,7 +203,7 @@ paths:
                 $ref: '#/components/schemas/UserID'
           description: New Team Details
           required: true
-  '/api/account/teams/{team_id}/members/{member_id}':
+  '/api/account/teams/{team_id}/members/{member_id}/':
       parameters: 
         - name: 'team_id'
           in: path
@@ -233,7 +233,7 @@ paths:
             description: Forbidden
           '404':
             description: Not found
-  '/api/account/teams/{team_id}/services':
+  '/api/account/teams/{team_id}/services/':
       parameters: 
         - name: 'team_id'
           in: path
@@ -296,7 +296,7 @@ paths:
                 $ref: '#/components/schemas/NewService'
           description: New Team Details
           required: true
-  '/api/account/teams/{team_id}/services/{service_id}':
+  '/api/account/teams/{team_id}/services/{service_id}/':
       parameters: 
         - name: 'team_id'
           in: path
@@ -375,7 +375,7 @@ paths:
             description: Forbidden
           '404':
             description: Not found
-  '/api/account/teams/{team_id}/services/{service_id}/integrations':
+  '/api/account/teams/{team_id}/services/{service_id}/integrations/':
       parameters: 
         - name: 'team_id'
           in: path
@@ -443,7 +443,7 @@ paths:
                 $ref: '#/components/schemas/NewIntegration'
           description: New Integration Details
           required: true
-  '/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}':
+  '/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/':
       parameters: 
         - name: 'team_id'
           in: path
@@ -485,7 +485,7 @@ paths:
             description: Forbidden
           '404':
             description: Not found
-  '/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/alerts':
+  '/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/alerts/':
       parameters: 
         - name: 'team_id'
           in: path
@@ -527,7 +527,7 @@ paths:
             description: Forbidden
           '404':
             description: Not found
-  '/api/incidents':
+  '/api/incidents/':
       get: 
         tags:
         - Incidents
@@ -603,7 +603,7 @@ paths:
                 $ref: '#/components/schemas/NewIncident'
           description: New Incident
           required: true
-  '/api/incidents/{incident_number}':
+  '/api/incidents/{incident_number}/':
       parameters:
         - name: incident_number
           in: path
@@ -660,7 +660,7 @@ paths:
             description: Forbidden
           '404':
             description: Not found
-  '/api/incidents/{incident_number}/alerts':
+  '/api/incidents/{incident_number}/alerts/':
       parameters:
         - name: incident_number
           in: path
@@ -690,7 +690,7 @@ paths:
             description: Forbidden
           '404':
             description: Not found
-  '/api/incidents/{incident_number}/note':
+  '/api/incidents/{incident_number}/note/':
       parameters:
         - name: incident_number
           in: path
@@ -721,7 +721,7 @@ paths:
           '404':
             description: Not found
      
-  '/api/events/{integration-key}':
+  '/api/events/{integration-key}/':
     parameters:
     - name: integration-key
       in: path
@@ -753,7 +753,7 @@ paths:
                 $ref: '#/components/schemas/NewEvent'
           description: New Event
           required: true
-  '/api/account/teams/{team_id}/escalation_policies':
+  '/api/account/teams/{team_id}/escalation_policies/':
     parameters: 
         - name: 'team_id'
           in: path
@@ -815,7 +815,7 @@ paths:
                 $ref: '#/components/schemas/EP'
           description: New Escalation Policy Details
           required: true
-  '/api/account/teams/{team_id}/escalation_policies/{ep_id}':
+  '/api/account/teams/{team_id}/escalation_policies/{ep_id}/':
     parameters: 
       - name: 'team_id'
         in: path
@@ -895,7 +895,7 @@ paths:
         '404':
           description: Not found 
           
-  '/api/account/teams/{team_id}/schedules':
+  '/api/account/teams/{team_id}/schedules/':
     parameters: 
         - name: 'team_id'
           in: path
@@ -957,7 +957,7 @@ paths:
                 $ref: '#/components/schemas/Schedule'
           description: New Schedule Details
           required: true
-  '/api/account/teams/{team_id}/schedules/{schedule_id}':
+  '/api/account/teams/{team_id}/schedules/{schedule_id}/':
     parameters: 
       - name: 'team_id'
         in: path
@@ -1036,7 +1036,7 @@ paths:
         '404':
           description: Not found 
 
-  '/api/account/teams/{team_id}/roles':
+  '/api/account/teams/{team_id}/roles/':
       parameters:
         - name: 'team_id'
           in: path
@@ -1096,7 +1096,7 @@ paths:
                 $ref: '#/components/schemas/Rolesref'
           description:  New Role Details
           required: true
-  '/api/account/teams/{team_id}/roles/{role_id}':
+  '/api/account/teams/{team_id}/roles/{role_id}/':
       patch:
         tags:
         - Roles
@@ -1160,7 +1160,7 @@ paths:
           '404':
             description:  Not Found
 
-  '/api/account/teams/{team_id}/tags':
+  '/api/account/teams/{team_id}/tags/':
       parameters:
         - name: 'team_id'
           in: path
@@ -1219,7 +1219,7 @@ paths:
                 $ref: '#/components/schemas/Tagsref'
           required: true
 
-  '/api/account/teams/{team_id}/tags/{tags_id}':
+  '/api/account/teams/{team_id}/tags/{tags_id}/':
       patch: 
         tags:
         - Tags
@@ -1280,7 +1280,7 @@ paths:
           '404':
             description: Not found 
 
-  '/api/account/teams/{team_id}/task_templates':
+  '/api/account/teams/{team_id}/task_templates/':
       parameters:
         - name: 'team_id'
           in: path
@@ -1340,7 +1340,7 @@ paths:
                 $ref: '#/components/schemas/TaskTemplatesref'
           required: true
 
-  '/api/account/teams/{team_id}/task_templates/{task_template_id}':
+  '/api/account/teams/{team_id}/task_templates/{task_template_id}/':
       patch: 
         tags:
         - Task Templates
@@ -1401,7 +1401,7 @@ paths:
           '404':
             description: Not found
 
-  '/api/account/teams/{team_id}/oncall':
+  '/api/account/teams/{team_id}/oncall/':
       parameters:
         - name: 'team_id'
           in: path
