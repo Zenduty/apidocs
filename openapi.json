@@ -2795,7 +2795,7 @@
           },
           "entity_id": {
             "type": "string",
-            "description": "A unique id for the alert.If not provided, the Zenduty API will create one"
+            "description": "A unique id for the alert.If not provided, the Zenduty API will create one. Maximum length is 32 characters"
           },
           "payload": {
             "type": "object",
