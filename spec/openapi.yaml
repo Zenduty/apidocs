@@ -1,4 +1,3 @@
-
 openapi: 3.0.0
 info:
   version: '1.0.0' # Your API version
@@ -22,11 +21,10 @@ info:
       Ruby Libraries: https://github.com/Zenduty/zenduty-ruby
       
       Python Libraries: https://github.com/Zenduty/zenduty-python-sdk
-
       Postman Collection for Zenduty API: https://github.com/Zenduty/zenduty-api-postman.git
     
 # A list of tags used by the specification with additional metadata.
-# The order of the tags can be used to reflect on their order by the parsing tools.
+# The order of the tags can be used to reflect on their order by the parsing tools.'
 tags:
   - name: Teams
     description: Operations about teams
@@ -52,1387 +50,2000 @@ tags:
     description: A ready to go template to create Tasks for incidents.
   - name: On Call
     description: To view and maintain an On Call schedule
-
-  
+  - name: Priorities
+    description: Operation related to team priority
+  - name: SLA
+    description: Operations related to team SLA policies
+  - name: Service Maintenance Mode
+    description: Operations related to service maintenance mode.
 servers:
- - url: 'https://www.zenduty.com'
+  - url: https://www.zenduty.com
+    description: ''
+    variables: {}
+
 paths:
-  '/api/account/teams/':
-    # documentation for get teams
-    get: 
-      tags:
-      - Teams
-      summary: Get teams
-      # operationId: getTeams
-    
-      # security schemas applied to this operation
-      security:
-        - bearerAuth: []
-      responses: # list of responses
-        '200':
-          description: Success
-          content:
-            application/json: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/TeamWMember'
-            application/xml: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/TeamWMember'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found
-    # documentation for create teams
+  /api/account/teams/:
     post:
-      tags:
-        - Teams
-      summary: Create Team
-      # operationId: createTeam
-      security:
-        - bearerAuth: []
+      summary: Create a Team
+      description: This request will create a team.
+      operationId: CreateaTeam
+      parameters:
+        - $ref: '#/components/parameters/Content-Type'
       responses:
         '200':
-          description: OK
-          content:
-            application/json: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/Team'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Team'
-        '400':
-          description: Invalid 
-        '404':
-          description: User not found
-      # request body documentation
+          description: ''
+          headers: {}
       requestBody:
+        description: This request will create a team.
+        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewTeamName'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/NewTeamName'
-        description: New Team Name
-        required: true
-  '/api/account/teams/{team_id}/':
-      parameters: 
-        - name: 'team_id'
-          in: path
-          description: Unique ID of team
-          schema:
-            type: string
-          required: true
-      get: 
-        tags:
-        - Teams
-        summary: Get team details
-        # operationId: getTeamDetails
-      
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/TeamWMember'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/TeamWMember'
-          '400':
-            description: Invalid
-          '404':
-            description: Not found
-      delete: 
-        tags:
-        - Teams
-        summary: Delete a Team
-        # operationId: deleteTeam
-      
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-          '400':
-            description: Invalid
-          '404':
-            description: Not found
-        
-  '/api/account/teams/{team_id}/members/':
-      parameters: 
-        - name: 'team_id'
-          in: path
-          description: Unique ID of team
-          schema:
-            type: string
-          required: true
-      post: 
-        tags:
-        - Members
-        summary: Add members to a team
-        # operationId: addMembers
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema:
-                  $ref: '#/components/schemas/NewMember'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/NewMember'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-        requestBody:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserID'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/UserID'
-          description: New Team Details
-          required: true
-  '/api/account/teams/{team_id}/members/{member_id}/':
-      parameters: 
-        - name: 'team_id'
-          in: path
-          description: Unique ID of team
-          schema:
-            type: string
-          required: true
-        - name: 'member_id'
-          in: path
-          description: Unique ID of member
-          schema:
-            type: string
-          required: true
-      delete: 
-        tags:
-        - Members
-        summary: Delete members from a team
-        # operationId: delMembers
-      
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-  '/api/account/teams/{team_id}/services/':
-      parameters: 
-        - name: 'team_id'
-          in: path
-          description: Unique ID of team
-          schema:
-            type: string
-          required: true
-      get: 
-        tags:
-        - Services
-        summary: Get Services for a team
-        # operationId: getServices
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/ServiceInfo'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/ServiceInfo'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-      post: 
-        tags:
-        - Services
-        summary: Add new Service in a team
-        # operationId: createService
-        
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/ServiceInfo'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/ServiceInfo'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-        requestBody:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NewService'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/NewService'
-          description: New Team Details
-          required: true
-  '/api/account/teams/{team_id}/services/{service_id}/':
-      parameters: 
-        - name: 'team_id'
-          in: path
-          description: Unique ID of team
-          schema:
-            type: string
-          required: true
-        - name: 'service_id'
-          in: path
-          description: Unique Service ID
-          schema:
-            type: string
-          required: true
-      get: 
-        tags:
-        - Services
-        summary: Get Services by ID
-        # operationId: getServiceID
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/ServiceInfo'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/ServiceInfo'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-      patch: 
-        tags:
-        - Services
-        summary: Update Service
-        # operationId: updateService
-        # security schemas applied to this operation
-        parameters:
-          - name: service_info
-            in: query
-            schema:
-              $ref: '#/components/schemas/ServiceInfo'
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/ServiceInfo'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/ServiceInfo'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-      delete: 
-        tags:
-        - Services
-        summary: Delete Service from a team
-        # operationId: delService
-      
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-  '/api/account/teams/{team_id}/services/{service_id}/integrations/':
-      parameters: 
-        - name: 'team_id'
-          in: path
-          description: Unique ID of team
-          schema:
-            type: string
-          required: true
-        - name: 'service_id'
-          in: path
-          description: Unique Service ID
-          schema:
-            type: string
-          required: true
-      get: 
-        tags:
-        - Integrations
-        summary: Get Integrations in a service
-        # operationId: getIntegrations
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/Integration'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/Integration'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-      post:
-        tags:
-          - Integrations
-        summary: Create Integration
-        # operationId: createIntegration
-        security:
-          - bearerAuth: []
-        responses:
-          '200':
-            description: OK
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/Integration'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/Integration'
-          '400':
-            description: Invalid 
-          '404':
-            description: User not found
-        # request body documentation
-        requestBody:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NewIntegration'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/NewIntegration'
-          description: New Integration Details
-          required: true
-  '/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/':
-      parameters: 
-        - name: 'team_id'
-          in: path
-          description: Unique ID of team
-          schema:
-            type: string
-          required: true
-        - name: 'service_id'
-          in: path
-          description: Unique Service ID
-          schema:
-            type: string
-          required: true
-        - name: 'integration_id'
-          in: path
-          description: Unique Service ID
-          schema:
-            type: string
-          required: true
-      get: 
-        tags:
-        - Integrations
-        summary: Get Integrations by ID
-        # operationId: getIntegrationsID
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/Integration'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/Integration'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-  '/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/alerts/':
-      parameters: 
-        - name: 'team_id'
-          in: path
-          description: Unique ID of team
-          schema:
-            type: string
-          required: true
-        - name: 'service_id'
-          in: path
-          description: Unique Service ID
-          schema:
-            type: string
-          required: true
-        - name: 'integration_id'
-          in: path
-          description: Unique Service ID
-          schema:
-            type: string
-          required: true
-      get: 
-        tags:
-        - Integrations
-        summary: Get Alerts in an integration
-        # operationId: getAlerts
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/AlertList'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/AlertList'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-  '/api/incidents/':
-      get: 
-        tags:
-        - Incidents
-        summary: Get Incidents
-        # operationId: getIncidents
-        # security schemas applied to this operation
-        parameters:
-          - name: page
-            in: query
-            schema:
-              type: integer
-            example: 1
-          - name: status
-            in: query
-            schema:
-              type: integer
-            example: 1
-          - name: team_ids
-            in: query
-            schema: 
-              type: array
-              items:
-                type: string
-          - name: service_ids
-            in: query
-            schema:
-              type: array
-              items:
-                type: string
-          - name: user_ids
-            in: query
-            schema:
-              type: array
-              items:
-                type: string
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/IncidentList'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/IncidentList'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-      post:
-        tags:
-          - Incidents
-        summary: Create Incident
-          # operationId: createIncident
-        security:
-          - bearerAuth: []
-        responses:
-          '200':
-            description: OK
-          '400':
-            description: Invalid 
-          '404':
-            description: User not found
-        requestBody:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NewIncident'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/NewIncident'
-          description: New Incident
-          required: true
-  '/api/incidents/{incident_number}/':
-      parameters:
-        - name: incident_number
-          in: path
-          schema:
-            type: integer
-          required: true
-          description: Incident number
-      get: 
-        tags:
-        - Incidents
-        summary: Get Incident by number
-        # operationId: getIncidents
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/Incident'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/Incident'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-      patch: 
-        tags:
-        - Incidents
-        summary: Acknowledge or resolve Incidents
-         # operationId: updateService
-         # security schemas applied to this operation
-        parameters:
-          - name: incident_info
-            in: query
-            schema:
-              $ref: '#/components/schemas/Incident'
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/Incident'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/Incident'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-  '/api/incidents/{incident_number}/alerts/':
-      parameters:
-        - name: incident_number
-          in: path
-          schema:
-            type: integer
-          required: true
-          description: Incident number
-      get: 
-        tags:
-        - Incidents
-        summary: Get Incident Alerts
-        # operationId: getIncidents
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/ServiceAlert'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/ServiceAlert'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-  '/api/incidents/{incident_number}/note/':
-      parameters:
-        - name: incident_number
-          in: path
-          schema:
-            type: integer
-          required: true
-          description: Incident number
-      get: 
-        tags:
-        - Incidents
-        summary: Get Incident Notes
-        # operationId: getIncidents
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/IncidentNoteList'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/IncidentNoteList'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-     
-  '/api/events/{integration-key}/':
-    parameters:
-    - name: integration-key
-      in: path
-      schema:
-        type: string
-      required: true
-      description: Replace the integration-key with the Integration key you copied in Step 1
-    post:
+              type: string
+              example:
+                name: New Team
+            example: "{\n\t\"name\": \"New Team\"\n}"
       tags:
-        - Events
-      summary: Create Event
-        # operationId: createEvent
-      security:
-        - bearerAuth: []
+        - Teams
+    get:
+      summary: Get Teams
+      description: This endpoint will get all the operations related to the team.
+      operationId: GetTeams
+      parameters: []
       responses:
         '200':
-          description: OK
-        '400':
-          description: Invalid 
-        '404':
-          description: User not found
+          description: ''
+          headers: {}
+      tags:
+        - Teams
+  /api/account/teams/{team_id}:
+    get:
+      summary: Get Team detail by ID
+      description: To get the details of the team.
+      operationId: GetTeamdetailbyID
+      parameters:
+        - $ref: '#/components/parameters/team_id'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Teams
+    patch:
+      summary: Update Team
+      operationId: UpdateTeam
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
       requestBody:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NewEvent'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/NewEvent'
-          description: New Event
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example:
+                name: Modified Team
+            example: "{\n\t\"name\": \"Modified Team\"\n}"
+      tags:
+        - Teams
+  /api/account/teams/{team_id2}/:
+    delete:
+      summary: Delete a Team
+      description: This endpoint will delete the specified team.
+      operationId: DeleteaTeam
+      parameters:
+        - $ref: '#/components/parameters/team_id2'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Teams
+  /api/account/teams/{team_id}/services/:
+    post:
+      summary: Add new Service to a Team
+      description: This request lets you add a new Service to a team.
+      operationId: AddnewServicetoaTeam
+      parameters:
+        - name: Content-Type
+          in: header
           required: true
-  '/api/account/teams/{team_id}/escalation_policies/':
-    parameters: 
-        - name: 'team_id'
-          in: path
-          description: Unique ID of team
+          style: simple
           schema:
             type: string
+            example: application/json
+        - name: team_id
+          in: path
           required: true
-    get: 
-        tags:
+          style: simple
+          schema:
+            type: string
+            example: team_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        description: This request lets you add a new Service to a team.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              example:
+                name: New Service
+                collation: 1
+                collation_time: 1
+                description: This is the description for the Service
+                escalation_policy: '{{ep_id}}'
+            example: "{\n\t\"name\": \"New Service\",\n\t\"collation\": 1,\n\t\"collation_time\": 1,\n\t\"description\": \"This is the description for the Service\",\n\t\"escalation_policy\": \"{{ep_id}}\"\n}"
+      tags:
+        - Services
+  /api/account/teams/{team_id}/services:
+    get:
+      summary: Get Services for a team
+      description: To get all the services linked to a team.
+      operationId: GetServicesforateam
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Services
+  /api/account/teams/{team_id}/services/{service_id}:
+    get:
+      summary: Get services by ID
+      description: This request will get you the service by its corresponding Service ID
+      operationId: GetservicesbyID
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - $ref: '#/components/parameters/service_id'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Services
+  /api/account/teams/{team_id}/services/{service_id}/:
+    patch:
+      summary: Update Service
+      description: This endpoint lets one Update the Service details. In this case, the name of the service will be changed to "Modified Service Name".
+      operationId: UpdateService
+      parameters:
+        - name: Content-Type
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: application/json
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: service_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: service_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        description: This endpoint lets one Update the Service details. In this case, the name of the service will be changed to "Modified Service Name".
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              example:
+                name: Modified Service Name
+                collation: 1
+                collation_time: 1
+                description: This is the modified description for the Service
+                escalation_policy: '{{ep_id}}'
+            example: "{\n\t\"name\": \"Modified Service Name\",\n\t\"collation\": 1,\n\t\"collation_time\": 1,\n\t\"description\": \"This is the modified description for the Service\",\n\t\"escalation_policy\": \"{{ep_id}}\"\n\n}"
+      tags:
+        - Services
+  /api/account/teams/{team_id}/services/{service_id2}/:
+    delete:
+      summary: Delete a Service
+      description: This request letsone delete a service.
+      operationId: DeleteaService
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - $ref: '#/components/parameters/service_id2'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Services
+  /api/account/teams/{team_id}/services/{service_id}/integrations/:
+    post:
+      summary: Create Integration
+      description: This request will let one create a new Integration for the specific Service.
+      operationId: CreateIntegration
+      parameters:
+        - name: Content-Type
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: application/json
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: service_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: service_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        description: This request will let one create a new Integration for the specific Service.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              example:
+                name: New Integration
+                summary: This is the summary for new Integration
+                application: '{{app_ref}}'
+            example: "{\n\t\"name\": \"New Integration\",\n\t\"summary\": \"This is the summary for new Integration\",\n\t\"application\": \"{{app_ref}}\"\n}"
+      tags:
+        - Integrations
+  /api/account/teams/{team_id}/services/{service_id}/integrations:
+    get:
+      summary: Get Integrations
+      description: This will show all the integrations under the service.
+      operationId: GetIntegrations
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: service_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: service_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Integrations
+  /api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}:
+    get:
+      summary: Get Integration by ID
+      description: This request will get the Integration by integration ID.
+      operationId: GetIntegrationbyID
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: service_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: service_id
+        - $ref: '#/components/parameters/integration_id'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Integrations
+    patch:
+      summary: Update Integration
+      operationId: UpdateIntegration
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: service_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: service_id
+        - name: integration_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: integration_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example:
+                name: Updated Integration
+                summary: This is the summary for updated Integration
+                create_incidents_for: 2
+                default_urgency: 0
+                is_enabled: false
+            example: "{\n\t\"name\": \"Updated Integration\",\n\t\"summary\": \"This is the summary for updated Integration\",\n    \"create_incidents_for\": 2,\n    \"default_urgency\": 0,\n    \"is_enabled\": false\n}"
+      tags:
+        - Integrations
+    delete:
+      summary: Delete Integration
+      operationId: DeleteIntegration
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: service_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: service_id
+        - name: integration_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: integration_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Integrations
+  /api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/alerts:
+    get:
+      summary: Get alerts in an integration
+      operationId: Getalertsinanintegration
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: service_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: service_id
+        - name: integration_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: integration_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Integrations
+  /api/account/teams/{team_id}/members:
+    post:
+      summary: Create member
+      operationId: Createmember
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example: |-
+                {
+                    "user": {{user_id}}
+                }
+            example: |-
+              {
+                  "user": {{user_id}}
+              }
+      tags:
+        - Members
+    get:
+      summary: Get members
+      description: This endpoints lets one get all the memebers of a specific team.
+      operationId: Getmembers
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Members
+  /api/account/teams/{team_id}/members/{member_id}:
+    get:
+      summary: Get member by ID
+      operationId: GetmemberbyID
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - $ref: '#/components/parameters/member_id'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Members
+    patch:
+      summary: Update member
+      operationId: Updatemember
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: member_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: member_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example:
+                role: 1
+            example: |-
+              {
+                  "role": 1
+              }
+      tags:
+        - Members
+    delete:
+      summary: Delete member
+      operationId: Deletemember
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: member_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: member_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Members
+  /api/incidents/:
+    post:
+      summary: Create Incidents
+      description: This request will let one create a new incident.
+      operationId: CreateIncidents
+      parameters:
+        - name: Content-Type
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: application/json
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        description: This request will let one create a new incident.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              example:
+                service: '{{service_id}}'
+                escalation_policy: '{{ep_id}}'
+                user: null
+                title: Incident Title
+                summary: This is the summary for the incident
+            example: "{\n\t\"service\": \"{{service_id}}\",\n\t\"escalation_policy\": \"{{ep_id}}\",\n\t\"user\": null,\n\t\"title\": \"Incident Title\",\n\t\"summary\": \"This is the summary for the incident\"\n}"
+      tags:
+        - Incidents
+  /api/incidents:
+    get:
+      summary: Get Incidents
+      description: This endpoint will give all the incidents for the account.
+      operationId: GetIncidents
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Incidents
+  /api/incidents/{incident_number}:
+    get:
+      summary: Get Incident by number
+      description: This request will get the specific incident by its Incident number.
+      operationId: GetIncidentbynumber
+      parameters:
+        - $ref: '#/components/parameters/incident_number'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Incidents
+  /api/incidents/{incident_number}/alerts:
+    get:
+      summary: Get Incident Alerts
+      description: |
+        This request will fetch all the alerts for the specific Incident.
+      operationId: GetIncidentAlerts
+      parameters:
+        - name: incident_number
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: incident_number
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Incidents
+  /api/incidents/{incident_number}/note:
+    get:
+      summary: Get incident Notes
+      description: This request will get all the notes for the specific incident.
+      operationId: GetincidentNotes
+      parameters:
+        - name: incident_number
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: incident_number
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Incidents
+  /api/incidents/{incident_number}/:
+    patch:
+      summary: Acknowledge the Incident
+      description: This endpoint will let one Acknowledge any valid incident.
+      operationId: AcknowledgetheIncident
+      parameters:
+        - name: Content-Type
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: application/json
+        - name: incident_number
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: incident_number
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        description: This endpoint will let one Acknowledge any valid incident.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              example:
+                status: 2
+            example: "{\n\t\"status\": 2\n}"
+      tags:
+        - Incidents
+  /api/account/teams/{team_id}/escalation_policies/:
+    post:
+      summary: Create Escalation Policy
+      description: This request lets you create a new Escalation Policy.
+      operationId: CreateEscalationPolicy
+      parameters:
+        - name: Content-Type
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: application/json
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        description: This request lets you create a new Escalation Policy.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              example:
+                name: New Escalation Policy
+                summary: This is the summary for the new escalation policy
+                description: This is the description for the New Escalation Policy
+                rules:
+                  - delay: 0
+                    targets:
+                      - target_type: 2
+                        target_id: '{{target_id}}'
+                    position: 1
+                    unique_id: ''
+                team: '{{team_id}}'
+            example: "{\r\n\t\"name\": \"New Escalation Policy\",\r\n\t\"summary\": \"This is the summary for the new escalation policy\",\r\n\t\"description\": \"This is the description for the New Escalation Policy\",\r\n\t\"rules\": [\r\n            {\r\n                \"delay\": 0,\r\n                \"targets\": [\r\n                    {\r\n                        \"target_type\": 2,\r\n                        \"target_id\": \"{{target_id}}\"\r\n                    }\r\n                ],\r\n                \"position\": 1,\r\n                \"unique_id\": \"\"\r\n            }\r\n        ],\r\n\t\"team\": \"{{team_id}}\"\r\n}"
+      tags:
         - Escalation Policies
-        summary: Get Escalation Policies
-        # operationId: getEP
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/EP'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/EP'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-    post:
-        tags:
-          - Escalation Policies
-        summary: Create Escalation Policy
-        # operationId: createEP
-        security:
-          - bearerAuth: []
-        responses:
-          '200':
-            description: OK
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/EP'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/EP'
-          '400':
-            description: Invalid 
-          '404':
-            description: User not found
-        # request body documentation
-        requestBody:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EP'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/EP'
-          description: New Escalation Policy Details
+  /api/account/teams/{team_id}/escalation_policies:
+    get:
+      summary: Get Escalation Policies
+      description: This request will show you the escalation policies for the specified team.
+      operationId: GetEscalationPolicies
+      parameters:
+        - name: team_id
+          in: path
           required: true
-  '/api/account/teams/{team_id}/escalation_policies/{ep_id}/':
-    parameters: 
-      - name: 'team_id'
-        in: path
-        description: Unique ID of team
-        schema:
-          type: string
-        required: true
-      - name: 'ep_id'
-        in: path
-        description: Unique ID of the escalation policy
-        schema:
-          type: string
-        required: true
-    get: 
+          style: simple
+          schema:
+            type: string
+            example: team_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
       tags:
-      - Escalation Policies
+        - Escalation Policies
+  /api/account/teams/{team_id}/escalation_policies/{ep_id}:
+    get:
       summary: Get Escalation Policy by ID
-        # operationId: getEPID
-        # security schemas applied to this operation
-      security:
-        - bearerAuth: []
-      responses: # list of responses
+      description: This request will get the escalation policy by the specific ID of the Escalation Policy.
+      operationId: GetEscalationPolicybyID
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - $ref: '#/components/parameters/ep_id'
+      responses:
         '200':
-          description: Success
-          content:
-            application/json: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/EP'
-            application/xml: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/EP'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found
-    patch: 
+          description: ''
+          headers: {}
       tags:
-      - Escalation Policies
+        - Escalation Policies
+  /api/account/teams/{team_id}/escalation_policies/{ep_id}/:
+    patch:
       summary: Update an Escalation Policy
-      # operationId: updateEP
-      # security schemas applied to this operation
+      description: This request lets one Update and Escalation Policy.
+      operationId: UpdateanEscalationPolicy
       parameters:
-        - name: escalation_policy
-          in: query
+        - name: Content-Type
+          in: header
+          required: true
+          style: simple
           schema:
-            $ref: '#/components/schemas/EP'
-      security:
-        - bearerAuth: []
-      responses: # list of responses
+            type: string
+            example: application/json
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: ep_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: ep_id
+      responses:
         '200':
-          description: Success
-          content:
-            application/json: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/EP'
-            application/xml: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/EP'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found
-    delete: 
+          description: ''
+          headers: {}
+      requestBody:
+        description: This request lets one Update and Escalation Policy.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              example:
+                name: Modified Name
+                summary: This is the summary for the new escalation policy
+                description: This is the description for the New Escalation Policy
+                rules:
+                  - delay: 0
+                    targets:
+                      - target_type: 2
+                        target_id: '{{target_id}}'
+                    position: 1
+                    unique_id: ''
+                team: '{{team_id}}'
+            example: "{\r\n\t\"name\": \"Modified Name\",\r\n\t\"summary\": \"This is the summary for the new escalation policy\",\r\n\t\"description\": \"This is the description for the New Escalation Policy\",\r\n\t\"rules\": [\r\n            {\r\n                \"delay\": 0,\r\n                \"targets\": [\r\n                    {\r\n                        \"target_type\": 2,\r\n                        \"target_id\": \"{{target_id}}\"\r\n                    }\r\n                ],\r\n                \"position\": 1,\r\n                \"unique_id\": \"\"\r\n            }\r\n        ],\r\n\t\"team\": \"{{team_id}}\"\r\n}"
       tags:
-      - Escalation Policies
+        - Escalation Policies
+    delete:
       summary: Delete an Escalation Policy
-      # operationId: delEP
-    
-      # security schemas applied to this operation
-      security:
-        - bearerAuth: []
-      responses: # list of responses
-        '200':
-          description: Success
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found 
-          
-  '/api/account/teams/{team_id}/schedules/':
-    parameters: 
-        - name: 'team_id'
+      description: This request to the endpoint letsone delete an Escalation Policy.
+      operationId: DeleteanEscalationPolicy
+      parameters:
+        - name: team_id
           in: path
-          description: Unique ID of team
+          required: true
+          style: simple
           schema:
             type: string
+            example: team_id
+        - name: ep_id
+          in: path
           required: true
-    get: 
-        tags:
-        - Schedules
-        summary: Get Schedules
-        # operationId: getSchedule
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/Schedule'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/Schedule'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
+          style: simple
+          schema:
+            type: string
+            example: ep_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Escalation Policies
+  /api/account/teams/{team_id}/schedules/:
     post:
-        tags:
-          - Schedules
-        summary: Create a Schedule
-        # operationId: createSchedule
-        security:
-          - bearerAuth: []
-        responses:
-          '200':
-            description: OK
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/Schedule'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/Schedule'
-          '400':
-            description: Invalid 
-          '404':
-            description: User not found
-        # request body documentation
-        requestBody:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Schedule'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Schedule'
-          description: New Schedule Details
+      summary: Create a Schedule
+      description: This request lets one create new Schedule.
+      operationId: CreateaSchedule
+      parameters:
+        - name: Content-Type
+          in: header
           required: true
-  '/api/account/teams/{team_id}/schedules/{schedule_id}/':
-    parameters: 
-      - name: 'team_id'
-        in: path
-        description: Unique ID of team
-        schema:
-          type: string
+          style: simple
+          schema:
+            type: string
+            example: application/json
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        description: This request lets one create new Schedule.
         required: true
-      - name: 'schedule_id'
-        in: path
-        description: Unique ID of the schedule
-        schema:
-          type: string
-        required: true
-    get: 
+        content:
+          application/json:
+            schema:
+              type: string
+              example:
+                name: New Schedule
+                summary: Summary for the new Schedule
+                descripition: This is the description for the new Schedule
+                time_zone: Asia/Kolkata
+                team: '{{team_id}}'
+            example: "{\n\t\"name\": \"New Schedule\",\n\t\"summary\": \"Summary for the new Schedule\",\n\t\"descripition\": \"This is the description for the new Schedule\",\n\t\"time_zone\": \"Asia/Kolkata\",\n\t\"team\": \"{{team_id}}\"\n}"
       tags:
-      - Schedules
+        - Schedules
+  /api/account/teams/{team_id}/schedules:
+    get:
+      summary: Get Schedules
+      description: Get all the Schedules for a specific Team
+      operationId: GetSchedules
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Schedules
+  /api/account/teams/{team_id}/schedules/{schedule_id}:
+    get:
       summary: Get Schedule by ID
-        # operationId: getScheduleID
-        # security schemas applied to this operation
-      security:
-        - bearerAuth: []
-      responses: # list of responses
+      description: 'This request will get the Schedule by the specific ID. '
+      operationId: GetSchedulebyID
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - $ref: '#/components/parameters/schedule_id'
+      responses:
         '200':
-          description: Success
-          content:
-            application/json: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/Schedule'
-            application/xml: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/Schedule'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found
-    patch: 
+          description: ''
+          headers: {}
       tags:
-      - Schedules
+        - Schedules
+  /api/account/teams/{team_id}/schedules/{schedule_id}/:
+    patch:
       summary: Update a Schedule
-      # operationId: updateSchedule
-      # security schemas applied to this operation
+      description: This endpoint lets one update the Schedule. Anything in the schedule can be updated. Lets update the name of the Schedule.
+      operationId: UpdateaSchedule
       parameters:
-        - name: schedule
-          in: query
+        - name: Content-Type
+          in: header
+          required: true
+          style: simple
           schema:
-            $ref: '#/components/schemas/Schedule'
-      security:
-        - bearerAuth: []
-      responses: # list of responses
+            type: string
+            example: application/json
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: schedule_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: schedule_id
+      responses:
         '200':
-          description: Success
-          content:
-            application/json: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/Schedule'
-            application/xml: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/Schedule'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found
-    delete: 
+          description: ''
+          headers: {}
+      requestBody:
+        description: This endpoint lets one update the Schedule. Anything in the schedule can be updated. Lets update the name of the Schedule.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              example:
+                name: Balls
+            example: "{\n\t\"name\": \"Balls\"\n}"
       tags:
-      - Schedules
+        - Schedules
+  /api/account/teams/{team_id}/schedules/{schedule_id2}/:
+    delete:
       summary: Delete a Schedule
-      # operationId: delSchedule
-      # security schemas applied to this operation
-      security:
-        - bearerAuth: []
-      responses: # list of responses
+      description: This request lets one delete a Schedule for a specific team.
+      operationId: DeleteaSchedule
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - $ref: '#/components/parameters/schedule_id2'
+      responses:
         '200':
-          description: Success
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found 
-
-  '/api/account/teams/{team_id}/roles/':
+          description: ''
+          headers: {}
+      tags:
+        - Schedules
+  /api/account/teams/{team_id}/roles/:
+    post:
+      summary: Create a new Role for a team
+      description: This endpoint lets one create a new Role for a specific Team.
+      operationId: CreateanewRoleforateam
       parameters:
-        - name: 'team_id'
-          in: path
-          description: Unique ID of the team
-          schema: 
-            type: string
+        - name: Content-Type
+          in: header
           required: true
-
-      get:
-        tags:
-        - Roles 
-        summary: Get Roles for a team
-        security: 
-          - bearerAuth: [] 
-        responses: #list of responses
-          '200': 
-            description: Success
-            content: 
-              application/json: 
-                schema: 
-                  $ref: '#/components/schemas/Rolesresp'
-              application/xml: 
-                schema:
-                  $ref: '#/components/schemas/Rolesresp'
-          '403':
-            description: Forbidden
-          '404': 
-            description: Not Found
-      post:
-        tags:
-        - Roles
-        summary:  Create a new Role for a team
-        security: 
-          - bearerAuth: []
-        responses:
-          '201':
-            description: OK
-            content: 
-              application/json: 
-                schema: 
-                  $ref: '#/components/schemas/Rolespay'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/Rolespay'
-          '400':
-            description: Invalid
-          '404': 
-            description: User Not Found
-
-        requestBody:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Rolesref'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Rolesref'
-          description:  New Role Details
-          required: true
-  '/api/account/teams/{team_id}/roles/{role_id}/':
-      patch:
-        tags:
-        - Roles
-        summary: Update a Role
-        parameters:
-          - name: 'team_id'
-            in: path
-            description:  Unique ID of the Team
-            schema: 
-              type: string
-            required: true
-
-          - name: role_id
-            in: path
-            description:  Unique ID of the Role
-            schema:
-              type: string
-            required: true
-        security:
-          - bearerAuth: []
-        responses:
-          '200':
-            description:  Success
-            content:
-              appilcation/json:
-                schema:
-                  $ref: '#/components/schemas/Rolesresp'
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/Rolesresp'
-          '403':
-            description:  Forbidden
-          '404':
-            description:  Not Found
-
-      delete:
-        tags:
-        - Roles
-        summary:  Delete a Role
-        parameters:
-          - name: team_id
-            in: path
-            description:  Unique ID of the Team
-            schema: 
-              type: string
-            required: true
-
-          - name: role_id
-            in: path
-            description:  Unique ID of the Role
-            schema:
-              type: string
-            required: true
-        security:
-          - bearerAuth: []
-        responses:
-          '204':
-            description:  Successfully Deleted
-          '403':
-            description:  Forbidden
-          '404':
-            description:  Not Found
-
-  '/api/account/teams/{team_id}/tags/':
-      parameters:
-        - name: 'team_id'
-          in: path
-          description:  Unique ID of the team
+          style: simple
           schema:
             type: string
-          required: true
-      get:
-        tags:
-          - Tags
-        summary:  Get Tags associated with the team
-        security:
-          - bearerAuth: []
-        responses: #list of responses
-          '200':
-            description:  Success
-            content:
-              application/json: 
-                schema:
-                  $ref: '#/components/schemas/Tagsresp'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/Tagsresp'
-          '403':
-              description:  Forbidden
-          '404':
-              description:  Not Found
-      post:
-        tags:
-          - Tags
-        summary:  Create a New Tag for a Team
-        security:
-          - bearerAuth: []
-        responses:
-          '201':
-            description: OK
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/Tagspay'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/Tagspay'
-          '400':
-            description:  Invalid
-          '404':
-            description:  User Not Found
-
-        requestBody:
-          content:
-            application/json: 
-              schema:
-                $ref: '#/components/schemas/Tagsref'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Tagsref'
-          required: true
-
-  '/api/account/teams/{team_id}/tags/{tags_id}/':
-      patch: 
-        tags:
-        - Tags
-        summary: Update a Tag
-        parameters:
-          - name: 'team_id'
-            in: path
-            description:  Unique ID of the team
-            schema:
-              type: string
-            required: true
-          - name: 'tags_id'
-            in: path
-            description:  Unique ID of the Tag
-            schema:
-              type: string
-            required: true
-        security:
-          - bearerAuth: []
-        responses:
-          '200':
-            description: Success
-            content:
-              application/json: 
-                schema:
-                  $ref: '#/components/schemas/Tagsresp'
-              application/xml: 
-                schema: 
-                  $ref: '#/components/schemas/Tagsresp'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-      delete: 
-        tags:
-        - Tags
-        summary: Delete a Tag
-        parameters:
-          - name: 'team_id'
-            in: path
-            description:  Unique ID of the team
-            schema:
-              type: string
-            required: true
-          - name: 'tags_id'
-            in: path
-            description:  Unique ID of the Tag
-            schema:
-              type: string
-            required: true
-        security:
-          - bearerAuth: []
-        responses:
-          '200':
-            description: Success
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found 
-
-  '/api/account/teams/{team_id}/task_templates/':
-      parameters:
-        - name: 'team_id'
+            example: application/json
+        - name: team_id
           in: path
-          description:  Unique of ID of the Team
-          schema: 
-            type: string
           required: true
-
-      get:
-        tags:
-          - Task Templates
-        summary:  Get the Task Templates
-        security: 
-          - bearerAuth: []
-        responses:  
-          '200':
-            description:  Success
-            content:  
-              application/json: 
-                schema:
-                  $ref: '#/components/schemas/TaskTemplatesresp'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/TaskTemplatesresp'
-          '403':
-            description:  Forbidden
-          '404':
-            description:  Not Found
-      post:
-        tags:
-          - Task Templates
-        summary:  Create a new Task Template
-        security:
-          - bearerAuth: []                
-        responses:
-          '201':
-            description: OK
-            content: 
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/TaskTemplatespay'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/TaskTemplatespay'
-          '400':
-            description:  Invalid
-          '404':
-            description:  User not Found
-
-        requestBody:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TaskTemplatesref'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/TaskTemplatesref'
-          required: true
-
-  '/api/account/teams/{team_id}/task_templates/{task_template_id}/':
-      patch: 
-        tags:
-        - Task Templates
-        summary: Update a Task Template
-        parameters:
-          - name: team_id
-            in: path
-            description:  Unique ID of the team
-            schema: 
-              type: string
-            required: true
-          - name: task_template_id
-            in: path
-            description:  Unique ID of the Task Temaplates
-            schema:
-              type: string
-            required: true
-        security:
-          - bearerAuth: []
-        responses: 
-          '200':
-            description: Success
-            content:
-              application/json: 
-                schema: 
-                  $ref: '#/components/schemas/TaskTemplatesresp'
-              application/xml: 
-                schema:
-                  $ref: '#/components/schemas/TaskTemplatesresp'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-      delete: 
-        tags:
-        - Task Templates
-        summary: Delete a Task Template
-        parameters:
-          - name: 'team_id'
-            in: path
-            description:  Unique ID of the team
-            schema:
-              type: string
-            required: true
-          - name: task_template_id
-            in: path
-            description:  Unique ID of the Task Temaplates
-            schema:
-              type: string
-            required: true
-        security:
-          - bearerAuth: []
-        responses:
-          '200':
-            description: Success
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-
-  '/api/account/teams/{team_id}/oncall/':
-      parameters:
-        - name: 'team_id'
-          in: path
-          description: Unique ID of the team
+          style: simple
           schema:
             type: string
+            example: team_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        description: This endpoint lets one create a new Role for a specific Team.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              example:
+                title: New Role
+                description: This is the description for the new Role
+                rank: 5
+            example: "{\n\t\"title\": \"New Role\",\n\t\"description\": \"This is the description for the new Role\",\n\t\"rank\": 5\n}"
+      tags:
+        - Roles
+  /api/account/teams/{team_id}/roles:
+    get:
+      summary: Get Roles for a Team
+      description: This request will get all the Roles in a specific team.
+      operationId: GetRolesforaTeam
+      parameters:
+        - name: team_id
+          in: path
           required: true
-      get:
-        tags:
-          - On Call
-        summary:  Get details about who is on call
-        security:
-          - bearerAuth: []
-          
-        responses: #list of responses
-          '200':
-            description: Success
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/onCall'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/onCall'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-
-# An object to hold reusable parts that can be used across the spec
+          style: simple
+          schema:
+            type: string
+            example: team_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Roles
+  /api/account/teams/{team_id}/roles/{role_id}/:
+    get:
+      summary: Get Role for a Team by ID
+      operationId: GetRoleforaTeambyID
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - $ref: '#/components/parameters/role_id'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Roles
+    patch:
+      summary: Update a Role
+      description: This endpoint will let you update the information of a Role for a specific team. Lets modify the title of the Role to "Modified Role" and the Description to "Modified description".
+      operationId: UpdateaRole
+      parameters:
+        - name: Content-Type
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: application/json
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: role_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: role_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        description: This endpoint will let you update the information of a Role for a specific team. Lets modify the title of the Role to "Modified Role" and the Description to "Modified description".
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              example:
+                title: Modified Title
+                description: New Modified description
+            example: "{\n\t\"title\": \"Modified Title\",\n\t\"description\": \"New Modified description\"\n}"
+      tags:
+        - Roles
+  /api/account/teams/{team_id}/roles/{role_id2}/:
+    delete:
+      summary: Delete a Role
+      description: This request lets one delete a Role a specific Team.
+      operationId: DeleteaRole
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - $ref: '#/components/parameters/role_id2'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Roles
+  /api/account/teams/{team_id}/tags/:
+    post:
+      summary: Create a new Tag for a Team
+      description: This endpoint lets you create a new Tag for a specific team.
+      operationId: CreateanewTagforaTeam
+      parameters:
+        - name: Content-Type
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: application/json
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        description: This endpoint lets you create a new Tag for a specific team.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              example:
+                name: New Tag
+                color: red
+            example: "{\n\t\"name\": \"New Tag\",\n\t\"color\": \"red\"\n}"
+      tags:
+        - Tags
+  /api/account/teams/{team_id}/tags:
+    get:
+      summary: Get tags associated with the team
+      description: This request will get all the Roles for a specific team.
+      operationId: Gettagsassociatedwiththeteam
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Tags
+  /api/account/teams/{team_id}/tags/{tag_id2}/:
+    delete:
+      summary: Delete a Tag
+      description: This request lets you delete a Tag.
+      operationId: DeleteaTag
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - $ref: '#/components/parameters/tag_id2'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Tags
+  /api/account/teams/{team_id}/task_templates/:
+    post:
+      summary: Create a new Task Template for a Team
+      description: This endpoint lets you create a Task Template for a specific Team.
+      operationId: CreateanewTaskTemplateforaTeam
+      parameters:
+        - name: Content-Type
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: application/json
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        description: This endpoint lets you create a Task Template for a specific Team.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              example:
+                name: New Task Template
+                summary: This is the summary of the new Task Template
+            example: "{\n\t\"name\": \"New Task Template\",\n\t\"summary\": \"This is the summary of the new Task Template\"\n}"
+      tags:
+        - Task Templates
+  /api/account/teams/{team_id}/task_templates:
+    get:
+      summary: 'Get the Task Templates '
+      description: This request will get all the Task Templates for the specific team.
+      operationId: GettheTaskTemplates
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Task Templates
+  /api/account/teams/{team_id}/task_templates/{task_template_id}/:
+    get:
+      summary: Get the Task Templates by ID
+      operationId: GettheTaskTemplatesbyID
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - $ref: '#/components/parameters/task_template_id'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Task Templates
+    patch:
+      summary: Update a Task Template
+      description: This endpoint lets you update the Task Template details of a specific team.
+      operationId: UpdateaTaskTemplate
+      parameters:
+        - name: Content-Type
+          in: header
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: application/json
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: task_template_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: task_template_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        description: This endpoint lets you update the Task Template details of a specific team.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              example:
+                name: Modified Name
+                summary: Modified summary for the Task Template
+            example: "{\n\t\"name\": \"Modified Name\",\n\t\"summary\": \"Modified summary for the Task Template\"\n}"
+      tags:
+        - Task Templates
+    delete:
+      summary: Delete a Task Template
+      description: This request lets you delete a Task Template for a specific Team.
+      operationId: DeleteaTaskTemplate
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: task_template_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: task_template_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Task Templates
+  /api/account/teams/{team_id}/oncall:
+    get:
+      summary: Get details of who is On Call
+      description: This request willshow you the on call detais
+      operationId: GetdetailsofwhoisOnCall
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - On Call
+  /api/events/{integration_key}/:
+    post:
+      summary: Create an Alert
+      description: This endpoint will give you the details of team priority
+      operationId: CreateanAlert
+      parameters:
+        - $ref: '#/components/parameters/integration_key'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        description: This endpoint will give you the details of team priority
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example:
+                message: '[P-21041]Browser monitor global outage'
+                summary: 'OPEN Problem P-21041 in environment zfw09965. Problem detected at: 17:58 (UTC) 27.04.2021'
+                alert_type: critical
+                suppressed: false
+                entity_id: INC00123
+                payload: '{}'
+            example: "{\n\t\"message\": \"[P-21041]Browser monitor global outage\",\n\t\"summary\": \"OPEN Problem P-21041 in environment zfw09965. Problem detected at: 17:58 (UTC) 27.04.2021\",\n\t\"alert_type\": \"critical\",\n\t\"suppressed\": false,\n\t\"entity_id\": \"INC00123\",\n    \"payload\":\"{}\"\n}"
+      tags:
+        - Events
+  /api/account/teams/{team_id}/priority/:
+    post:
+      summary: Create Priority
+      operationId: CreatePriority
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example:
+                name: New Priority
+            example: |-
+              {
+                  "name": "New Priority"
+              }
+      tags:
+        - Priorities
+    get:
+      summary: Get Priorities
+      operationId: GetPriorities
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Priorities
+  /api/account/teams/{team_id}/priority/{priority_id}/:
+    get:
+      summary: Get Priority by ID
+      operationId: GetPrioritybyID
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - $ref: '#/components/parameters/priority_id'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Priorities
+    patch:
+      summary: Update Priority
+      operationId: UpdatePriority
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: priority_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: priority_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example:
+                name: Modified Priority
+            example: |-
+              {
+                  "name": "Modified Priority"
+              }
+      tags:
+        - Priorities
+    delete:
+      summary: Delete Priority
+      operationId: DeletePriority
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: priority_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: priority_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Priorities
+  /api/account/teams/{team_id}/sla/:
+    post:
+      summary: Create SLA for a Team
+      operationId: CreateSLAforaTeam
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example:
+                name: New SLA
+            example: |-
+              {
+                  "name": "New SLA"
+              }
+      tags:
+        - SLA
+    get:
+      summary: Get SLA policies for a Team
+      operationId: GetSLApoliciesforaTeam
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - SLA
+  /api/account/teams/{team_id}/sla/{sla_id}/:
+    get:
+      summary: Get SLA ploicy by ID for a Team
+      operationId: GetSLAploicybyIDforaTeam
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - $ref: '#/components/parameters/sla_id'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - SLA
+    patch:
+      summary: Update SLA policty for a Team
+      operationId: UpdateSLApolictyforaTeam
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: sla_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: sla_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example:
+                name: Modified SLA
+                description: Modified Description
+            example: |-
+              {
+                  "name": "Modified SLA",
+                  "description": "Modified Description"
+              }
+      tags:
+        - SLA
+    delete:
+      summary: Delete SLA policy for a Team
+      operationId: DeleteSLApolicyforaTeam
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: sla_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: sla_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - SLA
+  /api/account/teams/{team_id}/services/{service_id}/maintenance/:
+    post:
+      summary: Create Service Maintenance Mode
+      operationId: CreateServiceMaintenanceMode
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: service_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: service_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example: |-
+                {
+                    "name": "New Maintenance",
+                    "service": {{service_id}}
+                }
+            example: |-
+              {
+                  "name": "New Maintenance",
+                  "service": {{service_id}}
+              }
+      tags:
+        - Service Maintenance Mode
+    get:
+      summary: Get Service Maintenance Modes
+      operationId: GetServiceMaintenanceModes
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: service_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: service_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Service Maintenance Mode
+  /api/account/teams/{team_id}/services/{service_id}/maintenance/{maintenance_id}/:
+    get:
+      summary: Get Service Maintenance Mode by ID
+      operationId: GetServiceMaintenanceModebyID
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: service_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: service_id
+        - $ref: '#/components/parameters/maintenance_id'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Service Maintenance Mode
+    patch:
+      summary: Update Service Maintenance Mode
+      operationId: UpdateServiceMaintenanceMode
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: service_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: service_id
+        - name: maintenance_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: maintenance_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example:
+                name: Modified Maintenance
+            example: |-
+              {
+                  "name": "Modified Maintenance"
+              }
+      tags:
+        - Service Maintenance Mode
+    delete:
+      summary: Delete Service Maintenance Mode
+      operationId: DeleteServiceMaintenanceMode
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: team_id
+        - name: service_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: service_id
+        - name: maintenance_id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: maintenance_id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      tags:
+        - Service Maintenance Mode
 components:
+  parameters:
+    Content-Type:
+      name: Content-Type
+      in: header
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: application/json
+    team_id:
+      name: team_id
+      in: path
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: team_id
+    team_id2:
+      name: team_id2
+      in: path
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: team_id2
+    service_id:
+      name: service_id
+      in: path
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: service_id
+    service_id2:
+      name: service_id2
+      in: path
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: service_id2
+    integration_id:
+      name: integration_id
+      in: path
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: integration_id
+    member_id:
+      name: member_id
+      in: path
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: member_id
+    incident_number:
+      name: incident_number
+      in: path
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: incident_number
+    ep_id:
+      name: ep_id
+      in: path
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: ep_id
+    schedule_id:
+      name: schedule_id
+      in: path
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: schedule_id
+    schedule_id2:
+      name: schedule_id2
+      in: path
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: schedule_id2
+    role_id:
+      name: role_id
+      in: path
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: role_id
+    role_id2:
+      name: role_id2
+      in: path
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: role_id2
+    tag_id2:
+      name: tag_id2
+      in: path
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: tag_id2
+    task_template_id:
+      name: task_template_id
+      in: path
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: task_template_id
+    integration_key:
+      name: integration_key
+      in: path
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: integration_key
+    priority_id:
+      name: priority_id
+      in: path
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: priority_id
+    sla_id:
+      name: sla_id
+      in: path
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: sla_id
+    maintenance_id:
+      name: maintenance_id
+      in: path
+      required: true
+      style: simple
+      schema:
+        type: string
+        example: maintenance_id
   schemas:
     Email:
       description: User email address
@@ -2242,8 +2853,6 @@ components:
           description: Name of the team
           type: string
 
-        
-
   headers:
     ExpiresAfter:
       description: date in UTC when token expires
@@ -2257,4 +2866,3 @@ components:
       type: http
       scheme: bearer
       bearerFormat: Token
-    
