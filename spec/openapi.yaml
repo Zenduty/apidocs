@@ -52,6 +52,8 @@ tags:
     description: A ready to go template to create Tasks for incidents.
   - name: On Call
     description: To view and maintain an On Call schedule
+  - name: Team Attributes
+    description: These are the attributes of Team of Zenduty such as Uniqueid,account,owner,name,creationid.
 
   
 servers:
