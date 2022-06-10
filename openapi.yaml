@@ -18,11 +18,11 @@
   "tags": [
     {
       "name": "Teams",
-      "description": "Operations about teams"
+      "description": "Most IT organizations are divided into different operational units. Zenduty helps organizations to replicate this structure in their incident management goals."
     },
     {
       "name": "Members",
-      "description": "Operations about team members"
+      "description": "To view members of the team To view members of a Team, simply click the “Manage” button corresponding to the Team. On the secondary header, select the tab “Members”"
     },
     {
       "name": "Services",

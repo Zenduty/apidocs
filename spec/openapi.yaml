@@ -29,25 +29,25 @@ info:
 # The order of the tags can be used to reflect on their order by the parsing tools.
 tags:
   - name: Teams
-    description: Operations about teams
+    description: Most IT organizations are divided into different operational units. Zenduty helps organizations to replicate this structure in their incident management goals.Each team consists of its own services. Each service within a team has it’s own Escalation Policies goverened by a set of schedules and users.
   - name: Members
-    description: Operations about team members
+    description: To view members of a Team, simply click the “Manage” button corresponding to the Team. On the secondary header, select the tab “Members” 
   - name: Services
-    description: Operations about team services
+    description: Services on Zenduty represent a part of your operations that is owned, built or maintained by a team. A Service can be a microservice, a cluster, a region, a customer, an application, your CRM, a database or anything that forms a distinct entity within your operations.
   - name: Integrations
-    description: Operations about service integrations
+    description: To edit services associated with a Team, simply click the “View” button corresponding to the Team. On the secondary header, select the tab “Services” 
   - name: Events
-    description: Events are a way for applications and services to send alerts to Zenduty
+    description: 
   - name: Incidents
-    description: Operations about incidents 
+    description: An incident on Zenduty is an event that is not part of normal operations that disrupts operational processes within a Service that is owned by a team. Incidents can be automatically created by an alert integration within the service or manually by a user.
   - name: Escalation Policies
     description: Operations about escalation policies
   - name: Schedules
-    description: Operations about schedules
+    description: Schedules on Zenduty enables your teams to ensure that dedicated support team members are available to resolve any issues as they arise. On-Call Scheduling provides the ability to set up on-call schedules, rotations, and escalation policies to ensure that 24x7 support coverage is provided based on business needs. On-call scheduling also helps you to determine who is the current primary contact for a task, and to escalate notifications for a group.
   - name: Roles
     description: Roles are a way of categorization of tasks to handle an Incident.
   - name: Tags
-    description: Tags are a way to highlight specifics about an incident.
+    description: 
   - name: Task Templates
     description: A ready to go template to create Tasks for incidents.
   - name: On Call
