@@ -52,8 +52,6 @@ tags:
     description: A ready to go template to create Tasks for incidents.
   - name: On Call
     description: To view and maintain an On Call schedule
-  - name: Team Attributes
-    description: These are the attributes of Team of Zenduty such as Uniqueid,account,owner,name,creationid.
 
   
 servers:
@@ -85,6 +83,14 @@ paths:
         '404':
           description: Not found
     # documentation for create teams
+    put:
+      tags:
+        - Teams
+      summary: Team Attributes
+      security:
+        - bearerAuth: []
+      description: unique_id,account,owner,name,creation_date
+            
     post:
       tags:
         - Teams
@@ -173,6 +179,13 @@ paths:
           schema:
             type: string
           required: true
+      put:
+        tags:
+        - Members
+        summary: Members Attributes
+        security:
+          - bearerAuth: []
+        description: unique_id, team, user, joining_date, role
       post: 
         tags:
         - Members
@@ -243,6 +256,7 @@ paths:
           schema:
             type: string
           required: true
+            
       get: 
         tags:
         - Services
@@ -265,10 +279,11 @@ paths:
             description: Forbidden
           '404':
             description: Not found
+      
       post: 
         tags:
         - Services
-        summary: Add new Service in a team
+        summary: Services on Zenduty represent a part of your operations that is owned, built or maintained by a team. A Service can be a microservice, a cluster, a region, a customer, an application, your CRM, a database or anything that forms a distinct entity within your operations.
         # operationId: createService
         
         # security schemas applied to this operation
@@ -320,6 +335,13 @@ paths:
         # security schemas applied to this operation
         security:
           - bearerAuth: []
+      put:
+        tags:
+          - Services
+        summary: Services Attributes
+        security:
+          - bearerAuth: []
+        description: unique_id,name,summary,description,auto_resolve_timeout,creation_date,acknowledgement_timeout,status,last_incident_timestamp,escalation_policy,team,context_window_length,collation,collation_time,task_template,sla,team_priority.
         responses: # list of responses
           '200':
             description: Success
@@ -413,6 +435,13 @@ paths:
             description: Forbidden
           '404':
             description: Not found
+      put:
+        tags:
+          - Integrations
+        summary: Integration Attributes
+        security:
+          - bearerAuth: []
+        description: unique_id, summary,application,service,integration_key,creation_date,is_enabled,create_incidents_for
       post:
         tags:
           - Integrations
@@ -536,6 +565,10 @@ paths:
         summary: Get Incidents
         # operationId: getIncidents
         # security schemas applied to this operation
+      put:
+        tags:
+        - Incidents
+        summary: Incident Attributes
         parameters:
           - name: page
             in: query
@@ -785,13 +818,13 @@ paths:
             description: Forbidden
           '404':
             description: Not found
-    post:
+    put:
         tags:
           - Escalation Policies
-        summary: Create Escalation Policy
-        # operationId: createEP
+        summary: Escalation Attributes
         security:
           - bearerAuth: []
+            
         responses:
           '200':
             description: OK
@@ -1432,6 +1465,7 @@ paths:
             description: Forbidden
           '404':
             description: Not found
+
 
 # An object to hold reusable parts that can be used across the spec
 components:
