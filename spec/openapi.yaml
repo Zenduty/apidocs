@@ -86,49 +86,40 @@ paths:
               schema: # response schema can be specified for each response
                 $ref: '#/components/schemas/Team'
               example:
-                {
-                  "unique_id": "52c65e3f-51c1-44ae-b163-b31fde4c1fc5",
-                  "name": "New Team",
-                  "account": "61fb2d9e-088b-471f-a6d7-872c03cf483d",
-                  "creation_date": "2022-06-21",
-                  "members": [
-                    {
-                      "unique_id": "b674c920-b2b4-4f6e-82ab-9a345e86f6be",
-                      "team": "52c65e3f-51c1-44ae-b163-b31fde4c1fc5",
-                      "user": {
-                                "username": "85e1569d-79a4-4205-850f-a",
-                                "first_name": "Anshul",
-                                "last_name": "Admin",
-                                "email": "anshul@admin.com"
-                              },
-                      "joining_date": "2022-06-21T11:30:27.817493Z",
-                      "role": 1
-                    }],
-                  "owner": "85e1569d-79a4-4205-850f-a",
-                  "roles": [
-                    {
-                      "unique_id": "f36c37b8-7f78-4bfc-b645-8c65e985d367",
-                      "team": "52c65e3f-51c1-44ae-b163-b31fde4c1fc5",
-                      "title": "Incident Commander",
-                      "description": "The incident commander is the person responsible for all aspects of the incident response, including quickly developing incident objectives, managing all incident operations, application of resources as well as responsibility for all persons involved. The incident commander sets priorities and defines the organization of the incident response teams and the overall incident action plan.",
-                      "creation_date": "2022-06-21T11:30:27.855502Z",
-                      "rank": 1
-                    }]
-                }
+                unique_id: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
+                name: New Team
+                account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                creation_date: '2022-06-21'
+                members:
+                  - unique_id: b674c920-b2b4-4f6e-82ab-9a345e86f6be
+                    team: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
+                    user:
+                      username: 85e1569d-79a4-4205-850f-a
+                      first_name: Anshul
+                      last_name: Admin
+                      email: anshul@admin.com
+                    joining_date: '2022-06-21T11:30:27.817493Z'
+                    role: 1
+                owner: 85e1569d-79a4-4205-850f-a
+                roles:
+                  - unique_id: f36c37b8-7f78-4bfc-b645-8c65e985d367
+                    team: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
+                    title: Incident Commander
+                    description: 'The incident commander is the person responsible for all aspects of the incident response, including quickly developing incident objectives, managing all incident operations, application of resources as well as responsibility for all persons involved. The incident commander sets priorities and defines the organization of the incident response teams and the overall incident action plan.'
+                    creation_date: '2022-06-21T11:30:27.855502Z'
+                    rank: 1
         '400':
           description: Bad Request 
           content:
             application/json: # operation response mime type
               example:
-                ["Team name already exists"]
+                - Team name already exists
         '403':
           description: Forbidden 
           content:
             application/json: # operation response mime type
               example:
-                {
-                  "detail": "You do not have permission to perform this action."
-                }
+                detail: You do not have permission to perform this action.
     # documentation for get teams
     get: 
       tags:
@@ -139,20 +130,130 @@ paths:
       # security schemas applied to this operation
       security:
         - bearerAuth: []
-      responses: # list of responses
+      responses:
         '200':
-          description: Success
+          description: OK
           content:
             application/json: # operation response mime type
               schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/TeamWMember'
-            application/xml: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/TeamWMember'
+                $ref: '#/components/schemas/Team'
+              example:
+                - unique_id: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
+                  name: Team 1
+                  account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                  creation_date: '2022-06-21'
+                  members:
+                    - unique_id: b674c920-b2b4-4f6e-82ab-9a345e86f6be
+                      team: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
+                      user:
+                        username: 85e1569d-79a4-4205-850f-a
+                        first_name: Anshul
+                        last_name: Admin
+                        email: anshul@admin.com
+                      joining_date: '2022-06-21T11:30:27.817493Z'
+                      role: 1
+                  owner: 85e1569d-79a4-4205-850f-a
+                  roles:
+                    - unique_id: f36c37b8-7f78-4bfc-b645-8c65e985d367
+                      team: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
+                      title: Incident Commander
+                      description: 'The incident commander is the person responsible for all aspects of the incident response, including quickly developing incident objectives, managing all incident operations, application of resources as well as responsibility for all persons involved. The incident commander sets priorities and defines the organization of the incident response teams and the overall incident action plan.'
+                      creation_date: '2022-06-21T11:30:27.855502Z'
+                      rank: 1
+                - unique_id: 3ee7d2c8-cfe8-4655-b713-e83e4f43cdaa
+                  name: Team 2
+                  account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                  creation_date: '2022-06-09'
+                  members:
+                    - unique_id: 050ec024-a8a2-4c2d-8b32-00238ad2b38a
+                      team: 3ee7d2c8-cfe8-4655-b713-e83e4f43cdaa
+                      user:
+                        username: 85e1569d-79a4-4205-850f-a
+                        first_name: Anshul
+                        last_name: Admin
+                        email: anshul@admin.com
+                      joining_date: '2022-06-09T11:38:35.866957Z'
+                      role: 1
+                    - unique_id: ef49ed63-bca9-4988-9a2f-112120c5e1b8
+                      team: 3ee7d2c8-cfe8-4655-b713-e83e4f43cdaa
+                      user:
+                        username: 6278fd1d-7e7c-486a-80e3-5
+                        first_name: Anshul
+                        last_name: Manager
+                        email: anshul@manager.com
+                      joining_date: '2022-06-09T11:38:36.813218Z'
+                      role: 2
+                    - unique_id: 96170e71-c133-4625-87ea-60105afa1a93
+                      team: 3ee7d2c8-cfe8-4655-b713-e83e4f43cdaa
+                      user:
+                        username: e901875c-bee4-40fa-9ca6-8
+                        first_name: Anshul
+                        last_name: User
+                        email: anshul@user.com
+                      joining_date: '2022-06-09T11:38:37.609236Z'
+                      role: 2
+                  owner: 85e1569d-79a4-4205-850f-a
+                  roles:
+                    - unique_id: b3ad3286-548b-40b8-8e2d-b8d3fd2d3220
+                      team: 3ee7d2c8-cfe8-4655-b713-e83e4f43cdaa
+                      title: Incident Commander
+                      description: 'The incident commander is the person responsible for all aspects of the incident response, including quickly developing incident objectives, managing all incident operations, application of resources as well as responsibility for all persons involved. The incident commander sets priorities and defines the organization of the incident response teams and the overall incident action plan.'
+                      creation_date: '2022-06-09T11:38:35.897746Z'
+                      rank: 1
+                - unique_id: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  name: Team 3
+                  account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                  creation_date: '2022-04-14'
+                  members:
+                    - unique_id: 4843d1da-2308-44e6-b73d-ffcd253899be
+                      team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                      user:
+                        username: 85e1569d-79a4-4205-850f-a
+                        first_name: Anshul
+                        last_name: Admin
+                        email: anshul@admin.com
+                      joining_date: '2022-04-14T08:09:23.573093Z'
+                      role: 2
+                    - unique_id: 39905ba1-1ace-4763-a5d6-f6ad5a0a788f
+                      team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                      user:
+                        username: 6278fd1d-7e7c-486a-80e3-5
+                        first_name: Anshul
+                        last_name: Manager
+                        email: anshul@manager.com
+                      joining_date: '2022-04-27T07:47:12.543213Z'
+                      role: 1
+                    - unique_id: 0d54d800-b7da-4314-9850-f118fad1c078
+                      team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                      user:
+                        username: e901875c-bee4-40fa-9ca6-8
+                        first_name: Anshul
+                        last_name: User
+                        email: anshul@user.com
+                      joining_date: '2022-04-20T11:01:42.942598Z'
+                      role: 2
+                  owner: 85e1569d-79a4-4205-850f-a
+                  roles:
+                    - unique_id: 51d7c734-7231-441e-acd6-edb43972dea4
+                      team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                      title: Incident Commander
+                      description: 'The incident commander is the person responsible for all aspects of the incident response, including quickly developing incident objectives, managing all incident operations, application of resources as well as responsibility for all persons involved. The incident commander sets priorities and defines the organization of the incident response teams and the overall incident action plan.'
+                      creation_date: '2022-04-14T08:09:23.781893Z'
+                      rank: 1
+                    - unique_id: 57889813-b3a1-453f-9544-b7529d33ed4d
+                      team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                      title: modified title
+                      description: ''
+                      creation_date: '2022-04-20T11:02:10.402283Z'
+                      rank: 1
+        '400':
+          description: Bad Request 
         '403':
-          description: Forbidden
-        '404':
-          description: Not found
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
   '/api/account/teams/{team_id}/':
       parameters: 
         - name: 'team_id'
@@ -164,26 +265,120 @@ paths:
       get: 
         tags:
         - Teams
-        summary: Get team details
+        summary: Get team by ID
         # operationId: getTeamDetails
       
         # security schemas applied to this operation
         security:
           - bearerAuth: []
-        responses: # list of responses
+        responses:
           '200':
-            description: Success
+            description: OK
             content:
               application/json: # operation response mime type
                 schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/TeamWMember'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/TeamWMember'
+                  $ref: '#/components/schemas/Team'
+                example:
+                  unique_id: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
+                  name: New Team
+                  account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                  creation_date: '2022-06-21'
+                  members:
+                    - unique_id: b674c920-b2b4-4f6e-82ab-9a345e86f6be
+                      team: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
+                      user:
+                        username: 85e1569d-79a4-4205-850f-a
+                        first_name: Anshul
+                        last_name: Admin
+                        email: anshul@admin.com
+                      joining_date: '2022-06-21T11:30:27.817493Z'
+                      role: 1
+                  owner: 85e1569d-79a4-4205-850f-a
+                  roles:
+                    - unique_id: f36c37b8-7f78-4bfc-b645-8c65e985d367
+                      team: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
+                      title: Incident Commander
+                      description: 'The incident commander is the person responsible for all aspects of the incident response, including quickly developing incident objectives, managing all incident operations, application of resources as well as responsibility for all persons involved. The incident commander sets priorities and defines the organization of the incident response teams and the overall incident action plan.'
+                      creation_date: '2022-06-21T11:30:27.855502Z'
+                      rank: 1
           '400':
-            description: Invalid
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
           '404':
-            description: Not found
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      put:
+        tags:
+          - Teams
+        summary: Update Team
+        security:
+          - bearerAuth: []
+        # request body documentation
+        requestBody:
+          description: Team Payload
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdatedTeamName'
+              example:
+                {"name": "Modified Team"}
+        responses:
+          '201':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/Team'
+                example:
+                  unique_id: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
+                  name: Modified Team
+                  account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                  creation_date: '2022-06-21'
+                  members:
+                    - unique_id: b674c920-b2b4-4f6e-82ab-9a345e86f6be
+                      team: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
+                      user:
+                        username: 85e1569d-79a4-4205-850f-a
+                        first_name: Anshul
+                        last_name: Admin
+                        email: anshul@admin.com
+                      joining_date: '2022-06-21T11:30:27.817493Z'
+                      role: 1
+                  owner: 85e1569d-79a4-4205-850f-a
+                  roles:
+                    - unique_id: f36c37b8-7f78-4bfc-b645-8c65e985d367
+                      team: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
+                      title: Incident Commander
+                      description: 'The incident commander is the person responsible for all aspects of the incident response, including quickly developing incident objectives, managing all incident operations, application of resources as well as responsibility for all persons involved. The incident commander sets priorities and defines the organization of the incident response teams and the overall incident action plan.'
+                      creation_date: '2022-06-21T11:30:27.855502Z'
+                      rank: 1
+          '400':
+            description: Bad Request 
+            content:
+              application/json: # operation response mime type
+                example:
+                  - Team name already exists
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
       delete: 
         tags:
         - Teams
@@ -194,12 +389,22 @@ paths:
         security:
           - bearerAuth: []
         responses: # list of responses
-          '200':
+          '204':
             description: Success
           '400':
-            description: Invalid
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
           '404':
-            description: Not found
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
         
   '/api/account/teams/{team_id}/members/':
       parameters: 
@@ -1742,6 +1947,13 @@ components:
         name:
           type: string
           description: Name of the New Team
+    UpdatedTeamName:
+      type: object
+      description: Payload for Updating a Team
+      properties:
+        name:
+          type: string
+          description: Name of the Updated Team
     # TeamOwner:
     #   type: object
     #   description: Owner of the team
