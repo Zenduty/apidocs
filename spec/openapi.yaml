@@ -3,7 +3,6 @@ openapi: 3.0.0
 info:
   version: '1.0.0' # Your API version
   title: Zenduty 
-
   termsOfService: 'https://zenduty.com'
   contact:
     email: vishwa@zenduty.com
@@ -28,36 +27,108 @@ info:
 # A list of tags used by the specification with additional metadata.
 # The order of the tags can be used to reflect on their order by the parsing tools.
 tags:
+  - name: Account Member
+    description: Inside an account Zenduty has account members each account member has a role which can be owner, admin or user each account has a single owner but the admins and users can be multiple. account owner is also an account admin and account admins can perform CRU(Create, Retrieve and Update) operations on account members and account users can only perform GET operations on account members.
   - name: Teams
-    description: Operations about teams
-  - name: Members
-    description: Operations about team members
-  - name: Services
-    description: Operations about team services
-  - name: Integrations
-    description: Operations about service integrations
-  - name: Events
-    description: Events are a way for applications and services to send alerts to Zenduty
-  - name: Incidents
-    description: Operations about incidents 
-  - name: Escalation Policies
-    description: Operations about escalation policies
+    description: Inside an account Zenduty has teams account admins can perform CRUD (Create, Retrieve Update and Delete) operations on a team and account users can only perform get operations on teams. If you want to see teams in details you can checkout zenduty teams documentation here https://docs.zenduty.com/docs/teams.
+  - name: Team Members
+    description: Inside a team Zenduty has members each member has a role which can be a manager or a user. account admins and team managers can perform CRUD (Create, Retrieve Update and Delete) operations on team members and team users can only perform get operations on team members. If you want to see team members in details you can checkout zenduty team members documentation here https://docs.zenduty.com/docs/users.
   - name: Schedules
-    description: Operations about schedules
-  - name: Roles
-    description: Roles are a way of categorization of tasks to handle an Incident.
+    description: Inside a team Zenduty has schedules account admins and team managers can perform CRUD (Create, Retrieve Update and Delete) operations on schedules and team users can only perform get operations on schedules. If you want to see schedules in details you can checkout zenduty schedules documentation here https://docs.zenduty.com/docs/schedules.
+  - name: Escalation Policies
+    description: Inside a team Zenduty has escalation policies account admins and team managers can perform CRUD (Create, Retrieve Update and Delete) operations on escalation policies and team users can only perform get operations on escalation policies. If you want to see escalation policies in details you can checkout zenduty escalation policies documentation here https://docs.zenduty.com/docs/escalationpolicies.
+  - name: Services
+    description: Inside a team Zenduty has services account admins and team managers can perform CRUD (Create, Retrieve Update and Delete) operations on services and team users can only perform get operations on services. If you want to see services in details you can checkout zenduty services documentation here https://docs.zenduty.com/docs/services.
+  - name: Integrations
+    description: Inside a service Zenduty has integrations each integration has a type which can be 0(incoming) or 1(outgoing) inside each integration there is an application field which is the actual integration you can find all the zenduty application on https://www.zenduty.com/api/account/applications/ account admins and team managers can perform CRUD (Create, Retrieve Update and Delete) operations on integrations and team users can only perform get operations on integrations. If you want to see integrations in details you can checkout zenduty integrations documentation here https://docs.zenduty.com/docs/integrations.
+  - name: Incidents
+    description: Inside a service Zenduty has incidents each incidents has a status which can be 1(triggered), 2(acknowledged) and 3(resolved). account admins and team managers and team users can perform CRU (Create, Retrieve and Update) operations on incidents. If you want to see incidents in details you can checkout zenduty incidents documentation here https://docs.zenduty.com/docs/incidents.
+  - name: Incident Roles
+    description: Inside a team Zenduty has incident roles. account admins and team managers can perform CRUD (Create, Retrieve Update and Delete) operations on incident roles and team users can only perform get operations on incident roles. If you want to see incident roles in details you can checkout zenduty incident roles documentation here https://docs.zenduty.com/docs/incidentroles.
   - name: Tags
-    description: Tags are a way to highlight specifics about an incident.
+    description: Inside a team Zenduty has tags. account admins and team managers can perform CRUD (Create, Retrieve Update and Delete) operations on tags and team users can only perform get operations on tags. If you want to see tags in details you can checkout zenduty tag documentation here https://docs.zenduty.com/docs/incidenttags.
   - name: Task Templates
-    description: A ready to go template to create Tasks for incidents.
-  - name: On Call
-    description: To view and maintain an On Call schedule
-
-  
+    description: Inside a team Zenduty has task templates. account admins and team managers can perform CRUD (Create, Retrieve Update and Delete) operations on task templates and team users can only perform get operations on task templates. If you want to see task templates in details you can checkout zenduty task templates documentation here https://docs.zenduty.com/docs/tasktemplates.
+  - name: Priorities
+    description: Inside a team Zenduty has priorities. account admins and team managers can perform CRUD (Create, Retrieve Update and Delete) operations on priorities and team users can only perform get operations on priorities. If you want to see priorities in details you can checkout zenduty priorities documentation here https://docs.zenduty.com/docs/incidentpriority.
+  - name: SLA
+    description: Inside a team Zenduty has sla. account admins and team managers can perform CRUD (Create, Retrieve Update and Delete) operations on sla and team users can only perform get operations on sla. If you want to see sla in details you can checkout zenduty sla documentation here https://docs.zenduty.com/docs/incidentsla.
+  - name: Team Maintenance Mode
+    description: Inside a team Zenduty has team maintenance modes. account admins, team managers and team users can perform CRUD (Create, Retrieve Update and Delete) operations on team maintenance modes. If you want to see team maintenance modes in details you can checkout zenduty team maintenance modes documentation here https://docs.zenduty.com/docs/maintenancewindows.
+  - name: Postmortem
+    description: Inside a team Zenduty has postmortem. account admins and team managers can perform CRUD (Create, Retrieve Update and Delete) operations on postmortem and team users can only perform get operations on postmortem. If you want to see postmortem in details you can checkout zenduty postmortem documentation here https://docs.zenduty.com/docs/incidentpostmortem.
 servers:
  - url: 'https://www.zenduty.com'
 paths:
   '/api/account/teams/':
+    # documentation for create teams
+    post:
+      tags:
+        - Teams
+      summary: Create Team
+      security:
+        - bearerAuth: []
+      # request body documentation
+      requestBody:
+        description: Team Payload
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTeamName'
+            example:
+              {"name": "New Team"}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/Team'
+              example:
+                {
+                  "unique_id": "52c65e3f-51c1-44ae-b163-b31fde4c1fc5",
+                  "name": "New Team",
+                  "account": "61fb2d9e-088b-471f-a6d7-872c03cf483d",
+                  "creation_date": "2022-06-21",
+                  "members": [
+                    {
+                      "unique_id": "b674c920-b2b4-4f6e-82ab-9a345e86f6be",
+                      "team": "52c65e3f-51c1-44ae-b163-b31fde4c1fc5",
+                      "user": {
+                                "username": "85e1569d-79a4-4205-850f-a",
+                                "first_name": "Anshul",
+                                "last_name": "Admin",
+                                "email": "anshul@admin.com"
+                              },
+                      "joining_date": "2022-06-21T11:30:27.817493Z",
+                      "role": 1
+                    }],
+                  "owner": "85e1569d-79a4-4205-850f-a",
+                  "roles": [
+                    {
+                      "unique_id": "f36c37b8-7f78-4bfc-b645-8c65e985d367",
+                      "team": "52c65e3f-51c1-44ae-b163-b31fde4c1fc5",
+                      "title": "Incident Commander",
+                      "description": "The incident commander is the person responsible for all aspects of the incident response, including quickly developing incident objectives, managing all incident operations, application of resources as well as responsibility for all persons involved. The incident commander sets priorities and defines the organization of the incident response teams and the overall incident action plan.",
+                      "creation_date": "2022-06-21T11:30:27.855502Z",
+                      "rank": 1
+                    }]
+                }
+        '400':
+          description: Bad Request 
+          content:
+            application/json: # operation response mime type
+              example:
+                ["Team name already exists"]
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                {
+                  "detail": "You do not have permission to perform this action."
+                }
     # documentation for get teams
     get: 
       tags:
@@ -82,39 +153,6 @@ paths:
           description: Forbidden
         '404':
           description: Not found
-    # documentation for create teams
-    post:
-      tags:
-        - Teams
-      summary: Create Team
-      # operationId: createTeam
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/Team'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Team'
-        '400':
-          description: Invalid 
-        '404':
-          description: User not found
-      # request body documentation
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/NewTeamName'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/NewTeamName'
-        description: New Team Name
-        required: true
   '/api/account/teams/{team_id}/':
       parameters: 
         - name: 'team_id'
@@ -1481,21 +1519,61 @@ components:
       type: object
       properties:
         unique_id:
-          description: ID of team
-          type: string
-        owner:
-          description: Owner of teams
-          type: string
-        account: 
-          description: Account ID
+          description: Unique ID of the team
           type: string
         name:
           description: Name of the team
           type: string
+        account:
+          description: Unique ID of the account in which the team has been created
+          type: string
         creation_date:
-          description: Date of creation
+          description: Date on which the team has been created
           type: string
           format: date-time
+        members:
+          $ref: '#/components/schemas/TeamMember'
+        owner:
+          description: Username of the user who  is team owner
+          type: string
+        roles:
+          $ref: '#/components/schemas/IncidentRoles'
+    TeamMember:
+      description: Member of the team
+      type: object
+      properties:
+        unique_id:
+          description: Unique ID of team member
+          type: string
+        team:
+          description: Unique ID of team 
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+        joining_date:
+          description: Date and time on which member joined in the team 
+          type: string
+          format: datetime
+        role:
+          description: Role of the member in the team 
+          type: integer
+    IncidentRoles:
+      description: Roles in a team
+      type: object
+      properties:
+        unique_id:
+          description: Unique ID of incident roles
+          type: string
+        team:
+          description: Unique ID of of the team
+          type: string
+        title:
+          description: Title of incident roles
+          type: string
+        description:
+          description: Description of incident roles
+          type: string
+          
     TeamWMember:
       description: All Team Details
       type: object
@@ -1658,8 +1736,28 @@ components:
         results:
           $ref: '#/components/schemas/ServiceAlert'
     NewTeamName:
-      description: Name of the new team
-      type: string
+      type: object
+      description: Payload for Team
+      properties:
+        name:
+          type: string
+          description: Name of the New Team
+    # TeamOwner:
+    #   type: object
+    #   description: Owner of the team
+    #   properties:
+    #     username:
+    #       type: string
+    #       description: Unique ID of the user
+    #     first_name:
+    #       type: string
+    #       description: First name of the user
+    #     last_name:
+    #       type: string
+    #       description: Last name of the user
+    #     email:
+    #       type: string
+    #       description: Email of the user
     UserID:
       description: Member details to add to a Team.
       type: object
@@ -2256,5 +2354,5 @@ components:
     bearerAuth:  # security definition name (you can name it as you want)
       type: http
       scheme: bearer
-      bearerFormat: Token
+      bearerFormat: Token <api_key>
     
