@@ -1,4 +1,3 @@
-
 openapi: 3.0.0
 info:
   version: '1.0.0' # Your API version
@@ -75,11 +74,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewTeamName'
-            example:
-              {"name": "New Team"}
+              $ref: '#/components/schemas/TeamPostPayload'
+            example: 
+              name: New Team
       responses:
-        '200':
+        '201':
           description: OK
           content:
             application/json: # operation response mime type
@@ -328,11 +327,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdatedTeamName'
+                $ref: '#/components/schemas/TeamPutPayload'
               example:
-                {"name": "Modified Team"}
+                name: Modified Team
         responses:
-          '201':
+          '200':
             description: OK
             content:
               application/json: # operation response mime type
@@ -363,10 +362,6 @@ paths:
                       rank: 1
           '400':
             description: Bad Request 
-            content:
-              application/json: # operation response mime type
-                example:
-                  - Team name already exists
           '403':
             description: Forbidden 
             content:
@@ -405,47 +400,120 @@ paths:
               application/json: # operation response mime type
                 example:
                   detail: Not Found.
-        
-  '/api/account/teams/{team_id}/members/':
-      parameters: 
-        - name: 'team_id'
-          in: path
-          description: Unique ID of team
-          schema:
-            type: string
-          required: true
-      post: 
-        tags:
-        - Members
-        summary: Add members to a team
-        # operationId: addMembers
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema:
-                  $ref: '#/components/schemas/NewMember'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/NewMember'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-        requestBody:
+                  
+  
+  '/api/account/teams/{}/members/':
+    # documentation for creating team member
+    parameters: 
+    - name: 'team_id'
+      in: path
+      description: Unique ID of team
+      schema:
+        type: string
+      required: true
+    post:
+      tags:
+        - Team Members
+      summary: Create Team Member
+      security:
+        - bearerAuth: []
+      # request body documentation
+      requestBody:
+        description: Team Member Payload
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamMemberPostPayload'
+            example:
+              user: ee93f063-0941-426e-9b9a-4
+      responses:
+        '201':
+          description: OK
           content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserID'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/UserID'
-          description: New Team Details
-          required: true
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/TeamMember'
+              example:
+                unique_id: 294c06de-8612-4f76-a1eb-73e116f53cc9
+                team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                user: ee93f063-0941-426e-9b9a-4
+                joining_date: '2022-06-30T09:04:20.141170Z'
+                role: 2
+        '400':
+          description: Bad Request 
+          content:
+            application/json: # operation response mime type
+              example:
+                - "User already exists"
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+    # documentation for get team members
+    get: 
+      tags:
+      - Team Members
+      summary: Get team Members
+    
+      # security schemas applied to this operation
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/TeamMember'
+              example:
+                - unique_id: 4843d1da-2308-44e6-b73d-ffcd253899be
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  user:
+                    username: 85e1569d-79a4-4205-850f-a
+                    first_name: Anshul
+                    last_name: Admin
+                    email: anshul@admin.com
+                  joining_date: '2022-04-14T08:09:23.573093Z'
+                  role: 2
+                - unique_id: 39905ba1-1ace-4763-a5d6-f6ad5a0a788f
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  user:
+                    username: 6278fd1d-7e7c-486a-80e3-5
+                    first_name: Anshul
+                    last_name: Manager
+                    email: anshul@manager.com
+                  joining_date: '2022-04-27T07:47:12.543213Z'
+                  role: 1
+                - unique_id: 0d54d800-b7da-4314-9850-f118fad1c078
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  user:
+                    username: e901875c-bee4-40fa-9ca6-8
+                    first_name: Anshul
+                    last_name: User
+                    email: anshul@user.com
+                  joining_date: '2022-04-20T11:01:42.942598Z'
+                  role: 2
+                - unique_id: 294c06de-8612-4f76-a1eb-73e116f53cc9
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  user:
+                    username: ee93f063-0941-426e-9b9a-4
+                    first_name: extra
+                    last_name: admin
+                    email: extra@admin.com
+                  joining_date: '2022-06-30T09:04:20.141170Z'
+                  role: 2
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+                
   '/api/account/teams/{team_id}/members/{member_id}/':
       parameters: 
         - name: 'team_id'
@@ -456,26 +524,120 @@ paths:
           required: true
         - name: 'member_id'
           in: path
-          description: Unique ID of member
+          description: Unique ID of team member
           schema:
             type: string
           required: true
+      get: 
+        tags:
+        - Team Members
+        summary: Get team member by ID
+        
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/TeamMember'
+                example:
+                  unique_id: 4843d1da-2308-44e6-b73d-ffcd253899be
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  user:
+                    username: 85e1569d-79a4-4205-850f-a
+                    first_name: Anshul
+                    last_name: Admin
+                    email: anshul@admin.com
+                  joining_date: '2022-04-14T08:09:23.573093Z'
+                  role: 2
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      put:
+        tags:
+          - Team Members
+        summary: Update Team Member
+        security:
+          - bearerAuth: []
+        # request body documentation
+        requestBody:
+          description: Team Member Payload
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamMemberPutPayload'
+              example:
+                user: 85e1569d-79a4-4205-850f-a
+                role: 1
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/TeamMember'
+                example:
+                  unique_id: 4843d1da-2308-44e6-b73d-ffcd253899be
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  user: 85e1569d-79a4-4205-850f-a
+                  joining_date: '2022-04-14T08:09:23.573093Z'
+                  role: 1
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
       delete: 
         tags:
-        - Members
-        summary: Delete members from a team
-        # operationId: delMembers
+        - Team Members
+        summary: Delete Team Member
       
         # security schemas applied to this operation
         security:
           - bearerAuth: []
         responses: # list of responses
-          '200':
+          '204':
             description: Success
+          '400':
+            description: Bad Request 
           '403':
-            description: Forbidden
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
           '404':
-            description: Not found
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.                
+  
+  
   '/api/account/teams/{team_id}/services/':
       parameters: 
         - name: 'team_id'
@@ -1940,36 +2102,40 @@ components:
           format: url
         results:
           $ref: '#/components/schemas/ServiceAlert'
-    NewTeamName:
+          
+    TeamPostPayload:
       type: object
-      description: Payload for Team
+      description: Payload for creating a Team
       properties:
         name:
           type: string
           description: Name of the New Team
-    UpdatedTeamName:
+          
+    TeamPutPayload:
       type: object
-      description: Payload for Updating a Team
+      description: Payload for updating a Team
       properties:
         name:
           type: string
           description: Name of the Updated Team
-    # TeamOwner:
-    #   type: object
-    #   description: Owner of the team
-    #   properties:
-    #     username:
-    #       type: string
-    #       description: Unique ID of the user
-    #     first_name:
-    #       type: string
-    #       description: First name of the user
-    #     last_name:
-    #       type: string
-    #       description: Last name of the user
-    #     email:
-    #       type: string
-    #       description: Email of the user
+          
+    TeamMemberPostPayload:
+      type: object
+      description: Payload for creating a Team Member
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+          
+    TeamMemberPutPayload:
+      type: object
+      description: Put Payload for updating a Team Member
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        role:
+          type: integer
+          description: Role of the updated team member
+    
     UserID:
       description: Member details to add to a Team.
       type: object
