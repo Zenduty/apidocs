@@ -32,12 +32,12 @@ tags:
     description: Inside an account Zenduty has teams account admins can perform CRUD (Create, Retrieve Update and Delete) operations on a team and account users can only perform get operations on teams. If you want to see teams in details you can checkout zenduty teams documentation here https://docs.zenduty.com/docs/teams.
   - name: Team Members
     description: Inside a team Zenduty has members each member has a role which can be a manager or a user. account admins and team managers can perform CRUD (Create, Retrieve Update and Delete) operations on team members and team users can only perform get operations on team members. If you want to see team members in details you can checkout zenduty team members documentation here https://docs.zenduty.com/docs/users.
+  - name: Services
+    description: Inside a team Zenduty has services account admins and team managers can perform CRUD (Create, Retrieve Update and Delete) operations on services and team users can only perform get operations on services. If you want to see services in details you can checkout zenduty services documentation here https://docs.zenduty.com/docs/services.
   - name: Schedules
     description: Inside a team Zenduty has schedules account admins and team managers can perform CRUD (Create, Retrieve Update and Delete) operations on schedules and team users can only perform get operations on schedules. If you want to see schedules in details you can checkout zenduty schedules documentation here https://docs.zenduty.com/docs/schedules.
   - name: Escalation Policies
     description: Inside a team Zenduty has escalation policies account admins and team managers can perform CRUD (Create, Retrieve Update and Delete) operations on escalation policies and team users can only perform get operations on escalation policies. If you want to see escalation policies in details you can checkout zenduty escalation policies documentation here https://docs.zenduty.com/docs/escalationpolicies.
-  - name: Services
-    description: Inside a team Zenduty has services account admins and team managers can perform CRUD (Create, Retrieve Update and Delete) operations on services and team users can only perform get operations on services. If you want to see services in details you can checkout zenduty services documentation here https://docs.zenduty.com/docs/services.
   - name: Integrations
     description: Inside a service Zenduty has integrations each integration has a type which can be 0(incoming) or 1(outgoing) inside each integration there is an application field which is the actual integration you can find all the zenduty application on https://www.zenduty.com/api/account/applications/ account admins and team managers can perform CRUD (Create, Retrieve Update and Delete) operations on integrations and team users can only perform get operations on integrations. If you want to see integrations in details you can checkout zenduty integrations documentation here https://docs.zenduty.com/docs/integrations.
   - name: Incidents
@@ -575,7 +575,7 @@ paths:
           - bearerAuth: []
         # request body documentation
         requestBody:
-          description: Team Member Payload
+          description: Team Member Put Payload
           required: true
           content:
             application/json:
@@ -635,72 +635,157 @@ paths:
             content:
               application/json: # operation response mime type
                 example:
-                  detail: Not Found.                
+                  detail: Not Found.
+                  
   
-  
-  '/api/account/teams/{team_id}/services/':
-      parameters: 
-        - name: 'team_id'
-          in: path
-          description: Unique ID of team
-          schema:
-            type: string
-          required: true
-      get: 
-        tags:
+  '/api/account/teams/{}/services/':
+    # documentation for creating service
+    parameters: 
+    - name: 'team_id'
+      in: path
+      description: Unique ID of team
+      schema:
+        type: string
+      required: true
+    post:
+      tags:
         - Services
-        summary: Get Services for a team
-        # operationId: getServices
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/ServiceInfo'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/ServiceInfo'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-      post: 
-        tags:
-        - Services
-        summary: Add new Service in a team
-        # operationId: createService
-        
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/ServiceInfo'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/ServiceInfo'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-        requestBody:
+      summary: Create Service
+      security:
+        - bearerAuth: []
+      # request body documentation
+      requestBody:
+        description: Servie Payload
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServicePostPayload'
+            example:
+              name: New Service
+              collation: 1
+              collation_time: 1
+              description: This is the description for the New Service
+              escalation_policy: 0487dcc1-e900-48d0-880d-f7662766cd07
+              team_priority: null
+              sla: null
+      responses:
+        '201':
+          description: OK
           content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NewService'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/NewService'
-          description: New Team Details
-          required: true
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/ServiceInfo'
+              example:
+                name: New Service
+                creation_date: '2022-06-30T09:49:45.493513Z'
+                summary: ''
+                description: This is the description for the New Service
+                unique_id: c2631cd1-d5dd-4eed-b8d8-c8fd52e76589
+                auto_resolve_timeout: 0
+                created_by: 85e1569d-79a4-4205-850f-a
+                team_priority: null
+                task_template: null
+                acknowledgement_timeout: 0
+                status: 1
+                escalation_policy: 0487dcc1-e900-48d0-880d-f7662766cd07
+                team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                sla: null
+                collation_time: 1
+                collation: 1
+        '400':
+          description: Bad Request 
+          content:
+            application/json: # operation response mime type
+              example:
+                team_priority:
+                  - This field is required.
+                sla:
+                  - This field is required.
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+    # documentation for get services
+    get: 
+      tags:
+      - Services
+      summary: Get Services
+    
+      # security schemas applied to this operation
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/ServiceInfo'
+              example:
+                - name: dnlv
+                  creation_date: '2022-04-14T08:46:19.039007Z'
+                  summary: ''
+                  description: nckjxv
+                  unique_id: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                  auto_resolve_timeout: 0
+                  created_by: 85e1569d-79a4-4205-850f-a
+                  team_priority: null
+                  task_template: null
+                  acknowledgement_timeout: 0
+                  status: 1
+                  escalation_policy: 0487dcc1-e900-48d0-880d-f7662766cd07
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  sla: null
+                  under_maintenance: false
+                  collation: 1
+                  collation_time: 1
+                - name: Modified Service
+                  creation_date: '2022-06-24T11:25:51.454276Z'
+                  summary: ''
+                  description: This is the description for the modified Service
+                  unique_id: 78bbd207-5852-44d1-8812-83dd8b0938f5
+                  auto_resolve_timeout: 0
+                  created_by: 85e1569d-79a4-4205-850f-a
+                  team_priority: null
+                  task_template: null
+                  acknowledgement_timeout: 0
+                  status: 1
+                  escalation_policy: 0487dcc1-e900-48d0-880d-f7662766cd07
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  sla: null
+                  under_maintenance: false
+                  collation: 1
+                  collation_time: 1
+                - name: New Service
+                  creation_date: '2022-06-30T09:49:45.493513Z'
+                  summary: ''
+                  description: This is the description for the New Service
+                  unique_id: c2631cd1-d5dd-4eed-b8d8-c8fd52e76589
+                  auto_resolve_timeout: 0
+                  created_by: 85e1569d-79a4-4205-850f-a
+                  team_priority: null
+                  task_template: null
+                  acknowledgement_timeout: 0
+                  status: 1
+                  escalation_policy: 0487dcc1-e900-48d0-880d-f7662766cd07
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  sla: null
+                  under_maintenance: false
+                  collation: 1
+                  collation_time: 1
+                
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+                
   '/api/account/teams/{team_id}/services/{service_id}/':
       parameters: 
         - name: 'team_id'
@@ -711,75 +796,285 @@ paths:
           required: true
         - name: 'service_id'
           in: path
-          description: Unique Service ID
+          description: Unique ID of service
           schema:
             type: string
           required: true
       get: 
         tags:
         - Services
-        summary: Get Services by ID
-        # operationId: getServiceID
+        summary: Get Service by ID
+        
         # security schemas applied to this operation
         security:
           - bearerAuth: []
-        responses: # list of responses
+        responses:
           '200':
-            description: Success
+            description: OK
             content:
               application/json: # operation response mime type
                 schema: # response schema can be specified for each response
                   $ref: '#/components/schemas/ServiceInfo'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/ServiceInfo'
+                example:
+                  name: New Service
+                  creation_date: '2022-06-30T09:49:45.493513Z'
+                  summary: ''
+                  description: This is the description for the New Service
+                  unique_id: c2631cd1-d5dd-4eed-b8d8-c8fd52e76589
+                  auto_resolve_timeout: 0
+                  created_by: 85e1569d-79a4-4205-850f-a
+                  team_priority: null
+                  task_template: null
+                  acknowledgement_timeout: 0
+                  status: 1
+                  escalation_policy: 0487dcc1-e900-48d0-880d-f7662766cd07
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  sla: null
+                  under_maintenance: false
+                  collation: 1
+                  collation_time: 1
+          '400':
+            description: Bad Request 
           '403':
-            description: Forbidden
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
           '404':
-            description: Not found
-      patch: 
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      put:
         tags:
-        - Services
+          - Services
         summary: Update Service
-        # operationId: updateService
-        # security schemas applied to this operation
-        parameters:
-          - name: service_info
-            in: query
-            schema:
-              $ref: '#/components/schemas/ServiceInfo'
         security:
           - bearerAuth: []
-        responses: # list of responses
+        # request body documentation
+        requestBody:
+          description: Service Put Payload
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServicePutPayload'
+              example:
+                name: Modified Service
+                description: This is the description for the modified Service
+                escalation_policy: 0487dcc1-e900-48d0-880d-f7662766cd07
+                team_priority: null
+                sla: null
+        responses:
           '200':
-            description: Success
+            description: OK
             content:
               application/json: # operation response mime type
                 schema: # response schema can be specified for each response
                   $ref: '#/components/schemas/ServiceInfo'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/ServiceInfo'
+                example:
+                  name: Modified Service
+                  creation_date: '2022-06-30T09:49:45.493513Z'
+                  summary: ''
+                  description: This is the description for the modified Service
+                  unique_id: c2631cd1-d5dd-4eed-b8d8-c8fd52e76589
+                  auto_resolve_timeout: 0
+                  created_by: 85e1569d-79a4-4205-850f-a
+                  team_priority: null
+                  task_template: null
+                  acknowledgement_timeout: 0
+                  status: 1
+                  escalation_policy: 0487dcc1-e900-48d0-880d-f7662766cd07
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  sla: null
+                  collation_time: 1
+                  collation: 1
+          '400':
+            description: Bad Request 
           '403':
-            description: Forbidden
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
           '404':
-            description: Not found
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
       delete: 
         tags:
         - Services
-        summary: Delete Service from a team
-        # operationId: delService
+        summary: Delete Service
       
         # security schemas applied to this operation
         security:
           - bearerAuth: []
         responses: # list of responses
-          '200':
+          '204':
             description: Success
+          '400':
+            description: Bad Request 
           '403':
-            description: Forbidden
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
           '404':
-            description: Not found
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.                
+
+  
+  
+  # '/api/account/teams/{team_id}/services/':
+  #     parameters: 
+  #       - name: 'team_id'
+  #         in: path
+  #         description: Unique ID of team
+  #         schema:
+  #           type: string
+  #         required: true
+  #     get: 
+  #       tags:
+  #       - Services
+  #       summary: Get Services for a team
+  #       # operationId: getServices
+  #       # security schemas applied to this operation
+  #       security:
+  #         - bearerAuth: []
+  #       responses: # list of responses
+  #         '200':
+  #           description: Success
+  #           content:
+  #             application/json: # operation response mime type
+  #               schema: # response schema can be specified for each response
+  #                 $ref: '#/components/schemas/ServiceInfo'
+  #             application/xml: # operation response mime type
+  #               schema: # response schema can be specified for each response
+  #                 $ref: '#/components/schemas/ServiceInfo'
+  #         '403':
+  #           description: Forbidden
+  #         '404':
+  #           description: Not found
+  #     post: 
+  #       tags:
+  #       - Services
+  #       summary: Add new Service in a team
+  #       # operationId: createService
+        
+  #       # security schemas applied to this operation
+  #       security:
+  #         - bearerAuth: []
+  #       responses: # list of responses
+  #         '200':
+  #           description: Success
+  #           content:
+  #             application/json:
+  #               schema:
+  #                 $ref: '#/components/schemas/ServiceInfo'
+  #             application/xml:
+  #               schema:
+  #                 $ref: '#/components/schemas/ServiceInfo'
+  #         '403':
+  #           description: Forbidden
+  #         '404':
+  #           description: Not found
+  #       requestBody:
+  #         content:
+  #           application/json:
+  #             schema:
+  #               $ref: '#/components/schemas/NewService'
+  #           application/xml:
+  #             schema:
+  #               $ref: '#/components/schemas/NewService'
+  #         description: New Team Details
+  #         required: true
+  # '/api/account/teams/{team_id}/services/{service_id}/':
+  #     parameters: 
+  #       - name: 'team_id'
+  #         in: path
+  #         description: Unique ID of team
+  #         schema:
+  #           type: string
+  #         required: true
+  #       - name: 'service_id'
+  #         in: path
+  #         description: Unique Service ID
+  #         schema:
+  #           type: string
+  #         required: true
+  #     get: 
+  #       tags:
+  #       - Services
+  #       summary: Get Services by ID
+  #       # operationId: getServiceID
+  #       # security schemas applied to this operation
+  #       security:
+  #         - bearerAuth: []
+  #       responses: # list of responses
+  #         '200':
+  #           description: Success
+  #           content:
+  #             application/json: # operation response mime type
+  #               schema: # response schema can be specified for each response
+  #                 $ref: '#/components/schemas/ServiceInfo'
+  #             application/xml: # operation response mime type
+  #               schema: # response schema can be specified for each response
+  #                 $ref: '#/components/schemas/ServiceInfo'
+  #         '403':
+  #           description: Forbidden
+  #         '404':
+  #           description: Not found
+  #     patch: 
+  #       tags:
+  #       - Services
+  #       summary: Update Service
+  #       # operationId: updateService
+  #       # security schemas applied to this operation
+  #       parameters:
+  #         - name: service_info
+  #           in: query
+  #           schema:
+  #             $ref: '#/components/schemas/ServiceInfo'
+  #       security:
+  #         - bearerAuth: []
+  #       responses: # list of responses
+  #         '200':
+  #           description: Success
+  #           content:
+  #             application/json: # operation response mime type
+  #               schema: # response schema can be specified for each response
+  #                 $ref: '#/components/schemas/ServiceInfo'
+  #             application/xml: # operation response mime type
+  #               schema: # response schema can be specified for each response
+  #                 $ref: '#/components/schemas/ServiceInfo'
+  #         '403':
+  #           description: Forbidden
+  #         '404':
+  #           description: Not found
+  #     delete: 
+  #       tags:
+  #       - Services
+  #       summary: Delete Service from a team
+  #       # operationId: delService
+      
+  #       # security schemas applied to this operation
+  #       security:
+  #         - bearerAuth: []
+  #       responses: # list of responses
+  #         '200':
+  #           description: Success
+  #         '403':
+  #           description: Forbidden
+  #         '404':
+  #           description: Not found
   '/api/account/teams/{team_id}/services/{service_id}/integrations/':
       parameters: 
         - name: 'team_id'
@@ -2135,6 +2430,52 @@ components:
         role:
           type: integer
           description: Role of the updated team member
+          
+    ServicePostPayload:
+      type: object
+      description: Payload for creating a Service
+      properties:
+        name:
+          type: string
+          description: name of the new service
+        collation:
+          type: integer
+          description: Tells weather incident should be collated or not
+        collation_time:
+          type: integer
+          description: time frame on which incident should be collated
+        description:
+          type: string
+          description: description of new service
+        escalation_policy:
+          type: string
+          description: unique id of escalation policy
+        team_priority:
+          type: string
+          description: unique id of team priority it can be null also
+        sla:
+          type: string
+          description: unique id of sla it can be null also
+          
+    ServicePutPayload:
+      type: object
+      description: Put Payload for updating a Service
+      properties:
+        name:
+          type: string
+          description: name of the new service
+        description:
+          type: string
+          description: description of new service
+        escalation_policy:
+          type: string
+          description: unique id of escalation policy
+        team_priority:
+          type: string
+          description: unique id of team priority it can be null also
+        sla:
+          type: string
+          description: unique id of sla it can be null also
     
     UserID:
       description: Member details to add to a Team.
