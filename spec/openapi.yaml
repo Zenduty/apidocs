@@ -2,7 +2,7 @@ openapi: 3.0.0
 
 
 info:
-  version: '1.0.0' # Your API version
+  version: '1.1.0' # Your API version
   title: Zenduty 
   termsOfService: 'https://zenduty.com'
   contact:
