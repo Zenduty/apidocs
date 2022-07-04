@@ -56,9 +56,200 @@ tags:
     description: Inside a team Zenduty has team maintenance modes. account admins, team managers and team users can perform CRUD (Create, Retrieve Update and Delete) operations on team maintenance modes. If you want to see team maintenance modes in details you can checkout zenduty team maintenance modes documentation here https://docs.zenduty.com/docs/maintenancewindows.
   - name: Postmortem
     description: Inside a team Zenduty has postmortem. account admins and team managers can perform CRUD (Create, Retrieve Update and Delete) operations on postmortem and team users can only perform get operations on postmortem. If you want to see postmortem in details you can checkout zenduty postmortem documentation here https://docs.zenduty.com/docs/incidentpostmortem.
+  - name: Incident Notes
+    description: This is Incident Notes
+  - name: Incident Alerts
+    description: This is Incident Alerts
+  - name: Event
+    description: This is Event
+  - name: OnCall
+    description: This is OnCall
+  - name: Integration Alerts
+    description: This is Integration Alerts
 servers:
  - url: 'https://www.zenduty.com'
 paths:
+  
+  '/api/account/members/':
+    # documentation for Account Members
+    get: 
+      tags:
+      - Account Member
+      summary: Get Account Members
+      # operationId: getTeams
+    
+      # security schemas applied to this operation
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/AccountMember'
+              example:
+                - unique_id: 3361b627-e340-4e67-a015-1288b1f926e3
+                  time_zone: Asia/Kolkata
+                  user:
+                    username: 85e1569d-79a4-4205-850f-a
+                    first_name: Anshul
+                    last_name: Admin
+                    email: anshul@admin.com
+                  joining_date: '2019-07-09T11:13:49.035598Z'
+                  role: 1
+                  is_verified: true
+                - unique_id: bd78097b-b343-44b0-a686-65ba1bfba6d1
+                  time_zone: UTC
+                  user:
+                    username: 6278fd1d-7e7c-486a-80e3-5
+                    first_name: Anshul
+                    last_name: Manager
+                    email: anshul@manager.com
+                  joining_date: '2022-03-07T11:48:53.852632Z'
+                  role: 3
+                  is_verified: false
+                - unique_id: b8afc826-9139-456c-a980-4aa4d92f9658
+                  time_zone: UTC
+                  user:
+                    username: e901875c-bee4-40fa-9ca6-8
+                    first_name: Anshul
+                    last_name: User
+                    email: anshul@user.com
+                  joining_date: '2022-03-08T10:34:55.300601Z'
+                  role: 3
+                  is_verified: false
+                - unique_id: 722c52f5-3623-414b-bd0f-1275b7548b43
+                  time_zone: UTC
+                  user:
+                    username: ee93f063-0941-426e-9b9a-4
+                    first_name: extra
+                    last_name: admin
+                    email: extra@admin.com
+                  joining_date: '2022-06-09T11:39:58.575353Z'
+                  role: 2
+                  is_verified: false
+                - unique_id: 1f7e13bc-73d9-4b7e-b0e7-e31d44597fef
+                  time_zone: UTC
+                  user:
+                    username: 1cd94dad-8485-4bc5-9cf5-e
+                    first_name: Modified Name
+                    last_name: user
+                    email: extra@user.com
+                  joining_date: '2022-06-09T11:41:12.105572Z'
+                  role: 3
+                  is_verified: false
+              
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+  '/api/account/members/{member_username}/':
+      parameters: 
+        - name: 'member_username'
+          in: path
+          description: Username of Account Member
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Account Member
+        summary: Get Account Member by Username
+        # operationId: getTeamDetails
+      
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/AccountMember'
+                example:
+                  unique_id: 1f7e13bc-73d9-4b7e-b0e7-e31d44597fef
+                  time_zone: UTC
+                  user:
+                    username: 1cd94dad-8485-4bc5-9cf5-e
+                    first_name: New Name
+                    last_name: user
+                    email: extra@user.com
+                  joining_date: '2022-06-09T11:41:12.105572Z'
+                  role: 3
+                  is_verified: false
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      put:
+        tags:
+          - Account Member
+        summary: Update Account Member
+        security:
+          - bearerAuth: []
+        # request body documentation
+        requestBody:
+          description: Account Member Payload
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountMemberPutPayload'
+              example:
+                user:
+                  first_name: Modified Name
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/AccountMember'
+                example:
+                  unique_id: 1f7e13bc-73d9-4b7e-b0e7-e31d44597fef
+                  time_zone: UTC
+                  user:
+                    username: 1cd94dad-8485-4bc5-9cf5-e
+                    first_name: Modified Name
+                    last_name: user
+                    email: extra@user.com
+                  joining_date: '2022-06-09T11:41:12.105572Z'
+                  role: 3
+                  is_verified: false
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+  
+  
   '/api/account/teams/':
     # documentation for create teams
     post:
@@ -929,153 +1120,106 @@ paths:
             content:
               application/json: # operation response mime type
                 example:
-                  detail: Not Found.                
-
-  
-  
-  # '/api/account/teams/{team_id}/services/':
-  #     parameters: 
-  #       - name: 'team_id'
-  #         in: path
-  #         description: Unique ID of team
-  #         schema:
-  #           type: string
-  #         required: true
-  #     get: 
-  #       tags:
-  #       - Services
-  #       summary: Get Services for a team
-  #       # operationId: getServices
-  #       # security schemas applied to this operation
-  #       security:
-  #         - bearerAuth: []
-  #       responses: # list of responses
-  #         '200':
-  #           description: Success
-  #           content:
-  #             application/json: # operation response mime type
-  #               schema: # response schema can be specified for each response
-  #                 $ref: '#/components/schemas/ServiceInfo'
-  #             application/xml: # operation response mime type
-  #               schema: # response schema can be specified for each response
-  #                 $ref: '#/components/schemas/ServiceInfo'
-  #         '403':
-  #           description: Forbidden
-  #         '404':
-  #           description: Not found
-  #     post: 
-  #       tags:
-  #       - Services
-  #       summary: Add new Service in a team
-  #       # operationId: createService
-        
-  #       # security schemas applied to this operation
-  #       security:
-  #         - bearerAuth: []
-  #       responses: # list of responses
-  #         '200':
-  #           description: Success
-  #           content:
-  #             application/json:
-  #               schema:
-  #                 $ref: '#/components/schemas/ServiceInfo'
-  #             application/xml:
-  #               schema:
-  #                 $ref: '#/components/schemas/ServiceInfo'
-  #         '403':
-  #           description: Forbidden
-  #         '404':
-  #           description: Not found
-  #       requestBody:
-  #         content:
-  #           application/json:
-  #             schema:
-  #               $ref: '#/components/schemas/NewService'
-  #           application/xml:
-  #             schema:
-  #               $ref: '#/components/schemas/NewService'
-  #         description: New Team Details
-  #         required: true
-  # '/api/account/teams/{team_id}/services/{service_id}/':
-  #     parameters: 
-  #       - name: 'team_id'
-  #         in: path
-  #         description: Unique ID of team
-  #         schema:
-  #           type: string
-  #         required: true
-  #       - name: 'service_id'
-  #         in: path
-  #         description: Unique Service ID
-  #         schema:
-  #           type: string
-  #         required: true
-  #     get: 
-  #       tags:
-  #       - Services
-  #       summary: Get Services by ID
-  #       # operationId: getServiceID
-  #       # security schemas applied to this operation
-  #       security:
-  #         - bearerAuth: []
-  #       responses: # list of responses
-  #         '200':
-  #           description: Success
-  #           content:
-  #             application/json: # operation response mime type
-  #               schema: # response schema can be specified for each response
-  #                 $ref: '#/components/schemas/ServiceInfo'
-  #             application/xml: # operation response mime type
-  #               schema: # response schema can be specified for each response
-  #                 $ref: '#/components/schemas/ServiceInfo'
-  #         '403':
-  #           description: Forbidden
-  #         '404':
-  #           description: Not found
-  #     patch: 
-  #       tags:
-  #       - Services
-  #       summary: Update Service
-  #       # operationId: updateService
-  #       # security schemas applied to this operation
-  #       parameters:
-  #         - name: service_info
-  #           in: query
-  #           schema:
-  #             $ref: '#/components/schemas/ServiceInfo'
-  #       security:
-  #         - bearerAuth: []
-  #       responses: # list of responses
-  #         '200':
-  #           description: Success
-  #           content:
-  #             application/json: # operation response mime type
-  #               schema: # response schema can be specified for each response
-  #                 $ref: '#/components/schemas/ServiceInfo'
-  #             application/xml: # operation response mime type
-  #               schema: # response schema can be specified for each response
-  #                 $ref: '#/components/schemas/ServiceInfo'
-  #         '403':
-  #           description: Forbidden
-  #         '404':
-  #           description: Not found
-  #     delete: 
-  #       tags:
-  #       - Services
-  #       summary: Delete Service from a team
-  #       # operationId: delService
-      
-  #       # security schemas applied to this operation
-  #       security:
-  #         - bearerAuth: []
-  #       responses: # list of responses
-  #         '200':
-  #           description: Success
-  #         '403':
-  #           description: Forbidden
-  #         '404':
-  #           description: Not found
-  '/api/account/teams/{team_id}/services/{service_id}/integrations/':
+                  detail: Not Found.
+                  
+                  
+                  
+  '/api/account/teams/{}/schedule/':
+    # documentation for creating schedule
+    parameters: 
+    - name: 'team_id'
+      in: path
+      description: Unique ID of team
+      schema:
+        type: string
+      required: true
+    post:
+      tags:
+        - Schedules
+      summary: Create Schedule
+      security:
+        - bearerAuth: []
+      # request body documentation
+      requestBody:
+        description: Schedule Payload
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchedulePostPayload'
+            example:
+              name: New Schedule
+              summary: Summary for the new Schedule
+              descripition: This is the description for the new Schedule
+              time_zone: Asia/Kolkata
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/Schedule'
+              example:
+                name: New Schedule
+                summary: Summary for the new Schedule
+                description: ''
+                time_zone: Asia/Kolkata
+                team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                layers: []
+                overrides: []
+                unique_id: a6bcac67-d009-4afc-af17-30e2b1366460
+                
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+    # documentation for get services
+    get: 
+      tags:
+      - Schedules
+      summary: Get Schedules
+    
+      # security schemas applied to this operation
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/Schedule'
+              example:
+                - name: Team1
+                  summary: ''
+                  description: ''
+                  time_zone: UTC
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  layers: []
+                  overrides: []
+                  unique_id: ecf402c5-0ca6-4f46-b5f7-f36b795e1980
+                - name: New Schedule
+                  summary: Summary for the new Schedule
+                  description: ''
+                  time_zone: Asia/Kolkata
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  layers: []
+                  overrides: []
+                  unique_id: a6bcac67-d009-4afc-af17-30e2b1366460
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+                
+  '/api/account/teams/{team_id}/schedules/{schedule_id}/':
       parameters: 
         - name: 'team_id'
           in: path
@@ -1083,67 +1227,593 @@ paths:
           schema:
             type: string
           required: true
-        - name: 'service_id'
+        - name: 'schedule_id'
           in: path
-          description: Unique Service ID
+          description: Unique ID of schedule
           schema:
             type: string
           required: true
       get: 
         tags:
-        - Integrations
-        summary: Get Integrations in a service
-        # operationId: getIntegrations
+        - Schedules
+        summary: Get Schedule by ID
+        
         # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/Integration'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/Integration'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-      post:
-        tags:
-          - Integrations
-        summary: Create Integration
-        # operationId: createIntegration
         security:
           - bearerAuth: []
         responses:
           '200':
             description: OK
             content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/Integration'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/Integration'
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/Schedule'
+                example:
+                  name: New Schedule
+                  summary: Summary for the new Schedule
+                  description: ''
+                  time_zone: Asia/Kolkata
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  layers: []
+                  overrides: []
+                  unique_id: a6bcac67-d009-4afc-af17-30e2b1366460
           '400':
-            description: Invalid 
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
           '404':
-            description: User not found
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      put:
+        tags:
+          - Schedules
+        summary: Update Schedule
+        security:
+          - bearerAuth: []
         # request body documentation
         requestBody:
+          description: Schedule Put Payload
+          required: true
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NewIntegration'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/NewIntegration'
-          description: New Integration Details
+                $ref: '#/components/schemas/SchedulePutPayload'
+              example:
+                name: Modified Schedule
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/Schedule'
+                example:
+                  name: Modified Schedule
+                  summary: Summary for the new Schedule
+                  description: ''
+                  time_zone: Asia/Kolkata
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  layers: []
+                  overrides: []
+                  unique_id: a6bcac67-d009-4afc-af17-30e2b1366460
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      delete: 
+        tags:
+        - Schedules
+        summary: Delete Schedule
+      
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses: # list of responses
+          '204':
+            description: Success
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+                  
+                  
+  '/api/account/teams/{}/escalation_policies/':
+    # documentation for creating escalation policy
+    parameters: 
+    - name: 'team_id'
+      in: path
+      description: Unique ID of team
+      schema:
+        type: string
+      required: true
+    post:
+      tags:
+        - Escalation Policies
+      summary: Create Escalation Policy
+      security:
+        - bearerAuth: []
+      # request body documentation
+      requestBody:
+        description: Escalation Policy Payload
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EPPostPayload'
+            example:
+              name: New Escalation Policy
+              summary: This is the summary for the new escalation policy
+              description: This is the description for the New Escalation Policy
+              rules:
+                - delay: 0
+                  targets:
+                    - target_type: 2
+                      target_id: 85e1569d-79a4-4205-850f-a
+                  position: 1
+                  unique_id: ''
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/EP'
+              example:
+                name: New Escalation Policy
+                summary: This is the summary for the new escalation policy
+                description: This is the description for the New Escalation Policy
+                rules:
+                  - delay: 0
+                    targets:
+                      - target_type: 2
+                        target_id: 85e1569d-79a4-4205-850f-a
+                    position: 1
+                    unique_id: 87e41be1-ce43-4ec3-87b6-d4cb4f751cce
+                unique_id: 1fd12a33-8d81-4ad8-a30a-cfb2c2955392
+                team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                repeat_policy: 0
+                move_to_next: true
+                global_ep: false
+                
+                
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+    # documentation for get services
+    get: 
+      tags:
+      - Escalation Policies
+      summary: Get Escalation Policies
+    
+      # security schemas applied to this operation
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/EP'
+              example:
+                - name: Default Escalation Policy
+                  summary: This is the default escalation policy for this team
+                  description: ''
+                  rules:
+                    - delay: 0
+                      targets:
+                        - target_type: 2
+                          target_id: 85e1569d-79a4-4205-850f-a
+                      position: 1
+                      unique_id: c7ad4f67-6d84-49ac-a821-8d5e3f5c63ea
+                  unique_id: 0487dcc1-e900-48d0-880d-f7662766cd07
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  repeat_policy: 0
+                  move_to_next: true
+                  global_ep: false
+                - name: New Escalation Policy
+                  summary: This is the summary for the new escalation policy
+                  description: This is the description for the New Escalation Policy
+                  rules:
+                    - delay: 0
+                      targets:
+                        - target_type: 2
+                          target_id: 85e1569d-79a4-4205-850f-a
+                      position: 1
+                      unique_id: 87e41be1-ce43-4ec3-87b6-d4cb4f751cce
+                  unique_id: 1fd12a33-8d81-4ad8-a30a-cfb2c2955392
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  repeat_policy: 0
+                  move_to_next: true
+                  global_ep: false
+                
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+                
+  '/api/account/teams/{team_id}/escalation_policies/{escalation_policy_id}/':
+      parameters: 
+        - name: 'team_id'
+          in: path
+          description: Unique ID of team
+          schema:
+            type: string
           required: true
-  '/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/':
+        - name: 'escalation_policy_id'
+          in: path
+          description: Unique ID of escalation policy
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Escalation Policies
+        summary: Get Escalation Policy by ID
+        
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/EP'
+                example:
+                  name: New Escalation Policy
+                  summary: This is the summary for the new escalation policy
+                  description: This is the description for the New Escalation Policy
+                  rules:
+                    - delay: 0
+                      targets:
+                        - target_type: 2
+                          target_id: 85e1569d-79a4-4205-850f-a
+                      position: 1
+                      unique_id: 87e41be1-ce43-4ec3-87b6-d4cb4f751cce
+                  unique_id: 1fd12a33-8d81-4ad8-a30a-cfb2c2955392
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  repeat_policy: 0
+                  move_to_next: true
+                  global_ep: false
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      put:
+        tags:
+          - Escalation Policies
+        summary: Update Escalation Policy
+        security:
+          - bearerAuth: []
+        # request body documentation
+        requestBody:
+          description: Escalation Policy Put Payload
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EPPutPayload'
+              example:
+                name: Modified Escalation Policy
+                rules:
+                  - delay: 0
+                    targets:
+                      - target_type: 2
+                        target_id: 85e1569d-79a4-4205-850f-a
+                    position: 1
+                    unique_id: 87e41be1-ce43-4ec3-87b6-d4cb4f751cce
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/EP'
+                example:
+                  name: Modified Escalation Policy
+                  summary: This is the summary for the new escalation policy
+                  description: This is the description for the New Escalation Policy
+                  rules:
+                    - delay: 0
+                      targets:
+                        - target_type: 2
+                          target_id: 85e1569d-79a4-4205-850f-a
+                      position: 1
+                      unique_id: 994e5ab2-377e-4dd8-a16f-ef7ec4c9b9e4
+                  unique_id: 1fd12a33-8d81-4ad8-a30a-cfb2c2955392
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  repeat_policy: 0
+                  move_to_next: true
+                  global_ep: false
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      delete: 
+        tags:
+        - Escalation Policies
+        summary: Delete Escalation Policy
+      
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses: # list of responses
+          '204':
+            description: Success
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+                  
+  
+
+  
+  '/api/account/teams/{}/services/{service_id}/integrations':
+    # documentation for creating escalation policy
+    parameters: 
+    - name: 'team_id'
+      in: path
+      description: Unique ID of team
+      schema:
+        type: string
+      required: true
+    - name: 'service_id'
+      in: path
+      description: Unique ID of service
+      schema:
+        type: string
+      required: true
+    post:
+      tags:
+        - Integrations
+      summary: Create Integrations
+      security:
+        - bearerAuth: []
+      # request body documentation
+      requestBody:
+        description: Integrations Post Payload
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntegrationPostPayload'
+            example:
+              name: New Integration
+              summary: This is the summary for new Integration
+              application: 3603a509-fc83-42d7-9144-a7223bbd9bf1
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/Integration'
+              example:
+                name: New Integration
+                creation_date: '2022-06-29T13:53:12.427300Z'
+                summary: This is the summary for new Integration
+                unique_id: c97a29c5-2b70-4674-a934-117cc6f0c50f
+                service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                application: 3603a509-fc83-42d7-9144-a7223bbd9bf1
+                application_reference:
+                  name: Anodot
+                  icon_url: ''
+                  summary: test
+                  description: test
+                  unique_id: 3603a509-fc83-42d7-9144-a7223bbd9bf1
+                  availability_plan_id: 1
+                  setup_instructions: <integrationURL>
+                  extension: anodot
+                  application_type: 0
+                  categories: APM
+                  documentation_link: ''
+                integration_key: 8ecc797e-8b4b-46bb-908c-058a328ff9fd
+                created_by: 85e1569d-79a4-4205-850f-a
+                is_enabled: true
+                create_incidents_for: 1
+                integration_type: 0
+                default_urgency: 1
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+    # documentation for get services
+    get: 
+      tags:
+      - Integrations
+      summary: Get Integrations
+    
+      # security schemas applied to this operation
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/Integration'
+              example:
+                - name: Anodot
+                  creation_date: '2022-04-14T08:46:19.184696Z'
+                  summary: Edit summary for this integration
+                  unique_id: d162f6f9-6258-4408-a5bc-63c46ad4deb8
+                  service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                  application: 3603a509-fc83-42d7-9144-a7223bbd9bf1
+                  application_reference:
+                    name: Anodot
+                    icon_url: ''
+                    summary: test
+                    description: test
+                    unique_id: 3603a509-fc83-42d7-9144-a7223bbd9bf1
+                    availability_plan_id: 1
+                    setup_instructions: <integrationURL>
+                    extension: anodot
+                    application_type: 0
+                    categories: APM
+                    documentation_link: ''
+                  integration_key: b91f575d-14e8-4426-b063-7b171dcf3ca2
+                  created_by: 85e1569d-79a4-4205-850f-a
+                  is_enabled: true
+                  create_incidents_for: 1
+                  integration_type: 0
+                  default_urgency: 1
+                - name: vgdjzhc
+                  creation_date: '2022-04-26T07:33:54.512953Z'
+                  summary: vbchxjkvx
+                  unique_id: bb0775f7-3029-4893-9d42-0cad6008144f
+                  service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                  application: 9e9b4b40-add2-41fe-a502-95a573730489
+                  application_reference:
+                    name: Cloud watch
+                    icon_url: t
+                    summary: test
+                    description: test
+                    unique_id: 9e9b4b40-add2-41fe-a502-95a573730489
+                    availability_plan_id: 1
+                    setup_instructions: test
+                    extension: cloudwatch
+                    application_type: 0
+                    categories: 'APM,CI/CD'
+                    documentation_link: t
+                  integration_key: 720c35f1-b30b-4527-82d8-1e850da43f1e
+                  created_by: 85e1569d-79a4-4205-850f-a
+                  is_enabled: true
+                  create_incidents_for: 1
+                  integration_type: 0
+                  default_urgency: 1
+                - name: fsd
+                  creation_date: '2022-06-21T07:40:18.805204Z'
+                  summary: dsffv
+                  unique_id: 07064e0e-f166-4f6d-8f96-502fd06e6ee5
+                  service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                  application: 8c2acfbb-9e74-4c22-8733-d67e474a9bd4
+                  application_reference:
+                    name: FreshDesk 2-Way
+                    icon_url: 'https://sm.pcmag.com/t/pcmag_in/review/f/freshdesk/freshdesk_z1u3.640.jpg'
+                    summary: test
+                    description: Test
+                    unique_id: 8c2acfbb-9e74-4c22-8733-d67e474a9bd4
+                    availability_plan_id: 1
+                    setup_instructions: ''
+                    extension: freshdesk2way
+                    application_type: 1
+                    categories: ''
+                    documentation_link: ''
+                  integration_key: 8eb354d6-6e30-4787-924a-5c9abf9af9cb
+                  created_by: 85e1569d-79a4-4205-850f-a
+                  is_enabled: true
+                  create_incidents_for: 1
+                  integration_type: 0
+                  default_urgency: 1
+                - name: New Integration
+                  creation_date: '2022-06-29T13:53:12.427300Z'
+                  summary: This is the summary for new Integration
+                  unique_id: c97a29c5-2b70-4674-a934-117cc6f0c50f
+                  service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                  application: 3603a509-fc83-42d7-9144-a7223bbd9bf1
+                  application_reference:
+                    name: Anodot
+                    icon_url: ''
+                    summary: test
+                    description: test
+                    unique_id: 3603a509-fc83-42d7-9144-a7223bbd9bf1
+                    availability_plan_id: 1
+                    setup_instructions: <integrationURL>
+                    extension: anodot
+                    application_type: 0
+                    categories: APM
+                    documentation_link: ''
+                  integration_key: 8ecc797e-8b4b-46bb-908c-058a328ff9fd
+                  created_by: 85e1569d-79a4-4205-850f-a
+                  is_enabled: true
+                  create_incidents_for: 1
+                  integration_type: 0
+                  default_urgency: 1
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+                
+  '/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}':
       parameters: 
         - name: 'team_id'
           in: path
@@ -1153,38 +1823,2439 @@ paths:
           required: true
         - name: 'service_id'
           in: path
-          description: Unique Service ID
+          description: Unique ID of service
           schema:
             type: string
           required: true
         - name: 'integration_id'
           in: path
-          description: Unique Service ID
+          description: Unique ID of integration
           schema:
             type: string
           required: true
       get: 
         tags:
         - Integrations
-        summary: Get Integrations by ID
-        # operationId: getIntegrationsID
+        summary: Get Integration by ID
+        
         # security schemas applied to this operation
         security:
           - bearerAuth: []
-        responses: # list of responses
+        responses:
           '200':
-            description: Success
+            description: OK
             content:
               application/json: # operation response mime type
                 schema: # response schema can be specified for each response
                   $ref: '#/components/schemas/Integration'
-              application/xml: # operation response mime type
+                example:
+                  name: New Integration
+                  creation_date: '2022-06-29T13:53:12.427300Z'
+                  summary: This is the summary for new Integration
+                  unique_id: c97a29c5-2b70-4674-a934-117cc6f0c50f
+                  service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                  application: 3603a509-fc83-42d7-9144-a7223bbd9bf1
+                  application_reference:
+                    name: Anodot
+                    icon_url: ''
+                    summary: test
+                    description: test
+                    unique_id: 3603a509-fc83-42d7-9144-a7223bbd9bf1
+                    availability_plan_id: 1
+                    setup_instructions: <integrationURL>
+                    extension: anodot
+                    application_type: 0
+                    categories: APM
+                    documentation_link: ''
+                  integration_key: 8ecc797e-8b4b-46bb-908c-058a328ff9fd
+                  created_by: 85e1569d-79a4-4205-850f-a
+                  is_enabled: true
+                  create_incidents_for: 1
+                  integration_type: 0
+                  default_urgency: 1
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      put:
+        tags:
+          - Integrations
+        summary: Update Integration
+        security:
+          - bearerAuth: []
+        # request body documentation
+        requestBody:
+          description: Integration Put Payload
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegrationPutPayload'
+              example:
+                name: Modified Integration
+                application: 3603a509-fc83-42d7-9144-a7223bbd9bf1
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
                 schema: # response schema can be specified for each response
                   $ref: '#/components/schemas/Integration'
+                example:
+                  name: Modified Integration
+                  creation_date: '2022-06-29T13:53:12.427300Z'
+                  summary: This is the summary for new Integration
+                  unique_id: c97a29c5-2b70-4674-a934-117cc6f0c50f
+                  service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                  application: 3603a509-fc83-42d7-9144-a7223bbd9bf1
+                  application_reference:
+                    name: Anodot
+                    icon_url: ''
+                    summary: test
+                    description: test
+                    unique_id: 3603a509-fc83-42d7-9144-a7223bbd9bf1
+                    availability_plan_id: 1
+                    setup_instructions: <integrationURL>
+                    extension: anodot
+                    application_type: 0
+                    categories: APM
+                    documentation_link: ''
+                  integration_key: 8ecc797e-8b4b-46bb-908c-058a328ff9fd
+                  created_by: 85e1569d-79a4-4205-850f-a
+                  is_enabled: true
+                  create_incidents_for: 1
+                  integration_type: 0
+                  default_urgency: 1
+                  
+          '400':
+            description: Bad Request 
           '403':
-            description: Forbidden
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
           '404':
-            description: Not found
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      delete: 
+        tags:
+        - Integrations
+        summary: Delete Integration
+      
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses: # list of responses
+          '204':
+            description: Success
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+  
+  
+  '/api/account/teams/{}/roles/':
+    # documentation for creating incident roles
+    parameters: 
+    - name: 'team_id'
+      in: path
+      description: Unique ID of team
+      schema:
+        type: string
+      required: true
+    post:
+      tags:
+        - Incident Roles
+      summary: Create Incident Role
+      security:
+        - bearerAuth: []
+      # request body documentation
+      requestBody:
+        description: Incident Role Post Payload
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IRPostPayload'
+            example:
+              title: New Role
+              description: This is the description for the new Role
+              rank: 5
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/IncidentRoles'
+              example:
+                unique_id: 7f824232-6885-4ae2-b32c-ce10a7d8ce43
+                title: New Role
+                description: This is the description for the new Role
+                creation_date: '2022-07-01T08:14:26.432504Z'
+                rank: 5
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+    # documentation for get services
+    get: 
+      tags:
+      - Incident Roles
+      summary: Get Incident Roles
+    
+      # security schemas applied to this operation
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/IncidentRoles'
+              example:
+                - unique_id: 51d7c734-7231-441e-acd6-edb43972dea4
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  title: Incident Commander
+                  description: 'The incident commander is the person responsible for all aspects of the incident response, including quickly developing incident objectives, managing all incident operations, application of resources as well as responsibility for all persons involved. The incident commander sets priorities and defines the organization of the incident response teams and the overall incident action plan.'
+                  creation_date: '2022-04-14T08:09:23.781893Z'
+                  rank: 1
+                - unique_id: 57889813-b3a1-453f-9544-b7529d33ed4d
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  title: modified title
+                  description: ''
+                  creation_date: '2022-04-20T11:02:10.402283Z'
+                  rank: 1
+                - unique_id: 7f824232-6885-4ae2-b32c-ce10a7d8ce43
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  title: New Role
+                  description: This is the description for the new Role
+                  creation_date: '2022-07-01T08:14:26.432504Z'
+                  rank: 5
+                
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+                
+  '/api/account/teams/{team_id}/roles/{incident_role_id}/':
+      parameters: 
+        - name: 'team_id'
+          in: path
+          description: Unique ID of team
+          schema:
+            type: string
+          required: true
+        - name: 'incident_role_id'
+          in: path
+          description: Unique ID of incident role
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Incident Roles
+        summary: Get Incident Role by ID
+        
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/IncidentRoles'
+                example:
+                  unique_id: 7f824232-6885-4ae2-b32c-ce10a7d8ce43
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  title: New Role
+                  description: This is the description for the new Role
+                  creation_date: '2022-07-01T08:14:26.432504Z'
+                  rank: 5
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      put:
+        tags:
+          - Incident Roles
+        summary: Update Incident Role
+        security:
+          - bearerAuth: []
+        # request body documentation
+        requestBody:
+          description: Incident Role Put Payload
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IRPutPayload'
+              example:
+                title: Modified Role
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/IncidentRoles'
+                example:
+                  unique_id: 7f824232-6885-4ae2-b32c-ce10a7d8ce43
+                  title: Modified Role
+                  description: This is the description for the new Role
+                  creation_date: '2022-07-01T08:14:26.432504Z'
+                  rank: 5
+                  
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      delete: 
+        tags:
+        - Incident Roles
+        summary: Delete Incident Role
+      
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses: # list of responses
+          '204':
+            description: Success
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+                  
+                  
+  
+  '/api/account/teams/{}/tags/':
+    # documentation for creating tags
+    parameters: 
+    - name: 'team_id'
+      in: path
+      description: Unique ID of team
+      schema:
+        type: string
+      required: true
+    post:
+      tags:
+        - Tags
+      summary: Create Tag
+      security:
+        - bearerAuth: []
+      # request body documentation
+      requestBody:
+        description: Tag Post Payload
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagPostPayload'
+            example:
+              name: New Tag
+              color: red
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/Tagsref'
+              example:
+                unique_id: 1060d7fc-6b2d-47e9-9b06-87644dd2afc7
+                name: New Tag
+                creation_date: '2022-07-01T08:30:18.412283Z'
+                color: red
+                team: 130
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+    # documentation for get services
+    get: 
+      tags:
+      - Tags
+      summary: Get Tags
+    
+      # security schemas applied to this operation
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/Tagsref'
+              example:
+                - unique_id: 57b94649-98dc-4a7b-88d8-ada3c7479608
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  name: nkfjdlvkcjlxk
+                  creation_date: '2022-04-26T07:51:42.218062Z'
+                  color: orange
+                - unique_id: 06083922-cfb0-4607-bb0a-710a74131519
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  name: nvjkclxvcnl
+                  creation_date: '2022-04-26T07:54:03.582722Z'
+                  color: geekblue
+                - unique_id: 1060d7fc-6b2d-47e9-9b06-87644dd2afc7
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  name: New Tag
+                  creation_date: '2022-07-01T08:30:18.412283Z'
+                  color: red
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+                
+  '/api/account/teams/{team_id}/tags/{tag_id}/':
+      parameters: 
+        - name: 'team_id'
+          in: path
+          description: Unique ID of team
+          schema:
+            type: string
+          required: true
+        - name: 'tag_id'
+          in: path
+          description: Unique ID of tag
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Tags
+        summary: Get Tag by ID
+        
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/Tagsref'
+                example:
+                  unique_id: 1060d7fc-6b2d-47e9-9b06-87644dd2afc7
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  name: New Tag
+                  creation_date: '2022-07-01T08:30:18.412283Z'
+                  color: red
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      put:
+        tags:
+          - Tags
+        summary: Update Tag
+        security:
+          - bearerAuth: []
+        # request body documentation
+        requestBody:
+          description: Tag Put Payload
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagPutPayload'
+              example:
+                name: Modified Tag
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/Tagsref'
+                example:
+                  unique_id: 1060d7fc-6b2d-47e9-9b06-87644dd2afc7
+                  name: Modified Tag
+                  creation_date: '2022-07-01T08:30:18.412283Z'
+                  color: red
+                  team: 130
+                  
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      delete: 
+        tags:
+        - Tags
+        summary: Delete Tag
+      
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses: # list of responses
+          '204':
+            description: Success
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+                  
+                  
+  '/api/account/teams/{}/task_templates/':
+    # documentation for creating task template
+    parameters: 
+    - name: 'team_id'
+      in: path
+      description: Unique ID of team
+      schema:
+        type: string
+      required: true
+    post:
+      tags:
+        - Task Templates
+      summary: Create Tag
+      security:
+        - bearerAuth: []
+      # request body documentation
+      requestBody:
+        description: Task Template Post Payload
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TTPostPayload'
+            example:
+              name: New Task Template
+              summary: This is the summary of the new Task Template
+              
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/TaskTemplatesresp'
+              example:
+                unique_id: 15dd1650-8c16-49d4-9af1-01f353152fbe
+                name: New Task Template
+                creation_date: '2022-07-01T08:41:37.447139Z'
+                summary: This is the summary of the new Task Template
+                due_immediately: 0
+                
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+    # documentation for get services
+    get: 
+      tags:
+      - Task Templates
+      summary: Get Task Template
+    
+      # security schemas applied to this operation
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/TaskTemplatesresp'
+              example:
+                - unique_id: 7f8150f3-9825-46ab-b48e-eef0b1ec094e
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  name: Modified Task Template
+                  creation_date: '2022-06-30T10:39:53.529366Z'
+                  summary: This is the summary of the new Task Template
+                  due_immediately: 0
+                - unique_id: 15dd1650-8c16-49d4-9af1-01f353152fbe
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  name: New Task Template
+                  creation_date: '2022-07-01T08:41:37.447139Z'
+                  summary: This is the summary of the new Task Template
+                  due_immediately: 0
+                
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+                
+  '/api/account/teams/{team_id}/task_templates/{task_template_id}/':
+      parameters: 
+        - name: 'team_id'
+          in: path
+          description: Unique ID of team
+          schema:
+            type: string
+          required: true
+        - name: 'task_template_id'
+          in: path
+          description: Unique ID of task template
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Task Templates
+        summary: Get Task Template by ID
+        
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/TaskTemplatesresp'
+                example:
+                  unique_id: 15dd1650-8c16-49d4-9af1-01f353152fbe
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  name: New Task Template
+                  creation_date: '2022-07-01T08:41:37.447139Z'
+                  summary: This is the summary of the new Task Template
+                  due_immediately: 0
+                  
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      put:
+        tags:
+          - Task Templates
+        summary: Update Task Template
+        security:
+          - bearerAuth: []
+        # request body documentation
+        requestBody:
+          description: Task Template Put Payload
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TTPutPayload'
+              example:
+                name: Modified Task Template
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/TaskTemplatesresp'
+                example:
+                  unique_id: 15dd1650-8c16-49d4-9af1-01f353152fbe
+                  name: Modified Task Template
+                  creation_date: '2022-07-01T08:41:37.447139Z'
+                  summary: This is the summary of the new Task Template
+                  due_immediately: 0
+                  
+                  
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      delete: 
+        tags:
+        - Task Templates
+        summary: Delete Task Template
+      
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses: # list of responses
+          '204':
+            description: Success
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+  
+  
+  '/api/account/teams/{}/priority/':
+    # documentation for creating task template
+    parameters: 
+    - name: 'team_id'
+      in: path
+      description: Unique ID of team
+      schema:
+        type: string
+      required: true
+    post:
+      tags:
+        - Priorities
+      summary: Create Priority
+      security:
+        - bearerAuth: []
+      # request body documentation
+      requestBody:
+        description: Priority Post Payload
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PriorityPostPayload'
+            example:
+              name: New Priority
+              
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/Priority'
+              example:
+                unique_id: af95bcd4-93c0-4acc-9fda-365297c862e3
+                name: New Priority
+                description: ''
+                creation_date: '2022-07-01T08:55:08.040679Z'
+                color: ''
+                
+                
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+    # documentation for get services
+    get: 
+      tags:
+      - Priorities
+      summary: Get Priorities
+    
+      # security schemas applied to this operation
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/Priority'
+              example:
+               - unique_id: 1dcb2f68-3a3f-4f26-85e2-5a06991557ae
+                 team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                 description: vbfkjdf
+                 name: bdfgkd
+                 creation_date: '2022-04-26T09:03:36.903336Z'
+                 color: volcano
+               - unique_id: af95bcd4-93c0-4acc-9fda-365297c862e3
+                 team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                 description: ''
+                 name: New Priority
+                 creation_date: '2022-07-01T08:55:08.040679Z'
+                 color: ''
+               
+                
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+                
+  '/api/account/teams/{team_id}/priority/{priority_id}/':
+      parameters: 
+        - name: 'team_id'
+          in: path
+          description: Unique ID of team
+          schema:
+            type: string
+          required: true
+        - name: 'priority_id'
+          in: path
+          description: Unique ID of priority
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Priorities
+        summary: Get Priority by ID
+        
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/Priority'
+                example:
+                  unique_id: af95bcd4-93c0-4acc-9fda-365297c862e3
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  description: ''
+                  name: New Priority
+                  creation_date: '2022-07-01T08:55:08.040679Z'
+                  color: ''
+                  
+                  
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      put:
+        tags:
+          - Priorities
+        summary: Update Priority
+        security:
+          - bearerAuth: []
+        # request body documentation
+        requestBody:
+          description: Priority Put Payload
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriorityPutPayload'
+              example:
+                name: Modified Priority
+                
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/Priority'
+                example:
+                  unique_id: af95bcd4-93c0-4acc-9fda-365297c862e3
+                  name: Modified Priority
+                  description: ''
+                  creation_date: '2022-07-01T08:55:08.040679Z'
+                  color: ''
+                  
+                  
+                  
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      delete: 
+        tags:
+        - Priorities
+        summary: Delete Priority
+      
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses: # list of responses
+          '204':
+            description: Success
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+                  
+  
+  
+  '/api/account/teams/{}/sla/':
+    # documentation for creating task template
+    parameters: 
+    - name: 'team_id'
+      in: path
+      description: Unique ID of team
+      schema:
+        type: string
+      required: true
+    post:
+      tags:
+        - SLA
+      summary: Create SLA
+      security:
+        - bearerAuth: []
+      # request body documentation
+      requestBody:
+        description: SLA Post Payload
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SLAPostPayload'
+            example:
+              name: New SLA
+              escalations: []
+              
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/SLA'
+              example:
+                escalations: []
+                unique_id: 5b6c28d7-1e85-4d8c-8e09-deabbb3b2c2f
+                name: New SLA
+                description: ''
+                is_active: true
+                conditions: '{}'
+                acknowledge_time: null
+                resolve_time: null
+                
+                
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+    # documentation for get services
+    get: 
+      tags:
+      - SLA
+      summary: Get SLA
+    
+      # security schemas applied to this operation
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/SLA'
+              example:
+               - unique_id: 5b6c28d7-1e85-4d8c-8e09-deabbb3b2c2f
+                 name: New SLA
+                 is_active: true
+                 acknowledge_time: null
+                 resolve_time: null
+                 creation_date: '2022-07-01T11:56:54.498652Z'
+               
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+                
+  '/api/account/teams/{team_id}/sla/{sla_id}/':
+      parameters: 
+        - name: 'team_id'
+          in: path
+          description: Unique ID of team
+          schema:
+            type: string
+          required: true
+        - name: 'sla_id'
+          in: path
+          description: Unique ID of SLA
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - SLA
+        summary: Get SLA by ID
+        
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/SLA'
+                example:
+                  unique_id: 5b6c28d7-1e85-4d8c-8e09-deabbb3b2c2f
+                  name: New SLA
+                  is_active: true
+                  acknowledge_time: null
+                  resolve_time: null
+                  creation_date: '2022-07-01T11:56:54.498652Z'
+                  
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      put:
+        tags:
+          - SLA
+        summary: Update SLA
+        security:
+          - bearerAuth: []
+        # request body documentation
+        requestBody:
+          description: SLA Put Payload
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SLAPutPayload'
+              example:
+                name: Modified SLA
+                escalations: []
+                
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/SLA'
+                example:
+                  escalations: []
+                  unique_id: 5b6c28d7-1e85-4d8c-8e09-deabbb3b2c2f
+                  name: Modified SLA
+                  description: ''
+                  is_active: true
+                  conditions: '{}'
+                  acknowledge_time: null
+                  resolve_time: null
+                  
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      delete: 
+        tags:
+        - SLA
+        summary: Delete SLA
+      
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses: # list of responses
+          '204':
+            description: Success
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+                  
+  
+  
+  '/api/account/teams/{}/maintenance/':
+    # documentation for creating team maintenance
+    parameters: 
+    - name: 'team_id'
+      in: path
+      description: Unique ID of team
+      schema:
+        type: string
+      required: true
+    post:
+      tags:
+        - Team Maintenance Mode
+      summary: Create Team Maintenance Mode
+      security:
+        - bearerAuth: []
+      # request body documentation
+      requestBody:
+        description: Team Maintenance Mode Post Payload
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TMMPostPayload'
+            example:
+              name: New Maintenance
+              services: []
+              start_time: '2020-02-18 16:27:00.000000'
+              end_time: '2020-02-21 16:27:00.000000'
+              
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/TMM'
+              example:
+                unique_id: 91accfec-ac06-4671-a6a9-554ac2b3d9a2
+                start_time: '2020-02-18T16:27:00Z'
+                end_time: '2020-02-21T16:27:00Z'
+                repeat_interval: 0
+                services: []
+                creation_date: '2022-07-01T12:18:50.071578Z'
+                name: New Maintenance
+                time_zone: UTC
+                repeat_until: null
+                
+                
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+    # documentation for get services
+    get: 
+      tags:
+      - Team Maintenance Mode
+      summary: Get Team Maintenance Mode
+    
+      # security schemas applied to this operation
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/TMM'
+              example:
+               - unique_id: 91accfec-ac06-4671-a6a9-554ac2b3d9a2
+                 start_time: '2020-02-18T16:27:00Z'
+                 end_time: '2020-02-21T16:27:00Z'
+                 repeat_interval: 0
+                 services: []
+                 creation_date: '2022-07-01T12:18:50.071578Z'
+                 name: New Maintenance
+                 time_zone: UTC
+                 repeat_until: null
+               
+               
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+                
+  '/api/account/teams/{team_id}/maintenance/{maintenance_id}/':
+      parameters: 
+        - name: 'team_id'
+          in: path
+          description: Unique ID of team
+          schema:
+            type: string
+          required: true
+        - name: 'maintenance_id'
+          in: path
+          description: Unique ID of Team Maintenance Mode
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Team Maintenance Mode
+        summary: Get Team Maintenance Mode by ID
+        
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/TMM'
+                example:
+                  unique_id: 91accfec-ac06-4671-a6a9-554ac2b3d9a2
+                  start_time: '2020-02-18T16:27:00Z'
+                  end_time: '2020-02-21T16:27:00Z'
+                  repeat_interval: 0
+                  services: []
+                  creation_date: '2022-07-01T12:18:50.071578Z'
+                  name: New Maintenance
+                  time_zone: UTC
+                  repeat_until: null
+                  
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      put:
+        tags:
+          - Team Maintenance Mode
+        summary: Update Team Maintenance Mode
+        security:
+          - bearerAuth: []
+        # request body documentation
+        requestBody:
+          description: Team Maintenance Mode Put Payload
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TMMPutPayload'
+              example:
+                name: Modified Maintenance
+                services: []
+                start_time: '2020-02-18 16:27:00.000000'
+                end_time: '2020-02-21 16:27:00.000000'
+                time_zone: UTC
+                repeat_interval: 0
+                
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/TMM'
+                example:
+                  unique_id: 91accfec-ac06-4671-a6a9-554ac2b3d9a2
+                  start_time: '2020-02-18T16:27:00Z'
+                  end_time: '2020-02-21T16:27:00Z'
+                  repeat_interval: 0
+                  services: []
+                  creation_date: '2022-07-01T12:18:50.071578Z'
+                  name: Modified Maintenance
+                  time_zone: UTC
+                  repeat_until: null
+                  
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      delete: 
+        tags:
+        - Team Maintenance Mode
+        summary: Delete Team Maintenance Mode
+      
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses: # list of responses
+          '204':
+            description: Success
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+  
+  
+  '/api/account/teams/{}/postmortem/':
+    # documentation for creating postmortem
+    parameters: 
+    - name: 'team_id'
+      in: path
+      description: Unique ID of team
+      schema:
+        type: string
+      required: true
+    post:
+      tags:
+        - Postmortem
+      summary: Create Postmortem
+      security:
+        - bearerAuth: []
+      # request body documentation
+      requestBody:
+        description: Postmortem Post Payload
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostmortemPostPayload'
+            example:
+              title: New Postmortem
+              author: 85e1569d-79a4-4205-850f-a
+              incidents:
+                - incident: ubTMAY9i8aWaGCTDPXeGHT
+              
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/Postmortem'
+              example:
+                unique_id: 58a42a7f-724e-40a9-9254-2a9c0d03cf4e
+                author: 85e1569d-79a4-4205-850f-a
+                status: ''
+                incidents:
+                  - unique_id: 5aea2bc1-90a2-47c0-a86c-584fe6d60f75
+                    incident: ubTMAY9i8aWaGCTDPXeGHT
+                author_name: Anshul Admin
+                title: New Postmortem
+                postmortem_data: ''
+                download_status: 0
+                
+                
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+    # documentation for get services
+    get: 
+      tags:
+      - Postmortem
+      summary: Get Postmortems
+    
+      # security schemas applied to this operation
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/Postmortem'
+              example:
+               - unique_id: 58a42a7f-724e-40a9-9254-2a9c0d03cf4e
+                 author: 85e1569d-79a4-4205-850f-a
+                 status: ''
+                 postmortem_data: ''
+                 incidents:
+                   - unique_id: 5aea2bc1-90a2-47c0-a86c-584fe6d60f75
+                     incident:
+                       unique_id: ubTMAY9i8aWaGCTDPXeGHT
+                       title: new incident
+                       incident_number: 538
+                 author_name: Anshul Admin
+                 title: New Postmortem
+                 download_status: 0
+                 amazon_link: 'https://zenduty-dev-report.s3.amazonaws.com/'
+                 creation_date: '2022-07-04T08:02:57.372391Z'
+               
+               
+               
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+                
+  '/api/account/teams/{team_id}/postmortem/{postmortem_id}/':
+      parameters: 
+        - name: 'team_id'
+          in: path
+          description: Unique ID of team
+          schema:
+            type: string
+          required: true
+        - name: 'postmortem_id'
+          in: path
+          description: Unique ID of postmortem
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Postmortem
+        summary: Get Postmortem by ID
+        
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/Postmortem'
+                example:
+                  unique_id: 58a42a7f-724e-40a9-9254-2a9c0d03cf4e
+                  author: 85e1569d-79a4-4205-850f-a
+                  status: ''
+                  postmortem_data: ''
+                  incidents:
+                    - unique_id: 5aea2bc1-90a2-47c0-a86c-584fe6d60f75
+                      incident:
+                        unique_id: ubTMAY9i8aWaGCTDPXeGHT
+                        title: new incident
+                        incident_number: 538
+                  author_name: Anshul Admin
+                  title: New Postmortem
+                  download_status: 0
+                  amazon_link: 'https://zenduty-dev-report.s3.amazonaws.com/'
+                  creation_date: '2022-07-04T08:02:57.372391Z'
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      put:
+        tags:
+          - Postmortem
+        summary: Update Postmortem
+        security:
+          - bearerAuth: []
+        # request body documentation
+        requestBody:
+          description: Postmortem Put Payload
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostmortemPutPayload'
+              example:
+                title: Modified Postmortem
+                author: 85e1569d-79a4-4205-850f-a
+                incidents:
+                  - incident: ubTMAY9i8aWaGCTDPXeGHT
+                status: Critical
+                postmortem_data: This is modified postmortem data
+              
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/Postmortem'
+                example:
+                  unique_id: 58a42a7f-724e-40a9-9254-2a9c0d03cf4e
+                  author: 85e1569d-79a4-4205-850f-a
+                  status: Critical
+                  incidents:
+                    - unique_id: 5aea2bc1-90a2-47c0-a86c-584fe6d60f75
+                      incident: ubTMAY9i8aWaGCTDPXeGHT
+                  author_name: Anshul Admin
+                  title: Modified Postmortem
+                  postmortem_data: This is modified postmortem data
+                  download_status: 0
+                  
+                  
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      delete: 
+        tags:
+        - Postmortem
+        summary: Delete Postmortem
+      
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses: # list of responses
+          '204':
+            description: Success
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+                  
+  '/api/incidents/':
+    # documentation for creating Incident
+    post:
+      tags:
+        - Incidents
+      summary: Create Incident
+      security:
+        - bearerAuth: []
+      # request body documentation
+      requestBody:
+        description: Incident Post Payload
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IncidentPostPayload'
+            example:
+              title: New Incident
+              service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+              
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/Incident'
+              example:
+                summary: ''
+                incident_number: 540
+                creation_date: '2022-07-04T08:26:17.949675Z'
+                status: 1
+                unique_id: KubkXJGFfeC3HE68JWR3zA
+                service_object:
+                  name: dnlv
+                  creation_date: '2022-04-14T08:46:19.039007Z'
+                  summary: ''
+                  description: nckjxv
+                  unique_id: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                  auto_resolve_timeout: 0
+                  created_by: 85e1569d-79a4-4205-850f-a
+                  team_priority: null
+                  task_template: null
+                  acknowledgement_timeout: 0
+                  status: 1
+                  escalation_policy: 0487dcc1-e900-48d0-880d-f7662766cd07
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  sla: null
+                  collation_time: 1
+                  collation: 1
+                title: New Incident
+                incident_key: hRcvtmMoyK9HHWzV566MbV
+                service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                urgency: 1
+                merged_with: null
+                assigned_to: null
+                escalation_policy: 0487dcc1-e900-48d0-880d-f7662766cd07
+                escalation_policy_object:
+                  unique_id: 0487dcc1-e900-48d0-880d-f7662766cd07
+                  name: Default Escalation Policy
+                assigned_to_name: ''
+                resolved_date: null
+                acknowledged_date: null
+                context_window_start: null
+                context_window_end: null
+                tags: []
+                sla: null
+                sla_object: null
+                team_priority: null
+                team_priority_object: null
+                
+                
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+    # documentation for get services
+    get: 
+      tags:
+      - Incidents
+      summary: Get Incidents
+    
+      # security schemas applied to this operation
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/Incident'
+              example:
+               - summary: ''
+                 incident_number: 540
+                 creation_date: '2022-07-04T08:26:17.949675Z'
+                 status: 1
+                 unique_id: KubkXJGFfeC3HE68JWR3zA
+                 service_object:
+                   name: dnlv
+                   creation_date: '2022-04-14T08:46:19.039007Z'
+                   summary: ''
+                   description: nckjxv
+                   unique_id: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                   auto_resolve_timeout: 0
+                   created_by: 85e1569d-79a4-4205-850f-a
+                   team_priority: null
+                   task_template: null
+                   acknowledgement_timeout: 0
+                   status: 1
+                   escalation_policy: 0487dcc1-e900-48d0-880d-f7662766cd07
+                   team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                   sla: null
+                   collation_time: 1
+                   collation: 1
+                 title: New Incident
+                 incident_key: hRcvtmMoyK9HHWzV566MbV
+                 service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                 urgency: 1
+                 merged_with: null
+                 assigned_to: null
+                 escalation_policy: 0487dcc1-e900-48d0-880d-f7662766cd07
+                 escalation_policy_object:
+                   unique_id: 0487dcc1-e900-48d0-880d-f7662766cd07
+                   name: Default Escalation Policy
+                 assigned_to_name: ''
+                 resolved_date: null
+                 acknowledged_date: null
+                 context_window_start: null
+                 context_window_end: null
+                 tags: []
+                 sla: null
+                 sla_object: null
+                 team_priority: null
+                 team_priority_object: null
+               
+               
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+                
+  '/api/incidents/{incident_number}/':
+      parameters: 
+        - name: 'incident_number'
+          in: path
+          description: Incident Number of the incident
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Incidents
+        summary: Get Incident by ID
+        
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/Incident'
+                example:
+                  summary: ''
+                  incident_number: 540
+                  creation_date: '2022-07-04T08:26:17.949675Z'
+                  status: 1
+                  unique_id: KubkXJGFfeC3HE68JWR3zA
+                  service_object:
+                    name: dnlv
+                    creation_date: '2022-04-14T08:46:19.039007Z'
+                    summary: ''
+                    description: nckjxv
+                    unique_id: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                    auto_resolve_timeout: 0
+                    created_by: 85e1569d-79a4-4205-850f-a
+                    team_priority: null
+                    task_template: null
+                    acknowledgement_timeout: 0
+                    status: 1
+                    escalation_policy: 0487dcc1-e900-48d0-880d-f7662766cd07
+                    team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                    sla: null
+                    collation_time: 1
+                    collation: 1
+                  title: New Incident
+                  incident_key: hRcvtmMoyK9HHWzV566MbV
+                  service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                  urgency: 1
+                  merged_with: null
+                  assigned_to: null
+                  escalation_policy: 0487dcc1-e900-48d0-880d-f7662766cd07
+                  escalation_policy_object:
+                    unique_id: 0487dcc1-e900-48d0-880d-f7662766cd07
+                    name: Default Escalation Policy
+                  assigned_to_name: ''
+                  resolved_date: null
+                  acknowledged_date: null
+                  context_window_start: null
+                  context_window_end: null
+                  tags: []
+                  sla: null
+                  sla_object: null
+                  team_priority: null
+                  team_priority_object: null
+                  
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      put:
+        tags:
+          - Incidents
+        summary: Update Incident
+        security:
+          - bearerAuth: []
+        # request body documentation
+        requestBody:
+          description: Incident Put Payload
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncidentPutPayload'
+              example:
+                title: Modified Incident
+                service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+              
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/Incident'
+                example:
+                  summary: ''
+                  incident_number: 540
+                  creation_date: '2022-07-04T08:26:17.949675Z'
+                  status: 1
+                  unique_id: KubkXJGFfeC3HE68JWR3zA
+                  service_object:
+                    name: dnlv
+                    creation_date: '2022-04-14T08:46:19.039007Z'
+                    summary: ''
+                    description: nckjxv
+                    unique_id: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                    auto_resolve_timeout: 0
+                    created_by: 85e1569d-79a4-4205-850f-a
+                    team_priority: null
+                    task_template: null
+                    acknowledgement_timeout: 0
+                    status: 1
+                    escalation_policy: 0487dcc1-e900-48d0-880d-f7662766cd07
+                    team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                    sla: null
+                    collation_time: 1
+                    collation: 1
+                  title: Modified Incident
+                  incident_key: hRcvtmMoyK9HHWzV566MbV
+                  service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                  urgency: 1
+                  merged_with: null
+                  assigned_to: null
+                  escalation_policy: 0487dcc1-e900-48d0-880d-f7662766cd07
+                  escalation_policy_object:
+                    unique_id: 0487dcc1-e900-48d0-880d-f7662766cd07
+                    name: Default Escalation Policy
+                  assigned_to_name: ''
+                  resolved_date: null
+                  acknowledged_date: null
+                  context_window_start: null
+                  context_window_end: null
+                  tags: []
+                  sla: null
+                  sla_object: null
+                  team_priority: null
+                  team_priority_object: null
+                  
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+                  
+  
+  '/api/incidents/{incident_number}/note/':
+    # documentation for Incident Note
+    parameters: 
+    - name: 'incident_number'
+      in: path
+      description: Incident Number of the incident
+      schema:
+        type: string
+      required: true
+    post:
+      tags:
+        - Incident Notes
+      summary: Create Incident Note
+      security:
+        - bearerAuth: []
+      # request body documentation
+      requestBody:
+        description: Incident Note Post Payload
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IncidentNotePostPayload'
+            example:
+              note: New Note
+              
+              
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/IncidentNote'
+              example:
+                unique_id: kQuQKxo6khCJgt4FiJLVfd
+                incident: 540
+                user: 85e1569d-79a4-4205-850f-a
+                note: New Note
+                user_name: Anshul Admin
+                creation_date: '2022-07-04T09:13:33.767558Z'
+                
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+    # documentation for get services
+    get: 
+      tags:
+      - Incident Notes
+      summary: Get Incident Notes
+    
+      # security schemas applied to this operation
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/IncidentNote'
+              example:
+               - unique_id: kQuQKxo6khCJgt4FiJLVfd
+                 incident: 540
+                 user: 85e1569d-79a4-4205-850f-a
+                 note: New Note
+                 user_name: Anshul Admin
+                 creation_date: '2022-07-04T09:13:33.767558Z'
+               
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+                
+  '/api/incidents/{incident_number}/note/{note_unique_id}':
+      parameters: 
+        - name: 'incident_number'
+          in: path
+          description: Incident Number of the Incident
+          schema:
+            type: string
+          required: true
+        - name: 'note_unique_id'
+          in: path
+          description: Unique ID of Incident Note
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Incident Notes
+        summary: Get Incident Note by ID
+        
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/IncidentNote'
+                example:
+                  unique_id: kQuQKxo6khCJgt4FiJLVfd
+                  incident: 540
+                  user: 85e1569d-79a4-4205-850f-a
+                  note: New Note
+                  user_name: Anshul Admin
+                  creation_date: '2022-07-04T09:13:33.767558Z'
+                  
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      put:
+        tags:
+          - Incident Notes
+        summary: Update Incident Note
+        security:
+          - bearerAuth: []
+        # request body documentation
+        requestBody:
+          description: Incident Note Put Payload
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncidentNotePutPayload'
+              example:
+                note: Modified Note
+                
+              
+        responses:
+          '200':  
+            description: OK
+            content:
+              application/json: # operation response mime type
+                schema: # response schema can be specified for each response
+                  $ref: '#/components/schemas/IncidentNote'
+                example:
+                 unique_id: kQuQKxo6khCJgt4FiJLVfd
+                 incident: 540
+                 user: 85e1569d-79a4-4205-850f-a
+                 note: Modified Note
+                 user_name: Anshul Admin
+                 creation_date: '2022-07-04T09:13:33.767558Z'
+                 
+                  
+                  
+                  
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+      delete: 
+        tags:
+        - Incident Notes
+        summary: Delete Incident Note
+      
+        # security schemas applied to this operation
+        security:
+          - bearerAuth: []
+        responses: # list of responses
+          '204':
+            description: Success
+          '400':
+            description: Bad Request 
+          '403':
+            description: Forbidden 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: # operation response mime type
+                example:
+                  detail: Not Found.
+                  
+                  
+  
+  '/api/events/{integration_key}/':
+    # documentation for Incident Note
+    parameters: 
+    - name: 'integration_key'
+      in: path
+      description: Integration Key of an integration
+      schema:
+        type: string
+      required: true
+    post:
+      tags:
+        - Event
+      summary: Create Event
+      security:
+        - bearerAuth: []
+      # request body documentation
+      requestBody:
+        description: Event Post Payload
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventPostPayload'
+            example:
+              note: New Note
+              
+              
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/NewEvent'
+              example:
+                integration_object:
+                  name: Anodot
+                  creation_date: '2022-04-14T08:46:19.184696Z'
+                  summary: Edit summary for this integration
+                  unique_id: d162f6f9-6258-4408-a5bc-63c46ad4deb8
+                  service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  integration_key: b91f575d-14e8-4426-b063-7b171dcf3ca2
+                  is_enabled: true
+                  integration_type: 0
+                summary: New summary
+                incident: 544
+                creation_date: '2022-07-04T11:19:31.874110Z'
+                message: New Message
+                integration: d162f6f9-6258-4408-a5bc-63c46ad4deb8
+                suppressed: false
+                entity_id: 66d8d262-e264-4f33-9620-a0e6325f
+                payload: '{}'
+                alert_type: '3'
+                unique_id: TGiG9z5qqeud7XfDYAHNzR
+                images: []
+                urls: []
+                notes: []
+                
+                
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+                
+  
+  '/api/incidents/{incident_number}/alerts/':
+    # documentation for Incident Alert
+    parameters: 
+    - name: 'incident_number'
+      in: path
+      description: Incident Number of the incident
+      schema:
+        type: string
+      required: true
+    
+    get: 
+      tags:
+      - Incident Alerts
+      summary: Get Incident Alerts
+    
+      # security schemas applied to this operation
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/IncidentAlert'
+              example:
+               - integration_object:
+                   name: Anodot
+                   creation_date: '2022-04-14T08:46:19.184696Z'
+                   summary: Edit summary for this integration
+                   unique_id: d162f6f9-6258-4408-a5bc-63c46ad4deb8
+                   service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                   team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                   integration_key: b91f575d-14e8-4426-b063-7b171dcf3ca2
+                   is_enabled: true
+                   integration_type: 0
+                 summary: some summary
+                 incident: 541
+                 creation_date: '2022-07-04T09:38:08.241579Z'
+                 message: Some message
+                 integration: d162f6f9-6258-4408-a5bc-63c46ad4deb8
+                 suppressed: false
+                 entity_id: 473e1c18-e3e6-415c-bfa5-8d6edf4e
+                 alert_type: '3'
+                 unique_id: BhZfoGTYnwVo5FLaVcwBAF
+                 images: []
+                 urls: []
+                 notes: []
+               
+               
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+                
+  
+  '/api/account/teams/{team_id}/oncall/':
+    # documentation for Incident Alert
+    parameters: 
+    - name: 'team_id'
+      in: path
+      description: Unique ID of the Team
+      schema:
+        type: string
+      required: true
+    
+    get: 
+      tags:
+      - OnCall
+      summary: Get details about who is on call
+    
+      # security schemas applied to this operation
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: # operation response mime type
+              schema: # response schema can be specified for each response
+                $ref: '#/components/schemas/onCall'
+              example:
+               - escalation_policy:
+                   name: Default Escalation Policy
+                   summary: This is the default escalation policy for this team
+                   description: ''
+                   unique_id: 0487dcc1-e900-48d0-880d-f7662766cd07
+                   repeat_policy: 0
+                   move_to_next: true
+                   global_ep: false
+                 team:
+                   unique_id: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                   name: just checking
+                 users:
+                   - username: 85e1569d-79a4-4205-850f-a
+                     first_name: Anshul
+                     email: anshul@admin.com
+                     last_name: Admin
+               - escalation_policy:
+                   name: Modified Escalation Policy
+                   summary: This is the summary for the new escalation policy
+                   description: This is the description for the New Escalation Policy
+                   unique_id: 1fd12a33-8d81-4ad8-a30a-cfb2c2955392
+                   repeat_policy: 0
+                   move_to_next: true
+                   global_ep: false
+                 team:
+                   unique_id: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                   name: just checking
+                 users:
+                   - username: 85e1569d-79a4-4205-850f-a
+                     first_name: Anshul
+                     email: anshul@admin.com
+                     last_name: Admin
+               
+        '400':
+          description: Bad Request 
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+                
+                
+                
   '/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/alerts/':
       parameters: 
         - name: 'team_id'
@@ -1195,941 +4266,234 @@ paths:
           required: true
         - name: 'service_id'
           in: path
-          description: Unique Service ID
+          description: Unique ID of service
           schema:
             type: string
           required: true
         - name: 'integration_id'
           in: path
-          description: Unique Service ID
+          description: Unique ID of integration
           schema:
             type: string
           required: true
       get: 
         tags:
-        - Integrations
-        summary: Get Alerts in an integration
-        # operationId: getAlerts
+        - Integration Alerts
+        summary: Get Integration Aler
+        
         # security schemas applied to this operation
         security:
           - bearerAuth: []
-        responses: # list of responses
+        responses:
           '200':
-            description: Success
+            description: OK
             content:
               application/json: # operation response mime type
                 schema: # response schema can be specified for each response
                   $ref: '#/components/schemas/AlertList'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/AlertList'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-  '/api/incidents/':
-      get: 
-        tags:
-        - Incidents
-        summary: Get Incidents
-        # operationId: getIncidents
-        # security schemas applied to this operation
-        parameters:
-          - name: page
-            in: query
-            schema:
-              type: integer
-            example: 1
-          - name: status
-            in: query
-            schema:
-              type: integer
-            example: 1
-          - name: team_ids
-            in: query
-            schema: 
-              type: array
-              items:
-                type: string
-          - name: service_ids
-            in: query
-            schema:
-              type: array
-              items:
-                type: string
-          - name: user_ids
-            in: query
-            schema:
-              type: array
-              items:
-                type: string
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/IncidentList'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/IncidentList'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-      post:
-        tags:
-          - Incidents
-        summary: Create Incident
-          # operationId: createIncident
-        security:
-          - bearerAuth: []
-        responses:
-          '200':
-            description: OK
+                example:
+                  - integration_object:
+                      name: Anodot
+                      creation_date: '2022-04-14T08:46:19.184696Z'
+                      summary: Edit summary for this integration
+                      unique_id: d162f6f9-6258-4408-a5bc-63c46ad4deb8
+                      service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                      team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                      integration_key: b91f575d-14e8-4426-b063-7b171dcf3ca2
+                      is_enabled: true
+                      integration_type: 0
+                    summary: New summary
+                    incident: 544
+                    creation_date: '2022-07-04T11:19:31.874110Z'
+                    message: New Message
+                    integration: d162f6f9-6258-4408-a5bc-63c46ad4deb8
+                    suppressed: false
+                    entity_id: 66d8d262-e264-4f33-9620-a0e6325f
+                    alert_type: '3'
+                    unique_id: TGiG9z5qqeud7XfDYAHNzR
+                    images: []
+                    urls: []
+                    notes: []
+                  - integration_object:
+                      name: Anodot
+                      creation_date: '2022-04-14T08:46:19.184696Z'
+                      summary: Edit summary for this integration
+                      unique_id: d162f6f9-6258-4408-a5bc-63c46ad4deb8
+                      service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                      team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                      integration_key: b91f575d-14e8-4426-b063-7b171dcf3ca2
+                      is_enabled: true
+                      integration_type: 0
+                    summary: some summary
+                    incident: 541
+                    creation_date: '2022-07-04T09:38:08.241579Z'
+                    message: Some message
+                    integration: d162f6f9-6258-4408-a5bc-63c46ad4deb8
+                    suppressed: false
+                    entity_id: 473e1c18-e3e6-415c-bfa5-8d6edf4e
+                    alert_type: '3'
+                    unique_id: BhZfoGTYnwVo5FLaVcwBAF
+                    images: []
+                    urls: []
+                    notes: []
+                  - integration_object:
+                      name: Anodot
+                      creation_date: '2022-04-14T08:46:19.184696Z'
+                      summary: Edit summary for this integration
+                      unique_id: d162f6f9-6258-4408-a5bc-63c46ad4deb8
+                      service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                      team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                      integration_key: b91f575d-14e8-4426-b063-7b171dcf3ca2
+                      is_enabled: true
+                      integration_type: 0
+                    summary: some summary
+                    incident: 543
+                    creation_date: '2022-07-04T09:37:56.359138Z'
+                    message: Some message
+                    integration: d162f6f9-6258-4408-a5bc-63c46ad4deb8
+                    suppressed: false
+                    entity_id: 6625dcdf-ff43-4762-b6a8-749f7b73
+                    alert_type: '3'
+                    unique_id: XxLpRvcE74ZieP32Kn5h4T
+                    images: []
+                    urls: []
+                    notes: []
+                  - integration_object:
+                      name: Anodot
+                      creation_date: '2022-04-14T08:46:19.184696Z'
+                      summary: Edit summary for this integration
+                      unique_id: d162f6f9-6258-4408-a5bc-63c46ad4deb8
+                      service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
+                      team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                      integration_key: b91f575d-14e8-4426-b063-7b171dcf3ca2
+                      is_enabled: true
+                      integration_type: 0
+                    summary: some summary
+                    incident: 542
+                    creation_date: '2022-07-04T09:37:56.212548Z'
+                    message: Some message
+                    integration: d162f6f9-6258-4408-a5bc-63c46ad4deb8
+                    suppressed: false
+                    entity_id: 2e37a6b1-3b59-431d-9074-6bf4bdc3
+                    alert_type: '3'
+                    unique_id: UrmFTdkfuAZkKHddLB8fEK
+                    images: []
+                    urls: []
+                    notes: []
           '400':
-            description: Invalid 
-          '404':
-            description: User not found
-        requestBody:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NewIncident'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/NewIncident'
-          description: New Incident
-          required: true
-  '/api/incidents/{incident_number}/':
-      parameters:
-        - name: incident_number
-          in: path
-          schema:
-            type: integer
-          required: true
-          description: Incident number
-      get: 
-        tags:
-        - Incidents
-        summary: Get Incident by number
-        # operationId: getIncidents
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
+            description: Bad Request 
+          '403':
+            description: Forbidden 
             content:
               application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/Incident'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/Incident'
-          '403':
-            description: Forbidden
+                example:
+                  detail: You do not have permission to perform this action.
           '404':
-            description: Not found
-      patch: 
-        tags:
-        - Incidents
-        summary: Acknowledge or resolve Incidents
-         # operationId: updateService
-         # security schemas applied to this operation
-        parameters:
-          - name: incident_info
-            in: query
-            schema:
-              $ref: '#/components/schemas/Incident'
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
+            description: Not Found 
             content:
               application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/Incident'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/Incident'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-  '/api/incidents/{incident_number}/alerts/':
-      parameters:
-        - name: incident_number
-          in: path
-          schema:
-            type: integer
-          required: true
-          description: Incident number
-      get: 
-        tags:
-        - Incidents
-        summary: Get Incident Alerts
-        # operationId: getIncidents
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/ServiceAlert'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/ServiceAlert'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-  '/api/incidents/{incident_number}/note/':
-      parameters:
-        - name: incident_number
-          in: path
-          schema:
-            type: integer
-          required: true
-          description: Incident number
-      get: 
-        tags:
-        - Incidents
-        summary: Get Incident Notes
-        # operationId: getIncidents
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/IncidentNoteList'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/IncidentNoteList'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-     
-  '/api/events/{integration-key}/':
-    parameters:
-    - name: integration-key
-      in: path
-      schema:
-        type: string
-      required: true
-      description: Replace the integration-key with the Integration key you copied in Step 1
-    post:
-      tags:
-        - Events
-      summary: Create Event
-        # operationId: createEvent
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: OK
-        '400':
-          description: Invalid 
-        '404':
-          description: User not found
-      requestBody:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NewEvent'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/NewEvent'
-          description: New Event
-          required: true
-  '/api/account/teams/{team_id}/escalation_policies/':
-    parameters: 
-        - name: 'team_id'
-          in: path
-          description: Unique ID of team
-          schema:
-            type: string
-          required: true
-    get: 
-        tags:
-        - Escalation Policies
-        summary: Get Escalation Policies
-        # operationId: getEP
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/EP'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/EP'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-    post:
-        tags:
-          - Escalation Policies
-        summary: Create Escalation Policy
-        # operationId: createEP
-        security:
-          - bearerAuth: []
-        responses:
-          '200':
-            description: OK
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/EP'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/EP'
-          '400':
-            description: Invalid 
-          '404':
-            description: User not found
-        # request body documentation
-        requestBody:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EP'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/EP'
-          description: New Escalation Policy Details
-          required: true
-  '/api/account/teams/{team_id}/escalation_policies/{ep_id}/':
-    parameters: 
-      - name: 'team_id'
-        in: path
-        description: Unique ID of team
-        schema:
-          type: string
-        required: true
-      - name: 'ep_id'
-        in: path
-        description: Unique ID of the escalation policy
-        schema:
-          type: string
-        required: true
-    get: 
-      tags:
-      - Escalation Policies
-      summary: Get Escalation Policy by ID
-        # operationId: getEPID
-        # security schemas applied to this operation
-      security:
-        - bearerAuth: []
-      responses: # list of responses
-        '200':
-          description: Success
-          content:
-            application/json: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/EP'
-            application/xml: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/EP'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found
-    patch: 
-      tags:
-      - Escalation Policies
-      summary: Update an Escalation Policy
-      # operationId: updateEP
-      # security schemas applied to this operation
-      parameters:
-        - name: escalation_policy
-          in: query
-          schema:
-            $ref: '#/components/schemas/EP'
-      security:
-        - bearerAuth: []
-      responses: # list of responses
-        '200':
-          description: Success
-          content:
-            application/json: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/EP'
-            application/xml: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/EP'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found
-    delete: 
-      tags:
-      - Escalation Policies
-      summary: Delete an Escalation Policy
-      # operationId: delEP
-    
-      # security schemas applied to this operation
-      security:
-        - bearerAuth: []
-      responses: # list of responses
-        '200':
-          description: Success
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found 
-          
-  '/api/account/teams/{team_id}/schedules/':
-    parameters: 
-        - name: 'team_id'
-          in: path
-          description: Unique ID of team
-          schema:
-            type: string
-          required: true
-    get: 
-        tags:
-        - Schedules
-        summary: Get Schedules
-        # operationId: getSchedule
-        # security schemas applied to this operation
-        security:
-          - bearerAuth: []
-        responses: # list of responses
-          '200':
-            description: Success
-            content:
-              application/json: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/Schedule'
-              application/xml: # operation response mime type
-                schema: # response schema can be specified for each response
-                  $ref: '#/components/schemas/Schedule'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-    post:
-        tags:
-          - Schedules
-        summary: Create a Schedule
-        # operationId: createSchedule
-        security:
-          - bearerAuth: []
-        responses:
-          '200':
-            description: OK
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/Schedule'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/Schedule'
-          '400':
-            description: Invalid 
-          '404':
-            description: User not found
-        # request body documentation
-        requestBody:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Schedule'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Schedule'
-          description: New Schedule Details
-          required: true
-  '/api/account/teams/{team_id}/schedules/{schedule_id}/':
-    parameters: 
-      - name: 'team_id'
-        in: path
-        description: Unique ID of team
-        schema:
-          type: string
-        required: true
-      - name: 'schedule_id'
-        in: path
-        description: Unique ID of the schedule
-        schema:
-          type: string
-        required: true
-    get: 
-      tags:
-      - Schedules
-      summary: Get Schedule by ID
-        # operationId: getScheduleID
-        # security schemas applied to this operation
-      security:
-        - bearerAuth: []
-      responses: # list of responses
-        '200':
-          description: Success
-          content:
-            application/json: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/Schedule'
-            application/xml: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/Schedule'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found
-    patch: 
-      tags:
-      - Schedules
-      summary: Update a Schedule
-      # operationId: updateSchedule
-      # security schemas applied to this operation
-      parameters:
-        - name: schedule
-          in: query
-          schema:
-            $ref: '#/components/schemas/Schedule'
-      security:
-        - bearerAuth: []
-      responses: # list of responses
-        '200':
-          description: Success
-          content:
-            application/json: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/Schedule'
-            application/xml: # operation response mime type
-              schema: # response schema can be specified for each response
-                $ref: '#/components/schemas/Schedule'
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found
-    delete: 
-      tags:
-      - Schedules
-      summary: Delete a Schedule
-      # operationId: delSchedule
-      # security schemas applied to this operation
-      security:
-        - bearerAuth: []
-      responses: # list of responses
-        '200':
-          description: Success
-        '403':
-          description: Forbidden
-        '404':
-          description: Not found 
+                example:
+                  detail: Not Found.
+                  
+                  
+                  
 
-  '/api/account/teams/{team_id}/roles/':
-      parameters:
-        - name: 'team_id'
-          in: path
-          description: Unique ID of the team
-          schema: 
-            type: string
-          required: true
+  #
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
+  #
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
+  #
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
+  #     
+  #
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
+  #
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
+  #
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
+  #
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
+  #
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
+  #
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
+  #     
+  #
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
+  #
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
+  #
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
+  # 
 
-      get:
-        tags:
-        - Roles 
-        summary: Get Roles for a team
-        security: 
-          - bearerAuth: [] 
-        responses: #list of responses
-          '200': 
-            description: Success
-            content: 
-              application/json: 
-                schema: 
-                  $ref: '#/components/schemas/Rolesresp'
-              application/xml: 
-                schema:
-                  $ref: '#/components/schemas/Rolesresp'
-          '403':
-            description: Forbidden
-          '404': 
-            description: Not Found
-      post:
-        tags:
-        - Roles
-        summary:  Create a new Role for a team
-        security: 
-          - bearerAuth: []
-        responses:
-          '201':
-            description: OK
-            content: 
-              application/json: 
-                schema: 
-                  $ref: '#/components/schemas/Rolespay'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/Rolespay'
-          '400':
-            description: Invalid
-          '404': 
-            description: User Not Found
-
-        requestBody:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Rolesref'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Rolesref'
-          description:  New Role Details
-          required: true
-  '/api/account/teams/{team_id}/roles/{role_id}/':
-      patch:
-        tags:
-        - Roles
-        summary: Update a Role
-        parameters:
-          - name: 'team_id'
-            in: path
-            description:  Unique ID of the Team
-            schema: 
-              type: string
-            required: true
-
-          - name: role_id
-            in: path
-            description:  Unique ID of the Role
-            schema:
-              type: string
-            required: true
-        security:
-          - bearerAuth: []
-        responses:
-          '200':
-            description:  Success
-            content:
-              appilcation/json:
-                schema:
-                  $ref: '#/components/schemas/Rolesresp'
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/Rolesresp'
-          '403':
-            description:  Forbidden
-          '404':
-            description:  Not Found
-
-      delete:
-        tags:
-        - Roles
-        summary:  Delete a Role
-        parameters:
-          - name: team_id
-            in: path
-            description:  Unique ID of the Team
-            schema: 
-              type: string
-            required: true
-
-          - name: role_id
-            in: path
-            description:  Unique ID of the Role
-            schema:
-              type: string
-            required: true
-        security:
-          - bearerAuth: []
-        responses:
-          '204':
-            description:  Successfully Deleted
-          '403':
-            description:  Forbidden
-          '404':
-            description:  Not Found
-
-  '/api/account/teams/{team_id}/tags/':
-      parameters:
-        - name: 'team_id'
-          in: path
-          description:  Unique ID of the team
-          schema:
-            type: string
-          required: true
-      get:
-        tags:
-          - Tags
-        summary:  Get Tags associated with the team
-        security:
-          - bearerAuth: []
-        responses: #list of responses
-          '200':
-            description:  Success
-            content:
-              application/json: 
-                schema:
-                  $ref: '#/components/schemas/Tagsresp'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/Tagsresp'
-          '403':
-              description:  Forbidden
-          '404':
-              description:  Not Found
-      post:
-        tags:
-          - Tags
-        summary:  Create a New Tag for a Team
-        security:
-          - bearerAuth: []
-        responses:
-          '201':
-            description: OK
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/Tagspay'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/Tagspay'
-          '400':
-            description:  Invalid
-          '404':
-            description:  User Not Found
-
-        requestBody:
-          content:
-            application/json: 
-              schema:
-                $ref: '#/components/schemas/Tagsref'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/Tagsref'
-          required: true
-
-  '/api/account/teams/{team_id}/tags/{tags_id}/':
-      patch: 
-        tags:
-        - Tags
-        summary: Update a Tag
-        parameters:
-          - name: 'team_id'
-            in: path
-            description:  Unique ID of the team
-            schema:
-              type: string
-            required: true
-          - name: 'tags_id'
-            in: path
-            description:  Unique ID of the Tag
-            schema:
-              type: string
-            required: true
-        security:
-          - bearerAuth: []
-        responses:
-          '200':
-            description: Success
-            content:
-              application/json: 
-                schema:
-                  $ref: '#/components/schemas/Tagsresp'
-              application/xml: 
-                schema: 
-                  $ref: '#/components/schemas/Tagsresp'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-      delete: 
-        tags:
-        - Tags
-        summary: Delete a Tag
-        parameters:
-          - name: 'team_id'
-            in: path
-            description:  Unique ID of the team
-            schema:
-              type: string
-            required: true
-          - name: 'tags_id'
-            in: path
-            description:  Unique ID of the Tag
-            schema:
-              type: string
-            required: true
-        security:
-          - bearerAuth: []
-        responses:
-          '200':
-            description: Success
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found 
-
-  '/api/account/teams/{team_id}/task_templates/':
-      parameters:
-        - name: 'team_id'
-          in: path
-          description:  Unique of ID of the Team
-          schema: 
-            type: string
-          required: true
-
-      get:
-        tags:
-          - Task Templates
-        summary:  Get the Task Templates
-        security: 
-          - bearerAuth: []
-        responses:  
-          '200':
-            description:  Success
-            content:  
-              application/json: 
-                schema:
-                  $ref: '#/components/schemas/TaskTemplatesresp'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/TaskTemplatesresp'
-          '403':
-            description:  Forbidden
-          '404':
-            description:  Not Found
-      post:
-        tags:
-          - Task Templates
-        summary:  Create a new Task Template
-        security:
-          - bearerAuth: []                
-        responses:
-          '201':
-            description: OK
-            content: 
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/TaskTemplatespay'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/TaskTemplatespay'
-          '400':
-            description:  Invalid
-          '404':
-            description:  User not Found
-
-        requestBody:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TaskTemplatesref'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/TaskTemplatesref'
-          required: true
-
-  '/api/account/teams/{team_id}/task_templates/{task_template_id}/':
-      patch: 
-        tags:
-        - Task Templates
-        summary: Update a Task Template
-        parameters:
-          - name: team_id
-            in: path
-            description:  Unique ID of the team
-            schema: 
-              type: string
-            required: true
-          - name: task_template_id
-            in: path
-            description:  Unique ID of the Task Temaplates
-            schema:
-              type: string
-            required: true
-        security:
-          - bearerAuth: []
-        responses: 
-          '200':
-            description: Success
-            content:
-              application/json: 
-                schema: 
-                  $ref: '#/components/schemas/TaskTemplatesresp'
-              application/xml: 
-                schema:
-                  $ref: '#/components/schemas/TaskTemplatesresp'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-      delete: 
-        tags:
-        - Task Templates
-        summary: Delete a Task Template
-        parameters:
-          - name: 'team_id'
-            in: path
-            description:  Unique ID of the team
-            schema:
-              type: string
-            required: true
-          - name: task_template_id
-            in: path
-            description:  Unique ID of the Task Temaplates
-            schema:
-              type: string
-            required: true
-        security:
-          - bearerAuth: []
-        responses:
-          '200':
-            description: Success
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
-
-  '/api/account/teams/{team_id}/oncall/':
-      parameters:
-        - name: 'team_id'
-          in: path
-          description: Unique ID of the team
-          schema:
-            type: string
-          required: true
-      get:
-        tags:
-          - On Call
-        summary:  Get details about who is on call
-        security:
-          - bearerAuth: []
-          
-        responses: #list of responses
-          '200':
-            description: Success
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/onCall'
-              application/xml:
-                schema:
-                  $ref: '#/components/schemas/onCall'
-          '403':
-            description: Forbidden
-          '404':
-            description: Not found
 
 # An object to hold reusable parts that can be used across the spec
 components:
@@ -2398,84 +4762,6 @@ components:
         results:
           $ref: '#/components/schemas/ServiceAlert'
           
-    TeamPostPayload:
-      type: object
-      description: Payload for creating a Team
-      properties:
-        name:
-          type: string
-          description: Name of the New Team
-          
-    TeamPutPayload:
-      type: object
-      description: Payload for updating a Team
-      properties:
-        name:
-          type: string
-          description: Name of the Updated Team
-          
-    TeamMemberPostPayload:
-      type: object
-      description: Payload for creating a Team Member
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-          
-    TeamMemberPutPayload:
-      type: object
-      description: Put Payload for updating a Team Member
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-        role:
-          type: integer
-          description: Role of the updated team member
-          
-    ServicePostPayload:
-      type: object
-      description: Payload for creating a Service
-      properties:
-        name:
-          type: string
-          description: name of the new service
-        collation:
-          type: integer
-          description: Tells weather incident should be collated or not
-        collation_time:
-          type: integer
-          description: time frame on which incident should be collated
-        description:
-          type: string
-          description: description of new service
-        escalation_policy:
-          type: string
-          description: unique id of escalation policy
-        team_priority:
-          type: string
-          description: unique id of team priority it can be null also
-        sla:
-          type: string
-          description: unique id of sla it can be null also
-          
-    ServicePutPayload:
-      type: object
-      description: Put Payload for updating a Service
-      properties:
-        name:
-          type: string
-          description: name of the new service
-        description:
-          type: string
-          description: description of new service
-        escalation_policy:
-          type: string
-          description: unique id of escalation policy
-        team_priority:
-          type: string
-          description: unique id of team priority it can be null also
-        sla:
-          type: string
-          description: unique id of sla it can be null also
     
     UserID:
       description: Member details to add to a Team.
@@ -2998,7 +5284,7 @@ components:
     
     TaskTemplatesref:
       type: object
-      description: Response after creatin a task template successfully
+      description: Response after creating a task template successfully
       properties:
         unique_id: 
           type: string
@@ -3058,9 +5344,637 @@ components:
         name:
           description: Name of the team
           type: string
-
+          
+  
+    AccountMember:
+      type: object
+      description: Account Member object schema
+      properties:
+        unique_id:
+          type: string
+          description: unique id of Account Member
+        time_zone:
+          type: string
+          description: Time Zone of account member
+        user:
+          $ref: '#/components/schemas/User'
+        joining_date:
+          type: string
+          description: Joining Date of the user in account
+        role:
+          type: integer
+          description: Role of account member weather he is a owner, admin or user
+        is_verified:
+          type: boolean
+          description: Define weather the account member is verifed or not
+    
+    Postmortem:
+      type: object
+      description: Postmortem object schema
+      properties:
+        unique_id:
+          type: string
+          description: unique id of Postmortem
+        author:
+          type: string
+          description: Username of account user
+        status:
+          type: string
+          description: Status of the postmortem
+        incidents:
+          type: array
+          description: Array of service objects
+          items:
+            type: object
+            description: Postmortem incident object
+            properties:
+              unique_id:
+                type: string
+                description: Unique ID of postmortem incident
+              incident:
+                type: string
+                description: Unique ID of the incident
+        author_name:
+          type: string
+          description: Name of the postmortem author
+        title:
+          type: string
+          description: Title of the Postmortem
+        postmortem_data:
+          type: string
+          description: Data of the postmortem
+        download_status:
+          type: integer
+          description: Download status of the postmortem 0 means not downloaded 1 means downloaded
+          
+    
+    IncidentAlert:
+      type: object
+      description: Incident Alert object schema
+      properties:
+        integration_object:
+          $ref: '#/components/schemas/Integration'
+        summary:
+          type: string
+          description: Summary of Alert
+        incident:
+          type: integer
+          description: incident number
+        creation_date:
+          type: string
+          description: Creation date of Alert
+        message:
+          type: string
+          description: Message of Alert
+        integration:
+          type: string
+          description: Unique ID of an Integration
+        suppressed:
+          type: boolean
+          description: Define if this alert is suppressed or not
+        entity_id:
+          type: string
+          description: Entity id of the Alert
+        alert_type:
+          type: integer
+          description: Type of the Alert
+        unique_id:
+          type: string
+          description: unique id of the Alert
+        images:
+          type: array
+          description: Array of image objects
+          items:
+            type: object
+            description: Image object
+        urls:
+          type: array
+          description: Array of urls
+          items:
+            type: string
+            description: A string representing the URL
+        notes:
+          type: array
+          description: Array of Incident Note objects
+          items:
+            $ref: '#/components/schemas/IncidentNote'
+            
+    
+  
+    PostmortemIncident:
+      type: object
+      description: Postmortem Incident object schema
+      properties:
+        incident:
+          type: string
+          description: Unique ID of the incident
+    
+    Escalations:
+      type: object
+      description: SLA escalation object schema
+      properties:
+        responder:
+          type: array
+          description: Array of escalated objects 
+          items:
+            type: object
+            description: escalated object
+            properties:
+              user:
+                type: string
+                description: username of user
+        unique_id:
+          type: string
+          description: unique id of escalation
+        time:
+          type: integer
+          description: actual time after the escalation start
+        timeType:
+          type: integer
+          description: type of the time weather it is seconds or minutes or hours
+        type:
+          type: integer
+          description: type of the escalation
+          
+    
+    TMM:
+      type: object
+      description: Team Maintenance Mode object schema
+      properties:
+        responder:
+          type: array
+          description: Array of escalated objects 
+          items:
+            type: object
+            description: escalated object
+            properties:
+              user:
+                type: string
+                description: username of user
+        unique_id:
+          type: string
+          description: unique id of Team Maintenance Mode
+        start_time:
+          type: string
+          description: Start time when the team maintenance start
+        end_time:
+          type: string
+          description: End time when the team maintenance end
+        repeat_interval:
+          type: integer
+          description: Repeat the maintenance in that interval
+        services:
+          type: array
+          description: Array of service objects
+          items:
+            $ref: '#/components/schemas/ServiceInfo'
+        creation_date:
+          type: string
+          description: Creation Date of the Team Maintenance Mode
+        name:
+          type: string
+          description: Name of the Team Maintenance Mode
+        time_zone:
+          type: string
+          description: Time Zone of the Team Maintenance Mode
+        repeat_until:
+          type: boolean
+          description: Weather to Repeat the Team Maintenance Mode or not
+    
+          
+    Priority:
+      type: object
+      description: Priority object schema
+      properties:
+        unique_id:
+          type: string
+          description: Unique ID of the Priority
+        name:
+          type: string
+          description: Name of the Priority
+        description:
+          type: string
+          description: Description of the Priority
+        creation_date:
+          type: string
+          description: Creation Date of the Priority
+        color:
+          type: string
+          description: Color of the Priority
+          
+    SLA:
+      type: object
+      description: SLA object schema
+      properties:
+        unique_id:
+          type: string
+          description: Unique ID of the SLA
+        name:
+          type: string
+          description: Name of the SLA
+        is_active:
+          type: boolean
+          description: Is this SLA is currently active or not
+        acknowledge_time:
+          type: integer
+          description: Time to acknowledge the SLA
+        resolve_time:
+          type: string
+          description: Time to resolve the SLA
+        creation_date:
+          type: string
+          description: Creation Date of the SLA
+      
+          
+    AccountMemberPutPayload:
+      type: object
+      description: Put Payload for updating an Account Member
+      properties:
+        user:
+          $ref: '#/components/schemas/User'      
+          
+    TeamPostPayload:
+      type: object
+      description: Payload for creating a Team
+      properties:
+        name:
+          type: string
+          description: Name of the New Team
+          
+    TeamPutPayload:
+      type: object
+      description: Payload for updating a Team
+      properties:
+        name:
+          type: string
+          description: Name of the Updated Team
+          
+    TeamMemberPostPayload:
+      type: object
+      description: Payload for creating a Team Member
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+          
+    TeamMemberPutPayload:
+      type: object
+      description: Put Payload for updating a Team Member
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        role:
+          type: integer
+          description: Role of the updated team member
+          
+    ServicePostPayload:
+      type: object
+      description: Payload for creating a Service
+      properties:
+        name:
+          type: string
+          description: name of the new service
+        collation:
+          type: integer
+          description: Tells weather incident should be collated or not
+        collation_time:
+          type: integer
+          description: time frame on which incident should be collated
+        description:
+          type: string
+          description: description of new service
+        escalation_policy:
+          type: string
+          description: unique id of escalation policy
+        team_priority:
+          type: string
+          description: unique id of team priority it can be null also
+        sla:
+          type: string
+          description: unique id of sla it can be null also
+          
+    ServicePutPayload:
+      type: object
+      description: Put Payload for updating a Service
+      properties:
+        name:
+          type: string
+          description: name of the new service
+        description:
+          type: string
+          description: description of new service
+        escalation_policy:
+          type: string
+          description: unique id of escalation policy
+        team_priority:
+          type: string
+          description: unique id of team priority it can be null also
+        sla:
+          type: string
+          description: unique id of sla it can be null also
+          
+    SchedulePostPayload:
+      type: object
+      description: Payload for creating a Schedule
+      properties:
+        name:
+          type: string
+          description: Name of the schedule
+        summary:
+          type: string
+          description: Summary of the schedule
+        description:
+          type: string
+          description: Description of the schedule
+        time_zone:
+          type: string
+          description: Time Zone of the schedule
+          
+    SchedulePutPayload:
+      type: object
+      description: Put Payload for updating a Schedule
+      properties:
+        name:
+          type: string
+          description: Modified name of the schedule
+          
+    EPPostPayload:
+      type: object
+      description: Payload for creating a Escalation Policy
+      properties:
+        name:
+          type: string
+          description: Name of the Escalation Policy
+        summary:
+          type: string
+          description: Summary of the Escalation Policy
+        description:
+          type: string
+          description: Description of the Escalation Policy
+        rules:
+          $ref: '#/components/schemas/EP_rules'
+          
+    EPPutPayload:
+      type: object
+      description: Put Payload for updating a Escalation Policy
+      properties:
+        name:
+          type: string
+          description: Modified name of the Escalation Policy
+        rules:
+          $ref: '#/components/schemas/EP_rules'
+          
+    IntegrationPostPayload:
+      type: object
+      description: Payload for creating an Integration
+      properties:
+        name:
+          type: string
+          description: Name of the Integration
+        summary:
+          type: string
+          description: Summary of the Integration
+        application:
+          type: string
+          description: Unique ID of the Application
+          
+    IntegrationPutPayload:
+      type: object
+      description: Put Payload for updating an Integration
+      properties:
+        name:
+          type: string
+          description: Name of the Integration
+        application:
+          type: string
+          description: Unique ID of the Application
+          
+    IRPostPayload:
+      type: object
+      description: Payload for creating an Incident Role
+      properties:
+        title:
+          type: string
+          description: Title of the Incident Role
+        description:
+          type: string
+          description: Description of the Incident Role
+        rank:
+          type: integer
+          description: Rank of the incident commander
+          
+    IRPutPayload:
+      type: object
+      description: Put Payload for updating an Incident Role
+      properties:
+        title:
+          type: string
+          description: Title of the Incident Role
+          
+    TagPostPayload:
+      type: object
+      description: Payload for creating a Tag
+      properties:
+        name:
+          type: string
+          description: Name of the Tag
+        color:
+          type: string
+          description: Color of the Tag
+          
+    TagPutPayload:
+      type: object
+      description: Put Payload for updating a Tag
+      properties:
+        name:
+          type: string
+          description: Modified Name of the Tag
+          
+    TTPostPayload:
+      type: object
+      description: Payload for creating a Task Teamplate
+      properties:
+        name:
+          type: string
+          description: Name of the Task Teamplate
+        summary:
+          type: string
+          description: Summary of the Task Template
+          
+    TTPutPayload:
+      type: object
+      description: Put Payload for updating a Task Template
+      properties:
+        name:
+          type: string
+          description: Modified Name of the Task Template
+          
+    PriorityPostPayload:
+      type: object
+      description: Payload for creating a Priority
+      properties:
+        name:
+          type: string
+          description: Name of the Priority
+          
+    PriorityPutPayload:
+      type: object
+      description: Put Payload for updating a Priority
+      properties:
+        name:
+          type: string
+          description: Modified Name of the Priority
+          
+    SLAPostPayload:
+      type: object
+      description: Payload for creating an SLA
+      properties:
+        name:
+          type: string
+          description: Name of the Priority
+        escalations:
+          type: array
+          description: Array of escalation objects
+          items:
+            $ref: '#/components/schemas/Escalations'
+          
+    SLAPutPayload:
+      type: object
+      description: Put Payload for updating an SLA
+      properties:
+        name:
+          type: string
+          description: Modified Name of the SLA
+          
+    TMMPostPayload:
+      type: object
+      description: Payload for creating a Team Maintenance Mode
+      properties:
+        name:
+          type: string
+          description: Name of the Team Maintenance Mode
+        services:
+          type: array
+          description: Array of service objects
+          items:
+            $ref: '#/components/schemas/ServiceInfo'
+        start_time:
+          type: string
+          description: Start Time of the Team Maintenance Mode
+        end_time:
+          type: string
+          description: End TIme of the Team Maintenance Mode
+          
+    TMMPutPayload:
+      type: object
+      description: Put Payload for updating a Team Maintenance Mode
+      properties:
+        name:
+          type: string
+          description: Name of the Team Maintenance Mode
+        services:
+          type: array
+          description: Array of service objects
+          items:
+            $ref: '#/components/schemas/ServiceInfo'
+        start_time:
+          type: string
+          description: Start Time of the Team Maintenance Mode
+        end_time:
+          type: string
+          description: End TIme of the Team Maintenance Mode
+    
+    PostmortemPostPayload:
+      type: object
+      description: Payload for creating a Postmortem
+      properties:
+        title:
+          type: string
+          description: Title of the postmortem
+        author:
+          type: string
+          description: Username of the account user
+        incidents:
+          type: array
+          description: Array of postmortem incident objects
+          items:
+            $ref: '#/components/schemas/PostmortemIncident'
+          
+    PostmortemPutPayload:
+      type: object
+      description: Put Payload for updating a Postmortem
+      properties:
+        title:
+          type: string
+          description: Title of the postmortem
+        author:
+          type: string
+          description: Username of the account user
+        incidents:
+          type: array
+          description: Array of postmortem incident objects
+          items:
+            $ref: '#/components/schemas/PostmortemIncident'
+        status:
+          type: string
+          description: Status of the postmortem
+        postmortem_data:
+          type: string
+          description: Postmortem Data of the postmortem
+          
+    IncidentPostPayload:
+      type: object
+      description: Payload for creating a Incident
+      properties:
+        title:
+          type: string
+          description: Title of the Incident
+        service:
+          type: string
+          description: Unique ID of the service
         
-
+    IncidentPutPayload:
+      type: object
+      description: Put Payload for updating an Incident
+      properties:
+        title:
+          type: string
+          description: Title of the Incident
+        service:
+          type: string
+          description: Unique ID of the service
+          
+    IncidentNotePostPayload:
+      type: object
+      description: Payload for creating a Incident Note
+      properties:
+        note:
+          type: string
+          description: Data of the Incident note
+        
+        
+    IncidentNotePutPayload:
+      type: object
+      description: Put Payload for updating an Incident Note
+      properties:
+        note:
+          type: string
+          description: Modified Data of the Incident note
+          
+    EventPostPayload:
+      type: object
+      description: Post Payload for creating an Event
+      properties:
+        alert_type:
+          type: string
+          description: Alert type of an Event
+        message:
+          type: string
+          description: Message of the Event
+        summary:
+          type: string
+          description: Summary of the Event
+        
+        
   headers:
     ExpiresAfter:
       description: date in UTC when token expires
