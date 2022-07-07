@@ -4243,9 +4243,80 @@ components:
           default: false
           description: A boolean flag that represents the Account Member object's verification
           
+    AccountMemberPutPayload:
+      type: object
+      description: Schema for updating the Account Member object
+      required:
+        - user
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Account Member object's unique_id
+        time_zone:
+          type: string
+          default: UTC
+          description: A formatted string that represents the Account Member object's time zone. You can check out the time zone list here https://timezonedb.com/time-zones
+        user:
+          $ref: '#/components/schemas/User'
+        joining_date:
+          type: string
+          description: A formatted string that represents the Account Member object's joining_date
+        role:
+          type: integer
+          default: 3
+          description: An integer that represents the Account Member object's role. 1 is owner, 2 is admin and 3 is user
+        is_verified:
+          type: boolean
+          default: false
+          description: A boolean flag that represents the Account Member object's verification
+          
     Team:
       type: object
       description: Team object schema
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Team object's unique_id
+        name:
+          type: string
+          description: A that represents the Team object's name
+        account:
+          type: string
+          description: A system-generated string that represents the Account object's unique_id
+        creation_date:
+          type: string
+          format: date-time
+          description: A formatted string that represents the Team object's creation_date
+        members:
+          $ref: '#/components/schemas/TeamMember'
+        owner:
+          type: string
+          description: A system-generated string that represents the User object's username
+        roles:
+          $ref: '#/components/schemas/IncidentRole'
+  
+    TeamPostPayload:
+      type: object
+      description: Schema for creating the Team object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: A that represents the Team object's name
+        creation_date:
+          type: string
+          format: date-time
+          description: A formatted string that represents the Team object's creation_date
+        owner:
+          type: string
+          description: A system-generated string that represents the User object's username
+          
+    TeamPutPayload:
+      type: object
+      description: Schema for updating the Team object
+      required:
+        - name
       properties:
         unique_id:
           type: string
@@ -4271,6 +4342,45 @@ components:
     TeamMember:
       type: object
       description: Team Member object schema
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Team Member object's unique_id
+        team:
+          type: string
+          description: A system-generated string that represents the Team object's unique_id
+        user:
+          $ref: '#/components/schemas/User'
+        joining_date:
+          type: string
+          format: datetime
+          description: A formatted string that represents the Team Member object's joining_date
+        role:
+          type: integer
+          default: 2
+          description: An integer that represents the Team Member object's role. 1 is manager and 2 is user
+          
+    TeamMemberPostPayload:
+      type: object
+      description: Schema for creating the Team Member object
+      required:
+        - user
+      properties:
+        team:
+          type: string
+          description: A system-generated string that represents the Team object's unique_id
+        user:
+          $ref: '#/components/schemas/User'
+        role:
+          type: integer
+          default: 2
+          description: An integer that represents the Team Member object's role. 1 is manager and 2 is user
+          
+    TeamMemberPutPayload:
+      type: object
+      description: Schema for updating the Team Member object
+      required:
+        - user
       properties:
         unique_id:
           type: string
@@ -4322,9 +4432,127 @@ components:
           type: string
           description: A system-generated string that represents the Schedule object's unique_id
           
+    SchedulePostPayload:
+      type: object
+      description: Schema for creating the Schedule object
+      required:
+        - user
+      properties:
+        name:
+          type: string
+          description: A string that represents the Schedule object's name
+        summary:
+          type: string
+          description: A string that represents the Schedule object's summary
+        description:
+          type: string
+          description: A string that represents the Schedule object's description
+        time_zone:
+          type: string
+          description: A formatted string that represents the Schedule object's time zone. You can check out the time zone list here https://timezonedb.com/time-zones
+        team:
+          type: string
+          description: A system-generated string that represents the Team object's unique_id
+        layers:
+          type: array
+          description: An array of Schedule Layer objects
+          items:
+            $ref: '#/components/schemas/ScheduleLayer'
+        overrides:
+          type: array
+          description: An array of Schedule Overrides objects
+          items:
+            $ref: '#/components/schemas/ScheduleOverride'
+        unique_id: 
+          type: string
+          description: A system-generated string that represents the Schedule object's unique_id
+          
+    SchedulePutPayload:
+      type: object
+      description: Schema for updating the Schedule object
+      required:
+        - user
+      properties:
+        name:
+          type: string
+          description: A string that represents the Schedule object's name
+        summary:
+          type: string
+          description: A string that represents the Schedule object's summary
+        description:
+          type: string
+          description: A string that represents the Schedule object's description
+        time_zone:
+          type: string
+          description: A formatted string that represents the Schedule object's time zone. You can check out the time zone list here https://timezonedb.com/time-zones
+        team:
+          type: string
+          description: A system-generated string that represents the Team object's unique_id
+        layers:
+          type: array
+          description: An array of Schedule Layer objects
+          items:
+            $ref: '#/components/schemas/ScheduleLayer'
+        overrides:
+          type: array
+          description: An array of Schedule Overrides objects
+          items:
+            $ref: '#/components/schemas/ScheduleOverride'
+        unique_id: 
+          type: string
+          description: A system-generated string that represents the Schedule object's unique_id
+          
     EP:
       type: object
       description: Escalation Policy object schema
+      properties:
+        name:
+          type: string
+          description: A string that represents the Escalation Policy object's name
+        summary:
+          type: string
+          description: A string that represents the Escalation Policy object's summary
+        description:
+          type: string
+          description: A string that represents the Escalation Policy object's description
+        rules:
+          $ref: '#/components/schemas/EP_Rule'
+        unique_id:
+          type: string
+          description: A string that represents the Escalation Policy object's unique_id
+        team:
+          type: string
+          description: A system-generated string that represents the Team object's unique_id
+          
+    EPPostPayload:
+      type: object
+      description: Schema for creating the Escalation Policy object
+      required:
+        - user
+      properties:
+        name:
+          type: string
+          description: A string that represents the Escalation Policy object's name
+        summary:
+          type: string
+          description: A string that represents the Escalation Policy object's summary
+        description:
+          type: string
+          description: A string that represents the Escalation Policy object's description
+        rules:
+          $ref: '#/components/schemas/EP_Rule'
+        unique_id:
+          type: string
+          description: A string that represents the Escalation Policy object's unique_id
+        team:
+          type: string
+          description: A system-generated string that represents the Team object's unique_id
+          
+    EPPutPayload:
+      type: object
+      description: Schema for updating the Escalation Policy object
+      required:
+        - user
       properties:
         name:
           type: string
@@ -4407,9 +4635,239 @@ components:
           default: 0
           description: An integer that represents the Service object's collation_time
           
+    ServicePostPayload:
+      type: object
+      description: Schema for creating the Service object
+      required:
+        - user
+      properties:
+        name:
+          type: string
+          description: A string that represents the Service object's name
+        creation date:
+          type: string
+          format: date-time
+          description: A formatted string that represents the Service object's creation_date
+        summary:
+          type: string
+          description: A string that represents the Service object's summary
+        description:
+          type: string
+          description: A string that represents the Service object's description
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Service object's unique_id
+        auto_resolve_timeout:
+          type: integer
+          default: 0
+          description: An integer that represents the timeout for automatically resolving an Incident 
+        created_by:
+          type: string
+          description: A system-generated string that represents the User object's username
+        team_priority:
+          type: string
+          description: A system-generated string that represents the Priority object's unique_id
+        task_template:
+          type: string
+          description: A system-generated string that represents the Task Template object's unique_id
+        acknowlegement_timeout:
+          type: integer
+          default: 0
+          description: An integer that represents the timeout for acknowledging an Incident
+        status:
+          type: integer
+          default: 1
+          description: An integer that represents the Service object's status 0 is disabled, 1 is active, 2 is a warning, 3 is critical, and 4 is under maintenance 
+        escalation_policy: 
+          type: string
+          description: A system-generated string that represents the Escalation Policy object's unique_id
+        team:
+          type: string
+          description: A system-generated string that represents the Team object's unique_id
+        sla:
+          type: string
+          description: A system-generated string that represents the SLA object's unique_id
+        under_maintenance:
+          type: boolean
+          default: false
+          description: A boolean flag that represents whether the service object is under maintenance or not
+        collation:
+          type: integer
+          default: 0
+          description: An integer that represents the Service object's collation type. 0 is off, 1 is time-based, and 2 is intelligence.
+        collation_time:
+          type: integer
+          default: 0
+          description: An integer that represents the Service object's collation_time
+          
+    ServicePutPayload:
+      type: object
+      description: Schema for updating the Service object
+      required:
+        - user
+      properties:
+        name:
+          type: string
+          description: A string that represents the Service object's name
+        creation date:
+          type: string
+          format: date-time
+          description: A formatted string that represents the Service object's creation_date
+        summary:
+          type: string
+          description: A string that represents the Service object's summary
+        description:
+          type: string
+          description: A string that represents the Service object's description
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Service object's unique_id
+        auto_resolve_timeout:
+          type: integer
+          default: 0
+          description: An integer that represents the timeout for automatically resolving an Incident 
+        created_by:
+          type: string
+          description: A system-generated string that represents the User object's username
+        team_priority:
+          type: string
+          description: A system-generated string that represents the Priority object's unique_id
+        task_template:
+          type: string
+          description: A system-generated string that represents the Task Template object's unique_id
+        acknowlegement_timeout:
+          type: integer
+          default: 0
+          description: An integer that represents the timeout for acknowledging an Incident
+        status:
+          type: integer
+          default: 1
+          description: An integer that represents the Service object's status 0 is disabled, 1 is active, 2 is a warning, 3 is critical, and 4 is under maintenance 
+        escalation_policy: 
+          type: string
+          description: A system-generated string that represents the Escalation Policy object's unique_id
+        team:
+          type: string
+          description: A system-generated string that represents the Team object's unique_id
+        sla:
+          type: string
+          description: A system-generated string that represents the SLA object's unique_id
+        under_maintenance:
+          type: boolean
+          default: false
+          description: A boolean flag that represents whether the service object is under maintenance or not
+        collation:
+          type: integer
+          default: 0
+          description: An integer that represents the Service object's collation type. 0 is off, 1 is time-based, and 2 is intelligence.
+        collation_time:
+          type: integer
+          default: 0
+          description: An integer that represents the Service object's collation_time
+          
     Integration:
       description: Integration object schema
       type: object
+      properties:
+        name: 
+          type: string
+          description: A string that represents the Integration object's name
+        creation_date:
+          type: string
+          format: date-time
+          description: A formatted string that represents the Integration object's creation_date 
+        summary:
+          type: string
+          description: A string that represents the Integration object's summary
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Integration object's unique_id
+        service:
+          type: string
+          description: A system-generated string that represents the Service object's unique_id
+        application: 
+          type: string
+          description: A system-generated string that represents the Application object's unique_id
+        application_reference:
+          $ref: '#/components/schemas/Application'
+        integration_key:
+          type: string
+          description: A system-generated string that represents the Integration object's integration_key
+        created_by:
+          type: string
+          description: A system-generated string that represents the User object's username
+        is_enabled:
+          type: boolean
+          default: true
+          description: A boolean flag that represents whether an Integration is enabled or not
+        create_incidents_for:
+          type: integer
+          default: 1
+          description: An integer that represents the type of the Incidents this Integration object will create. 0 is do not create incidents. 1 is critical, 2 is critical and errors, and 3 is critical, errors and warnings.
+        integration_type:
+          type: integer
+          default: 0
+          description: An integer that represents the Integration object's integration_type. 0 is alert and 1 is outbound.
+        default_urgency:
+          type: integer
+          default: 1
+          description: An integer that represents the Integration object's default_urgency. 0 is low and 1 is high.
+          
+    IntegrationPostPayload:
+      type: object
+      description: Schema for creating the Integration object
+      required:
+        - user
+      properties:
+        name: 
+          type: string
+          description: A string that represents the Integration object's name
+        creation_date:
+          type: string
+          format: date-time
+          description: A formatted string that represents the Integration object's creation_date 
+        summary:
+          type: string
+          description: A string that represents the Integration object's summary
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Integration object's unique_id
+        service:
+          type: string
+          description: A system-generated string that represents the Service object's unique_id
+        application: 
+          type: string
+          description: A system-generated string that represents the Application object's unique_id
+        application_reference:
+          $ref: '#/components/schemas/Application'
+        integration_key:
+          type: string
+          description: A system-generated string that represents the Integration object's integration_key
+        created_by:
+          type: string
+          description: A system-generated string that represents the User object's username
+        is_enabled:
+          type: boolean
+          default: true
+          description: A boolean flag that represents whether an Integration is enabled or not
+        create_incidents_for:
+          type: integer
+          default: 1
+          description: An integer that represents the type of the Incidents this Integration object will create. 0 is do not create incidents. 1 is critical, 2 is critical and errors, and 3 is critical, errors and warnings.
+        integration_type:
+          type: integer
+          default: 0
+          description: An integer that represents the Integration object's integration_type. 0 is alert and 1 is outbound.
+        default_urgency:
+          type: integer
+          default: 1
+          description: An integer that represents the Integration object's default_urgency. 0 is low and 1 is high.
+          
+    IntegrationPutPayload:
+      type: object
+      description: Schema for updating the Integration object
+      required:
+        - user
       properties:
         name: 
           type: string
@@ -4597,10 +5055,354 @@ components:
             color:
               type: string
               description: A string that represents the Priority object's color
+              
+    IncidentPostPayload:
+      type: object
+      description: Schema for creating the Incident object
+      required:
+        - user
+      properties:
+        summary:
+          type: string
+          description: A string that represents the Incident object's summary
+        incident_number:
+          type: integer
+          description: An integer that represents the Incident object's incident_number
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Incident object's creation_date
+        status:
+          type: integer
+          default: 1
+          description: An integer that represents the Incident object's status. 1 is triggered, 2 is acknowledged and 3 is resolved
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Incident object's unique_id
+        service_object:
+          $ref: '#/components/schemas/Service'
+        title: 
+          type: string
+          description: A string that represents the Incident object's title
+        incident_key:
+          type: string
+          description: A system-generated string that represents the Incident object's incident_key
+        service:
+          type: string
+          description: A system-generated string that represents the Service object's unique_id
+        assigned_to:
+          type: string
+          description: A system-generated string that represents the User object's username
+        escalation_policy:
+          type: string
+          description: A system-generated string that represents the Escalation Policy object's unique_id
+        escalation_policy_object:
+          type: object
+          description: Escalation Policy object schema for Incident object schema
+          properties:
+            unique_id:
+              type: string
+              description: A system-generated string that represents the Escalation Policy object's unique_id
+            name:
+              type: string
+              description: A string that represents the Escalation Policy object's name
+        assigned_to_name:
+          type: string
+          description: A string that represents the User object's full name
+        resolved_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Incident object's resolved_date
+        acknowledged_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Incident object's acknowledged_date
+        context_window_start: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Incident object's context_window_start date
+        context_window_end: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Incident object's context_window_end date
+        tags:
+          type: array
+          description: An array of Incident Tag objects
+          items:
+            type: object
+            description: Incident Tag object schema for Incident object schema
+            properties:
+              unique_id:
+                type: string
+                description: A system-generated string that represents the Incident Tag object's unique_id
+              incident:
+                type: integer
+                description: An integer that represents the the Incident object's incident_number
+              creation_date: 
+                type: string
+                format: date-time
+                description: A formatted string that represents the Tag object's creation_date
+              name:
+                type: string
+                description: A string that represents the Tag object's name
+              color:
+                type: string
+                description: A string that represents the Tag object's color
+              tag_id:
+                type: string
+                description: A system-generated string that represents the Tag object's unique_id
+              team_tag:
+                type: string
+                description: A system-generated string that represents the Tag object's unique_id
+        sla:
+          type: string
+          description: A system-generated string that represents the SLA object's unique_id
+        sla_object:
+          type: object
+          description: SLA object schema for Incident object schema
+          properties:
+            unique_id:
+              type: string
+              description: A system-generated string that represents the SLA object's unique_id
+            name:
+              type: string
+              description: A string that represents the SLA object's name
+            is_active:
+              type: boolean
+              default: true
+              description: A boolean flag that represents whether the SLA object is active or not.
+            acknowledge_time:
+              type: integer
+              description: An integer that represents the SLA object's acknowledge_time
+            resolve_time:
+              type: integer
+              description: An integer that represents the SLA object's resolve_time
+            creation_date: 
+              type: string
+              format: date-time
+              description: A formatted string that represents the SLA object's creation_date
+        team_priority:
+          type: string
+          description: A system-generated string that represents the Priority object's unique_id
+        team_priority_object:
+          type: object
+          description: Priority object schema for Incident object schema
+          properties:
+            unique_id:
+              type: string
+              description: A system-generated string that represents the Priority object's unique_id
+            name:
+              type: string
+              description: A string that represents the Priority object's name
+            description:
+              type: string
+              description: A string that represents the Priority object's description
+            color:
+              type: string
+              description: A string that represents the Priority object's color
+        
+    IncidentPutPayload:
+      type: object
+      description: Schema for updating the Incident object
+      required:
+        - user
+      properties:
+        summary:
+          type: string
+          description: A string that represents the Incident object's summary
+        incident_number:
+          type: integer
+          description: An integer that represents the Incident object's incident_number
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Incident object's creation_date
+        status:
+          type: integer
+          default: 1
+          description: An integer that represents the Incident object's status. 1 is triggered, 2 is acknowledged and 3 is resolved
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Incident object's unique_id
+        service_object:
+          $ref: '#/components/schemas/Service'
+        title: 
+          type: string
+          description: A string that represents the Incident object's title
+        incident_key:
+          type: string
+          description: A system-generated string that represents the Incident object's incident_key
+        service:
+          type: string
+          description: A system-generated string that represents the Service object's unique_id
+        assigned_to:
+          type: string
+          description: A system-generated string that represents the User object's username
+        escalation_policy:
+          type: string
+          description: A system-generated string that represents the Escalation Policy object's unique_id
+        escalation_policy_object:
+          type: object
+          description: Escalation Policy object schema for Incident object schema
+          properties:
+            unique_id:
+              type: string
+              description: A system-generated string that represents the Escalation Policy object's unique_id
+            name:
+              type: string
+              description: A string that represents the Escalation Policy object's name
+        assigned_to_name:
+          type: string
+          description: A string that represents the User object's full name
+        resolved_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Incident object's resolved_date
+        acknowledged_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Incident object's acknowledged_date
+        context_window_start: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Incident object's context_window_start date
+        context_window_end: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Incident object's context_window_end date
+        tags:
+          type: array
+          description: An array of Incident Tag objects
+          items:
+            type: object
+            description: Incident Tag object schema for Incident object schema
+            properties:
+              unique_id:
+                type: string
+                description: A system-generated string that represents the Incident Tag object's unique_id
+              incident:
+                type: integer
+                description: An integer that represents the the Incident object's incident_number
+              creation_date: 
+                type: string
+                format: date-time
+                description: A formatted string that represents the Tag object's creation_date
+              name:
+                type: string
+                description: A string that represents the Tag object's name
+              color:
+                type: string
+                description: A string that represents the Tag object's color
+              tag_id:
+                type: string
+                description: A system-generated string that represents the Tag object's unique_id
+              team_tag:
+                type: string
+                description: A system-generated string that represents the Tag object's unique_id
+        sla:
+          type: string
+          description: A system-generated string that represents the SLA object's unique_id
+        sla_object:
+          type: object
+          description: SLA object schema for Incident object schema
+          properties:
+            unique_id:
+              type: string
+              description: A system-generated string that represents the SLA object's unique_id
+            name:
+              type: string
+              description: A string that represents the SLA object's name
+            is_active:
+              type: boolean
+              default: true
+              description: A boolean flag that represents whether the SLA object is active or not.
+            acknowledge_time:
+              type: integer
+              description: An integer that represents the SLA object's acknowledge_time
+            resolve_time:
+              type: integer
+              description: An integer that represents the SLA object's resolve_time
+            creation_date: 
+              type: string
+              format: date-time
+              description: A formatted string that represents the SLA object's creation_date
+        team_priority:
+          type: string
+          description: A system-generated string that represents the Priority object's unique_id
+        team_priority_object:
+          type: object
+          description: Priority object schema for Incident object schema
+          properties:
+            unique_id:
+              type: string
+              description: A system-generated string that represents the Priority object's unique_id
+            name:
+              type: string
+              description: A string that represents the Priority object's name
+            description:
+              type: string
+              description: A string that represents the Priority object's description
+            color:
+              type: string
+              description: A string that represents the Priority object's color
           
     IncidentRole:
       type: object
       description: Incident Role object schema
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Incident Role object's unique_id
+        team:
+          type: string
+          description: A system-generated string that represents the Team object's unique_id
+        title:
+          type: string
+          description: An arbitary string that represents the Incident Role object's title
+        description:
+          type: string
+          description: An arbitary string that represents the Incident Role object's description
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Incident Role object's creation_date
+        rank:
+          type: integer
+          default: 1
+          description: An integer that represents the Incident Role object's rank
+          
+    IRPostPayload:
+      type: object
+      description: Schema for creating the Incident Role object
+      required:
+        - user
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Incident Role object's unique_id
+        team:
+          type: string
+          description: A system-generated string that represents the Team object's unique_id
+        title:
+          type: string
+          description: An arbitary string that represents the Incident Role object's title
+        description:
+          type: string
+          description: An arbitary string that represents the Incident Role object's description
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Incident Role object's creation_date
+        rank:
+          type: integer
+          default: 1
+          description: An integer that represents the Incident Role object's rank
+          
+    IRPutPayload:
+      type: object
+      description: Schema for updating the Incident Role object
+      required:
+        - user
       properties:
         unique_id:
           type: string
@@ -4647,9 +5449,97 @@ components:
           format: date-time
           description: A formatted string that represents the Incident Note object's creation_date
           
+    IncidentNotePostPayload:
+      type: object
+      description: Schema for creating the Incident Note object
+      required:
+        - user
+      properties:
+        unique_id: 
+          type: string
+          description: A system-generated string that represents the Incident Note object's unique_id
+        incident:
+          type: integer
+          description: An integer that represents the Incident object's incident_number
+        user:
+          type: string
+          description: A system-generated string that represents the User object's username
+        note:
+          type: string
+          description: A string that represents the Incident Note object's note data
+        user_name: 
+          type: string
+          description: A string that represents the User object's full name
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Incident Note object's creation_date
+        
+        
+    IncidentNotePutPayload:
+      type: object
+      description: Schema for updating the Incident Note object
+      required:
+        - user
+      properties:
+        unique_id: 
+          type: string
+          description: A system-generated string that represents the Incident Note object's unique_id
+        incident:
+          type: integer
+          description: An integer that represents the Incident object's incident_number
+        user:
+          type: string
+          description: A system-generated string that represents the User object's username
+        note:
+          type: string
+          description: A string that represents the Incident Note object's note data
+        user_name: 
+          type: string
+          description: A string that represents the User object's full name
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Incident Note object's creation_date
+          
     Event:
       type: object
       description: Event object schema
+      properties:
+        message:
+          type: string
+          description: A string that represents the Event object's message
+        summary:
+          type: string
+          description: A string that represents the Event object's summary
+        alert_type:
+          type: string
+          default: info
+          description: A pre-defined string that represents the Event object's alert_type. Choices - critical, acknowledged, resolved, error, warning, info.
+        suppressed:
+          type: boolean
+          default: False
+          description: A boolean flag that represents whether the Event object is suppressed or not
+        entity_id:
+          type: string
+          description: A system-generated string that represents the Event object's entity_id
+        payload:
+          type: object
+          description: A JSON payload containing additional information about the alert
+        images: 
+          type: array
+          items:
+            $ref: '#/components/schemas/EventImage'
+        urls:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventUrl'
+            
+    EventPostPayload:
+      type: object
+      description: Schema for creating the Event object
+      required:
+        - user
       properties:
         message:
           type: string
@@ -4749,10 +5639,110 @@ components:
         color: 
           type: string
           description: A string that represents the Tag object's color
+          
+    TagPostPayload:
+      type: object
+      description: Schema for creating the Tag object
+      required:
+        - user
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Tag object's unique_id
+        team:
+          type: string
+          description: A system-generated string that represents the Team object's unique_id
+        name:
+          type: string
+          description: A string that represents the Tag object's name
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Tag object's creation_date
+        color: 
+          type: string
+          description: A string that represents the Tag object's color
+          
+    TagPutPayload:
+      type: object
+      description: Schema for updating the Tag object
+      required:
+        - user
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Tag object's unique_id
+        team:
+          type: string
+          description: A system-generated string that represents the Team object's unique_id
+        name:
+          type: string
+          description: A string that represents the Tag object's name
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Tag object's creation_date
+        color: 
+          type: string
+          description: A string that represents the Tag object's color
 
     TaskTemplate:
       type: object
       description: Task Template object schema
+      properties:
+        unique_id: 
+          type: string
+          description: A system-generated string that represents the Task Template object's unique_id
+        team:
+          type: string
+          description: A system-generated string that represents the Team object's unique_id
+        name:
+          type: string
+          description: A string that represents the Task Template object's name
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Task Template object's creation_date
+        summary:
+          type: string
+          description: A string that represents the Task Template object's summary
+        due_immediately:
+          type: integer
+          default: 0
+          description: An integer that represents whether the Task Template object is due immediately or not. 0 is false and 1 is true.
+          
+    TTPostPayload:
+      type: object
+      description: Schema for creating the Task Template object
+      required:
+        - user
+      properties:
+        unique_id: 
+          type: string
+          description: A system-generated string that represents the Task Template object's unique_id
+        team:
+          type: string
+          description: A system-generated string that represents the Team object's unique_id
+        name:
+          type: string
+          description: A string that represents the Task Template object's name
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Task Template object's creation_date
+        summary:
+          type: string
+          description: A string that represents the Task Template object's summary
+        due_immediately:
+          type: integer
+          default: 0
+          description: An integer that represents whether the Task Template object is due immediately or not. 0 is false and 1 is true.
+          
+    TTPutPayload:
+      type: object
+      description: Schema for updating the Task Template object
+      required:
+        - user
       properties:
         unique_id: 
           type: string
@@ -4799,9 +5789,115 @@ components:
           type: string
           description: A string that represents the Priority object's color
           
+    PriorityPostPayload:
+      type: object
+      description: Schema for creating the Priority object
+      required:
+        - user
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Priority object's unique_id
+        team:
+          type: string
+          description: A system-generated string that represents the Team object's unique_id
+        description:
+          type: string
+          description: A string that represents the Priority object's description
+        name:
+          type: string
+          description: A string that represents the Priority object's name
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Priority object's creation_date
+        color:
+          type: string
+          description: A string that represents the Priority object's color
+          
+    PriorityPutPayload:
+      type: object
+      description: Schema for updating the Priority object
+      required:
+        - user
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Priority object's unique_id
+        team:
+          type: string
+          description: A system-generated string that represents the Team object's unique_id
+        description:
+          type: string
+          description: A string that represents the Priority object's description
+        name:
+          type: string
+          description: A string that represents the Priority object's name
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Priority object's creation_date
+        color:
+          type: string
+          description: A string that represents the Priority object's color
+          
     SLA:
       type: object
       description: SLA object schema
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the SLA object's unique_id
+        name:
+          type: string
+          description: An arbitary string that represents the SLA object's name
+        is_active:
+          type: boolean
+          default: true
+          description: A boolean flag that represents whether the SLA object is active or not
+        acknowledge_time:
+          type: integer
+          description: An integer that represents the SLA object's acknowledge_time
+        resolve_time:
+          type: integer
+          description: An integer that represents the SLA object's resolve_time
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the SLA object's creation_date
+          
+    SLAPostPayload:
+      type: object
+      description: Schema for creating the SLA object
+      required:
+        - user
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the SLA object's unique_id
+        name:
+          type: string
+          description: An arbitary string that represents the SLA object's name
+        is_active:
+          type: boolean
+          default: true
+          description: A boolean flag that represents whether the SLA object is active or not
+        acknowledge_time:
+          type: integer
+          description: An integer that represents the SLA object's acknowledge_time
+        resolve_time:
+          type: integer
+          description: An integer that represents the SLA object's resolve_time
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the SLA object's creation_date
+          
+    SLAPutPayload:
+      type: object
+      description: Schema for updating the SLA object
+      required:
+        - user
       properties:
         unique_id:
           type: string
@@ -4871,10 +5967,228 @@ components:
           type: string
           format: date-time
           description: A formatted string that represents the Team Maintenance Mode object's repeat_until
+          
+    TMMPostPayload:
+      type: object
+      description: Schema for creating the Team Maintenance Mode object
+      required:
+        - user
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Team Maintenance Mode object's unique_id
+        start_time:
+          type: string
+          format: date-time
+          description: A formatted string that represents the Team Maintenance Mode object's start_time
+        end_time:
+          type: string
+          format: date-time
+          description: A formatted string that represents the Team Maintenance Mode object's end_time
+        repeat_interval:
+          type: integer
+          default: 0
+          description: An integer that represents the Team Maintenance Mode object's repeat_interval
+        services:
+          type: array
+          description: Array of Service objects
+          items:
+            type: object
+            description: Service object schema for Team Maintenance Mode object schema
+            properties:
+              unique_id:
+                type: string
+                description: A system-generated string that represents the Team Maintenance Mode Service object's unique_id
+              service:
+                type: string
+                description: A system-generated string that represents the Service object's unique_id
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Team Maintenance Mode object's creation_date
+        name:
+          type: string
+          description: A string that represents the Team Maintenance Mode object's name
+        time_zone:
+          type: string
+          default: UTC
+          description: A formatted string that represents the Team Maintenance Mode object's time_zone. You can check out the time zone list here https://timezonedb.com/time-zones
+        repeat_until:
+          type: string
+          format: date-time
+          description: A formatted string that represents the Team Maintenance Mode object's repeat_until
+          
+    TMMPutPayload:
+      type: object
+      description: Schema for updating the Team Maintenance Mode object
+      required:
+        - user
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Team Maintenance Mode object's unique_id
+        start_time:
+          type: string
+          format: date-time
+          description: A formatted string that represents the Team Maintenance Mode object's start_time
+        end_time:
+          type: string
+          format: date-time
+          description: A formatted string that represents the Team Maintenance Mode object's end_time
+        repeat_interval:
+          type: integer
+          default: 0
+          description: An integer that represents the Team Maintenance Mode object's repeat_interval
+        services:
+          type: array
+          description: Array of Service objects
+          items:
+            type: object
+            description: Service object schema for Team Maintenance Mode object schema
+            properties:
+              unique_id:
+                type: string
+                description: A system-generated string that represents the Team Maintenance Mode Service object's unique_id
+              service:
+                type: string
+                description: A system-generated string that represents the Service object's unique_id
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Team Maintenance Mode object's creation_date
+        name:
+          type: string
+          description: A string that represents the Team Maintenance Mode object's name
+        time_zone:
+          type: string
+          default: UTC
+          description: A formatted string that represents the Team Maintenance Mode object's time_zone. You can check out the time zone list here https://timezonedb.com/time-zones
+        repeat_until:
+          type: string
+          format: date-time
+          description: A formatted string that represents the Team Maintenance Mode object's repeat_until
     
     Postmortem:
       type: object
       description: Postmortem object schema
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Postmortem object's unique_id
+        author:
+          type: string
+          description: A system-generated string that represents the User object's username
+        status:
+          type: string
+          description: A string that represents the Postmortem object's status
+        postmortem_data:
+          type: string
+          description: A string that represents the Postmortem object's postmortem_data
+        incidents:
+          type: array
+          description: An array of Postmortem Incident objects
+          items:
+            type: object
+            description: Postmortem Incident object schema
+            properties:
+              unique_id:
+                type: string
+                description: A system-generated string that represents the Postmortem Incident object's unique_id
+              incident:
+                type: object
+                description: Incident object schema for a Postmortem object schema
+                properties:
+                  unique_id:
+                    type: string
+                    description: A system-generated string that represents the Incident object's unique_id
+                  title:
+                    type: string
+                    description: A string that represents the Incident object's title
+                  incident_number:
+                    type: integer
+                    description: An integer that represents the Incident object's incident_number
+        author_name:
+          type: string
+          description: A string that represents the User object's full name
+        title:
+          type: string
+          description: A string that represents the Postmortem object's title
+        download_status:
+          type: integer
+          default: 0
+          description: An integer that represents the Postmortem object's download_status. 1 is uninitiated, 2 is initiated, 3 is finished and 4 is error
+        amazon_link:
+          type: string
+          description: An hyperlink string to AWS
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Postmortem object's creation_date
+          
+    PostmortemPostPayload:
+      type: object
+      description: Schema for creating the Postmortem object
+      required:
+        - user
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Postmortem object's unique_id
+        author:
+          type: string
+          description: A system-generated string that represents the User object's username
+        status:
+          type: string
+          description: A string that represents the Postmortem object's status
+        postmortem_data:
+          type: string
+          description: A string that represents the Postmortem object's postmortem_data
+        incidents:
+          type: array
+          description: An array of Postmortem Incident objects
+          items:
+            type: object
+            description: Postmortem Incident object schema
+            properties:
+              unique_id:
+                type: string
+                description: A system-generated string that represents the Postmortem Incident object's unique_id
+              incident:
+                type: object
+                description: Incident object schema for a Postmortem object schema
+                properties:
+                  unique_id:
+                    type: string
+                    description: A system-generated string that represents the Incident object's unique_id
+                  title:
+                    type: string
+                    description: A string that represents the Incident object's title
+                  incident_number:
+                    type: integer
+                    description: An integer that represents the Incident object's incident_number
+        author_name:
+          type: string
+          description: A string that represents the User object's full name
+        title:
+          type: string
+          description: A string that represents the Postmortem object's title
+        download_status:
+          type: integer
+          default: 0
+          description: An integer that represents the Postmortem object's download_status. 1 is uninitiated, 2 is initiated, 3 is finished and 4 is error
+        amazon_link:
+          type: string
+          description: An hyperlink string to AWS
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Postmortem object's creation_date
+          
+    PostmortemPutPayload:
+      type: object
+      description: Schema for updating the Postmortem object
+      required:
+        - user
       properties:
         unique_id:
           type: string
@@ -5198,438 +6512,6 @@ components:
           type: string
           description: A string that represents the Event Note object's note_text
             
-    
-        
-    # Payload Schema 
-    
-    AccountMemberPutPayload:
-      type: object
-      description: Account Member object schema
-      required:
-        - user
-      properties:
-        unique_id:
-          type: string
-          description: A system-generated string that represents the Account Member object's unique_id
-        time_zone:
-          type: string
-          default: UTC
-          description: A formatted string that represents the Account Member object's time zone. You can check out the time zone list here https://timezonedb.com/time-zones
-        user:
-          $ref: '#/components/schemas/User'
-        joining_date:
-          type: string
-          description: A formatted string that represents the Account Member object's joining_date
-        role:
-          type: integer
-          default: 3
-          description: An integer that represents the Account Member object's role. 1 is owner, 2 is admin and 3 is user
-        is_verified:
-          type: boolean
-          default: false
-          description: A boolean flag that represents the Account Member object's verification
-          
-    TeamPostPayload:
-      type: object
-      description: Payload for creating a Team
-      required:
-        - name
-      properties:
-        name:
-          type: string
-          description: An arbitary string that represents the name of the team 
-        creation_date:
-          type: string
-          format: date-time
-          description: A formatted string that represents the date and time on which the team has been created
-        owner:
-          type: string
-          description: Username of the user who  is team owner
-          
-    TeamPutPayload:
-      type: object
-      description: Payload for updating a Team
-      properties:
-        name:
-          type: string
-          description: Name of the Updated Team
-          
-    TeamMemberPostPayload:
-      type: object
-      description: Payload for creating a Team Member
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-          
-    TeamMemberPutPayload:
-      type: object
-      description: Put Payload for updating a Team Member
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-        role:
-          type: integer
-          description: Role of the updated team member
-          
-    SchedulePostPayload:
-      type: object
-      description: Payload for creating a Schedule
-      properties:
-        name:
-          type: string
-          description: Name of the schedule
-        summary:
-          type: string
-          description: Summary of the schedule
-        description:
-          type: string
-          description: Description of the schedule
-        time_zone:
-          type: string
-          description: Time Zone of the schedule
-          
-    SchedulePutPayload:
-      type: object
-      description: Put Payload for updating a Schedule
-      properties:
-        name:
-          type: string
-          description: Modified name of the schedule
-          
-    EPPostPayload:
-      type: object
-      description: Payload for creating a Escalation Policy
-      properties:
-        name:
-          type: string
-          description: Name of the Escalation Policy
-        summary:
-          type: string
-          description: Summary of the Escalation Policy
-        description:
-          type: string
-          description: Description of the Escalation Policy
-        rules:
-          $ref: '#/components/schemas/EP_Rule'
-          
-    EPPutPayload:
-      type: object
-      description: Put Payload for updating a Escalation Policy
-      properties:
-        name:
-          type: string
-          description: Modified name of the Escalation Policy
-        rules:
-          $ref: '#/components/schemas/EP_Rule'
-          
-    ServicePostPayload:
-      type: object
-      description: Payload for creating a Service
-      properties:
-        name:
-          type: string
-          description: name of the new service
-        collation:
-          type: integer
-          description: Tells weather incident should be collated or not
-        collation_time:
-          type: integer
-          description: time frame on which incident should be collated
-        description:
-          type: string
-          description: description of new service
-        escalation_policy:
-          type: string
-          description: unique id of escalation policy
-        team_priority:
-          type: string
-          description: unique id of team priority it can be null also
-        sla:
-          type: string
-          description: unique id of sla it can be null also
-          
-    ServicePutPayload:
-      type: object
-      description: Put Payload for updating a Service
-      properties:
-        name:
-          type: string
-          description: name of the new service
-        description:
-          type: string
-          description: description of new service
-        escalation_policy:
-          type: string
-          description: unique id of escalation policy
-        team_priority:
-          type: string
-          description: unique id of team priority it can be null also
-        sla:
-          type: string
-          description: unique id of sla it can be null also
-          
-    IntegrationPostPayload:
-      type: object
-      description: Payload for creating an Integration
-      properties:
-        name:
-          type: string
-          description: Name of the Integration
-        summary:
-          type: string
-          description: Summary of the Integration
-        application:
-          type: string
-          description: Unique ID of the Application
-          
-    IntegrationPutPayload:
-      type: object
-      description: Put Payload for updating an Integration
-      properties:
-        name:
-          type: string
-          description: Name of the Integration
-        application:
-          type: string
-          description: Unique ID of the Application
-          
-    IncidentPostPayload:
-      type: object
-      description: Payload for creating a Incident
-      properties:
-        title:
-          type: string
-          description: Title of the Incident
-        service:
-          type: string
-          description: Unique ID of the service
-        
-    IncidentPutPayload:
-      type: object
-      description: Put Payload for updating an Incident
-      properties:
-        title:
-          type: string
-          description: Title of the Incident
-        service:
-          type: string
-          description: Unique ID of the service
-          
-    IRPostPayload:
-      type: object
-      description: Payload for creating an Incident Role
-      properties:
-        title:
-          type: string
-          description: Title of the Incident Role
-        description:
-          type: string
-          description: Description of the Incident Role
-        rank:
-          type: integer
-          description: Rank of the incident commander
-          
-    IRPutPayload:
-      type: object
-      description: Put Payload for updating an Incident Role
-      properties:
-        title:
-          type: string
-          description: Title of the Incident Role
-          
-    IncidentNotePostPayload:
-      type: object
-      description: Payload for creating a Incident Note
-      properties:
-        note:
-          type: string
-          description: Data of the Incident note
-        
-        
-    IncidentNotePutPayload:
-      type: object
-      description: Put Payload for updating an Incident Note
-      properties:
-        note:
-          type: string
-          description: Modified Data of the Incident note
-          
-    EventPostPayload:
-      type: object
-      description: Post Payload for creating an Event
-      properties:
-        alert_type:
-          type: string
-          description: Alert type of an Event
-        message:
-          type: string
-          description: Message of the Event
-        summary:
-          type: string
-          description: Summary of the Event
-          
-    TagPostPayload:
-      type: object
-      description: Payload for creating a Tag
-      properties:
-        name:
-          type: string
-          description: Name of the Tag
-        color:
-          type: string
-          description: Color of the Tag
-          
-    TagPutPayload:
-      type: object
-      description: Put Payload for updating a Tag
-      properties:
-        name:
-          type: string
-          description: Modified Name of the Tag
-          
-    TTPostPayload:
-      type: object
-      description: Payload for creating a Task Teamplate
-      properties:
-        name:
-          type: string
-          description: Name of the Task Teamplate
-        summary:
-          type: string
-          description: Summary of the Task Template
-          
-    TTPutPayload:
-      type: object
-      description: Put Payload for updating a Task Template
-      properties:
-        name:
-          type: string
-          description: Modified Name of the Task Template
-          
-    PriorityPostPayload:
-      type: object
-      description: Payload for creating a Priority
-      properties:
-        name:
-          type: string
-          description: Name of the Priority
-          
-    PriorityPutPayload:
-      type: object
-      description: Put Payload for updating a Priority
-      properties:
-        name:
-          type: string
-          description: Modified Name of the Priority
-          
-    SLAPostPayload:
-      type: object
-      description: Payload for creating an SLA
-      properties:
-        name:
-          type: string
-          description: Name of the Priority
-        escalations:
-          type: array
-          description: Array of escalation objects
-          items:
-            $ref: '#/components/schemas/SLA_Escalation'
-          
-    SLAPutPayload:
-      type: object
-      description: Put Payload for updating an SLA
-      properties:
-        name:
-          type: string
-          description: Modified Name of the SLA
-          
-    TMMPostPayload:
-      type: object
-      description: Payload for creating a Team Maintenance Mode
-      properties:
-        name:
-          type: string
-          description: Name of the Team Maintenance Mode
-        services:
-          type: array
-          description: Array of service objects
-          items:
-            $ref: '#/components/schemas/Service'
-        start_time:
-          type: string
-          description: Start Time of the Team Maintenance Mode
-        end_time:
-          type: string
-          description: End TIme of the Team Maintenance Mode
-          
-    TMMPutPayload:
-      type: object
-      description: Put Payload for updating a Team Maintenance Mode
-      properties:
-        name:
-          type: string
-          description: Name of the Team Maintenance Mode
-        services:
-          type: array
-          description: Array of service objects
-          items:
-            $ref: '#/components/schemas/Service'
-        start_time:
-          type: string
-          description: Start Time of the Team Maintenance Mode
-        end_time:
-          type: string
-          description: End TIme of the Team Maintenance Mode
-    
-    PostmortemPostPayload:
-      type: object
-      description: Payload for creating a Postmortem
-      properties:
-        title:
-          type: string
-          description: Title of the postmortem
-        author:
-          type: string
-          description: Username of the account user
-        incidents:
-          type: array
-          description: Array of postmortem incident objects
-          items:
-            type: object
-            description: Postmortem Incident object schema
-            properties:
-              incident:
-                type: string
-                description: Unique ID of the incident
-          
-    PostmortemPutPayload:
-      type: object
-      description: Put Payload for updating a Postmortem
-      properties:
-        title:
-          type: string
-          description: Title of the postmortem
-        author:
-          type: string
-          description: Username of the account user
-        incidents:
-          type: array
-          description: Array of postmortem incident objects
-          items:
-            type: object
-            description: Postmortem Incident object schema
-            properties:
-              incident:
-                type: string
-                description: Unique ID of the incident
-        status:
-          type: string
-          description: Status of the postmortem
-        postmortem_data:
-          type: string
-          description: Postmortem Data of the postmortem
-          
-          
           
     # Unused Schema
     
