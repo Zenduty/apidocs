@@ -81,9 +81,9 @@ paths:
     get: 
       tags:
       - Account Member
-      summary: List all account members
+      summary: List all Account Member objects
       description:
-        Returns a list of account members. The account members are returned sorted by joining_date, with the most recent account member appearing last.
+        Returns a list of Account Member objects. The Account Member objects are sorted by joining_date, with the most recent Account Member object appearing last.
       security:
         - bearerAuth: []
       responses:
@@ -94,49 +94,69 @@ paths:
               schema:
                 $ref: '#/components/schemas/AccountMember'
               example:
-                - unique_id: 3361b627-e340-4e67-a015-1288b1f926e3
-                  time_zone: Asia/Kolkata
-                  user:
-                    username: 85e1569d-79a4-4205-850f-a
-                    first_name: Vishwa 
-                    last_name: Krishnakumar
-                    email: vishwa@yellowant.com
-                  joining_date: '2018-07-09T11:13:49.035598Z'
-                  role: 1
-                  is_verified: true
-                - unique_id: bd78097b-b343-44b0-a686-65ba1bfba6d1
+                - unique_id: 96f437aa-ae86-46cc-a01a-b2ede620d25a
                   time_zone: UTC
                   user:
-                    username: 6278fd1d-7e7c-486a-80e3-5
+                    username: 216bba3d-7268-4a8e-89e9-6
+                    first_name: Anshul
+                    last_name: Rajput
+                    email: anshulrajput229@gmail.com
+                  joining_date: '2022-07-08T10:28:36.804578Z'
+                  role: 1
+                  is_verified: false
+                - unique_id: 49868e5e-aa68-471b-82e2-10b6238f42f6
+                  time_zone: UTC
+                  user:
+                    username: 507dfda0-a1fd-40e5-943a-e
                     first_name: Mary
                     last_name: Jane
                     email: maryjane@sharklasers.com
-                  joining_date: '2019-03-07T11:48:53.852632Z'
+                  joining_date: '2022-07-08T10:31:56.830785Z'
                   role: 3
+                  is_verified: false
+                - unique_id: ab188a19-7f5c-4f6f-b7cd-d1bfa0725dcd
+                  time_zone: UTC
+                  user:
+                    username: 85b563c8-18d0-4668-9462-9
+                    first_name: Vishwa
+                    last_name: Krishnakumar
+                    email: vishwa@yellowant.com
+                  joining_date: '2022-07-08T10:32:42.191552Z'
+                  role: 2
                   is_verified: false
             application/xml:
               schema:
                 $ref: '#/components/schemas/AccountMember'
               example:
-                - unique_id: 3361b627-e340-4e67-a015-1288b1f926e3
-                  time_zone: Asia/Kolkata
-                  user:
-                    username: 85e1569d-79a4-4205-850f-a
-                    first_name: Vishwa 
-                    last_name: Krishnakumar
-                    email: vishwa@yellowant.com
-                  joining_date: '2018-07-09T11:13:49.035598Z'
-                  role: 1
-                  is_verified: true
-                - unique_id: bd78097b-b343-44b0-a686-65ba1bfba6d1
+                - unique_id: 96f437aa-ae86-46cc-a01a-b2ede620d25a
                   time_zone: UTC
                   user:
-                    username: 6278fd1d-7e7c-486a-80e3-5
+                    username: 216bba3d-7268-4a8e-89e9-6
+                    first_name: Anshul
+                    last_name: Rajput
+                    email: anshulrajput229@gmail.com
+                  joining_date: '2022-07-08T10:28:36.804578Z'
+                  role: 1
+                  is_verified: false
+                - unique_id: 49868e5e-aa68-471b-82e2-10b6238f42f6
+                  time_zone: UTC
+                  user:
+                    username: 507dfda0-a1fd-40e5-943a-e
                     first_name: Mary
                     last_name: Jane
                     email: maryjane@sharklasers.com
-                  joining_date: '2019-03-07T11:48:53.852632Z'
+                  joining_date: '2022-07-08T10:31:56.830785Z'
                   role: 3
+                  is_verified: false
+                - unique_id: ab188a19-7f5c-4f6f-b7cd-d1bfa0725dcd
+                  time_zone: UTC
+                  user:
+                    username: 85b563c8-18d0-4668-9462-9
+                    first_name: Vishwa
+                    last_name: Krishnakumar
+                    email: vishwa@yellowant.com
+                  joining_date: '2022-07-08T10:32:42.191552Z'
+                  role: 2
                   is_verified: false
         '400':
           description: Bad Request 
@@ -177,8 +197,8 @@ paths:
       get: 
         tags:
         - Account Member
-        summary: Retrieve an account member
-        description: Retrieve a specified account member object.
+        summary: Retrieve the Account Member object
+        description: Retrieve the specified Account Member object.
         security:
           - bearerAuth: []
         responses:
@@ -189,30 +209,30 @@ paths:
                 schema:
                   $ref: '#/components/schemas/AccountMember'
                 example:
-                  unique_id: 3361b627-e340-4e67-a015-1288b1f926e3
-                  time_zone: Asia/Kolkata
+                  unique_id: ab188a19-7f5c-4f6f-b7cd-d1bfa0725dcd
+                  time_zone: UTC
                   user:
-                    username: 85e1569d-79a4-4205-850f-a
+                    username: 85b563c8-18d0-4668-9462-9
                     first_name: Vishwa
                     last_name: Krishnakumar
                     email: vishwa@yellowant.com
-                  joining_date: '2018-07-09T11:13:49.035598Z'
-                  role: 1
-                  is_verified: true
+                  joining_date: '2022-07-08T10:32:42.191552Z'
+                  role: 2
+                  is_verified: false
               application/xml:
                 schema:
                   $ref: '#/components/schemas/AccountMember'
                 example:
-                  unique_id: 3361b627-e340-4e67-a015-1288b1f926e3
-                  time_zone: Asia/Kolkata
+                  unique_id: ab188a19-7f5c-4f6f-b7cd-d1bfa0725dcd
+                  time_zone: UTC
                   user:
-                    username: 85e1569d-79a4-4205-850f-a
+                    username: 85b563c8-18d0-4668-9462-9
                     first_name: Vishwa
                     last_name: Krishnakumar
                     email: vishwa@yellowant.com
-                  joining_date: '2018-07-09T11:13:49.035598Z'
-                  role: 1
-                  is_verified: true
+                  joining_date: '2022-07-08T10:32:42.191552Z'
+                  role: 2
+                  is_verified: false
           '400':
             description: Bad Request
             content:
@@ -243,29 +263,29 @@ paths:
       put:
         tags:
           - Account Member
-        summary: Update an account member
-        description: Updates the specified account member by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
+        summary: Update the Account Member object
+        description: Updates the specified Account Member object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
         security:
           - bearerAuth: []
         requestBody:
-          description: Request body parameters to update an account member
+          description: Request body parameters to update the Account Member object
           required: true
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountMemberPutPayload'
+                $ref: '#/components/schemas/AccountMemberPayload'
               example:
                 user:
-                  username: 6278fd1d-7e7c-486a-80e3-5
+                  username: 507dfda0-a1fd-40e5-943a-e
                   first_name: Mary
                   last_name: Jane
                 role: 2
             application/xml:
               schema:
-                $ref: '#/components/schemas/AccountMemberPutPayload'
+                $ref: '#/components/schemas/AccountMemberPayload'
               example:
                 user:
-                  username: 6278fd1d-7e7c-486a-80e3-5
+                  username: 507dfda0-a1fd-40e5-943a-e
                   first_name: Mary
                   last_name: Jane
                 role: 2
@@ -277,28 +297,28 @@ paths:
                 schema:
                   $ref: '#/components/schemas/AccountMember'
                 example:
-                  unique_id: bd78097b-b343-44b0-a686-65ba1bfba6d1
+                  unique_id: 49868e5e-aa68-471b-82e2-10b6238f42f6
                   time_zone: UTC
                   user:
-                    username: 6278fd1d-7e7c-486a-80e3-5
+                    username: 507dfda0-a1fd-40e5-943a-e
                     first_name: Mary
                     last_name: Jane
                     email: maryjane@sharklasers.com
-                  joining_date: '2019-03-07T11:48:53.852632Z'
+                  joining_date: '2022-07-08T10:31:56.830785Z'
                   role: 2
                   is_verified: false
               application/xml:
                   schema:
                     $ref: '#/components/schemas/AccountMember'
                   example:
-                    unique_id: bd78097b-b343-44b0-a686-65ba1bfba6d1
+                    unique_id: 49868e5e-aa68-471b-82e2-10b6238f42f6
                     time_zone: UTC
                     user:
-                      username: 6278fd1d-7e7c-486a-80e3-5
+                      username: 507dfda0-a1fd-40e5-943a-e
                       first_name: Mary
                       last_name: Jane
                       email: maryjane@sharklasers.com
-                    joining_date: '2019-03-07T11:48:53.852632Z'
+                    joining_date: '2022-07-08T10:31:56.830785Z'
                     role: 2
                     is_verified: false
           '400':
@@ -333,24 +353,24 @@ paths:
     post:
       tags:
         - Teams
-      summary: Create a team
-      description: creates a team by setting the values of all the required parameters passed in the request body.
+      summary: Create the Team object
+      description: Create the Team object by setting the values of all the required parameters passed in the request body.
       security:
         - bearerAuth: []
       requestBody:
-        description: Request body parameters to create a team
+        description: Request body parameters to create the Team object
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TeamPostPayload'
+              $ref: '#/components/schemas/TeamPayload'
             example: 
-              name: Operation Team
+              name: Production Team
           application/xml:
             schema:
-              $ref: '#/components/schemas/TeamPostPayload'
+              $ref: '#/components/schemas/TeamPayload'
             example: 
-              name: Operation Team
+              name: Production Team
       responses:
         '201':
           description: OK
@@ -359,38 +379,70 @@ paths:
               schema:
                 $ref: '#/components/schemas/Team'
               example:
-                unique_id: 84c33b2f-1548-4a1e-a514-74086c010b3c
-                name: Operation Team
-                account: 0a3d2b08-6fec-4264-84fd-60886c241e5c
-                creation_date: '2022-07-05'
+                unique_id: 61010821-08aa-4098-94f8-f88f1990b54a
+                name: Production Team
+                account: 0713dc12-40b0-46ff-b0f9-c6b126399277
+                creation_date: '2022-07-08'
                 members:
-                  - unique_id: fbc52c71-1088-4167-8c5b-bfcc69387c19
-                    team: 84c33b2f-1548-4a1e-a514-74086c010b3c
+                  - unique_id: d916157c-ff8b-43be-8e99-4b63699fdf72
+                    team: 61010821-08aa-4098-94f8-f88f1990b54a
                     user:
-                      username: 50012040-37db-4594-a268-a
-                      first_name: Dheeraj
-                      last_name: k
-                      email: dheerukreddy@gmail.com
-                    joining_date: '2022-07-05T14:01:49.793660Z'
+                      username: 216bba3d-7268-4a8e-89e9-6
+                      first_name: Anshul
+                      last_name: Rajput
+                      email: anshulrajput229@gmail.com
+                    joining_date: '2022-07-08T10:41:36.600148Z'
                     role: 1
-                owner: 50012040-37db-4594-a268-a
+                owner: 216bba3d-7268-4a8e-89e9-6
                 roles:
-                  - unique_id: 285b40f2-ecbe-4334-b2b2-e3e83e4a4ce8
-                    team: 84c33b2f-1548-4a1e-a514-74086c010b3c
+                  - unique_id: 89752b4a-43df-401d-9dc0-a446690a7a0e
+                    team: 61010821-08aa-4098-94f8-f88f1990b54a
                     title: Incident Commander
                     description: 'The incident commander is the person responsible for all aspects of the incident response, including quickly developing incident objectives, managing all incident operations, application of resources as well as responsibility for all persons involved. The incident commander sets priorities and defines the organization of the incident response teams and the overall incident action plan.'
-                    creation_date: '2022-07-05T14:01:49.836566Z'
+                    creation_date: '2022-07-08T10:41:36.623257Z'
                     rank: 1
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Team'
+              example:
+                unique_id: 61010821-08aa-4098-94f8-f88f1990b54a
+                name: Production Team
+                account: 0713dc12-40b0-46ff-b0f9-c6b126399277
+                creation_date: '2022-07-08'
+                members:
+                  - unique_id: d916157c-ff8b-43be-8e99-4b63699fdf72
+                    team: 61010821-08aa-4098-94f8-f88f1990b54a
+                    user:
+                      username: 216bba3d-7268-4a8e-89e9-6
+                      first_name: Anshul
+                      last_name: Rajput
+                      email: anshulrajput229@gmail.com
+                    joining_date: '2022-07-08T10:41:36.600148Z'
+                    role: 1
+                owner: 216bba3d-7268-4a8e-89e9-6
+                roles:
+                  - unique_id: 89752b4a-43df-401d-9dc0-a446690a7a0e
+                    team: 61010821-08aa-4098-94f8-f88f1990b54a
+                    title: Incident Commander
+                    description: 'The incident commander is the person responsible for all aspects of the incident response, including quickly developing incident objectives, managing all incident operations, application of resources as well as responsibility for all persons involved. The incident commander sets priorities and defines the organization of the incident response teams and the overall incident action plan.'
+                    creation_date: '2022-07-08T10:41:36.623257Z'
+                    rank: 1  
         '400':
           description: Bad Request 
           content:
             application/json:
               example:
-                - Team name already exists
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
         '403':
           description: Forbidden 
           content:
             application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
               example:
                 detail: You do not have permission to perform this action.
         '404':
@@ -399,10 +451,14 @@ paths:
               application/json:
                 example:
                   detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
     get: 
       tags:
       - Teams
-      summary: Get Teams
+      summary: List all Team objects
+      description: Returns a list of Team objects. The Team objects are sorted by creation_date, with the most recent Team object appearing last. 
       security:
         - bearerAuth: []
       responses:
@@ -413,126 +469,159 @@ paths:
               schema:
                 $ref: '#/components/schemas/Team'
               example:
-                - unique_id: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
-                  name: Team 1
-                  account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
-                  creation_date: '2022-06-21'
+                - unique_id: 1f1b4d79-ed32-44fc-926d-f794b975200c
+                  name: Operation Team
+                  account: 0713dc12-40b0-46ff-b0f9-c6b126399277
+                  creation_date: '2022-07-08'
                   members:
-                    - unique_id: b674c920-b2b4-4f6e-82ab-9a345e86f6be
-                      team: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
+                    - unique_id: 90a97f10-d290-4bd0-9f83-525f130c6399
+                      team: 1f1b4d79-ed32-44fc-926d-f794b975200c
                       user:
-                        username: 85e1569d-79a4-4205-850f-a
+                        username: 216bba3d-7268-4a8e-89e9-6
                         first_name: Anshul
-                        last_name: Admin
-                        email: anshul@admin.com
-                      joining_date: '2022-06-21T11:30:27.817493Z'
+                        last_name: Rajput
+                        email: anshulrajput229@gmail.com
+                      joining_date: '2022-07-08T10:29:36.408864Z'
                       role: 1
-                  owner: 85e1569d-79a4-4205-850f-a
+                    - unique_id: 4af52265-b69e-4cd0-948a-fba33933588d
+                      team: 1f1b4d79-ed32-44fc-926d-f794b975200c
+                      user:
+                        username: 507dfda0-a1fd-40e5-943a-e
+                        first_name: Mary
+                        last_name: Jane
+                        email: maryjane@sharklasers.com
+                      joining_date: '2022-07-08T10:31:56.849950Z'
+                      role: 2
+                    - unique_id: 76e76d20-2c82-49be-b987-244c8c6af57b
+                      team: 1f1b4d79-ed32-44fc-926d-f794b975200c
+                      user:
+                        username: 85b563c8-18d0-4668-9462-9
+                        first_name: Vishwa
+                        last_name: Krishnakumar
+                        email: vishwa@yellowant.com
+                      joining_date: '2022-07-08T10:32:42.213487Z'
+                      role: 2
+                  owner: 216bba3d-7268-4a8e-89e9-6
                   roles:
-                    - unique_id: f36c37b8-7f78-4bfc-b645-8c65e985d367
-                      team: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
+                    - unique_id: ce2e4fec-7fb9-440c-b400-9a33639d8ba3
+                      team: 1f1b4d79-ed32-44fc-926d-f794b975200c
                       title: Incident Commander
                       description: 'The incident commander is the person responsible for all aspects of the incident response, including quickly developing incident objectives, managing all incident operations, application of resources as well as responsibility for all persons involved. The incident commander sets priorities and defines the organization of the incident response teams and the overall incident action plan.'
-                      creation_date: '2022-06-21T11:30:27.855502Z'
+                      creation_date: '2022-07-08T10:29:36.431801Z'
                       rank: 1
-                - unique_id: 3ee7d2c8-cfe8-4655-b713-e83e4f43cdaa
-                  name: Team 2
-                  account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
-                  creation_date: '2022-06-09'
+                - unique_id: 61010821-08aa-4098-94f8-f88f1990b54a
+                  name: Production Team
+                  account: 0713dc12-40b0-46ff-b0f9-c6b126399277
+                  creation_date: '2022-07-08'
                   members:
-                    - unique_id: 050ec024-a8a2-4c2d-8b32-00238ad2b38a
-                      team: 3ee7d2c8-cfe8-4655-b713-e83e4f43cdaa
+                    - unique_id: d916157c-ff8b-43be-8e99-4b63699fdf72
+                      team: 61010821-08aa-4098-94f8-f88f1990b54a
                       user:
-                        username: 85e1569d-79a4-4205-850f-a
+                        username: 216bba3d-7268-4a8e-89e9-6
                         first_name: Anshul
-                        last_name: Admin
-                        email: anshul@admin.com
-                      joining_date: '2022-06-09T11:38:35.866957Z'
+                        last_name: Rajput
+                        email: anshulrajput229@gmail.com
+                      joining_date: '2022-07-08T10:41:36.600148Z'
                       role: 1
-                    - unique_id: ef49ed63-bca9-4988-9a2f-112120c5e1b8
-                      team: 3ee7d2c8-cfe8-4655-b713-e83e4f43cdaa
-                      user:
-                        username: 6278fd1d-7e7c-486a-80e3-5
-                        first_name: Anshul
-                        last_name: Manager
-                        email: anshul@manager.com
-                      joining_date: '2022-06-09T11:38:36.813218Z'
-                      role: 2
-                    - unique_id: 96170e71-c133-4625-87ea-60105afa1a93
-                      team: 3ee7d2c8-cfe8-4655-b713-e83e4f43cdaa
-                      user:
-                        username: e901875c-bee4-40fa-9ca6-8
-                        first_name: Anshul
-                        last_name: User
-                        email: anshul@user.com
-                      joining_date: '2022-06-09T11:38:37.609236Z'
-                      role: 2
-                  owner: 85e1569d-79a4-4205-850f-a
+                  owner: 216bba3d-7268-4a8e-89e9-6
                   roles:
-                    - unique_id: b3ad3286-548b-40b8-8e2d-b8d3fd2d3220
-                      team: 3ee7d2c8-cfe8-4655-b713-e83e4f43cdaa
+                    - unique_id: 89752b4a-43df-401d-9dc0-a446690a7a0e
+                      team: 61010821-08aa-4098-94f8-f88f1990b54a
                       title: Incident Commander
                       description: 'The incident commander is the person responsible for all aspects of the incident response, including quickly developing incident objectives, managing all incident operations, application of resources as well as responsibility for all persons involved. The incident commander sets priorities and defines the organization of the incident response teams and the overall incident action plan.'
-                      creation_date: '2022-06-09T11:38:35.897746Z'
+                      creation_date: '2022-07-08T10:41:36.623257Z'
                       rank: 1
-                - unique_id: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
-                  name: Team 3
-                  account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
-                  creation_date: '2022-04-14'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Team'
+              example:
+                - unique_id: 1f1b4d79-ed32-44fc-926d-f794b975200c
+                  name: Operation Team
+                  account: 0713dc12-40b0-46ff-b0f9-c6b126399277
+                  creation_date: '2022-07-08'
                   members:
-                    - unique_id: 4843d1da-2308-44e6-b73d-ffcd253899be
-                      team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                    - unique_id: 90a97f10-d290-4bd0-9f83-525f130c6399
+                      team: 1f1b4d79-ed32-44fc-926d-f794b975200c
                       user:
-                        username: 85e1569d-79a4-4205-850f-a
+                        username: 216bba3d-7268-4a8e-89e9-6
                         first_name: Anshul
-                        last_name: Admin
-                        email: anshul@admin.com
-                      joining_date: '2022-04-14T08:09:23.573093Z'
-                      role: 2
-                    - unique_id: 39905ba1-1ace-4763-a5d6-f6ad5a0a788f
-                      team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
-                      user:
-                        username: 6278fd1d-7e7c-486a-80e3-5
-                        first_name: Anshul
-                        last_name: Manager
-                        email: anshul@manager.com
-                      joining_date: '2022-04-27T07:47:12.543213Z'
+                        last_name: Rajput
+                        email: anshulrajput229@gmail.com
+                      joining_date: '2022-07-08T10:29:36.408864Z'
                       role: 1
-                    - unique_id: 0d54d800-b7da-4314-9850-f118fad1c078
-                      team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                    - unique_id: 4af52265-b69e-4cd0-948a-fba33933588d
+                      team: 1f1b4d79-ed32-44fc-926d-f794b975200c
                       user:
-                        username: e901875c-bee4-40fa-9ca6-8
-                        first_name: Anshul
-                        last_name: User
-                        email: anshul@user.com
-                      joining_date: '2022-04-20T11:01:42.942598Z'
+                        username: 507dfda0-a1fd-40e5-943a-e
+                        first_name: Mary
+                        last_name: Jane
+                        email: maryjane@sharklasers.com
+                      joining_date: '2022-07-08T10:31:56.849950Z'
                       role: 2
-                  owner: 85e1569d-79a4-4205-850f-a
+                    - unique_id: 76e76d20-2c82-49be-b987-244c8c6af57b
+                      team: 1f1b4d79-ed32-44fc-926d-f794b975200c
+                      user:
+                        username: 85b563c8-18d0-4668-9462-9
+                        first_name: Vishwa
+                        last_name: Krishnakumar
+                        email: vishwa@yellowant.com
+                      joining_date: '2022-07-08T10:32:42.213487Z'
+                      role: 2
+                  owner: 216bba3d-7268-4a8e-89e9-6
                   roles:
-                    - unique_id: 51d7c734-7231-441e-acd6-edb43972dea4
-                      team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                    - unique_id: ce2e4fec-7fb9-440c-b400-9a33639d8ba3
+                      team: 1f1b4d79-ed32-44fc-926d-f794b975200c
                       title: Incident Commander
                       description: 'The incident commander is the person responsible for all aspects of the incident response, including quickly developing incident objectives, managing all incident operations, application of resources as well as responsibility for all persons involved. The incident commander sets priorities and defines the organization of the incident response teams and the overall incident action plan.'
-                      creation_date: '2022-04-14T08:09:23.781893Z'
+                      creation_date: '2022-07-08T10:29:36.431801Z'
                       rank: 1
-                    - unique_id: 57889813-b3a1-453f-9544-b7529d33ed4d
-                      team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
-                      title: modified title
-                      description: ''
-                      creation_date: '2022-04-20T11:02:10.402283Z'
+                - unique_id: 61010821-08aa-4098-94f8-f88f1990b54a
+                  name: Production Team
+                  account: 0713dc12-40b0-46ff-b0f9-c6b126399277
+                  creation_date: '2022-07-08'
+                  members:
+                    - unique_id: d916157c-ff8b-43be-8e99-4b63699fdf72
+                      team: 61010821-08aa-4098-94f8-f88f1990b54a
+                      user:
+                        username: 216bba3d-7268-4a8e-89e9-6
+                        first_name: Anshul
+                        last_name: Rajput
+                        email: anshulrajput229@gmail.com
+                      joining_date: '2022-07-08T10:41:36.600148Z'
+                      role: 1
+                  owner: 216bba3d-7268-4a8e-89e9-6
+                  roles:
+                    - unique_id: 89752b4a-43df-401d-9dc0-a446690a7a0e
+                      team: 61010821-08aa-4098-94f8-f88f1990b54a
+                      title: Incident Commander
+                      description: 'The incident commander is the person responsible for all aspects of the incident response, including quickly developing incident objectives, managing all incident operations, application of resources as well as responsibility for all persons involved. The incident commander sets priorities and defines the organization of the incident response teams and the overall incident action plan.'
+                      creation_date: '2022-07-08T10:41:36.623257Z'
                       rank: 1
         '400':
           description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
         '403':
           description: Forbidden 
           content:
             application/json: # operation response mime type
               example:
                 detail: You do not have permission to perform this action.
+            application/xml: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
         '404':
             description: Not Found 
             content:
               application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
                 example:
                   detail: Not Found.
                 
@@ -547,7 +636,8 @@ paths:
       get: 
         tags:
         - Teams
-        summary: Get Team by ID
+        summary: Retrieve the Team object
+        description: Retrieve the specified Team object.
         security:
           - bearerAuth: []
         responses:
@@ -558,57 +648,138 @@ paths:
                 schema:
                   $ref: '#/components/schemas/Team'
                 example:
-                  unique_id: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
-                  name: New Team
-                  account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
-                  creation_date: '2022-06-21'
+                  unique_id: 1f1b4d79-ed32-44fc-926d-f794b975200c
+                  name: Operation Team
+                  account: 0713dc12-40b0-46ff-b0f9-c6b126399277
+                  creation_date: '2022-07-08'
                   members:
-                    - unique_id: b674c920-b2b4-4f6e-82ab-9a345e86f6be
-                      team: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
+                    - unique_id: 90a97f10-d290-4bd0-9f83-525f130c6399
+                      team: 1f1b4d79-ed32-44fc-926d-f794b975200c
                       user:
-                        username: 85e1569d-79a4-4205-850f-a
+                        username: 216bba3d-7268-4a8e-89e9-6
                         first_name: Anshul
-                        last_name: Admin
-                        email: anshul@admin.com
-                      joining_date: '2022-06-21T11:30:27.817493Z'
+                        last_name: Rajput
+                        email: anshulrajput229@gmail.com
+                      joining_date: '2022-07-08T10:29:36.408864Z'
                       role: 1
-                  owner: 85e1569d-79a4-4205-850f-a
+                    - unique_id: 4af52265-b69e-4cd0-948a-fba33933588d
+                      team: 1f1b4d79-ed32-44fc-926d-f794b975200c
+                      user:
+                        username: 507dfda0-a1fd-40e5-943a-e
+                        first_name: Mary
+                        last_name: Jane
+                        email: maryjane@sharklasers.com
+                      joining_date: '2022-07-08T10:31:56.849950Z'
+                      role: 2
+                    - unique_id: 76e76d20-2c82-49be-b987-244c8c6af57b
+                      team: 1f1b4d79-ed32-44fc-926d-f794b975200c
+                      user:
+                        username: 85b563c8-18d0-4668-9462-9
+                        first_name: Vishwa
+                        last_name: Krishnakumar
+                        email: vishwa@yellowant.com
+                      joining_date: '2022-07-08T10:32:42.213487Z'
+                      role: 2
+                  owner: 216bba3d-7268-4a8e-89e9-6
                   roles:
-                    - unique_id: f36c37b8-7f78-4bfc-b645-8c65e985d367
-                      team: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
+                    - unique_id: ce2e4fec-7fb9-440c-b400-9a33639d8ba3
+                      team: 1f1b4d79-ed32-44fc-926d-f794b975200c
                       title: Incident Commander
                       description: 'The incident commander is the person responsible for all aspects of the incident response, including quickly developing incident objectives, managing all incident operations, application of resources as well as responsibility for all persons involved. The incident commander sets priorities and defines the organization of the incident response teams and the overall incident action plan.'
-                      creation_date: '2022-06-21T11:30:27.855502Z'
+                      creation_date: '2022-07-08T10:29:36.431801Z'
+                      rank: 1
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/Team'
+                example:
+                  unique_id: 1f1b4d79-ed32-44fc-926d-f794b975200c
+                  name: Operation Team
+                  account: 0713dc12-40b0-46ff-b0f9-c6b126399277
+                  creation_date: '2022-07-08'
+                  members:
+                    - unique_id: 90a97f10-d290-4bd0-9f83-525f130c6399
+                      team: 1f1b4d79-ed32-44fc-926d-f794b975200c
+                      user:
+                        username: 216bba3d-7268-4a8e-89e9-6
+                        first_name: Anshul
+                        last_name: Rajput
+                        email: anshulrajput229@gmail.com
+                      joining_date: '2022-07-08T10:29:36.408864Z'
+                      role: 1
+                    - unique_id: 4af52265-b69e-4cd0-948a-fba33933588d
+                      team: 1f1b4d79-ed32-44fc-926d-f794b975200c
+                      user:
+                        username: 507dfda0-a1fd-40e5-943a-e
+                        first_name: Mary
+                        last_name: Jane
+                        email: maryjane@sharklasers.com
+                      joining_date: '2022-07-08T10:31:56.849950Z'
+                      role: 2
+                    - unique_id: 76e76d20-2c82-49be-b987-244c8c6af57b
+                      team: 1f1b4d79-ed32-44fc-926d-f794b975200c
+                      user:
+                        username: 85b563c8-18d0-4668-9462-9
+                        first_name: Vishwa
+                        last_name: Krishnakumar
+                        email: vishwa@yellowant.com
+                      joining_date: '2022-07-08T10:32:42.213487Z'
+                      role: 2
+                  owner: 216bba3d-7268-4a8e-89e9-6
+                  roles:
+                    - unique_id: ce2e4fec-7fb9-440c-b400-9a33639d8ba3
+                      team: 1f1b4d79-ed32-44fc-926d-f794b975200c
+                      title: Incident Commander
+                      description: 'The incident commander is the person responsible for all aspects of the incident response, including quickly developing incident objectives, managing all incident operations, application of resources as well as responsibility for all persons involved. The incident commander sets priorities and defines the organization of the incident response teams and the overall incident action plan.'
+                      creation_date: '2022-07-08T10:29:36.431801Z'
                       rank: 1
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
           '403':
             description: Forbidden 
             content:
               application/json:
                 example:
                   detail: You do not have permission to perform this action.
+              application/xml:
+                example:
+                  detail: You do not have permission to perform this action.
           '404':
             description: Not Found 
             content:
               application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
                 example:
                   detail: Not Found.
       put:
         tags:
           - Teams
-        summary: Update a Team
+        summary: Update the Team object
+        description: Updates the specified Team object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
         security:
           - bearerAuth: []
         requestBody:
-          description: Team update payload
+          description: Request body parameters to update the Team object
           required: true
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TeamPutPayload'
+                $ref: '#/components/schemas/TeamPayload'
               example:
-                name: Modified Team
+                name: Modified Production Team
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TeamPayload'
+              example:
+                name: Modified Production Team
         responses:
           '200':
             description: OK
@@ -617,34 +788,70 @@ paths:
                 schema:
                   $ref: '#/components/schemas/Team'
                 example:
-                  unique_id: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
-                  name: Modified Team
-                  account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
-                  creation_date: '2022-06-21'
+                  unique_id: 61010821-08aa-4098-94f8-f88f1990b54a
+                  name: Modified Production Team
+                  account: 0713dc12-40b0-46ff-b0f9-c6b126399277
+                  creation_date: '2022-07-08'
                   members:
-                    - unique_id: b674c920-b2b4-4f6e-82ab-9a345e86f6be
-                      team: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
+                    - unique_id: d916157c-ff8b-43be-8e99-4b63699fdf72
+                      team: 61010821-08aa-4098-94f8-f88f1990b54a
                       user:
-                        username: 85e1569d-79a4-4205-850f-a
+                        username: 216bba3d-7268-4a8e-89e9-6
                         first_name: Anshul
-                        last_name: Admin
-                        email: anshul@admin.com
-                      joining_date: '2022-06-21T11:30:27.817493Z'
+                        last_name: Rajput
+                        email: anshulrajput229@gmail.com
+                      joining_date: '2022-07-08T10:41:36.600148Z'
                       role: 1
-                  owner: 85e1569d-79a4-4205-850f-a
+                  owner: 216bba3d-7268-4a8e-89e9-6
                   roles:
-                    - unique_id: f36c37b8-7f78-4bfc-b645-8c65e985d367
-                      team: 52c65e3f-51c1-44ae-b163-b31fde4c1fc5
+                    - unique_id: 89752b4a-43df-401d-9dc0-a446690a7a0e
+                      team: 61010821-08aa-4098-94f8-f88f1990b54a
                       title: Incident Commander
                       description: 'The incident commander is the person responsible for all aspects of the incident response, including quickly developing incident objectives, managing all incident operations, application of resources as well as responsibility for all persons involved. The incident commander sets priorities and defines the organization of the incident response teams and the overall incident action plan.'
-                      creation_date: '2022-06-21T11:30:27.855502Z'
+                      creation_date: '2022-07-08T10:41:36.623257Z'
+                      rank: 1
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/Team'
+                example:
+                  unique_id: 61010821-08aa-4098-94f8-f88f1990b54a
+                  name: Modified Production Team
+                  account: 0713dc12-40b0-46ff-b0f9-c6b126399277
+                  creation_date: '2022-07-08'
+                  members:
+                    - unique_id: d916157c-ff8b-43be-8e99-4b63699fdf72
+                      team: 61010821-08aa-4098-94f8-f88f1990b54a
+                      user:
+                        username: 216bba3d-7268-4a8e-89e9-6
+                        first_name: Anshul
+                        last_name: Rajput
+                        email: anshulrajput229@gmail.com
+                      joining_date: '2022-07-08T10:41:36.600148Z'
+                      role: 1
+                  owner: 216bba3d-7268-4a8e-89e9-6
+                  roles:
+                    - unique_id: 89752b4a-43df-401d-9dc0-a446690a7a0e
+                      team: 61010821-08aa-4098-94f8-f88f1990b54a
+                      title: Incident Commander
+                      description: 'The incident commander is the person responsible for all aspects of the incident response, including quickly developing incident objectives, managing all incident operations, application of resources as well as responsibility for all persons involved. The incident commander sets priorities and defines the organization of the incident response teams and the overall incident action plan.'
+                      creation_date: '2022-07-08T10:41:36.623257Z'
                       rank: 1
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
           '403':
             description: Forbidden 
             content:
               application/json:
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml:
                 example:
                   detail: You do not have permission to perform this action.
           '404':
@@ -653,10 +860,14 @@ paths:
               application/json:
                 example:
                   detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
       delete: 
         tags:
         - Teams
-        summary: Delete a Team
+        summary: Delete the Team object
+        description: Delete the specified Team object permanently. 
         security:
           - bearerAuth: []
         responses: 
@@ -664,10 +875,20 @@ paths:
             description: Success
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
           '403':
             description: Forbidden 
             content:
               application/json: 
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml: 
                 example:
                   detail: You do not have permission to perform this action.
           '404':
@@ -676,30 +897,39 @@ paths:
               application/json: 
                 example:
                   detail: Not Found.
+              application/xml: 
+                example:
+                  detail: Not Found.
                   
   '/api/account/teams/{}/members/':
     parameters: 
     - name: 'team_id'
       in: path
-      description: Unique ID of a Team
+      description: Unique ID of the Team object
       schema:
         type: string
       required: true
     post:
       tags:
         - Team Members
-      summary: Create Team Member
+      summary: Create the Team Member object
+      description: Create the Team Member object by setting the values of all the required parameters passed in the request body.
       security:
         - bearerAuth: []
       requestBody:
-        description: Team Member create payload
+        description: Request body parameters to create the Team Member object
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TeamMemberPostPayload'
+              $ref: '#/components/schemas/TeamMemberPayload'
             example:
-              user: ee93f063-0941-426e-9b9a-4
+              user: 507dfda0-a1fd-40e5-943a-e
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/TeamMemberPayload'
+            example:
+              user: 507dfda0-a1fd-40e5-943a-e
       responses:
         '201':
           description: OK
@@ -708,27 +938,52 @@ paths:
               schema:
                 $ref: '#/components/schemas/TeamMember'
               example:
-                unique_id: 294c06de-8612-4f76-a1eb-73e116f53cc9
-                team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
-                user: ee93f063-0941-426e-9b9a-4
-                joining_date: '2022-06-30T09:04:20.141170Z'
+                unique_id: 828e4a7b-bb12-4ffc-baa5-7681634d4f7f
+                team: 61010821-08aa-4098-94f8-f88f1990b54a
+                user: 507dfda0-a1fd-40e5-943a-e
+                joining_date: '2022-07-08T11:09:38.230395Z'
+                role: 2
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TeamMember'
+              example:
+                unique_id: 828e4a7b-bb12-4ffc-baa5-7681634d4f7f
+                team: 61010821-08aa-4098-94f8-f88f1990b54a
+                user: 507dfda0-a1fd-40e5-943a-e
+                joining_date: '2022-07-08T11:09:38.230395Z'
                 role: 2
         '400':
-          description: Bad Request 
-          content:
-            application/json:
-              example:
-                - "User already exists"
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
     get: 
       tags:
       - Team Members
-      summary: Get Team Members 
+      summary: List all Team Member objects
+      description: Returns a list of Team Member objects. The Team Member objects are sorted by joining_date, with the most recent Team Member object appearing last.
       security:
         - bearerAuth: []
       responses:
@@ -739,69 +994,93 @@ paths:
               schema:
                 $ref: '#/components/schemas/TeamMember'
               example:
-                - unique_id: 4843d1da-2308-44e6-b73d-ffcd253899be
-                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                - unique_id: d916157c-ff8b-43be-8e99-4b63699fdf72
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
                   user:
-                    username: 85e1569d-79a4-4205-850f-a
+                    username: 216bba3d-7268-4a8e-89e9-6
                     first_name: Anshul
-                    last_name: Admin
-                    email: anshul@admin.com
-                  joining_date: '2022-04-14T08:09:23.573093Z'
-                  role: 2
-                - unique_id: 39905ba1-1ace-4763-a5d6-f6ad5a0a788f
-                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
-                  user:
-                    username: 6278fd1d-7e7c-486a-80e3-5
-                    first_name: Anshul
-                    last_name: Manager
-                    email: anshul@manager.com
-                  joining_date: '2022-04-27T07:47:12.543213Z'
+                    last_name: Rajput
+                    email: anshulrajput229@gmail.com
+                  joining_date: '2022-07-08T10:41:36.600148Z'
                   role: 1
-                - unique_id: 0d54d800-b7da-4314-9850-f118fad1c078
-                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                - unique_id: 828e4a7b-bb12-4ffc-baa5-7681634d4f7f
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
                   user:
-                    username: e901875c-bee4-40fa-9ca6-8
-                    first_name: Anshul
-                    last_name: User
-                    email: anshul@user.com
-                  joining_date: '2022-04-20T11:01:42.942598Z'
+                    username: 507dfda0-a1fd-40e5-943a-e
+                    first_name: Mary
+                    last_name: Jane
+                    email: maryjane@sharklasers.com
+                  joining_date: '2022-07-08T11:09:38.230395Z'
                   role: 2
-                - unique_id: 294c06de-8612-4f76-a1eb-73e116f53cc9
-                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TeamMember'
+              example:
+                - unique_id: d916157c-ff8b-43be-8e99-4b63699fdf72
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
                   user:
-                    username: ee93f063-0941-426e-9b9a-4
-                    first_name: extra
-                    last_name: admin
-                    email: extra@admin.com
-                  joining_date: '2022-06-30T09:04:20.141170Z'
+                    username: 216bba3d-7268-4a8e-89e9-6
+                    first_name: Anshul
+                    last_name: Rajput
+                    email: anshulrajput229@gmail.com
+                  joining_date: '2022-07-08T10:41:36.600148Z'
+                  role: 1
+                - unique_id: 828e4a7b-bb12-4ffc-baa5-7681634d4f7f
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
+                  user:
+                    username: 507dfda0-a1fd-40e5-943a-e
+                    first_name: Mary
+                    last_name: Jane
+                    email: maryjane@sharklasers.com
+                  joining_date: '2022-07-08T11:09:38.230395Z'
                   role: 2
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
                 
   '/api/account/teams/{team_id}/members/{member_id}/':
       parameters: 
         - name: 'team_id'
           in: path
-          description: Unique ID of a Team
+          description: Unique ID of the Team object
           schema:
             type: string
           required: true
         - name: 'member_id'
           in: path
-          description: Unique ID of a Team Member
+          description: Unique ID of the Team Member object
           schema:
             type: string
           required: true
       get: 
         tags:
         - Team Members
-        summary: Get Team Member by ID
+        summary: Retrieve the Team Member object
+        description: Retrieve the specified Team Member object.
         security:
           - bearerAuth: []
         responses:
@@ -812,21 +1091,44 @@ paths:
                 schema:
                   $ref: '#/components/schemas/TeamMember'
                 example:
-                  unique_id: 4843d1da-2308-44e6-b73d-ffcd253899be
-                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  unique_id: 828e4a7b-bb12-4ffc-baa5-7681634d4f7f
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
                   user:
-                    username: 85e1569d-79a4-4205-850f-a
-                    first_name: Anshul
-                    last_name: Admin
-                    email: anshul@admin.com
-                  joining_date: '2022-04-14T08:09:23.573093Z'
+                    username: 507dfda0-a1fd-40e5-943a-e
+                    first_name: Mary
+                    last_name: Jane
+                    email: maryjane@sharklasers.com
+                  joining_date: '2022-07-08T11:09:38.230395Z'
+                  role: 2
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/TeamMember'
+                example:
+                  unique_id: 828e4a7b-bb12-4ffc-baa5-7681634d4f7f
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
+                  user:
+                    username: 507dfda0-a1fd-40e5-943a-e
+                    first_name: Mary
+                    last_name: Jane
+                    email: maryjane@sharklasers.com
+                  joining_date: '2022-07-08T11:09:38.230395Z'
                   role: 2
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
           '403':
             description: Forbidden 
             content:
               application/json:
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml:
                 example:
                   detail: You do not have permission to perform this action.
           '404':
@@ -835,21 +1137,31 @@ paths:
               application/json:
                 example:
                   detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
       put:
         tags:
           - Team Members
-        summary: Update Team Member
+        summary: Update the Team Member object
+        description: Updates the specified Team Member object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
         security:
           - bearerAuth: []
         requestBody:
-          description: Team Member update payload
+          description: Request body parameters to update the Team Member object
           required: true
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TeamMemberPutPayload'
+                $ref: '#/components/schemas/TeamMemberPayload'
               example:
-                user: 85e1569d-79a4-4205-850f-a
+                user: 507dfda0-a1fd-40e5-943a-e
+                role: 1
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TeamMemberPayload'
+              example:
+                user: 507dfda0-a1fd-40e5-943a-e
                 role: 1
         responses:
           '200':
@@ -859,17 +1171,36 @@ paths:
                 schema:
                   $ref: '#/components/schemas/TeamMember'
                 example:
-                  unique_id: 4843d1da-2308-44e6-b73d-ffcd253899be
-                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
-                  user: 85e1569d-79a4-4205-850f-a
-                  joining_date: '2022-04-14T08:09:23.573093Z'
+                  unique_id: 828e4a7b-bb12-4ffc-baa5-7681634d4f7f
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
+                  user: 507dfda0-a1fd-40e5-943a-e
+                  joining_date: '2022-07-08T11:09:38.230395Z'
+                  role: 1
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/TeamMember'
+                example:
+                  unique_id: 828e4a7b-bb12-4ffc-baa5-7681634d4f7f
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
+                  user: 507dfda0-a1fd-40e5-943a-e
+                  joining_date: '2022-07-08T11:09:38.230395Z'
                   role: 1
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
           '403':
             description: Forbidden 
             content:
               application/json:
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml:
                 example:
                   detail: You do not have permission to perform this action.
           '404':
@@ -878,10 +1209,14 @@ paths:
               application/json:
                 example:
                   detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
       delete: 
         tags:
         - Team Members
-        summary: Delete Team Member
+        summary: Delete the Team Member object
+        description: Delete the specified Team Member object permanently.
         security:
           - bearerAuth: []
         responses: 
@@ -889,10 +1224,20 @@ paths:
             description: Success
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
           '403':
             description: Forbidden 
             content:
               application/json: 
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml: 
                 example:
                   detail: You do not have permission to perform this action.
           '404':
@@ -901,32 +1246,42 @@ paths:
               application/json: 
                 example:
                   detail: Not Found.
+              application/xml: 
+                example:
+                  detail: Not Found.
                   
   '/api/account/teams/{}/schedule/':
     parameters: 
     - name: 'team_id'
       in: path
-      description: Unique ID of a Team
+      description: Unique ID of the Team object
       schema:
         type: string
       required: true
     post:
       tags:
         - Schedules
-      summary: Create Schedule
+      summary: Create the Schedule object
+      description: Create the Schedule object by setting the values of all the required parameters passed in the request body.
       security:
         - bearerAuth: []
       requestBody:
-        description: Schedule create payload
+        description: Request body parameters to create the Schedule object
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SchedulePostPayload'
+              $ref: '#/components/schemas/SchedulePayload'
             example:
-              name: New Schedule
-              summary: Summary for the new Schedule
-              descripition: This is the description for the new Schedule
+              name: Daily Schedule
+              summary: Daily on call schedule for modified production team
+              time_zone: Asia/Kolkata
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SchedulePayload'
+            example:
+              name: Daily Schedule
+              summary: Daily on call schedule for modified production team
               time_zone: Asia/Kolkata
       responses:
         '201':
@@ -936,26 +1291,58 @@ paths:
               schema:
                 $ref: '#/components/schemas/Schedule'
               example:
-                name: New Schedule
-                summary: Summary for the new Schedule
+                name: Daily Schedule
+                summary: Daily on call schedule for modified production team
                 description: ''
                 time_zone: Asia/Kolkata
-                team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                team: 61010821-08aa-4098-94f8-f88f1990b54a
                 layers: []
                 overrides: []
-                unique_id: a6bcac67-d009-4afc-af17-30e2b1366460
+                unique_id: dadcec8e-e4d7-4e76-8a24-d8d6c1278d1f
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+              example:
+                name: Daily Schedule
+                summary: Daily on call schedule for modified production team
+                description: ''
+                time_zone: Asia/Kolkata
+                team: 61010821-08aa-4098-94f8-f88f1990b54a
+                layers: []
+                overrides: []
+                unique_id: dadcec8e-e4d7-4e76-8a24-d8d6c1278d1f
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
     get: 
       tags:
       - Schedules
-      summary: Get Schedules
+      summary: List all Schedule objects
+      description: Returns a list of Schedule objects.
       security:
         - bearerAuth: []
       responses:
@@ -966,49 +1353,139 @@ paths:
               schema:
                 $ref: '#/components/schemas/Schedule'
               example:
-                - name: Team1
-                  summary: ''
+                - name: Weekly Schedule
+                  summary: Weekly on call schedule for modified production team.
                   description: ''
-                  time_zone: UTC
-                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
-                  layers: []
-                  overrides: []
-                  unique_id: ecf402c5-0ca6-4f46-b5f7-f36b795e1980
-                - name: New Schedule
-                  summary: Summary for the new Schedule
+                  time_zone: Asia/Calcutta
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
+                  layers:
+                    - shift_length: 604800
+                      restrictions:
+                        - duration: 14400
+                          start_day_of_week: 7
+                          start_time_of_day: '00:00:00'
+                          unique_id: 35199b5e-a4ce-4456-8b97-2f3ee2083a85
+                      name: Schedule Layer 1
+                      users:
+                        - user: 216bba3d-7268-4a8e-89e9-6
+                          position: 1
+                          unique_id: d8772886-1812-4a03-9a48-051d34547cf4
+                        - user: 507dfda0-a1fd-40e5-943a-e
+                          position: 2
+                          unique_id: 8c3c8573-3e3c-442d-accd-4a62fee485e9
+                      rotation_start_time: '2022-07-08T11:26:33Z'
+                      rotation_end_time: '2023-07-15T11:26:33Z'
+                      unique_id: a5ec8d44-572b-4ecd-9935-078aef6a2837
+                      last_edited: '2022-07-08T11:28:47.218341Z'
+                      restriction_type: 1
+                      is_active: true
+                  overrides:
+                    - name: Override for Anshul
+                      user: 507dfda0-a1fd-40e5-943a-e
+                      start_time: '2022-07-09T05:57:14Z'
+                      end_time: '2022-07-10T05:57:14Z'
+                      unique_id: b4492ce7-7d6e-4ed1-8f41-e7c8bf4f4dfe
+                  unique_id: 4a3025f3-836f-4d18-8923-7adfe5690d17
+                - name: Daily Schedule
+                  summary: Daily on call schedule for modified production team
                   description: ''
                   time_zone: Asia/Kolkata
-                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
                   layers: []
                   overrides: []
-                  unique_id: a6bcac67-d009-4afc-af17-30e2b1366460
+                  unique_id: dadcec8e-e4d7-4e76-8a24-d8d6c1278d1f
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+              example:
+                - name: Weekly Schedule
+                  summary: Weekly on call schedule for modified production team.
+                  description: ''
+                  time_zone: Asia/Calcutta
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
+                  layers:
+                    - shift_length: 604800
+                      restrictions:
+                        - duration: 14400
+                          start_day_of_week: 7
+                          start_time_of_day: '00:00:00'
+                          unique_id: 35199b5e-a4ce-4456-8b97-2f3ee2083a85
+                      name: Schedule Layer 1
+                      users:
+                        - user: 216bba3d-7268-4a8e-89e9-6
+                          position: 1
+                          unique_id: d8772886-1812-4a03-9a48-051d34547cf4
+                        - user: 507dfda0-a1fd-40e5-943a-e
+                          position: 2
+                          unique_id: 8c3c8573-3e3c-442d-accd-4a62fee485e9
+                      rotation_start_time: '2022-07-08T11:26:33Z'
+                      rotation_end_time: '2023-07-15T11:26:33Z'
+                      unique_id: a5ec8d44-572b-4ecd-9935-078aef6a2837
+                      last_edited: '2022-07-08T11:28:47.218341Z'
+                      restriction_type: 1
+                      is_active: true
+                  overrides:
+                    - name: Override for Anshul
+                      user: 507dfda0-a1fd-40e5-943a-e
+                      start_time: '2022-07-09T05:57:14Z'
+                      end_time: '2022-07-10T05:57:14Z'
+                      unique_id: b4492ce7-7d6e-4ed1-8f41-e7c8bf4f4dfe
+                  unique_id: 4a3025f3-836f-4d18-8923-7adfe5690d17
+                - name: Daily Schedule
+                  summary: Daily on call schedule for modified production team
+                  description: ''
+                  time_zone: Asia/Kolkata
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
+                  layers: []
+                  overrides: []
+                  unique_id: dadcec8e-e4d7-4e76-8a24-d8d6c1278d1f
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
                 
   '/api/account/teams/{team_id}/schedules/{schedule_id}/':
       parameters: 
         - name: 'team_id'
           in: path
-          description: Unique ID of a Team
+          description: Unique ID of the Team object
           schema:
             type: string
           required: true
         - name: 'schedule_id'
           in: path
-          description: Unique ID of a Schedule
+          description: Unique ID of the Schedule object
           schema:
             type: string
           required: true
       get: 
         tags:
         - Schedules
-        summary: Get Schedule by ID
+        summary: Retrieve the Schedule object
+        description: Retrieve the specified Schedule object.
         security:
           - bearerAuth: []
         responses:
@@ -1019,20 +1496,92 @@ paths:
                 schema:
                   $ref: '#/components/schemas/Schedule'
                 example:
-                  name: New Schedule
-                  summary: Summary for the new Schedule
+                  name: Weekly Schedule
+                  summary: Weekly on call schedule for modified production team.
                   description: ''
-                  time_zone: Asia/Kolkata
-                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
-                  layers: []
-                  overrides: []
-                  unique_id: a6bcac67-d009-4afc-af17-30e2b1366460
+                  time_zone: Asia/Calcutta
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
+                  layers:
+                    - shift_length: 604800
+                      restrictions:
+                        - duration: 14400
+                          start_day_of_week: 7
+                          start_time_of_day: '00:00:00'
+                          unique_id: 35199b5e-a4ce-4456-8b97-2f3ee2083a85
+                      name: Schedule Layer 1
+                      users:
+                        - user: 216bba3d-7268-4a8e-89e9-6
+                          position: 1
+                          unique_id: d8772886-1812-4a03-9a48-051d34547cf4
+                        - user: 507dfda0-a1fd-40e5-943a-e
+                          position: 2
+                          unique_id: 8c3c8573-3e3c-442d-accd-4a62fee485e9
+                      rotation_start_time: '2022-07-08T11:26:33Z'
+                      rotation_end_time: '2023-07-15T11:26:33Z'
+                      unique_id: a5ec8d44-572b-4ecd-9935-078aef6a2837
+                      last_edited: '2022-07-08T11:28:47.218341Z'
+                      restriction_type: 1
+                      is_active: true
+                  overrides:
+                    - name: Override for Anshul
+                      user: 507dfda0-a1fd-40e5-943a-e
+                      start_time: '2022-07-09T05:57:14Z'
+                      end_time: '2022-07-10T05:57:14Z'
+                      unique_id: b4492ce7-7d6e-4ed1-8f41-e7c8bf4f4dfe
+                  unique_id: 4a3025f3-836f-4d18-8923-7adfe5690d17
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/Schedule'
+                example:
+                  name: Weekly Schedule
+                  summary: Weekly on call schedule for modified production team.
+                  description: ''
+                  time_zone: Asia/Calcutta
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
+                  layers:
+                    - shift_length: 604800
+                      restrictions:
+                        - duration: 14400
+                          start_day_of_week: 7
+                          start_time_of_day: '00:00:00'
+                          unique_id: 35199b5e-a4ce-4456-8b97-2f3ee2083a85
+                      name: Schedule Layer 1
+                      users:
+                        - user: 216bba3d-7268-4a8e-89e9-6
+                          position: 1
+                          unique_id: d8772886-1812-4a03-9a48-051d34547cf4
+                        - user: 507dfda0-a1fd-40e5-943a-e
+                          position: 2
+                          unique_id: 8c3c8573-3e3c-442d-accd-4a62fee485e9
+                      rotation_start_time: '2022-07-08T11:26:33Z'
+                      rotation_end_time: '2023-07-15T11:26:33Z'
+                      unique_id: a5ec8d44-572b-4ecd-9935-078aef6a2837
+                      last_edited: '2022-07-08T11:28:47.218341Z'
+                      restriction_type: 1
+                      is_active: true
+                  overrides:
+                    - name: Override for Anshul
+                      user: 507dfda0-a1fd-40e5-943a-e
+                      start_time: '2022-07-09T05:57:14Z'
+                      end_time: '2022-07-10T05:57:14Z'
+                      unique_id: b4492ce7-7d6e-4ed1-8f41-e7c8bf4f4dfe
+                  unique_id: 4a3025f3-836f-4d18-8923-7adfe5690d17
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
           '403':
             description: Forbidden 
             content:
               application/json:
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml:
                 example:
                   detail: You do not have permission to perform this action.
           '404':
@@ -1041,10 +1590,14 @@ paths:
               application/json:
                 example:
                   detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
       put:
         tags:
           - Schedules
-        summary: Update Schedule
+        summary: Update the Schedule object
+        description: Updates the specified Schedule object by setting the values of the parameters passed in the request body.
         security:
           - bearerAuth: []
         requestBody:
@@ -1053,9 +1606,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SchedulePutPayload'
+                $ref: '#/components/schemas/SchedulePayload'
               example:
-                name: Modified Schedule
+                name: Modified weekly Schedule
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SchedulePayload'
+              example:
+                name: Modified daily Schedule
         responses:
           '200':
             description: OK
@@ -1064,20 +1622,42 @@ paths:
                 schema: 
                   $ref: '#/components/schemas/Schedule'
                 example:
-                  name: Modified Schedule
-                  summary: Summary for the new Schedule
+                  name: Modified daily Schedule
+                  summary: Daily on call schedule for modified production team
                   description: ''
                   time_zone: Asia/Kolkata
-                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
                   layers: []
                   overrides: []
-                  unique_id: a6bcac67-d009-4afc-af17-30e2b1366460
+                  unique_id: dadcec8e-e4d7-4e76-8a24-d8d6c1278d1f
+              application/xml:
+                schema: 
+                  $ref: '#/components/schemas/Schedule'
+                example:
+                  name: Modified daily Schedule
+                  summary: Daily on call schedule for modified production team
+                  description: ''
+                  time_zone: Asia/Kolkata
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
+                  layers: []
+                  overrides: []
+                  unique_id: dadcec8e-e4d7-4e76-8a24-d8d6c1278d1f
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
           '403':
             description: Forbidden 
             content:
               application/json: 
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml: 
                 example:
                   detail: You do not have permission to perform this action.
           '404':
@@ -1086,10 +1666,14 @@ paths:
               application/json:
                 example:
                   detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
       delete: 
         tags:
         - Schedules
-        summary: Delete Schedule
+        summary: Delete the Schedule object
+        description: Delete the specified Schedule object permanently.
         security:
           - bearerAuth: []
         responses:
@@ -1097,10 +1681,20 @@ paths:
             description: Success
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
           '403':
             description: Forbidden 
             content:
               application/json:
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml:
                 example:
                   detail: You do not have permission to perform this action.
           '404':
@@ -1109,39 +1703,51 @@ paths:
               application/json:
                 example:
                   detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
                   
   '/api/account/teams/{}/escalation_policies/':
     parameters: 
     - name: 'team_id'
       in: path
-      description: Unique ID of a Team
+      description: Unique ID of the Team object
       schema:
         type: string
       required: true
     post:
       tags:
         - Escalation Policies
-      summary: Create Escalation Policy
+      summary: Create the Escalation Policy object
+      description: Create the Escalation Policy object by setting the values of all the required parameters passed in the request body.
       security:
         - bearerAuth: []
       requestBody:
-        description: Escalation Policy create payload
+        description: Request body parameters to create the Escalation Policy object
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EPPostPayload'
+              $ref: '#/components/schemas/EPPayload'
             example:
-              name: New Escalation Policy
-              summary: This is the summary for the new escalation policy
-              description: This is the description for the New Escalation Policy
+              name: Production Escalation Policy
               rules:
-                - delay: 0
+                - delay: 2
                   targets:
                     - target_type: 2
-                      target_id: 85e1569d-79a4-4205-850f-a
+                      target_id: 85b563c8-18d0-4668-9462-9
                   position: 1
-                  unique_id: ''
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/EPPayload'
+            example:
+              name: Production Escalation Policy
+              rules:
+                - delay: 2
+                  targets:
+                    - target_type: 2
+                      target_id: 85b563c8-18d0-4668-9462-9
+                  position: 1
       responses:
         '201':
           description: OK
@@ -1150,33 +1756,72 @@ paths:
               schema:
                 $ref: '#/components/schemas/EP'
               example:
-                name: New Escalation Policy
-                summary: This is the summary for the new escalation policy
-                description: This is the description for the New Escalation Policy
+                name: Production Escalation Policy
+                summary: ''
+                description: ''
                 rules:
-                  - delay: 0
+                  - delay: 2
                     targets:
                       - target_type: 2
-                        target_id: 85e1569d-79a4-4205-850f-a
+                        target_id: 85b563c8-18d0-4668-9462-9
                     position: 1
-                    unique_id: 87e41be1-ce43-4ec3-87b6-d4cb4f751cce
-                unique_id: 1fd12a33-8d81-4ad8-a30a-cfb2c2955392
-                team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                    unique_id: 32b594ec-72f6-4eeb-8024-ef25a8b9f97e
+                unique_id: 904cfcad-9fe1-4dc7-b578-ad0f5a2950fd
+                team: 61010821-08aa-4098-94f8-f88f1990b54a
+                repeat_policy: 0
+                move_to_next: true
+                global_ep: false
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EP'
+              example:
+                name: Production Escalation Policy
+                summary: ''
+                description: ''
+                rules:
+                  - delay: 2
+                    targets:
+                      - target_type: 2
+                        target_id: 85b563c8-18d0-4668-9462-9
+                    position: 1
+                    unique_id: 32b594ec-72f6-4eeb-8024-ef25a8b9f97e
+                unique_id: 904cfcad-9fe1-4dc7-b578-ad0f5a2950fd
+                team: 61010821-08aa-4098-94f8-f88f1990b54a
                 repeat_policy: 0
                 move_to_next: true
                 global_ep: false
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
     get: 
       tags:
       - Escalation Policies
-      summary: Get Escalation Policies
+      summary: List all Escalation Policy objects
+      description: Returns a list of Escalation Policy objects.
       security:
         - bearerAuth: []
       responses:
@@ -1194,56 +1839,159 @@ paths:
                     - delay: 0
                       targets:
                         - target_type: 2
-                          target_id: 85e1569d-79a4-4205-850f-a
+                          target_id: 216bba3d-7268-4a8e-89e9-6
                       position: 1
-                      unique_id: c7ad4f67-6d84-49ac-a821-8d5e3f5c63ea
-                  unique_id: 0487dcc1-e900-48d0-880d-f7662766cd07
-                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                      unique_id: a857eb8b-28bf-4503-a1d5-a1d737c48fdc
+                  unique_id: 19fdd4c3-0d4a-4a6e-9885-8c8d33ef1488
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
                   repeat_policy: 0
                   move_to_next: true
                   global_ep: false
-                - name: New Escalation Policy
-                  summary: This is the summary for the new escalation policy
-                  description: This is the description for the New Escalation Policy
+                - name: Infra Escalation Policy
+                  summary: ''
+                  description: ''
+                  rules:
+                    - delay: 0
+                      targets:
+                        - target_type: 1
+                          target_id: 4a3025f3-836f-4d18-8923-7adfe5690d17
+                        - target_type: 2
+                          target_id: 507dfda0-a1fd-40e5-943a-e
+                        - target_type: 2
+                          target_id: 85b563c8-18d0-4668-9462-9
+                      position: 1
+                      unique_id: 23077ffc-8529-4848-89d0-1a37bdf63d4e
+                    - delay: 4
+                      targets:
+                        - target_type: 2
+                          target_id: 216bba3d-7268-4a8e-89e9-6
+                      position: 2
+                      unique_id: 5298ba34-f23d-49a6-a4a2-814a7beb4b54
+                  unique_id: 9ea1f98d-b5a3-4d72-8057-2f5f3d743a44
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
+                  repeat_policy: 2
+                  move_to_next: true
+                  global_ep: false
+                - name: Production Escalation Policy
+                  summary: ''
+                  description: ''
+                  rules:
+                    - delay: 2
+                      targets:
+                        - target_type: 2
+                          target_id: 85b563c8-18d0-4668-9462-9
+                      position: 1
+                      unique_id: 32b594ec-72f6-4eeb-8024-ef25a8b9f97e
+                  unique_id: 904cfcad-9fe1-4dc7-b578-ad0f5a2950fd
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
+                  repeat_policy: 0
+                  move_to_next: true
+                  global_ep: false
+            application/xml:
+              schema: 
+                $ref: '#/components/schemas/EP'
+              example:
+                - name: Default Escalation Policy
+                  summary: This is the default escalation policy for this team
+                  description: ''
                   rules:
                     - delay: 0
                       targets:
                         - target_type: 2
-                          target_id: 85e1569d-79a4-4205-850f-a
+                          target_id: 216bba3d-7268-4a8e-89e9-6
                       position: 1
-                      unique_id: 87e41be1-ce43-4ec3-87b6-d4cb4f751cce
-                  unique_id: 1fd12a33-8d81-4ad8-a30a-cfb2c2955392
-                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                      unique_id: a857eb8b-28bf-4503-a1d5-a1d737c48fdc
+                  unique_id: 19fdd4c3-0d4a-4a6e-9885-8c8d33ef1488
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
+                  repeat_policy: 0
+                  move_to_next: true
+                  global_ep: false
+                - name: Infra Escalation Policy
+                  summary: ''
+                  description: ''
+                  rules:
+                    - delay: 0
+                      targets:
+                        - target_type: 1
+                          target_id: 4a3025f3-836f-4d18-8923-7adfe5690d17
+                        - target_type: 2
+                          target_id: 507dfda0-a1fd-40e5-943a-e
+                        - target_type: 2
+                          target_id: 85b563c8-18d0-4668-9462-9
+                      position: 1
+                      unique_id: 23077ffc-8529-4848-89d0-1a37bdf63d4e
+                    - delay: 4
+                      targets:
+                        - target_type: 2
+                          target_id: 216bba3d-7268-4a8e-89e9-6
+                      position: 2
+                      unique_id: 5298ba34-f23d-49a6-a4a2-814a7beb4b54
+                  unique_id: 9ea1f98d-b5a3-4d72-8057-2f5f3d743a44
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
+                  repeat_policy: 2
+                  move_to_next: true
+                  global_ep: false
+                - name: Production Escalation Policy
+                  summary: ''
+                  description: ''
+                  rules:
+                    - delay: 2
+                      targets:
+                        - target_type: 2
+                          target_id: 85b563c8-18d0-4668-9462-9
+                      position: 1
+                      unique_id: 32b594ec-72f6-4eeb-8024-ef25a8b9f97e
+                  unique_id: 904cfcad-9fe1-4dc7-b578-ad0f5a2950fd
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
                   repeat_policy: 0
                   move_to_next: true
                   global_ep: false
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
                 
   '/api/account/teams/{team_id}/escalation_policies/{escalation_policy_id}/':
       parameters: 
         - name: 'team_id'
           in: path
-          description: Unique ID of a Team
+          description: Unique ID of the Team object
           schema:
             type: string
           required: true
         - name: 'escalation_policy_id'
           in: path
-          description: Unique ID of Escalation Policy
+          description: Unique ID of the Escalation Policy object
           schema:
             type: string
           required: true
       get: 
         tags:
         - Escalation Policies
-        summary: Get Escalation Policy by ID
+        summary: Retrieve the Escalation Policy object
         security:
           - bearerAuth: []
         responses:
@@ -1254,27 +2002,56 @@ paths:
                 schema: 
                   $ref: '#/components/schemas/EP'
                 example:
-                  name: New Escalation Policy
-                  summary: This is the summary for the new escalation policy
-                  description: This is the description for the New Escalation Policy
+                  name: Production Escalation Policy
+                  summary: ''
+                  description: ''
                   rules:
-                    - delay: 0
+                    - delay: 2
                       targets:
                         - target_type: 2
-                          target_id: 85e1569d-79a4-4205-850f-a
+                          target_id: 85b563c8-18d0-4668-9462-9
                       position: 1
-                      unique_id: 87e41be1-ce43-4ec3-87b6-d4cb4f751cce
-                  unique_id: 1fd12a33-8d81-4ad8-a30a-cfb2c2955392
-                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                      unique_id: 32b594ec-72f6-4eeb-8024-ef25a8b9f97e
+                  unique_id: 904cfcad-9fe1-4dc7-b578-ad0f5a2950fd
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
+                  repeat_policy: 0
+                  move_to_next: true
+                  global_ep: false
+              application/xml:
+                schema: 
+                  $ref: '#/components/schemas/EP'
+                example:
+                  name: Production Escalation Policy
+                  summary: ''
+                  description: ''
+                  rules:
+                    - delay: 2
+                      targets:
+                        - target_type: 2
+                          target_id: 85b563c8-18d0-4668-9462-9
+                      position: 1
+                      unique_id: 32b594ec-72f6-4eeb-8024-ef25a8b9f97e
+                  unique_id: 904cfcad-9fe1-4dc7-b578-ad0f5a2950fd
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
                   repeat_policy: 0
                   move_to_next: true
                   global_ep: false
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
           '403':
             description: Forbidden 
             content:
               application/json:
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml:
                 example:
                   detail: You do not have permission to perform this action.
           '404':
@@ -1283,28 +2060,31 @@ paths:
               application/json:
                 example:
                   detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
       put:
         tags:
           - Escalation Policies
-        summary: Update Escalation Policy
+        summary: Update the Escalation Policy object
+        description: Updates the specified Escalation Policy object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
         security:
           - bearerAuth: []
         requestBody:
-          description: Escalation Policy update payload
+          description: Request body parameters to update the Escalation Policy object
           required: true
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EPPutPayload'
+                $ref: '#/components/schemas/EPPayload'
               example:
-                name: Modified Escalation Policy
+                name: Modified Production Escalation Policy
                 rules:
-                  - delay: 0
+                  - delay: 2
                     targets:
                       - target_type: 2
-                        target_id: 85e1569d-79a4-4205-850f-a
+                        target_id: 85b563c8-18d0-4668-9462-9
                     position: 1
-                    unique_id: 87e41be1-ce43-4ec3-87b6-d4cb4f751cce
         responses:
           '200':
             description: OK
@@ -1313,27 +2093,56 @@ paths:
                 schema:
                   $ref: '#/components/schemas/EP'
                 example:
-                  name: Modified Escalation Policy
-                  summary: This is the summary for the new escalation policy
-                  description: This is the description for the New Escalation Policy
+                  name: Modified Production Escalation Policy
+                  summary: ''
+                  description: ''
                   rules:
-                    - delay: 0
+                    - delay: 2
                       targets:
                         - target_type: 2
-                          target_id: 85e1569d-79a4-4205-850f-a
+                          target_id: 85b563c8-18d0-4668-9462-9
                       position: 1
-                      unique_id: 994e5ab2-377e-4dd8-a16f-ef7ec4c9b9e4
-                  unique_id: 1fd12a33-8d81-4ad8-a30a-cfb2c2955392
-                  team: f4a66a8c-7d2e-4c2b-bc16-5c38e5031a86
+                      unique_id: f15f0044-25a1-4c60-888a-c7f1a6b7d4ce
+                  unique_id: 904cfcad-9fe1-4dc7-b578-ad0f5a2950fd
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
+                  repeat_policy: 0
+                  move_to_next: true
+                  global_ep: false
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/EP'
+                example:
+                  name: Modified Production Escalation Policy
+                  summary: ''
+                  description: ''
+                  rules:
+                    - delay: 2
+                      targets:
+                        - target_type: 2
+                          target_id: 85b563c8-18d0-4668-9462-9
+                      position: 1
+                      unique_id: f15f0044-25a1-4c60-888a-c7f1a6b7d4ce
+                  unique_id: 904cfcad-9fe1-4dc7-b578-ad0f5a2950fd
+                  team: 61010821-08aa-4098-94f8-f88f1990b54a
                   repeat_policy: 0
                   move_to_next: true
                   global_ep: false
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
           '403':
             description: Forbidden 
             content:
               application/json: 
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml: 
                 example:
                   detail: You do not have permission to perform this action.
           '404':
@@ -1342,10 +2151,14 @@ paths:
               application/json:
                 example:
                   detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
       delete: 
         tags:
         - Escalation Policies
-        summary: Delete Escalation Policy
+        summary: Delete the Escalation Policy object
+        description: Delete the specified Escalation Policy object permanently.
         security:
           - bearerAuth: []
         responses: 
@@ -1353,10 +2166,20 @@ paths:
             description: Success
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
           '403':
             description: Forbidden 
             content:
               application/json:
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml:
                 example:
                   detail: You do not have permission to perform this action.
           '404':
@@ -1365,12 +2188,15 @@ paths:
               application/json: 
                 example:
                   detail: Not Found.
+              application/xml: 
+                example:
+                  detail: Not Found.
                   
   '/api/account/teams/{}/services/':
     parameters: 
     - name: 'team_id'
       in: path
-      description: Unique ID of a Team
+      description: Unique ID of the Team object
       schema:
         type: string
       required: true
@@ -1386,7 +2212,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ServicePostPayload'
+              $ref: '#/components/schemas/ServicePayload'
             example:
               name: New Service
               collation: 1
@@ -1420,20 +2246,26 @@ paths:
                 collation_time: 1
                 collation: 1
         '400':
-          description: Bad Request 
-          content:
-            application/json:
-              example:
-                team_priority:
-                  - This field is required.
-                sla:
-                  - This field is required.
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
     get: 
       tags:
       - Services
@@ -1500,13 +2332,26 @@ paths:
                   collation: 1
                   collation_time: 1
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
                 
   '/api/account/teams/{team_id}/services/{service_id}/':
       parameters: 
@@ -1555,6 +2400,10 @@ paths:
                   collation_time: 1
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -1579,7 +2428,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ServicePutPayload'
+                $ref: '#/components/schemas/ServicePayload'
               example:
                 name: Modified Service
                 description: This is the description for the modified Service
@@ -1612,6 +2461,10 @@ paths:
                   collation: 1
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -1635,6 +2488,10 @@ paths:
             description: Success
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -1674,7 +2531,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/IntegrationPostPayload'
+              $ref: '#/components/schemas/IntegrationPayload'
             example:
               name: New Integration
               summary: This is the summary for new Integration
@@ -1712,13 +2569,26 @@ paths:
                 integration_type: 0
                 default_urgency: 1
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
     get: 
       tags:
       - Integrations
@@ -1830,13 +2700,26 @@ paths:
                   integration_type: 0
                   default_urgency: 1
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
                 
   '/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}':
       parameters: 
@@ -1898,6 +2781,10 @@ paths:
                   default_urgency: 1
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -1922,7 +2809,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/IntegrationPutPayload'
+                $ref: '#/components/schemas/IntegrationPayload'
               example:
                 name: Modified Integration
                 application: 3603a509-fc83-42d7-9144-a7223bbd9bf1
@@ -1960,6 +2847,10 @@ paths:
                   default_urgency: 1
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -1983,6 +2874,10 @@ paths:
             description: Success
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -2120,6 +3015,10 @@ paths:
                     notes: []
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -2146,7 +3045,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/IncidentPostPayload'
+              $ref: '#/components/schemas/IncidentPayload'
             example:
               title: New Incident
               service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
@@ -2201,13 +3100,26 @@ paths:
                 team_priority: null
                 team_priority_object: null
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
     get: 
       tags:
       - Incidents
@@ -2265,13 +3177,26 @@ paths:
                  team_priority: null
                  team_priority_object: null
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
                 
   '/api/incidents/{incident_number}/':
       parameters: 
@@ -2339,6 +3264,10 @@ paths:
                   team_priority_object: null
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -2363,7 +3292,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/IncidentPutPayload'
+                $ref: '#/components/schemas/IncidentPayload'
               example:
                 title: Modified Incident
                 service: aaf72d01-fbc0-4b2f-bc7a-a7d60040ac57
@@ -2419,6 +3348,10 @@ paths:
                   team_priority_object: null
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -2452,7 +3385,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/IRPostPayload'
+              $ref: '#/components/schemas/IRPayload'
             example:
               title: New Role
               description: This is the description for the new Role
@@ -2471,13 +3404,26 @@ paths:
                 creation_date: '2022-07-01T08:14:26.432504Z'
                 rank: 5
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json: 
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
     get: 
       tags:
       - Incident Roles
@@ -2511,13 +3457,26 @@ paths:
                   creation_date: '2022-07-01T08:14:26.432504Z'
                   rank: 5
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
                 
   '/api/account/teams/{team_id}/roles/{incident_role_id}/':
       parameters: 
@@ -2555,6 +3514,10 @@ paths:
                   rank: 5
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -2579,7 +3542,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/IRPutPayload'
+                $ref: '#/components/schemas/IRPayload'
               example:
                 title: Modified Role
         responses:
@@ -2597,6 +3560,10 @@ paths:
                   rank: 5
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -2620,6 +3587,10 @@ paths:
             description: Success
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -2653,7 +3624,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/IncidentNotePostPayload'
+              $ref: '#/components/schemas/IncidentNotePayload'
             example:
               note: New Note
       responses:
@@ -2671,13 +3642,26 @@ paths:
                 user_name: Anshul Admin
                 creation_date: '2022-07-04T09:13:33.767558Z'
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
     get: 
       tags:
       - Incident Notes
@@ -2699,13 +3683,26 @@ paths:
                  user_name: Anshul Admin
                  creation_date: '2022-07-04T09:13:33.767558Z'
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
                 
   '/api/incidents/{incident_number}/note/{note_unique_id}':
       parameters: 
@@ -2743,6 +3740,10 @@ paths:
                   creation_date: '2022-07-04T09:13:33.767558Z'
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -2767,7 +3768,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/IncidentNotePutPayload'
+                $ref: '#/components/schemas/IncidentNotePayload'
               example:
                 note: Modified Note
         responses:
@@ -2786,6 +3787,10 @@ paths:
                  creation_date: '2022-07-04T09:13:33.767558Z'
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -2809,6 +3814,10 @@ paths:
             description: Success
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -2842,7 +3851,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EventPostPayload'
+              $ref: '#/components/schemas/EventPayload'
             example:
               note: New Note
       responses:
@@ -2877,13 +3886,26 @@ paths:
                 urls: []
                 notes: []
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
                 
   '/api/incidents/{incident_number}/alerts/':
     parameters: 
@@ -2930,13 +3952,26 @@ paths:
                  urls: []
                  notes: []
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
   
   '/api/account/teams/{}/tags/':
     parameters: 
@@ -2958,7 +3993,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TagPostPayload'
+              $ref: '#/components/schemas/TagPayload'
             example:
               name: New Tag
               color: red
@@ -2976,13 +4011,26 @@ paths:
                 color: red
                 team: 130
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
     get: 
       tags:
       - Tags
@@ -3013,13 +4061,26 @@ paths:
                   creation_date: '2022-07-01T08:30:18.412283Z'
                   color: red
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json: 
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
                 
   '/api/account/teams/{team_id}/tags/{tag_id}/':
       parameters: 
@@ -3056,6 +4117,10 @@ paths:
                   color: red
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -3080,7 +4145,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TagPutPayload'
+                $ref: '#/components/schemas/TagPayload'
               example:
                 name: Modified Tag
         responses:
@@ -3098,6 +4163,10 @@ paths:
                   team: 130
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -3121,6 +4190,10 @@ paths:
             description: Success
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -3154,7 +4227,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TTPostPayload'
+              $ref: '#/components/schemas/TTPayload'
             example:
               name: New Task Template
               summary: This is the summary of the new Task Template
@@ -3172,13 +4245,26 @@ paths:
                 summary: This is the summary of the new Task Template
                 due_immediately: 0
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
     get: 
       tags:
       - Task Templates
@@ -3206,13 +4292,26 @@ paths:
                   summary: This is the summary of the new Task Template
                   due_immediately: 0
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json: 
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
                 
   '/api/account/teams/{team_id}/task_templates/{task_template_id}/':
       parameters: 
@@ -3250,6 +4349,10 @@ paths:
                   due_immediately: 0
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -3274,7 +4377,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TTPutPayload'
+                $ref: '#/components/schemas/TTPayload'
               example:
                 name: Modified Task Template
         responses:
@@ -3292,6 +4395,10 @@ paths:
                   due_immediately: 0
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -3315,6 +4422,10 @@ paths:
             description: Success
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -3348,7 +4459,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PriorityPostPayload'
+              $ref: '#/components/schemas/PriorityPayload'
             example:
               name: New Priority
       responses:
@@ -3365,13 +4476,26 @@ paths:
                 creation_date: '2022-07-01T08:55:08.040679Z'
                 color: ''
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
     get: 
       tags:
       - Priorities
@@ -3399,13 +4523,26 @@ paths:
                  creation_date: '2022-07-01T08:55:08.040679Z'
                  color: ''
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
                 
   '/api/account/teams/{team_id}/priority/{priority_id}/':
       parameters: 
@@ -3443,6 +4580,10 @@ paths:
                   color: ''
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -3467,7 +4608,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PriorityPutPayload'
+                $ref: '#/components/schemas/PriorityPayload'
               example:
                 name: Modified Priority
         responses:
@@ -3485,6 +4626,10 @@ paths:
                   color: ''
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -3508,6 +4653,10 @@ paths:
             description: Success
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -3541,7 +4690,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SLAPostPayload'
+              $ref: '#/components/schemas/SLAPayload'
             example:
               name: New SLA
               escalations: []
@@ -3562,13 +4711,26 @@ paths:
                 acknowledge_time: null
                 resolve_time: null
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
     get: 
       tags:
       - SLA
@@ -3590,13 +4752,26 @@ paths:
                  resolve_time: null
                  creation_date: '2022-07-01T11:56:54.498652Z'
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
                 
   '/api/account/teams/{team_id}/sla/{sla_id}/':
       parameters: 
@@ -3634,6 +4809,10 @@ paths:
                   creation_date: '2022-07-01T11:56:54.498652Z'
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -3658,7 +4837,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SLAPutPayload'
+                $ref: '#/components/schemas/SLAPayload'
               example:
                 name: Modified SLA
                 escalations: []
@@ -3680,6 +4859,10 @@ paths:
                   resolve_time: null
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -3703,6 +4886,10 @@ paths:
             description: Success
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -3736,7 +4923,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TMMPostPayload'
+              $ref: '#/components/schemas/TMMPayload'
             example:
               name: New Maintenance
               services: []
@@ -3760,13 +4947,26 @@ paths:
                 time_zone: UTC
                 repeat_until: null
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json: 
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
     get: 
       tags:
       - Team Maintenance Mode
@@ -3791,13 +4991,26 @@ paths:
                  time_zone: UTC
                  repeat_until: null
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
                 
   '/api/account/teams/{team_id}/maintenance/{maintenance_id}/':
       parameters: 
@@ -3838,6 +5051,10 @@ paths:
                   repeat_until: null
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -3862,7 +5079,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TMMPutPayload'
+                $ref: '#/components/schemas/TMMPayload'
               example:
                 name: Modified Maintenance
                 services: []
@@ -3889,6 +5106,10 @@ paths:
                   repeat_until: null
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -3912,6 +5133,10 @@ paths:
             description: Success
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -3945,7 +5170,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PostmortemPostPayload'
+              $ref: '#/components/schemas/PostmortemPayload'
             example:
               title: New Postmortem
               author: 85e1569d-79a4-4205-850f-a
@@ -3970,13 +5195,26 @@ paths:
                 postmortem_data: ''
                 download_status: 0
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json: 
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
     get: 
       tags:
       - Postmortem
@@ -4007,13 +5245,26 @@ paths:
                  amazon_link: 'https://zenduty-dev-report.s3.amazonaws.com/'
                  creation_date: '2022-07-04T08:02:57.372391Z'
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json:
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
                 
   '/api/account/teams/{team_id}/postmortem/{postmortem_id}/':
       parameters: 
@@ -4060,6 +5311,10 @@ paths:
                   creation_date: '2022-07-04T08:02:57.372391Z'
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -4084,7 +5339,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PostmortemPutPayload'
+                $ref: '#/components/schemas/PostmortemPayload'
               example:
                 title: Modified Postmortem
                 author: 85e1569d-79a4-4205-850f-a
@@ -4112,6 +5367,10 @@ paths:
                   download_status: 0
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -4135,6 +5394,10 @@ paths:
             description: Success
           '400':
             description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
           '403':
             description: Forbidden 
             content:
@@ -4203,13 +5466,26 @@ paths:
                      email: anshul@admin.com
                      last_name: Admin
         '400':
-          description: Bad Request 
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
         '403':
           description: Forbidden 
           content:
             application/json: 
               example:
                 detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
                 
 # ----------------------------------------------------------------------------------------------
 
@@ -4243,33 +5519,23 @@ components:
           default: false
           description: A boolean flag that represents the Account Member object's verification
           
-    AccountMemberPutPayload:
+    AccountMemberPayload:
       type: object
-      description: Schema for updating the Account Member object
+      description: Payload schema for the Account Member object
       required:
         - user
       properties:
-        unique_id:
-          type: string
-          description: A system-generated string that represents the Account Member object's unique_id
         time_zone:
           type: string
           default: UTC
           description: A formatted string that represents the Account Member object's time zone. You can check out the time zone list here https://timezonedb.com/time-zones
         user:
           $ref: '#/components/schemas/User'
-        joining_date:
-          type: string
-          description: A formatted string that represents the Account Member object's joining_date
         role:
           type: integer
           default: 3
           description: An integer that represents the Account Member object's role. 1 is owner, 2 is admin and 3 is user
-        is_verified:
-          type: boolean
-          default: false
-          description: A boolean flag that represents the Account Member object's verification
-          
+         
     Team:
       type: object
       description: Team object schema
@@ -4295,49 +5561,15 @@ components:
         roles:
           $ref: '#/components/schemas/IncidentRole'
   
-    TeamPostPayload:
+    TeamPayload:
       type: object
-      description: Schema for creating the Team object
+      description: Payload schema for the Team object
       required:
         - name
       properties:
         name:
           type: string
           description: A that represents the Team object's name
-        creation_date:
-          type: string
-          format: date-time
-          description: A formatted string that represents the Team object's creation_date
-        owner:
-          type: string
-          description: A system-generated string that represents the User object's username
-          
-    TeamPutPayload:
-      type: object
-      description: Schema for updating the Team object
-      required:
-        - name
-      properties:
-        unique_id:
-          type: string
-          description: A system-generated string that represents the Team object's unique_id
-        name:
-          type: string
-          description: A that represents the Team object's name
-        account:
-          type: string
-          description: A system-generated string that represents the Account object's unique_id
-        creation_date:
-          type: string
-          format: date-time
-          description: A formatted string that represents the Team object's creation_date
-        members:
-          $ref: '#/components/schemas/TeamMember'
-        owner:
-          type: string
-          description: A system-generated string that represents the User object's username
-        roles:
-          $ref: '#/components/schemas/IncidentRole'
           
     TeamMember:
       type: object
@@ -4360,40 +5592,14 @@ components:
           default: 2
           description: An integer that represents the Team Member object's role. 1 is manager and 2 is user
           
-    TeamMemberPostPayload:
+    TeamMemberPayload:
       type: object
-      description: Schema for creating the Team Member object
+      description: Payload schema for the Team Member object
       required:
         - user
       properties:
-        team:
-          type: string
-          description: A system-generated string that represents the Team object's unique_id
         user:
           $ref: '#/components/schemas/User'
-        role:
-          type: integer
-          default: 2
-          description: An integer that represents the Team Member object's role. 1 is manager and 2 is user
-          
-    TeamMemberPutPayload:
-      type: object
-      description: Schema for updating the Team Member object
-      required:
-        - user
-      properties:
-        unique_id:
-          type: string
-          description: A system-generated string that represents the Team Member object's unique_id
-        team:
-          type: string
-          description: A system-generated string that represents the Team object's unique_id
-        user:
-          $ref: '#/components/schemas/User'
-        joining_date:
-          type: string
-          format: datetime
-          description: A formatted string that represents the Team Member object's joining_date
         role:
           type: integer
           default: 2
@@ -4432,11 +5638,11 @@ components:
           type: string
           description: A system-generated string that represents the Schedule object's unique_id
           
-    SchedulePostPayload:
+    SchedulePayload:
       type: object
-      description: Schema for creating the Schedule object
+      description: Payload schema for the Schedule object
       required:
-        - user
+        - name
       properties:
         name:
           type: string
@@ -4450,9 +5656,6 @@ components:
         time_zone:
           type: string
           description: A formatted string that represents the Schedule object's time zone. You can check out the time zone list here https://timezonedb.com/time-zones
-        team:
-          type: string
-          description: A system-generated string that represents the Team object's unique_id
         layers:
           type: array
           description: An array of Schedule Layer objects
@@ -4463,44 +5666,6 @@ components:
           description: An array of Schedule Overrides objects
           items:
             $ref: '#/components/schemas/ScheduleOverride'
-        unique_id: 
-          type: string
-          description: A system-generated string that represents the Schedule object's unique_id
-          
-    SchedulePutPayload:
-      type: object
-      description: Schema for updating the Schedule object
-      required:
-        - user
-      properties:
-        name:
-          type: string
-          description: A string that represents the Schedule object's name
-        summary:
-          type: string
-          description: A string that represents the Schedule object's summary
-        description:
-          type: string
-          description: A string that represents the Schedule object's description
-        time_zone:
-          type: string
-          description: A formatted string that represents the Schedule object's time zone. You can check out the time zone list here https://timezonedb.com/time-zones
-        team:
-          type: string
-          description: A system-generated string that represents the Team object's unique_id
-        layers:
-          type: array
-          description: An array of Schedule Layer objects
-          items:
-            $ref: '#/components/schemas/ScheduleLayer'
-        overrides:
-          type: array
-          description: An array of Schedule Overrides objects
-          items:
-            $ref: '#/components/schemas/ScheduleOverride'
-        unique_id: 
-          type: string
-          description: A system-generated string that represents the Schedule object's unique_id
           
     EP:
       type: object
@@ -4524,11 +5689,12 @@ components:
           type: string
           description: A system-generated string that represents the Team object's unique_id
           
-    EPPostPayload:
+    EPPayload:
       type: object
-      description: Schema for creating the Escalation Policy object
+      description: Payload schema for the Escalation Policy object
       required:
-        - user
+        - name
+        - rules
       properties:
         name:
           type: string
@@ -4541,36 +5707,6 @@ components:
           description: A string that represents the Escalation Policy object's description
         rules:
           $ref: '#/components/schemas/EP_Rule'
-        unique_id:
-          type: string
-          description: A string that represents the Escalation Policy object's unique_id
-        team:
-          type: string
-          description: A system-generated string that represents the Team object's unique_id
-          
-    EPPutPayload:
-      type: object
-      description: Schema for updating the Escalation Policy object
-      required:
-        - user
-      properties:
-        name:
-          type: string
-          description: A string that represents the Escalation Policy object's name
-        summary:
-          type: string
-          description: A string that represents the Escalation Policy object's summary
-        description:
-          type: string
-          description: A string that represents the Escalation Policy object's description
-        rules:
-          $ref: '#/components/schemas/EP_Rule'
-        unique_id:
-          type: string
-          description: A string that represents the Escalation Policy object's unique_id
-        team:
-          type: string
-          description: A system-generated string that represents the Team object's unique_id
           
     Service:
       description: Service object schema
@@ -4635,35 +5771,27 @@ components:
           default: 0
           description: An integer that represents the Service object's collation_time
           
-    ServicePostPayload:
+    ServicePayload:
       type: object
-      description: Schema for creating the Service object
+      description: Payload schema for the the Service object
       required:
-        - user
+        - team_priority
+        - escalation_policy
+        - sla
       properties:
         name:
           type: string
           description: A string that represents the Service object's name
-        creation date:
-          type: string
-          format: date-time
-          description: A formatted string that represents the Service object's creation_date
         summary:
           type: string
           description: A string that represents the Service object's summary
         description:
           type: string
           description: A string that represents the Service object's description
-        unique_id:
-          type: string
-          description: A system-generated string that represents the Service object's unique_id
         auto_resolve_timeout:
           type: integer
           default: 0
           description: An integer that represents the timeout for automatically resolving an Incident 
-        created_by:
-          type: string
-          description: A system-generated string that represents the User object's username
         team_priority:
           type: string
           description: A system-generated string that represents the Priority object's unique_id
@@ -4681,74 +5809,6 @@ components:
         escalation_policy: 
           type: string
           description: A system-generated string that represents the Escalation Policy object's unique_id
-        team:
-          type: string
-          description: A system-generated string that represents the Team object's unique_id
-        sla:
-          type: string
-          description: A system-generated string that represents the SLA object's unique_id
-        under_maintenance:
-          type: boolean
-          default: false
-          description: A boolean flag that represents whether the service object is under maintenance or not
-        collation:
-          type: integer
-          default: 0
-          description: An integer that represents the Service object's collation type. 0 is off, 1 is time-based, and 2 is intelligence.
-        collation_time:
-          type: integer
-          default: 0
-          description: An integer that represents the Service object's collation_time
-          
-    ServicePutPayload:
-      type: object
-      description: Schema for updating the Service object
-      required:
-        - user
-      properties:
-        name:
-          type: string
-          description: A string that represents the Service object's name
-        creation date:
-          type: string
-          format: date-time
-          description: A formatted string that represents the Service object's creation_date
-        summary:
-          type: string
-          description: A string that represents the Service object's summary
-        description:
-          type: string
-          description: A string that represents the Service object's description
-        unique_id:
-          type: string
-          description: A system-generated string that represents the Service object's unique_id
-        auto_resolve_timeout:
-          type: integer
-          default: 0
-          description: An integer that represents the timeout for automatically resolving an Incident 
-        created_by:
-          type: string
-          description: A system-generated string that represents the User object's username
-        team_priority:
-          type: string
-          description: A system-generated string that represents the Priority object's unique_id
-        task_template:
-          type: string
-          description: A system-generated string that represents the Task Template object's unique_id
-        acknowlegement_timeout:
-          type: integer
-          default: 0
-          description: An integer that represents the timeout for acknowledging an Incident
-        status:
-          type: integer
-          default: 1
-          description: An integer that represents the Service object's status 0 is disabled, 1 is active, 2 is a warning, 3 is critical, and 4 is under maintenance 
-        escalation_policy: 
-          type: string
-          description: A system-generated string that represents the Escalation Policy object's unique_id
-        team:
-          type: string
-          description: A system-generated string that represents the Team object's unique_id
         sla:
           type: string
           description: A system-generated string that represents the SLA object's unique_id
@@ -4813,89 +5873,21 @@ components:
           default: 1
           description: An integer that represents the Integration object's default_urgency. 0 is low and 1 is high.
           
-    IntegrationPostPayload:
+    IntegrationPayload:
       type: object
-      description: Schema for creating the Integration object
+      description: Payload schema for the Integration object
       required:
-        - user
+        - application
       properties:
         name: 
           type: string
           description: A string that represents the Integration object's name
-        creation_date:
-          type: string
-          format: date-time
-          description: A formatted string that represents the Integration object's creation_date 
         summary:
           type: string
           description: A string that represents the Integration object's summary
-        unique_id:
-          type: string
-          description: A system-generated string that represents the Integration object's unique_id
-        service:
-          type: string
-          description: A system-generated string that represents the Service object's unique_id
         application: 
           type: string
           description: A system-generated string that represents the Application object's unique_id
-        application_reference:
-          $ref: '#/components/schemas/Application'
-        integration_key:
-          type: string
-          description: A system-generated string that represents the Integration object's integration_key
-        created_by:
-          type: string
-          description: A system-generated string that represents the User object's username
-        is_enabled:
-          type: boolean
-          default: true
-          description: A boolean flag that represents whether an Integration is enabled or not
-        create_incidents_for:
-          type: integer
-          default: 1
-          description: An integer that represents the type of the Incidents this Integration object will create. 0 is do not create incidents. 1 is critical, 2 is critical and errors, and 3 is critical, errors and warnings.
-        integration_type:
-          type: integer
-          default: 0
-          description: An integer that represents the Integration object's integration_type. 0 is alert and 1 is outbound.
-        default_urgency:
-          type: integer
-          default: 1
-          description: An integer that represents the Integration object's default_urgency. 0 is low and 1 is high.
-          
-    IntegrationPutPayload:
-      type: object
-      description: Schema for updating the Integration object
-      required:
-        - user
-      properties:
-        name: 
-          type: string
-          description: A string that represents the Integration object's name
-        creation_date:
-          type: string
-          format: date-time
-          description: A formatted string that represents the Integration object's creation_date 
-        summary:
-          type: string
-          description: A string that represents the Integration object's summary
-        unique_id:
-          type: string
-          description: A system-generated string that represents the Integration object's unique_id
-        service:
-          type: string
-          description: A system-generated string that represents the Service object's unique_id
-        application: 
-          type: string
-          description: A system-generated string that represents the Application object's unique_id
-        application_reference:
-          $ref: '#/components/schemas/Application'
-        integration_key:
-          type: string
-          description: A system-generated string that represents the Integration object's integration_key
-        created_by:
-          type: string
-          description: A system-generated string that represents the User object's username
         is_enabled:
           type: boolean
           default: true
@@ -5056,37 +6048,23 @@ components:
               type: string
               description: A string that represents the Priority object's color
               
-    IncidentPostPayload:
+    IncidentPayload:
       type: object
-      description: Schema for creating the Incident object
+      description: Payload schema for the Incident object
       required:
-        - user
+        - title
+        - service
       properties:
         summary:
           type: string
           description: A string that represents the Incident object's summary
-        incident_number:
-          type: integer
-          description: An integer that represents the Incident object's incident_number
-        creation_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Incident object's creation_date
         status:
           type: integer
           default: 1
           description: An integer that represents the Incident object's status. 1 is triggered, 2 is acknowledged and 3 is resolved
-        unique_id:
-          type: string
-          description: A system-generated string that represents the Incident object's unique_id
-        service_object:
-          $ref: '#/components/schemas/Service'
         title: 
           type: string
           description: A string that represents the Incident object's title
-        incident_key:
-          type: string
-          description: A system-generated string that represents the Incident object's incident_key
         service:
           type: string
           description: A system-generated string that represents the Service object's unique_id
@@ -5096,256 +6074,13 @@ components:
         escalation_policy:
           type: string
           description: A system-generated string that represents the Escalation Policy object's unique_id
-        escalation_policy_object:
-          type: object
-          description: Escalation Policy object schema for Incident object schema
-          properties:
-            unique_id:
-              type: string
-              description: A system-generated string that represents the Escalation Policy object's unique_id
-            name:
-              type: string
-              description: A string that represents the Escalation Policy object's name
-        assigned_to_name:
-          type: string
-          description: A string that represents the User object's full name
-        resolved_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Incident object's resolved_date
-        acknowledged_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Incident object's acknowledged_date
-        context_window_start: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Incident object's context_window_start date
-        context_window_end: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Incident object's context_window_end date
-        tags:
-          type: array
-          description: An array of Incident Tag objects
-          items:
-            type: object
-            description: Incident Tag object schema for Incident object schema
-            properties:
-              unique_id:
-                type: string
-                description: A system-generated string that represents the Incident Tag object's unique_id
-              incident:
-                type: integer
-                description: An integer that represents the the Incident object's incident_number
-              creation_date: 
-                type: string
-                format: date-time
-                description: A formatted string that represents the Tag object's creation_date
-              name:
-                type: string
-                description: A string that represents the Tag object's name
-              color:
-                type: string
-                description: A string that represents the Tag object's color
-              tag_id:
-                type: string
-                description: A system-generated string that represents the Tag object's unique_id
-              team_tag:
-                type: string
-                description: A system-generated string that represents the Tag object's unique_id
         sla:
           type: string
           description: A system-generated string that represents the SLA object's unique_id
-        sla_object:
-          type: object
-          description: SLA object schema for Incident object schema
-          properties:
-            unique_id:
-              type: string
-              description: A system-generated string that represents the SLA object's unique_id
-            name:
-              type: string
-              description: A string that represents the SLA object's name
-            is_active:
-              type: boolean
-              default: true
-              description: A boolean flag that represents whether the SLA object is active or not.
-            acknowledge_time:
-              type: integer
-              description: An integer that represents the SLA object's acknowledge_time
-            resolve_time:
-              type: integer
-              description: An integer that represents the SLA object's resolve_time
-            creation_date: 
-              type: string
-              format: date-time
-              description: A formatted string that represents the SLA object's creation_date
         team_priority:
           type: string
           description: A system-generated string that represents the Priority object's unique_id
-        team_priority_object:
-          type: object
-          description: Priority object schema for Incident object schema
-          properties:
-            unique_id:
-              type: string
-              description: A system-generated string that represents the Priority object's unique_id
-            name:
-              type: string
-              description: A string that represents the Priority object's name
-            description:
-              type: string
-              description: A string that represents the Priority object's description
-            color:
-              type: string
-              description: A string that represents the Priority object's color
         
-    IncidentPutPayload:
-      type: object
-      description: Schema for updating the Incident object
-      required:
-        - user
-      properties:
-        summary:
-          type: string
-          description: A string that represents the Incident object's summary
-        incident_number:
-          type: integer
-          description: An integer that represents the Incident object's incident_number
-        creation_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Incident object's creation_date
-        status:
-          type: integer
-          default: 1
-          description: An integer that represents the Incident object's status. 1 is triggered, 2 is acknowledged and 3 is resolved
-        unique_id:
-          type: string
-          description: A system-generated string that represents the Incident object's unique_id
-        service_object:
-          $ref: '#/components/schemas/Service'
-        title: 
-          type: string
-          description: A string that represents the Incident object's title
-        incident_key:
-          type: string
-          description: A system-generated string that represents the Incident object's incident_key
-        service:
-          type: string
-          description: A system-generated string that represents the Service object's unique_id
-        assigned_to:
-          type: string
-          description: A system-generated string that represents the User object's username
-        escalation_policy:
-          type: string
-          description: A system-generated string that represents the Escalation Policy object's unique_id
-        escalation_policy_object:
-          type: object
-          description: Escalation Policy object schema for Incident object schema
-          properties:
-            unique_id:
-              type: string
-              description: A system-generated string that represents the Escalation Policy object's unique_id
-            name:
-              type: string
-              description: A string that represents the Escalation Policy object's name
-        assigned_to_name:
-          type: string
-          description: A string that represents the User object's full name
-        resolved_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Incident object's resolved_date
-        acknowledged_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Incident object's acknowledged_date
-        context_window_start: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Incident object's context_window_start date
-        context_window_end: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Incident object's context_window_end date
-        tags:
-          type: array
-          description: An array of Incident Tag objects
-          items:
-            type: object
-            description: Incident Tag object schema for Incident object schema
-            properties:
-              unique_id:
-                type: string
-                description: A system-generated string that represents the Incident Tag object's unique_id
-              incident:
-                type: integer
-                description: An integer that represents the the Incident object's incident_number
-              creation_date: 
-                type: string
-                format: date-time
-                description: A formatted string that represents the Tag object's creation_date
-              name:
-                type: string
-                description: A string that represents the Tag object's name
-              color:
-                type: string
-                description: A string that represents the Tag object's color
-              tag_id:
-                type: string
-                description: A system-generated string that represents the Tag object's unique_id
-              team_tag:
-                type: string
-                description: A system-generated string that represents the Tag object's unique_id
-        sla:
-          type: string
-          description: A system-generated string that represents the SLA object's unique_id
-        sla_object:
-          type: object
-          description: SLA object schema for Incident object schema
-          properties:
-            unique_id:
-              type: string
-              description: A system-generated string that represents the SLA object's unique_id
-            name:
-              type: string
-              description: A string that represents the SLA object's name
-            is_active:
-              type: boolean
-              default: true
-              description: A boolean flag that represents whether the SLA object is active or not.
-            acknowledge_time:
-              type: integer
-              description: An integer that represents the SLA object's acknowledge_time
-            resolve_time:
-              type: integer
-              description: An integer that represents the SLA object's resolve_time
-            creation_date: 
-              type: string
-              format: date-time
-              description: A formatted string that represents the SLA object's creation_date
-        team_priority:
-          type: string
-          description: A system-generated string that represents the Priority object's unique_id
-        team_priority_object:
-          type: object
-          description: Priority object schema for Incident object schema
-          properties:
-            unique_id:
-              type: string
-              description: A system-generated string that represents the Priority object's unique_id
-            name:
-              type: string
-              description: A string that represents the Priority object's name
-            description:
-              type: string
-              description: A string that represents the Priority object's description
-            color:
-              type: string
-              description: A string that represents the Priority object's color
-          
     IncidentRole:
       type: object
       description: Incident Role object schema
@@ -5371,60 +6106,23 @@ components:
           default: 1
           description: An integer that represents the Incident Role object's rank
           
-    IRPostPayload:
+    IRPayload:
       type: object
-      description: Schema for creating the Incident Role object
+      description: Payload schema for the Incident Role object
       required:
-        - user
+        - title
       properties:
-        unique_id:
-          type: string
-          description: A system-generated string that represents the Incident Role object's unique_id
-        team:
-          type: string
-          description: A system-generated string that represents the Team object's unique_id
         title:
           type: string
           description: An arbitary string that represents the Incident Role object's title
         description:
           type: string
           description: An arbitary string that represents the Incident Role object's description
-        creation_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Incident Role object's creation_date
         rank:
           type: integer
           default: 1
           description: An integer that represents the Incident Role object's rank
           
-    IRPutPayload:
-      type: object
-      description: Schema for updating the Incident Role object
-      required:
-        - user
-      properties:
-        unique_id:
-          type: string
-          description: A system-generated string that represents the Incident Role object's unique_id
-        team:
-          type: string
-          description: A system-generated string that represents the Team object's unique_id
-        title:
-          type: string
-          description: An arbitary string that represents the Incident Role object's title
-        description:
-          type: string
-          description: An arbitary string that represents the Incident Role object's description
-        creation_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Incident Role object's creation_date
-        rank:
-          type: integer
-          default: 1
-          description: An integer that represents the Incident Role object's rank
-    
     IncidentNote:
       description: Incident Note object schema
       type: object
@@ -5449,59 +6147,14 @@ components:
           format: date-time
           description: A formatted string that represents the Incident Note object's creation_date
           
-    IncidentNotePostPayload:
+    IncidentNotePayload:
       type: object
-      description: Schema for creating the Incident Note object
-      required:
-        - user
+      description: Payload schema for the Incident Note object
       properties:
-        unique_id: 
-          type: string
-          description: A system-generated string that represents the Incident Note object's unique_id
-        incident:
-          type: integer
-          description: An integer that represents the Incident object's incident_number
-        user:
-          type: string
-          description: A system-generated string that represents the User object's username
         note:
           type: string
           description: A string that represents the Incident Note object's note data
-        user_name: 
-          type: string
-          description: A string that represents the User object's full name
-        creation_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Incident Note object's creation_date
         
-        
-    IncidentNotePutPayload:
-      type: object
-      description: Schema for updating the Incident Note object
-      required:
-        - user
-      properties:
-        unique_id: 
-          type: string
-          description: A system-generated string that represents the Incident Note object's unique_id
-        incident:
-          type: integer
-          description: An integer that represents the Incident object's incident_number
-        user:
-          type: string
-          description: A system-generated string that represents the User object's username
-        note:
-          type: string
-          description: A string that represents the Incident Note object's note data
-        user_name: 
-          type: string
-          description: A string that represents the User object's full name
-        creation_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Incident Note object's creation_date
-          
     Event:
       type: object
       description: Event object schema
@@ -5535,11 +6188,12 @@ components:
           items:
             $ref: '#/components/schemas/EventUrl'
             
-    EventPostPayload:
+    EventPayload:
       type: object
-      description: Schema for creating the Event object
+      description: Payload schema for the Event object
       required:
-        - user
+        - message
+        - alert_type
       properties:
         message:
           type: string
@@ -5550,25 +6204,7 @@ components:
         alert_type:
           type: string
           default: info
-          description: A pre-defined string that represents the Event object's alert_type. Choices - critical, acknowledged, resolved, error, warning, info.
-        suppressed:
-          type: boolean
-          default: False
-          description: A boolean flag that represents whether the Event object is suppressed or not
-        entity_id:
-          type: string
-          description: A system-generated string that represents the Event object's entity_id
-        payload:
-          type: object
-          description: A JSON payload containing additional information about the alert
-        images: 
-          type: array
-          items:
-            $ref: '#/components/schemas/EventImage'
-        urls:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventUrl'
+          description: A pre-defined string that represents the Event object's alert_type. Choices - critical, acknowledged, resolved, error, warning, info. 
             
     IncidentAlert:
       type: object
@@ -5640,52 +6276,17 @@ components:
           type: string
           description: A string that represents the Tag object's color
           
-    TagPostPayload:
+    TagPayload:
       type: object
-      description: Schema for creating the Tag object
-      required:
-        - user
+      description: Payload schema for the Tag object
       properties:
-        unique_id:
-          type: string
-          description: A system-generated string that represents the Tag object's unique_id
-        team:
-          type: string
-          description: A system-generated string that represents the Team object's unique_id
         name:
           type: string
           description: A string that represents the Tag object's name
-        creation_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Tag object's creation_date
         color: 
           type: string
           description: A string that represents the Tag object's color
           
-    TagPutPayload:
-      type: object
-      description: Schema for updating the Tag object
-      required:
-        - user
-      properties:
-        unique_id:
-          type: string
-          description: A system-generated string that represents the Tag object's unique_id
-        team:
-          type: string
-          description: A system-generated string that represents the Team object's unique_id
-        name:
-          type: string
-          description: A string that represents the Tag object's name
-        creation_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Tag object's creation_date
-        color: 
-          type: string
-          description: A string that represents the Tag object's color
-
     TaskTemplate:
       type: object
       description: Task Template object schema
@@ -5711,52 +6312,15 @@ components:
           default: 0
           description: An integer that represents whether the Task Template object is due immediately or not. 0 is false and 1 is true.
           
-    TTPostPayload:
+    TTPayload:
       type: object
-      description: Schema for creating the Task Template object
+      description: Payload schema for the Task Template object
       required:
-        - user
+        - name
       properties:
-        unique_id: 
-          type: string
-          description: A system-generated string that represents the Task Template object's unique_id
-        team:
-          type: string
-          description: A system-generated string that represents the Team object's unique_id
         name:
           type: string
           description: A string that represents the Task Template object's name
-        creation_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Task Template object's creation_date
-        summary:
-          type: string
-          description: A string that represents the Task Template object's summary
-        due_immediately:
-          type: integer
-          default: 0
-          description: An integer that represents whether the Task Template object is due immediately or not. 0 is false and 1 is true.
-          
-    TTPutPayload:
-      type: object
-      description: Schema for updating the Task Template object
-      required:
-        - user
-      properties:
-        unique_id: 
-          type: string
-          description: A system-generated string that represents the Task Template object's unique_id
-        team:
-          type: string
-          description: A system-generated string that represents the Team object's unique_id
-        name:
-          type: string
-          description: A string that represents the Task Template object's name
-        creation_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Task Template object's creation_date
         summary:
           type: string
           description: A string that represents the Task Template object's summary
@@ -5789,54 +6353,16 @@ components:
           type: string
           description: A string that represents the Priority object's color
           
-    PriorityPostPayload:
+    PriorityPayload:
       type: object
-      description: Schema for creating the Priority object
-      required:
-        - user
+      description: Payload schema for the Priority object
       properties:
-        unique_id:
-          type: string
-          description: A system-generated string that represents the Priority object's unique_id
-        team:
-          type: string
-          description: A system-generated string that represents the Team object's unique_id
-        description:
-          type: string
-          description: A string that represents the Priority object's description
         name:
           type: string
           description: A string that represents the Priority object's name
-        creation_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Priority object's creation_date
-        color:
-          type: string
-          description: A string that represents the Priority object's color
-          
-    PriorityPutPayload:
-      type: object
-      description: Schema for updating the Priority object
-      required:
-        - user
-      properties:
-        unique_id:
-          type: string
-          description: A system-generated string that represents the Priority object's unique_id
-        team:
-          type: string
-          description: A system-generated string that represents the Team object's unique_id
         description:
           type: string
           description: A string that represents the Priority object's description
-        name:
-          type: string
-          description: A string that represents the Priority object's name
-        creation_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Priority object's creation_date
         color:
           type: string
           description: A string that represents the Priority object's color
@@ -5866,18 +6392,20 @@ components:
           format: date-time
           description: A formatted string that represents the SLA object's creation_date
           
-    SLAPostPayload:
+    SLAPayload:
       type: object
-      description: Schema for creating the SLA object
+      description: Payload schema for the SLA object
       required:
-        - user
+        - escalations
       properties:
-        unique_id:
-          type: string
-          description: A system-generated string that represents the SLA object's unique_id
         name:
           type: string
           description: An arbitary string that represents the SLA object's name
+        escalations:
+          type: array
+          description: An array of SLA Escalation objects
+          items:
+            $ref: '#/components/schemas/SLA_Escalation'
         is_active:
           type: boolean
           default: true
@@ -5888,38 +6416,7 @@ components:
         resolve_time:
           type: integer
           description: An integer that represents the SLA object's resolve_time
-        creation_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the SLA object's creation_date
           
-    SLAPutPayload:
-      type: object
-      description: Schema for updating the SLA object
-      required:
-        - user
-      properties:
-        unique_id:
-          type: string
-          description: A system-generated string that represents the SLA object's unique_id
-        name:
-          type: string
-          description: An arbitary string that represents the SLA object's name
-        is_active:
-          type: boolean
-          default: true
-          description: A boolean flag that represents whether the SLA object is active or not
-        acknowledge_time:
-          type: integer
-          description: An integer that represents the SLA object's acknowledge_time
-        resolve_time:
-          type: integer
-          description: An integer that represents the SLA object's resolve_time
-        creation_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the SLA object's creation_date
-    
     TMM:
       type: object
       description: Team Maintenance Mode object schema
@@ -5968,15 +6465,14 @@ components:
           format: date-time
           description: A formatted string that represents the Team Maintenance Mode object's repeat_until
           
-    TMMPostPayload:
+    TMMPayload:
       type: object
-      description: Schema for creating the Team Maintenance Mode object
+      description: Payload schema for the Team Maintenance Mode object
       required:
-        - user
+        - start_time
+        - end_time
+        - services
       properties:
-        unique_id:
-          type: string
-          description: A system-generated string that represents the Team Maintenance Mode object's unique_id
         start_time:
           type: string
           format: date-time
@@ -6002,10 +6498,6 @@ components:
               service:
                 type: string
                 description: A system-generated string that represents the Service object's unique_id
-        creation_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Team Maintenance Mode object's creation_date
         name:
           type: string
           description: A string that represents the Team Maintenance Mode object's name
@@ -6018,56 +6510,6 @@ components:
           format: date-time
           description: A formatted string that represents the Team Maintenance Mode object's repeat_until
           
-    TMMPutPayload:
-      type: object
-      description: Schema for updating the Team Maintenance Mode object
-      required:
-        - user
-      properties:
-        unique_id:
-          type: string
-          description: A system-generated string that represents the Team Maintenance Mode object's unique_id
-        start_time:
-          type: string
-          format: date-time
-          description: A formatted string that represents the Team Maintenance Mode object's start_time
-        end_time:
-          type: string
-          format: date-time
-          description: A formatted string that represents the Team Maintenance Mode object's end_time
-        repeat_interval:
-          type: integer
-          default: 0
-          description: An integer that represents the Team Maintenance Mode object's repeat_interval
-        services:
-          type: array
-          description: Array of Service objects
-          items:
-            type: object
-            description: Service object schema for Team Maintenance Mode object schema
-            properties:
-              unique_id:
-                type: string
-                description: A system-generated string that represents the Team Maintenance Mode Service object's unique_id
-              service:
-                type: string
-                description: A system-generated string that represents the Service object's unique_id
-        creation_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Team Maintenance Mode object's creation_date
-        name:
-          type: string
-          description: A string that represents the Team Maintenance Mode object's name
-        time_zone:
-          type: string
-          default: UTC
-          description: A formatted string that represents the Team Maintenance Mode object's time_zone. You can check out the time zone list here https://timezonedb.com/time-zones
-        repeat_until:
-          type: string
-          format: date-time
-          description: A formatted string that represents the Team Maintenance Mode object's repeat_until
-    
     Postmortem:
       type: object
       description: Postmortem object schema
@@ -6125,15 +6567,13 @@ components:
           format: date-time
           description: A formatted string that represents the Postmortem object's creation_date
           
-    PostmortemPostPayload:
+    PostmortemPayload:
       type: object
-      description: Schema for creating the Postmortem object
+      description: Payload schema for the Postmortem object
       required:
-        - user
+        - author
+        - incidents
       properties:
-        unique_id:
-          type: string
-          description: A system-generated string that represents the Postmortem object's unique_id
         author:
           type: string
           description: A system-generated string that represents the User object's username
@@ -6166,9 +6606,6 @@ components:
                   incident_number:
                     type: integer
                     description: An integer that represents the Incident object's incident_number
-        author_name:
-          type: string
-          description: A string that represents the User object's full name
         title:
           type: string
           description: A string that represents the Postmortem object's title
@@ -6176,73 +6613,7 @@ components:
           type: integer
           default: 0
           description: An integer that represents the Postmortem object's download_status. 1 is uninitiated, 2 is initiated, 3 is finished and 4 is error
-        amazon_link:
-          type: string
-          description: An hyperlink string to AWS
-        creation_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Postmortem object's creation_date
           
-    PostmortemPutPayload:
-      type: object
-      description: Schema for updating the Postmortem object
-      required:
-        - user
-      properties:
-        unique_id:
-          type: string
-          description: A system-generated string that represents the Postmortem object's unique_id
-        author:
-          type: string
-          description: A system-generated string that represents the User object's username
-        status:
-          type: string
-          description: A string that represents the Postmortem object's status
-        postmortem_data:
-          type: string
-          description: A string that represents the Postmortem object's postmortem_data
-        incidents:
-          type: array
-          description: An array of Postmortem Incident objects
-          items:
-            type: object
-            description: Postmortem Incident object schema
-            properties:
-              unique_id:
-                type: string
-                description: A system-generated string that represents the Postmortem Incident object's unique_id
-              incident:
-                type: object
-                description: Incident object schema for a Postmortem object schema
-                properties:
-                  unique_id:
-                    type: string
-                    description: A system-generated string that represents the Incident object's unique_id
-                  title:
-                    type: string
-                    description: A string that represents the Incident object's title
-                  incident_number:
-                    type: integer
-                    description: An integer that represents the Incident object's incident_number
-        author_name:
-          type: string
-          description: A string that represents the User object's full name
-        title:
-          type: string
-          description: A string that represents the Postmortem object's title
-        download_status:
-          type: integer
-          default: 0
-          description: An integer that represents the Postmortem object's download_status. 1 is uninitiated, 2 is initiated, 3 is finished and 4 is error
-        amazon_link:
-          type: string
-          description: An hyperlink string to AWS
-        creation_date: 
-          type: string
-          format: date-time
-          description: A formatted string that represents the Postmortem object's creation_date
-    
     OnCall:
       type: object
       description: OnCall object schema
