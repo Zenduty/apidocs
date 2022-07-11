@@ -30,46 +30,45 @@ info:
 # The order of the tags can be used to reflect on their order by the parsing tools.
 tags:
 - name: Account Member
-  description: Account Member api's
+  description: This object represents the user of the account. Each account member object has a role, which can be owner, admin, or user. Each account has a single owner, but the admins and users can be multiple.
 - name: Teams
-  description: Teams api's
+  description: This object represents the team of the account. It lets you create different independent operational units in account. You can check out the team docs here https://docs.zenduty.com/docs/teams.
 - name: Team Members
-  description: Team Members api's
+  description: This object represents the user of the team. Each team member has a role which can be a manager or a user. You can checkout the team member docs here https://docs.zenduty.com/docs/users
 - name: Schedules
-  description: Schedules api's
+  description: This object represents the schedule of the team. You can checkout the schedule docs here https://docs.zenduty.com/docs/schedules
 - name: Escalation Policies
-  description: Escalation Policies api's
+  description: This object represents the escalation policy of the team. You can checkout the escalation policy docs here https://docs.zenduty.com/docs/escalationpolicies
 - name: Services
-  description: Services api's
+  description: This object represents the service of the team. You can checkout the service docs here https://docs.zenduty.com/docs/services
 - name: Integrations
-  description: Integrations api's
+  description: This object represents the integration of the service. You can checkout the integration docs here https://docs.zenduty.com/docs/integrations
 - name: Integration Alerts
-  description: Integration Alerts api's
+  description: This object represents the integration alert of the integration
 - name: Incidents
-  description: Incidents api's
+  description: This object represents the incident of the account. You can checkout the incident docs here https://docs.zenduty.com/docs/incidents
 - name: Incident Roles
-  description: Incident Roles api's
+  description: This object represents the incident role of the incident. You can checkout the incident role docs here https://docs.zenduty.com/docs/incidentroles
 - name: Incident Notes
-  description: Incident Notes api's
+  description: This object represents the incident note of the incident. 
 - name: Events
-  description: Event api's
+  description: This object represents the event of the integration.
 - name: Incident Alerts
-  description: Incident Alerts api's
+  description: This object represents the incident alert of the incident.
 - name: Tags
-  description: Tags api's
+  description: This object represents the tag of the incident. You can checkout the tag docs here https://docs.zenduty.com/docs/incidenttags
 - name: Task Templates
-  description: Task Templates api's
+  description: This object represents the task template of the team. You can checkout the task template docs here https://docs.zenduty.com/docs/tasktemplates
 - name: Priorities
-  description: Priorities api's
+  description: This object represents the priority of the incident. You can checkout the priority docs here https://docs.zenduty.com/docs/incidentpriority
 - name: SLA
-  description: SLA api's
+  description: This object represents the sla of the incident. You can checkout the sla docs here https://docs.zenduty.com/docs/incidentsla
 - name: Team Maintenance Mode
-  description: Team Maintenance Mode api's
+  description: This object represents the maintenance mode of the team. You can checkout the team maintenance mode docs here https://docs.zenduty.com/docs/maintenancewindows
 - name: Postmortem
-  description: Postmortem api's
+  description: This object represents the postmortem of the incident. You can checkout the postmortem docs here https://docs.zenduty.com/docs/incidentpostmortem
 - name: OnCall
-  description: OnCall api's
-  
+  description: This object represents the user who is oncall.
   
 servers:
  - url: 'https://www.zenduty.com'
