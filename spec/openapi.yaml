@@ -2239,7 +2239,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Service'
+                $ref: '#/components/schemas/ServicePostPut'
               example:
                 name: Production Service
                 creation_date: '2022-07-08T12:38:50.511179Z'
@@ -2260,7 +2260,7 @@ paths:
                 under_maintenance: false
             application/xml:
               schema:
-                $ref: '#/components/schemas/Service'
+                $ref: '#/components/schemas/ServicePostPut'
               example:
                 name: Production Service
                 creation_date: '2022-07-08T12:38:50.511179Z'
@@ -2318,7 +2318,7 @@ paths:
           content:
             application/json:
               schema: 
-                $ref: '#/components/schemas/Service'
+                $ref: '#/components/schemas/ServiceGet'
               example:
                 - name: Infra Service
                   creation_date: '2022-07-08T12:31:37.429973Z'
@@ -2356,7 +2356,7 @@ paths:
                   collation_time: 0
             application/xml:
               schema: 
-                $ref: '#/components/schemas/Service'
+                $ref: '#/components/schemas/ServiceGet'
               example:
                 - name: Infra Service
                   creation_date: '2022-07-08T12:31:37.429973Z'
@@ -2447,7 +2447,7 @@ paths:
             content:
               application/json: 
                 schema: 
-                  $ref: '#/components/schemas/Service'
+                  $ref: '#/components/schemas/ServiceGet'
                 example:
                   name: Production Service
                   creation_date: '2022-07-08T12:38:50.511179Z'
@@ -2468,7 +2468,7 @@ paths:
                   collation_time: 0
               application/xml: 
                 schema: 
-                  $ref: '#/components/schemas/Service'
+                  $ref: '#/components/schemas/ServiceGet'
                 example:
                   name: Production Service
                   creation_date: '2022-07-08T12:38:50.511179Z'
@@ -2553,7 +2553,7 @@ paths:
             content:
               application/json:
                 schema: 
-                  $ref: '#/components/schemas/Service'
+                  $ref: '#/components/schemas/ServicePostPut'
                 example:
                   name: Modified Production Service
                   creation_date: '2022-07-08T12:38:50.511179Z'
@@ -2574,7 +2574,7 @@ paths:
                   under_maintenance: false
               application/xml:
                 schema: 
-                  $ref: '#/components/schemas/Service'
+                  $ref: '#/components/schemas/ServicePostPut'
                 example:
                   name: Modified Production Service
                   creation_date: '2022-07-08T12:38:50.511179Z'
@@ -3359,7 +3359,7 @@ paths:
             content:
               application/json:
                 schema:
-                  $ref: '#/components/schemas/AlertList'
+                  $ref: '#/components/schemas/IntegrationAlert'
                 example:
                   - integration_object:
                       name: Modified Infra custom Integration
@@ -3407,7 +3407,7 @@ paths:
                     notes: []
               application/xml:
                 schema:
-                  $ref: '#/components/schemas/AlertList'
+                  $ref: '#/components/schemas/IntegrationAlert'
                 example:
                   - integration_object:
                       name: Modified Infra custom Integration
@@ -4381,7 +4381,7 @@ paths:
           content:
             application/json: 
               schema: 
-                $ref: '#/components/schemas/IncidentRole'
+                $ref: '#/components/schemas/IncidentRolePostPut'
               example:
                 unique_id: 33994f75-c917-46c4-a367-e05ad7f893a9
                 title: Infra Incident Role
@@ -4390,7 +4390,7 @@ paths:
                 rank: 1
             application/xml: 
               schema: 
-                $ref: '#/components/schemas/IncidentRole'
+                $ref: '#/components/schemas/IncidentRolePostPut'
               example:
                 unique_id: 33994f75-c917-46c4-a367-e05ad7f893a9
                 title: Infra Incident Role
@@ -4437,7 +4437,7 @@ paths:
           content:
             application/json:
               schema: 
-                $ref: '#/components/schemas/IncidentRole'
+                $ref: '#/components/schemas/IncidentRoleGet'
               example:
                 - unique_id: 89752b4a-43df-401d-9dc0-a446690a7a0e
                   team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -4453,7 +4453,7 @@ paths:
                   rank: 1
             application/xml:
               schema: 
-                $ref: '#/components/schemas/IncidentRole'
+                $ref: '#/components/schemas/IncidentRoleGet'
               example:
                 - unique_id: 89752b4a-43df-401d-9dc0-a446690a7a0e
                   team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -4522,7 +4522,7 @@ paths:
             content:
               application/json: 
                 schema:
-                  $ref: '#/components/schemas/IncidentRole'
+                  $ref: '#/components/schemas/IncidentRoleGet'
                 example:
                   unique_id: 33994f75-c917-46c4-a367-e05ad7f893a9
                   team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -4532,7 +4532,7 @@ paths:
                   rank: 1
               application/xml: 
                 schema:
-                  $ref: '#/components/schemas/IncidentRole'
+                  $ref: '#/components/schemas/IncidentRoleGet'
                 example:
                   unique_id: 33994f75-c917-46c4-a367-e05ad7f893a9
                   team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -4594,7 +4594,7 @@ paths:
             content:
               application/json: 
                 schema: 
-                  $ref: '#/components/schemas/IncidentRole'
+                  $ref: '#/components/schemas/IncidentRolePostPut'
                 example:
                   unique_id: 33994f75-c917-46c4-a367-e05ad7f893a9
                   title: Modified Infra Incident Role
@@ -4603,7 +4603,7 @@ paths:
                   rank: 1
               application/xml: 
                 schema: 
-                  $ref: '#/components/schemas/IncidentRole'
+                  $ref: '#/components/schemas/IncidentRolePostPut'
                 example:
                   unique_id: 33994f75-c917-46c4-a367-e05ad7f893a9
                   title: Modified Infra Incident Role
@@ -5258,7 +5258,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Tag'
+                $ref: '#/components/schemas/TagPostPut'
               example:
                 unique_id: fbdd8538-8651-4684-bb5e-7cc4b0c7528d
                 name: New Infra Tag
@@ -5267,7 +5267,7 @@ paths:
                 team: 3674
             application/xml:
               schema:
-                $ref: '#/components/schemas/Tag'
+                $ref: '#/components/schemas/TagPostPut'
               example:
                 unique_id: fbdd8538-8651-4684-bb5e-7cc4b0c7528d
                 name: New Infra Tag
@@ -5314,7 +5314,7 @@ paths:
           content:
             application/json:
               schema: 
-                $ref: '#/components/schemas/Tag'
+                $ref: '#/components/schemas/TagGet'
               example:
                 - unique_id: b89de69e-3f7b-4425-a19e-9a56b1e9dbf4
                   team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -5328,7 +5328,7 @@ paths:
                   color: red
             application/xml:
               schema: 
-                $ref: '#/components/schemas/Tag'
+                $ref: '#/components/schemas/TagGet'
               example:
                 - unique_id: b89de69e-3f7b-4425-a19e-9a56b1e9dbf4
                   team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -5395,7 +5395,7 @@ paths:
             content:
               application/json: 
                 schema: 
-                  $ref: '#/components/schemas/Tag'
+                  $ref: '#/components/schemas/TagGet'
                 example:
                   unique_id: fbdd8538-8651-4684-bb5e-7cc4b0c7528d
                   team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -5404,7 +5404,7 @@ paths:
                   color: red
               application/xml: 
                 schema: 
-                  $ref: '#/components/schemas/Tag'
+                  $ref: '#/components/schemas/TagGet'
                 example:
                   unique_id: fbdd8538-8651-4684-bb5e-7cc4b0c7528d
                   team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -5467,7 +5467,7 @@ paths:
             content:
               application/json:
                 schema: 
-                  $ref: '#/components/schemas/Tag'
+                  $ref: '#/components/schemas/TagPostPut'
                 example:
                   unique_id: fbdd8538-8651-4684-bb5e-7cc4b0c7528d
                   name: Modified Infra Tag
@@ -5476,7 +5476,7 @@ paths:
                   team: 3674
               application/xml:
                 schema: 
-                  $ref: '#/components/schemas/Tag'
+                  $ref: '#/components/schemas/TagPostPut'
                 example:
                   unique_id: fbdd8538-8651-4684-bb5e-7cc4b0c7528d
                   name: Modified Infra Tag
@@ -5585,7 +5585,7 @@ paths:
           content:
             application/json:
               schema: 
-                $ref: '#/components/schemas/TaskTemplate'
+                $ref: '#/components/schemas/TaskTemplatePostPut'
               example:
                 unique_id: 94d836f1-4fda-4124-a339-ba7975a15559
                 name: New Infra Task Template
@@ -5594,7 +5594,7 @@ paths:
                 due_immediately: 0
             application/xml:
               schema: 
-                $ref: '#/components/schemas/TaskTemplate'
+                $ref: '#/components/schemas/TaskTemplatePostPut'
               example:
                 unique_id: 94d836f1-4fda-4124-a339-ba7975a15559
                 name: New Infra Task Template
@@ -5641,7 +5641,7 @@ paths:
           content:
             application/json: 
               schema: 
-                $ref: '#/components/schemas/TaskTemplate'
+                $ref: '#/components/schemas/TaskTemplateGet'
               example:
                 - unique_id: 8d2640ca-c6ef-45f0-be5f-61dedcf85032
                   team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -5657,7 +5657,7 @@ paths:
                   due_immediately: 0
             application/xml: 
               schema: 
-                $ref: '#/components/schemas/TaskTemplate'
+                $ref: '#/components/schemas/TaskTemplateGet'
               example:
                 - unique_id: 8d2640ca-c6ef-45f0-be5f-61dedcf85032
                   team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -5726,7 +5726,7 @@ paths:
             content:
               application/json: 
                 schema:
-                  $ref: '#/components/schemas/TaskTemplate'
+                  $ref: '#/components/schemas/TaskTemplateGet'
                 example:
                   unique_id: 94d836f1-4fda-4124-a339-ba7975a15559
                   team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -5736,7 +5736,7 @@ paths:
                   due_immediately: 0
               application/xml: 
                 schema:
-                  $ref: '#/components/schemas/TaskTemplate'
+                  $ref: '#/components/schemas/TaskTemplateGet'
                 example:
                   unique_id: 94d836f1-4fda-4124-a339-ba7975a15559
                   team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -5799,7 +5799,7 @@ paths:
             content:
               application/json: 
                 schema:
-                  $ref: '#/components/schemas/TaskTemplate'
+                  $ref: '#/components/schemas/TaskTemplatePostPut'
                 example:
                   unique_id: 94d836f1-4fda-4124-a339-ba7975a15559
                   name: Modified Infra Task Template
@@ -5808,7 +5808,7 @@ paths:
                   due_immediately: 0
               application/xml: 
                 schema:
-                  $ref: '#/components/schemas/TaskTemplate'
+                  $ref: '#/components/schemas/TaskTemplatePostPut'
                 example:
                   unique_id: 94d836f1-4fda-4124-a339-ba7975a15559
                   name: Modified Infra Task Template
@@ -5915,7 +5915,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Priority'
+                $ref: '#/components/schemas/PriorityPostPut'
               example:
                 unique_id: 88519afe-3409-4f96-b9de-4464908f6e88
                 name: New Infra Priority
@@ -5925,7 +5925,7 @@ paths:
                 team: 3674
             application/xml:
               schema:
-                $ref: '#/components/schemas/Priority'
+                $ref: '#/components/schemas/PriorityPostPut'
               example:
                 unique_id: 88519afe-3409-4f96-b9de-4464908f6e88
                 name: New Infra Priority
@@ -5973,7 +5973,7 @@ paths:
           content:
             application/json: 
               schema: 
-                $ref: '#/components/schemas/Priority'
+                $ref: '#/components/schemas/PriorityGet'
               example:
                - unique_id: 6d100d52-998b-41c8-8928-a7e3aa68e329
                  team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -5989,7 +5989,7 @@ paths:
                  color: ''
             application/xml: 
               schema: 
-                $ref: '#/components/schemas/Priority'
+                $ref: '#/components/schemas/PriorityGet'
               example:
                - unique_id: 6d100d52-998b-41c8-8928-a7e3aa68e329
                  team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -6058,7 +6058,7 @@ paths:
             content:
               application/json:
                 schema: 
-                  $ref: '#/components/schemas/Priority'
+                  $ref: '#/components/schemas/PriorityGet'
                 example:
                   unique_id: 88519afe-3409-4f96-b9de-4464908f6e88
                   team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -6068,7 +6068,7 @@ paths:
                   color: ''
               application/xml:
                 schema: 
-                  $ref: '#/components/schemas/Priority'
+                  $ref: '#/components/schemas/PriorityGet'
                 example:
                   unique_id: 88519afe-3409-4f96-b9de-4464908f6e88
                   team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -6130,7 +6130,7 @@ paths:
             content:
               application/json: 
                 schema: 
-                  $ref: '#/components/schemas/Priority'
+                  $ref: '#/components/schemas/PriorityPostPut'
                 example:
                   unique_id: 88519afe-3409-4f96-b9de-4464908f6e88
                   name: Modified Infra Priority
@@ -6140,7 +6140,7 @@ paths:
                   team: 3674
               application/xml: 
                 schema: 
-                  $ref: '#/components/schemas/Priority'
+                  $ref: '#/components/schemas/PriorityPostPut'
                 example:
                   unique_id: 88519afe-3409-4f96-b9de-4464908f6e88
                   name: Modified Infra Priority
@@ -6250,7 +6250,7 @@ paths:
           content:
             application/json: 
               schema: 
-                $ref: '#/components/schemas/SLA'
+                $ref: '#/components/schemas/SLAPostPut'
               example:
                 escalations: []
                 unique_id: 010bc17d-f688-403d-b762-f039fb6f5ad9
@@ -6263,7 +6263,7 @@ paths:
                 team: 3674
             application/xml: 
               schema: 
-                $ref: '#/components/schemas/SLA'
+                $ref: '#/components/schemas/SLAPostPut'
               example:
                 escalations: []
                 unique_id: 010bc17d-f688-403d-b762-f039fb6f5ad9
@@ -6314,7 +6314,7 @@ paths:
           content:
             application/json: 
               schema: 
-                $ref: '#/components/schemas/SLA'
+                $ref: '#/components/schemas/SLAGet'
               example:
                - unique_id: b3c6af23-2b9e-414e-9706-bbf3af76828c
                  name: Infra SLA
@@ -6330,7 +6330,7 @@ paths:
                  creation_date: '2022-07-08T14:45:21.096085Z'
             application/xml: 
               schema: 
-                $ref: '#/components/schemas/SLA'
+                $ref: '#/components/schemas/SLAGet'
               example:
                - unique_id: b3c6af23-2b9e-414e-9706-bbf3af76828c
                  name: Infra SLA
@@ -6399,7 +6399,7 @@ paths:
             content:
               application/json: 
                 schema: 
-                  $ref: '#/components/schemas/SLA'
+                  $ref: '#/components/schemas/SLAGet'
                 example:
                   escalations: []
                   unique_id: 010bc17d-f688-403d-b762-f039fb6f5ad9
@@ -6412,7 +6412,7 @@ paths:
                   team: 3674
               application/xml: 
                 schema: 
-                  $ref: '#/components/schemas/SLA'
+                  $ref: '#/components/schemas/SLAGet'
                 example:
                   escalations: []
                   unique_id: 010bc17d-f688-403d-b762-f039fb6f5ad9
@@ -6479,7 +6479,7 @@ paths:
             content:
               application/json: 
                 schema: 
-                  $ref: '#/components/schemas/SLA'
+                  $ref: '#/components/schemas/SLAPostPut'
                 example:
                   escalations: []
                   unique_id: 010bc17d-f688-403d-b762-f039fb6f5ad9
@@ -6492,7 +6492,7 @@ paths:
                   team: 3674
               application/xml: 
                 schema: 
-                  $ref: '#/components/schemas/SLA'
+                  $ref: '#/components/schemas/SLAPostPut'
                 example:
                   escalations: []
                   unique_id: 010bc17d-f688-403d-b762-f039fb6f5ad9
@@ -7002,7 +7002,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Postmortem'
+                $ref: '#/components/schemas/PostmortemPostPut'
               example:
                 unique_id: f6778c71-eba2-49da-b226-ca27172d7303
                 author: 85b563c8-18d0-4668-9462-9
@@ -7016,7 +7016,7 @@ paths:
                 download_status: 0
             application/xml:
               schema:
-                $ref: '#/components/schemas/Postmortem'
+                $ref: '#/components/schemas/PostmortemPostPut'
               example:
                 unique_id: f6778c71-eba2-49da-b226-ca27172d7303
                 author: 85b563c8-18d0-4668-9462-9
@@ -7068,7 +7068,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Postmortem'
+                $ref: '#/components/schemas/PostmortemGet'
               example:
                - unique_id: 4d0726ca-664f-4d07-8005-a9ba2c654cc9
                  author: 85b563c8-18d0-4668-9462-9
@@ -7102,7 +7102,7 @@ paths:
                  creation_date: '2022-07-08T15:08:01.521494Z'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Postmortem'
+                $ref: '#/components/schemas/PostmortemGet'
               example:
                - unique_id: 4d0726ca-664f-4d07-8005-a9ba2c654cc9
                  author: 85b563c8-18d0-4668-9462-9
@@ -7186,7 +7186,7 @@ paths:
             content:
               application/json:
                 schema:
-                  $ref: '#/components/schemas/Postmortem'
+                  $ref: '#/components/schemas/PostmortemGet'
                 example:
                   unique_id: f6778c71-eba2-49da-b226-ca27172d7303
                   author: 85b563c8-18d0-4668-9462-9
@@ -7205,7 +7205,7 @@ paths:
                   creation_date: '2022-07-08T15:08:01.521494Z'
               application/xml:
                 schema:
-                  $ref: '#/components/schemas/Postmortem'
+                  $ref: '#/components/schemas/PostmortemGet'
                 example:
                   unique_id: f6778c71-eba2-49da-b226-ca27172d7303
                   author: 85b563c8-18d0-4668-9462-9
@@ -7282,7 +7282,7 @@ paths:
             content:
               application/json: 
                 schema: 
-                  $ref: '#/components/schemas/Postmortem'
+                  $ref: '#/components/schemas/PostmortemPostPut'
                 example:
                   unique_id: f6778c71-eba2-49da-b226-ca27172d7303
                   author: 85b563c8-18d0-4668-9462-9
@@ -7296,7 +7296,7 @@ paths:
                   download_status: 0
               application/xml: 
                 schema: 
-                  $ref: '#/components/schemas/Postmortem'
+                  $ref: '#/components/schemas/PostmortemPostPut'
                 example:
                   unique_id: f6778c71-eba2-49da-b226-ca27172d7303
                   author: 85b563c8-18d0-4668-9462-9
@@ -7580,7 +7580,7 @@ components:
           type: string
           description: A system-generated string that represents the User object's username
         roles:
-          $ref: '#/components/schemas/IncidentRole'
+          $ref: '#/components/schemas/IncidentRoleGet'
   
     TeamPayload:
       type: object
@@ -7709,6 +7709,15 @@ components:
         team:
           type: string
           description: A system-generated string that represents the Team object's unique_id
+        repeat_policy:
+          type: integer
+          description: An integer that represents the Escalation Policy object's repeat_policy
+        move_to_next:
+          type: boolean
+          description: A boolean flag that represents whether to move to the next Escalation Rule if no user is found on the current Escalation Rule
+        global_ep:
+          type: boolean
+          description: A boolean flag that represents whether the Escalation Policy is global or not.
           
     EPPayload:
       type: object
@@ -7729,8 +7738,8 @@ components:
         rules:
           $ref: '#/components/schemas/EP_Rule'
           
-    Service:
-      description: Service object schema
+    ServiceGet:
+      description: Service object schema for List and Retrieve
       type: object
       properties:
         name:
@@ -7791,6 +7800,69 @@ components:
           type: integer
           default: 0
           description: An integer that represents the Service object's collation_time
+    
+    ServicePostPut:
+      description: Service object schema for Create and Update
+      type: object
+      properties:
+        name:
+          type: string
+          description: A string that represents the Service object's name
+        creation date:
+          type: string
+          format: date-time
+          description: A formatted string that represents the Service object's creation_date
+        summary:
+          type: string
+          description: A string that represents the Service object's summary
+        description:
+          type: string
+          description: A string that represents the Service object's description
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Service object's unique_id
+        auto_resolve_timeout:
+          type: integer
+          default: 0
+          description: An integer that represents the timeout for automatically resolving an Incident 
+        created_by:
+          type: string
+          description: A system-generated string that represents the User object's username
+        team_priority:
+          type: string
+          description: A system-generated string that represents the Priority object's unique_id
+        task_template:
+          type: string
+          description: A system-generated string that represents the Task Template object's unique_id
+        acknowlegement_timeout:
+          type: integer
+          default: 0
+          description: An integer that represents the timeout for acknowledging an Incident
+        status:
+          type: integer
+          default: 1
+          description: An integer that represents the Service object's status 0 is disabled, 1 is active, 2 is a warning, 3 is critical, and 4 is under maintenance 
+        escalation_policy: 
+          type: string
+          description: A system-generated string that represents the Escalation Policy object's unique_id
+        team:
+          type: string
+          description: A system-generated string that represents the Team object's unique_id
+        sla:
+          type: string
+          description: A system-generated string that represents the SLA object's unique_id
+        collation_time:
+          type: integer
+          default: 0
+          description: An integer that represents the Service object's collation_time
+        collation:
+          type: integer
+          default: 0
+          description: An integer that represents the Service object's collation type. 0 is off, 1 is time-based, and 2 is intelligence.
+        under_maintenance:
+          type: boolean
+          default: false
+          description: A boolean flag that represents whether the service object is under maintenance or not
           
     ServicePayload:
       type: object
@@ -7926,6 +7998,87 @@ components:
           default: 1
           description: An integer that represents the Integration object's default_urgency. 0 is low and 1 is high.
           
+    IntegrationAlert:
+      type: object
+      description: Integration Alert object schema
+      properties:
+        integration_object:
+          description: Integration object schema for Integration Alert object schema
+          type: object
+          properties:
+            name: 
+              type: string
+              description: A string that represents the Integration object's name
+            creation_date:
+              type: string
+              format: date-time
+              description: A formatted string that represents the Integration object's creation_date 
+            summary:
+              type: string
+              description: A string that represents the Integration object's summary
+            unique_id:
+              type: string
+              description: A system-generated string that represents the Integration object's unique_id
+            service:
+              type: string
+              description: A system-generated string that represents the Service object's unique_id
+            team:
+              type: string
+              description: A system-generated string that represents the Team object's unique_id
+            integration_key:
+              type: string
+              description: A system-generated string that represents the Integration object's integration_key
+            is_enabled:
+              type: boolean
+              default: true
+              description: A boolean flag that represents whether an Integration is enabled or not
+            integration_type:
+              type: integer
+              default: 0
+              description: An integer that represents the Integration object's integration_type. 0 is alert and 1 is outbound.
+        summary:
+          type: string
+          description: A string that represents the Integration Alert object's summary
+        incident:
+          type: integer
+          description: An integer that represents the Incident object's incident_number
+        creation_date:
+          type: string
+          format: date-time
+          description: A formatted string that represents the Integration Alert object's creation_date 
+        message: 
+          type: string
+          description: A string that represents the Integration Alert object's message
+        integration:
+          type: string
+          description: A string that represents the Integration object's unique_id
+        suppressed:
+          type: boolean
+          default: true
+          description: A boolean flag that represents whether the Integration Alert object is suppressed or not
+        entity_id:
+          type: string
+          description: A system-generated string that represents the Integration Alert object's entitiy_id
+        alert_type:
+          type: integer
+          default: 1
+          description: An integer that represents the Integration Alert object's alert_type. 0 is for info, 1 is for warning, 2 for error, 3 is  for critical, 4 is for acknowledged and 5 is for resolved.
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Integration Alert object's unique_id 
+        images: 
+          type: array
+          items:
+            $ref: '#/components/schemas/EventImage'
+        urls:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventUrl'
+        notes:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventNote'
+          
     Incident:
       type: object
       description: Incident object schema
@@ -7948,7 +8101,7 @@ components:
           type: string
           description: A system-generated string that represents the Incident object's unique_id
         service_object:
-          $ref: '#/components/schemas/Service'
+          $ref: '#/components/schemas/ServicePostPut'
         title: 
           type: string
           description: A string that represents the Incident object's title
@@ -7958,6 +8111,12 @@ components:
         service:
           type: string
           description: A system-generated string that represents the Service object's unique_id
+        urgency:
+          type: integer
+          default: 1
+          description: A integer that represents the Incident object's urgency 0 for low and 1 for high
+        merged_with:
+          type: integer
         assigned_to:
           type: string
           description: A system-generated string that represents the User object's username
@@ -8102,7 +8261,7 @@ components:
           type: string
           description: A system-generated string that represents the Priority object's unique_id
         
-    IncidentRole:
+    IncidentRoleGet:
       type: object
       description: Incident Role object schema
       properties:
@@ -8112,6 +8271,28 @@ components:
         team:
           type: string
           description: A system-generated string that represents the Team object's unique_id
+        title:
+          type: string
+          description: An arbitary string that represents the Incident Role object's title
+        description:
+          type: string
+          description: An arbitary string that represents the Incident Role object's description
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Incident Role object's creation_date
+        rank:
+          type: integer
+          default: 1
+          description: An integer that represents the Incident Role object's rank
+    
+    IncidentRolePostPut:
+      type: object
+      description: Incident Role object schema
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Incident Role object's unique_id
         title:
           type: string
           description: An arbitary string that represents the Incident Role object's title
@@ -8180,26 +8361,73 @@ components:
       type: object
       description: Event object schema
       properties:
-        message:
-          type: string
-          description: A string that represents the Event object's message
+        integration_object:
+          description: Integration object schema for Event object schema
+          type: object
+          properties:
+            name: 
+              type: string
+              description: A string that represents the Integration object's name
+            creation_date:
+              type: string
+              format: date-time
+              description: A formatted string that represents the Integration object's creation_date 
+            summary:
+              type: string
+              description: A string that represents the Integration object's summary
+            unique_id:
+              type: string
+              description: A system-generated string that represents the Integration object's unique_id
+            service:
+              type: string
+              description: A system-generated string that represents the Service object's unique_id
+            team:
+              type: string
+              description: A system-generated string that represents the Team object's unique_id
+            integration_key:
+              type: string
+              description: A system-generated string that represents the Integration object's integration_key
+            is_enabled:
+              type: boolean
+              default: true
+              description: A boolean flag that represents whether an Integration is enabled or not
+            integration_type:
+              type: integer
+              default: 0
+              description: An integer that represents the Integration object's integration_type. 0 is alert and 1 is outbound.
         summary:
           type: string
           description: A string that represents the Event object's summary
-        alert_type:
+        incident:
+          type: integer
+          description: An integer that represents the Incident object's incident_number
+        creation_date:
           type: string
-          default: info
-          description: A pre-defined string that represents the Event object's alert_type. Choices - critical, acknowledged, resolved, error, warning, info.
+          format: date-time
+          description: A formatted string that represents the Event object's creation_date 
+        message: 
+          type: string
+          description: A string that represents the Event object's message
+        integration:
+          type: string
+          description: A string that represents the Integration object's unique_id
         suppressed:
           type: boolean
-          default: False
+          default: true
           description: A boolean flag that represents whether the Event object is suppressed or not
         entity_id:
           type: string
-          description: A system-generated string that represents the Event object's entity_id
+          description: A system-generated string that represents the Event object's entitiy_id
         payload:
           type: object
-          description: A JSON payload containing additional information about the alert
+          description: Additional payload of the Event object
+        alert_type:
+          type: integer
+          default: 1
+          description: An integer that represents the Event object's alert_type. 0 is for info, 1 is for warning, 2 for error, 3 is  for critical, 4 is for acknowledged and 5 is for resolved.
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Event object's unique_id 
         images: 
           type: array
           items:
@@ -8208,6 +8436,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EventUrl'
+        notes:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventNote'
             
     EventPayload:
       type: object
@@ -8276,7 +8508,7 @@ components:
           items:
             $ref: '#/components/schemas/EventNote'
             
-    Tag:
+    TagGet:
       type: object
       description: Tag object schema
       properties:
@@ -8297,6 +8529,27 @@ components:
           type: string
           description: A string that represents the Tag object's color
           
+    TagPostPut:
+      type: object
+      description: Tag object schema
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Tag object's unique_id
+        name:
+          type: string
+          description: A string that represents the Tag object's name
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Tag object's creation_date
+        color: 
+          type: string
+          description: A string that represents the Tag object's color
+        team:
+          type: integer
+          description: An integer that represents the Team object's id
+          
     TagPayload:
       type: object
       description: Payload schema for the Tag object
@@ -8308,7 +8561,7 @@ components:
           type: string
           description: A string that represents the Tag object's color
           
-    TaskTemplate:
+    TaskTemplateGet:
       type: object
       description: Task Template object schema
       properties:
@@ -8318,6 +8571,28 @@ components:
         team:
           type: string
           description: A system-generated string that represents the Team object's unique_id
+        name:
+          type: string
+          description: A string that represents the Task Template object's name
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Task Template object's creation_date
+        summary:
+          type: string
+          description: A string that represents the Task Template object's summary
+        due_immediately:
+          type: integer
+          default: 0
+          description: An integer that represents whether the Task Template object is due immediately or not. 0 is false and 1 is true.
+          
+    TaskTemplatePostPut:
+      type: object
+      description: Task Template object schema
+      properties:
+        unique_id: 
+          type: string
+          description: A system-generated string that represents the Task Template object's unique_id
         name:
           type: string
           description: A string that represents the Task Template object's name
@@ -8350,7 +8625,7 @@ components:
           default: 0
           description: An integer that represents whether the Task Template object is due immediately or not. 0 is false and 1 is true.
           
-    Priority:
+    PriorityGet:
       type: object
       description: Priority object schema
       properties:
@@ -8374,6 +8649,30 @@ components:
           type: string
           description: A string that represents the Priority object's color
           
+    PriorityPostPut:
+      type: object
+      description: Priority object schema
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Priority object's unique_id
+        description:
+          type: string
+          description: A string that represents the Priority object's description
+        name:
+          type: string
+          description: A string that represents the Priority object's name
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Priority object's creation_date
+        color:
+          type: string
+          description: A string that represents the Priority object's color
+        team:
+          type: integer
+          description: An integer that represents the Team object's id
+          
     PriorityPayload:
       type: object
       description: Payload schema for the Priority object
@@ -8388,7 +8687,7 @@ components:
           type: string
           description: A string that represents the Priority object's color
           
-    SLA:
+    SLAGet:
       type: object
       description: SLA object schema
       properties:
@@ -8412,6 +8711,41 @@ components:
           type: string
           format: date-time
           description: A formatted string that represents the SLA object's creation_date
+          
+    SLAPostPut:
+      type: object
+      description: SLA object schema
+      properties:
+        escalations:
+          type: array
+          description: An array of SLA Escalation object
+          items:
+            $ref: '#/components/schemas/SLA_Escalation'
+        unique_id:
+          type: string
+          description: A system-generated string that represents the SLA object's unique_id
+        name:
+          type: string
+          description: An arbitary string that represents the SLA object's name
+        description:
+          type: string
+          description: An arbitary string that represents the SLA object's description
+        is_active:
+          type: boolean
+          default: true
+          description: A boolean flag that represents whether the SLA object is active or not
+        conditions:
+          type: object
+          description: Additional conditions object to create or update the SLA object
+        acknowledge_time:
+          type: integer
+          description: An integer that represents the SLA object's acknowledge_time
+        resolve_time:
+          type: integer
+          description: An integer that represents the SLA object's resolve_time
+        team:
+          type: integer
+          description: An integer that respresents the Team object's id
           
     SLAPayload:
       type: object
@@ -8531,7 +8865,7 @@ components:
           format: date-time
           description: A formatted string that represents the Team Maintenance Mode object's repeat_until
           
-    Postmortem:
+    PostmortemGet:
       type: object
       description: Postmortem object schema
       properties:
@@ -8587,6 +8921,46 @@ components:
           type: string
           format: date-time
           description: A formatted string that represents the Postmortem object's creation_date
+          
+    PostmortemPostPut:
+      type: object
+      description: Postmortem object schema
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Postmortem object's unique_id
+        author:
+          type: string
+          description: A system-generated string that represents the User object's username
+        status:
+          type: string
+          description: A string that represents the Postmortem object's status
+        incidents:
+          type: array
+          description: An array of Postmortem Incident objects
+          items:
+            type: object
+            description: Postmortem Incident object schema
+            properties:
+              unique_id:
+                type: string
+                description: A system-generated string that represents the Postmortem Incident object's unique_id
+              incident:
+                type: string
+                description: A system-generated string that represents the Incident object's unique_id
+        author_name:
+          type: string
+          description: A string that represents the User object's full name
+        title:
+          type: string
+          description: A string that represents the Postmortem object's title
+        postmortem_data:
+          type: string
+          description: A string that represents the Postmortem object's postmortem_data
+        download_status:
+          type: integer
+          default: 0
+          description: An integer that represents the Postmortem object's download_status. 1 is uninitiated, 2 is initiated, 3 is finished and 4 is error
           
     PostmortemPayload:
       type: object
@@ -8843,6 +9217,18 @@ components:
         setup_instructions:
           type: string
           description: A string that represents Application object's setup_instructions
+        extension:
+          type: string
+          description: A string that represents Application object's extension
+        application_type:
+          type: integer
+          description: An integer that represents Application object's application_type 0 for alert and 1 for outbound
+        categories:
+          type: string
+          description: A string that represents Application object's categories
+        documentation_link:
+          type: string
+          description: A string that represents Application object's documentation_link
           
     SLA_Escalation:
       type: object
@@ -8904,65 +9290,13 @@ components:
           type: string
           description: A string that represents the Event Note object's note_text
             
-    Payload:
-      description: payload of alert
-      type: object
-      properties: 
-        a:
-          type: integer
-        b: 
-          type: integer
-        c: 
-          type: integer
     
-    ServiceAlert:
-      description: alert from a service
-      type: object
-      properties:
-        integration_name:
-          type: string
-          example: "Sentry"
-        incident:
-          type: integer
-          example: 37
-        creation_date:
-          type: string
-          format: date-time
-        status:
-          type: integer
-          example: 1
-        message: 
-          type: string
-          example: "Testing Sentry 49"
-        integration_id:
-          type: string
-        suppressed: 
-          type: boolean
-          default: false
-        entity_id:
-          type: string
-        payload:
-          $ref: '#/components/schemas/Payload'
-        severity:
-          type: integer
-          description: 1 for info, 2 for warning, 3 for error, 4 for critical
-          example: 4
-    
-    AlertList:
-      description: List of alerts
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 15
-        next:
-          type: string
-          format: url
-        previous:
-          type: string
-          format: url
-        results:
-          $ref: '#/components/schemas/ServiceAlert'
+            
+        
+        
+        
+            
+          
           
 
         
