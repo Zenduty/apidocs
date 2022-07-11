@@ -74,6 +74,9 @@ tags:
 servers:
  - url: 'https://www.zenduty.com'
  
+security:
+ - bearerAuth: []
+ 
  
 paths:
   
@@ -84,8 +87,6 @@ paths:
       summary: List all Account Member objects
       description:
         Returns a list of Account Member objects. The Account Member objects are sorted by joining_date, with the most recent Account Member object appearing last.
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -199,8 +200,6 @@ paths:
         - Account Member
         summary: Retrieve the Account Member object
         description: Retrieve the specified Account Member object.
-        security:
-          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -265,8 +264,6 @@ paths:
           - Account Member
         summary: Update the Account Member object
         description: Updates the specified Account Member object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
-        security:
-          - bearerAuth: []
         requestBody:
           description: Request body parameters to update the Account Member object
           required: true
@@ -355,8 +352,6 @@ paths:
         - Teams
       summary: Create the Team object
       description: Create the Team object by setting the values of all the required parameters passed in the request body.
-      security:
-        - bearerAuth: []
       requestBody:
         description: Request body parameters to create the Team object
         required: true
@@ -459,8 +454,6 @@ paths:
       - Teams
       summary: List all Team objects
       description: Returns a list of Team objects. The Team objects are sorted by creation_date, with the most recent Team object appearing last. 
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -638,8 +631,6 @@ paths:
         - Teams
         summary: Retrieve the Team object
         description: Retrieve the specified Team object.
-        security:
-          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -764,8 +755,6 @@ paths:
           - Teams
         summary: Update the Team object
         description: Updates the specified Team object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
-        security:
-          - bearerAuth: []
         requestBody:
           description: Request body parameters to update the Team object
           required: true
@@ -868,8 +857,6 @@ paths:
         - Teams
         summary: Delete the Team object
         description: Delete the specified Team object permanently. 
-        security:
-          - bearerAuth: []
         responses: 
           '204':
             description: Success
@@ -914,8 +901,6 @@ paths:
         - Team Members
       summary: Create the Team Member object
       description: Create the Team Member object by setting the values of all the required parameters passed in the request body.
-      security:
-        - bearerAuth: []
       requestBody:
         description: Request body parameters to create the Team Member object
         required: true
@@ -984,8 +969,6 @@ paths:
       - Team Members
       summary: List all Team Member objects
       description: Returns a list of Team Member objects. The Team Member objects are sorted by joining_date, with the most recent Team Member object appearing last.
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -1081,8 +1064,6 @@ paths:
         - Team Members
         summary: Retrieve the Team Member object
         description: Retrieve the specified Team Member object.
-        security:
-          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -1145,8 +1126,6 @@ paths:
           - Team Members
         summary: Update the Team Member object
         description: Updates the specified Team Member object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
-        security:
-          - bearerAuth: []
         requestBody:
           description: Request body parameters to update the Team Member object
           required: true
@@ -1217,8 +1196,6 @@ paths:
         - Team Members
         summary: Delete the Team Member object
         description: Delete the specified Team Member object permanently.
-        security:
-          - bearerAuth: []
         responses: 
           '204':
             description: Success
@@ -1263,8 +1240,6 @@ paths:
         - Schedules
       summary: Create the Schedule object
       description: Create the Schedule object by setting the values of all the required parameters passed in the request body.
-      security:
-        - bearerAuth: []
       requestBody:
         description: Request body parameters to create the Schedule object
         required: true
@@ -1343,8 +1318,6 @@ paths:
       - Schedules
       summary: List all Schedule objects
       description: Returns a list of Schedule objects.
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -1486,8 +1459,6 @@ paths:
         - Schedules
         summary: Retrieve the Schedule object
         description: Retrieve the specified Schedule object.
-        security:
-          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -1598,8 +1569,6 @@ paths:
           - Schedules
         summary: Update the Schedule object
         description: Updates the specified Schedule object by setting the values of the parameters passed in the request body.
-        security:
-          - bearerAuth: []
         requestBody:
           description: Schedule update payload
           required: true
@@ -1674,8 +1643,6 @@ paths:
         - Schedules
         summary: Delete the Schedule object
         description: Delete the specified Schedule object permanently.
-        security:
-          - bearerAuth: []
         responses:
           '204':
             description: Success
@@ -1720,8 +1687,6 @@ paths:
         - Escalation Policies
       summary: Create the Escalation Policy object
       description: Create the Escalation Policy object by setting the values of all the required parameters passed in the request body.
-      security:
-        - bearerAuth: []
       requestBody:
         description: Request body parameters to create the Escalation Policy object
         required: true
@@ -1822,8 +1787,6 @@ paths:
       - Escalation Policies
       summary: List all Escalation Policy objects
       description: Returns a list of Escalation Policy objects.
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -1992,8 +1955,6 @@ paths:
         tags:
         - Escalation Policies
         summary: Retrieve the Escalation Policy object
-        security:
-          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -2068,8 +2029,6 @@ paths:
           - Escalation Policies
         summary: Update the Escalation Policy object
         description: Updates the specified Escalation Policy object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
-        security:
-          - bearerAuth: []
         requestBody:
           description: Request body parameters to update the Escalation Policy object
           required: true
@@ -2159,8 +2118,6 @@ paths:
         - Escalation Policies
         summary: Delete the Escalation Policy object
         description: Delete the specified Escalation Policy object permanently.
-        security:
-          - bearerAuth: []
         responses: 
           '204':
             description: Success
@@ -2205,8 +2162,6 @@ paths:
         - Services
       summary: Create the Service object
       description: Create the Service object by setting the values of all the required parameters passed in the request body.
-      security:
-        - bearerAuth: []
       requestBody:
         description: Request body parameters to create the Service object
         required: true
@@ -2310,8 +2265,6 @@ paths:
       tags:
       - Services
       summary: List all Service objects
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -2439,8 +2392,6 @@ paths:
         - Services
         summary: Retrieve the Service object
         description: Retrieve the specified Service object.
-        security:
-          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -2519,8 +2470,6 @@ paths:
           - Services
         summary: Update the Service object
         description: Updates the specified Service object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
-        security:
-          - bearerAuth: []
         requestBody:
           description: Request body parameters to update the Service object
           required: true
@@ -2625,8 +2574,6 @@ paths:
         - Services
         summary: Delete the Service object
         description: Delete the specified Service object permanently.
-        security:
-          - bearerAuth: []
         responses: 
           '204':
             description: Success
@@ -2677,8 +2624,6 @@ paths:
         - Integrations
       summary: Create the Integration object
       description: Create the Integration object by setting the values of all the required parameters passed in the request body.
-      security:
-        - bearerAuth: []
       requestBody:
         description: Request body parameters to create the Integration object
         required: true
@@ -2789,8 +2734,6 @@ paths:
       - Integrations
       summary: List all Integration objects
       description: Returns a list of Integration objects. The Integration objects are sorted by creation_date, with the most recent Integration object appearing last.
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -3095,8 +3038,6 @@ paths:
         tags:
         - Integrations
         summary: Retrieve the Integration object
-        security:
-          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -3189,8 +3130,6 @@ paths:
           - Integrations
         summary: Update the Integration object
         description: Updates the specified Integration object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
-        security:
-          - bearerAuth: []
         requestBody:
           description: Request body parameters to update the Integration object
           required: true
@@ -3293,8 +3232,6 @@ paths:
         - Integrations
         summary: Delete the Integration object
         description: Delete the specified Integration object permanently
-        security:
-          - bearerAuth: []
         responses:
           '204':
             description: Success
@@ -3351,8 +3288,6 @@ paths:
         - Integration Alerts
         summary: List all Integration Alerts objects
         description: Returns a list of Integration Alerts objects. The Integration Alerts objects are sorted by creation_date, with the most recent Integration Alerts object appearing last.
-        security:
-          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -3487,8 +3422,6 @@ paths:
         - Incidents
       summary: Create the Incident object
       description: Create the Incident object by setting the values of all the required parameters passed in the request body.
-      security:
-        - bearerAuth: []
       requestBody:
         description: Request body parameters to create the Incident object
         required: true
@@ -3655,8 +3588,6 @@ paths:
       - Incidents
       summary: List all Incident objects
       description: Returns a list of Incident objects. The Incident objects are sorted by creation_date, with the most recent Incident object appearing last.
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -4028,8 +3959,6 @@ paths:
         - Incidents
         summary: Retrieve the Incident object
         description: Retrieve the specified Incident object.
-        security:
-          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -4180,8 +4109,6 @@ paths:
           - Incidents
         summary: Update the Incident object
         description: Updates the specified Incident object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
-        security:
-          - bearerAuth: []
         requestBody:
           description: Request body parameters to update the Incident object
           required: true
@@ -4357,8 +4284,6 @@ paths:
         - Incident Roles
       summary: Create the Incident Role object
       description: Create the Incident Role object by setting the values of all the required parameters passed in the request body.
-      security:
-        - bearerAuth: []
       requestBody:
         description: Request body parameters to create the Incident Role object
         required: true
@@ -4429,8 +4354,6 @@ paths:
       - Incident Roles
       summary: List all Incident Role objects
       description: Returns a list of Incident Role objects. The Incident Role objects are sorted by creation_date, with the most recent Incident Role object appearing last.
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -4514,8 +4437,6 @@ paths:
         - Incident Roles
         summary: Retrieve the Incident Role object
         description: Retrieve the specified Incident Role object.
-        security:
-          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -4572,8 +4493,6 @@ paths:
           - Incident Roles
         summary: Update the Incident Role object
         description: Updates the specified Incident Role object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
-        security:
-          - bearerAuth: []
         requestBody:
           description: Request body parameters to update the Incident Role object
           required: true
@@ -4642,8 +4561,6 @@ paths:
         - Incident Roles
         summary: Delete the Incident Role object
         description: Delete the specified Incident Role object permanently.
-        security:
-          - bearerAuth: []
         responses:
           '204':
             description: Success
@@ -4688,8 +4605,6 @@ paths:
         - Incident Notes
       summary: Create the Incident Note object
       description: Create the Incident Note object by setting the values of all the required parameters passed in the request body.
-      security:
-        - bearerAuth: []
       requestBody:
         description: Request body parameters to create the Incident Note object
         required: true
@@ -4757,8 +4672,6 @@ paths:
       - Incident Notes
       summary: List all Incident Note objects
       description: Returns a list of Incident Note objects. The Incident Note objects are sorted by creation_date, with the most recent Incident Note object appearing last.
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -4842,8 +4755,6 @@ paths:
         - Incident Notes
         summary: Retrieve the Incident Note object
         description: Retrieve the specified Incident Note object.
-        security:
-          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -4900,8 +4811,6 @@ paths:
           - Incident Notes
         summary: Update the Incident Note object
         description: Updates the specified Incident Note object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
-        security:
-          - bearerAuth: []
         requestBody:
           description: Incident Note update payload
           required: true
@@ -4972,8 +4881,6 @@ paths:
         - Incident Notes
         summary: Delete the Incident Note object
         description: Delete the specified Incident Note object permanently.
-        security:
-          - bearerAuth: []
         responses:
           '204':
             description: Success
@@ -5018,8 +4925,6 @@ paths:
         - Events
       summary: Create the Event object
       description: Create the Event object by setting the values of all the required parameters passed in the request body.
-      security:
-        - bearerAuth: []
       requestBody:
         description: Request body parameters to create the Event object
         required: true
@@ -5135,8 +5040,6 @@ paths:
       - Incident Alerts
       summary: List all Incident Alert objects
       description: Returns a list of Incident Alert objects. The Incident Alert objects are sorted by creation_date, with the most recent Incident Alert object appearing last.
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -5234,8 +5137,6 @@ paths:
         - Tags
       summary: Create the Tag object
       description: Create the Tag object by setting the values of all the required parameters passed in the request body.
-      security:
-        - bearerAuth: []
       requestBody:
         description: Request body parameters to create the Tag object
         required: true
@@ -5306,8 +5207,6 @@ paths:
       - Tags
       summary: List all Tag objects
       description: Returns a list of Tag objects. The Tag objects are sorted by creation_date, with the most recent Tag object appearing last.
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -5387,8 +5286,6 @@ paths:
         - Tags
         summary: Retrieve the Tag object
         description: Retrieve the specified Tag object.
-        security:
-          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -5443,8 +5340,6 @@ paths:
           - Tags
         summary: Update the Tag object
         description: Updates the specified Tag object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
-        security:
-          - bearerAuth: []
         requestBody:
           description: Request body parameters to update the Tag object
           required: true
@@ -5515,8 +5410,6 @@ paths:
         - Tags
         summary: Delete the Tag object
         description: Delete the specified Tag object permanently.
-        security:
-          - bearerAuth: []
         responses:
           '204':
             description: Success
@@ -5561,8 +5454,6 @@ paths:
         - Task Templates
       summary: Create the Task Template object
       description: Create the Template object object by setting the values of all the required parameters passed in the request body.
-      security:
-        - bearerAuth: []
       requestBody:
         description: Request body parameters to create the Task Template object
         required: true
@@ -5633,8 +5524,6 @@ paths:
       - Task Templates
       summary: List all Task Template objects
       description: Returns a list of Task Templat objects. The Task Templat objects are sorted by creation_date, with the most recent Task Templat object appearing last.
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -5718,8 +5607,6 @@ paths:
         - Task Templates
         summary: Retrieve the Task Template object
         description: Retrieve the specified Task Template object.
-        security:
-          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -5775,8 +5662,6 @@ paths:
         tags:
           - Task Templates
         summary: Update the Task Template object
-        security:
-          - bearerAuth: []
         requestBody:
           description: Request body parameters to update the Task Template object
           required: true
@@ -5847,8 +5732,6 @@ paths:
         - Task Templates
         summary: Delete the Task Template object
         description: Delete the specified Task Template object permanently.
-        security:
-          - bearerAuth: []
         responses: 
           '204':
             description: Success
@@ -5893,8 +5776,6 @@ paths:
         - Priorities
       summary: Create the Priority object
       description: Create the Priority object by setting the values of all the required parameters passed in the request body.
-      security:
-        - bearerAuth: []
       requestBody:
         description: Request body parameters to create the Priority object
         required: true
@@ -5965,8 +5846,6 @@ paths:
       - Priorities
       summary: List all Priority objects
       description: Returns a list of Priority objects. The Priority objects are sorted by creation_date, with the most recent Priority object appearing last.
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -6050,8 +5929,6 @@ paths:
         - Priorities
         summary: Retrieve the Priority object
         description: Retrieve the specified Priority object.
-        security:
-          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -6108,8 +5985,6 @@ paths:
           - Priorities
         summary: Update the Priority object
         description: Updates the specified Priority object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
-        security:
-          - bearerAuth: []
         requestBody:
           description: Request body parameters to update the Priority object
           required: true
@@ -6180,8 +6055,6 @@ paths:
         - Priorities
         summary: Delete the Priority object
         description: Delete the specified Priority object permanently.
-        security:
-          - bearerAuth: []
         responses: 
           '204':
             description: Success
@@ -6226,8 +6099,6 @@ paths:
         - SLA
       summary: Create the SLA object
       description: Create the SLA object by setting the values of all the required parameters passed in the request body.
-      security:
-        - bearerAuth: []
       requestBody:
         description: Request body parameters to create the SLA object
         required: true
@@ -6306,8 +6177,6 @@ paths:
       - SLA
       summary: List all SLA objects
       description: Returns a list of SLA objects. 
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -6391,8 +6260,6 @@ paths:
         - SLA
         summary: Retrieve the SLA object
         description: Retrieve the specified SLA object.
-        security:
-          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -6455,8 +6322,6 @@ paths:
           - SLA
         summary: Update the SLA object
         description: Updates the specified SLA object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
-        security:
-          - bearerAuth: []
         requestBody:
           description: Request body parameters to update the SLA object
           required: true
@@ -6535,8 +6400,6 @@ paths:
         - SLA
         summary: Delete the SLA object
         description: Delete the specified SLA object permanently.
-        security:
-          - bearerAuth: []
         responses:
           '204':
             description: Success
@@ -6581,8 +6444,6 @@ paths:
         - Team Maintenance Mode
       summary: Create the Team Maintenance Mode object
       description: Create the Team Maintenance Mode object by setting the values of all the required parameters passed in the request body.
-      security:
-        - bearerAuth: []
       requestBody:
         description: Request body parameters to create the Team Maintenance Mode object
         required: true
@@ -6673,8 +6534,6 @@ paths:
       - Team Maintenance Mode
       summary: List all Team Maintenance Mode objects
       description: Returns a list of Team Maintenance Mode objects. The Team Maintenance Mode objects are sorted by creation_date, with the most recent Team Maintenance Mode object appearing last.
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -6778,8 +6637,6 @@ paths:
         - Team Maintenance Mode
         summary: Retrieve the Team Maintenance Mode object
         description: Retrieve the specified Team Maintenance Mode object.
-        security:
-          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -6846,8 +6703,6 @@ paths:
           - Team Maintenance Mode
         summary: Update Team Maintenance Mode object
         description: Updates the specified Team Maintenance Mode object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
-        security:
-          - bearerAuth: []
         requestBody:
           description: Request body parameters to update the Team Maintenance Mode object
           required: true
@@ -6928,8 +6783,6 @@ paths:
         - Team Maintenance Mode
         summary: Delete the Team Maintenance Mode object
         description: Delete the specified Team Maintenance Mode object permanently.
-        security:
-          - bearerAuth: []
         responses:
           '204':
             description: Success
@@ -6974,8 +6827,6 @@ paths:
         - Postmortem
       summary: Create the Postmortem object
       description: Create the Postmortem object by setting the values of all the required parameters passed in the request body.
-      security:
-        - bearerAuth: []
       requestBody:
         description: Request body parameters to create the Postmortem object
         required: true
@@ -7060,8 +6911,6 @@ paths:
       - Postmortem
       summary: List all Postmortem objects
       description: Returns a list of Team objects.
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -7178,8 +7027,6 @@ paths:
         - Postmortem
         summary: Retrieve the Postmortem object
         description: Retrieve the specified Postmortem object.
-        security:
-          - bearerAuth: []
         responses:
           '200':
             description: OK
@@ -7254,8 +7101,6 @@ paths:
           - Postmortem
         summary: Update the Postmortem data
         description: Updates the specified Postmortem object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
-        security:
-          - bearerAuth: []
         requestBody:
           description: Request body parameters to update the Postmortem object
           required: true
@@ -7340,8 +7185,6 @@ paths:
         - Postmortem
         summary: Delete the Postmortem data
         description: Delete the specified Postmortem object permanently.
-        security:
-          - bearerAuth: []
         responses:
           '204':
             description: Success
@@ -7386,8 +7229,6 @@ paths:
       - OnCall
       summary: List all OnCall objects
       description: Returns a list of Team objects.
-      security:
-        - bearerAuth: []
       responses:
         '200':
           description: OK
