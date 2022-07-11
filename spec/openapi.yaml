@@ -25,6 +25,11 @@ info:
 
       Postman Collection for Zenduty API: https://github.com/Zenduty/zenduty-api-postman.git
       
+      Account-level roles and permissions: https://docs.zenduty.com/docs/users#account-level-roles-and-permissions
+      
+      Team-level roles and permissions: https://docs.zenduty.com/docs/users#team-level-roles-and-permissions
+      
+      
     
 # A list of tags used by the specification with additional metadata.
 # The order of the tags can be used to reflect on their order by the parsing tools.
