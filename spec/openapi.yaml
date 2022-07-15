@@ -10,7 +10,7 @@ info:
   license:
     name: Apache 2.0
   x-logo:
-    url: 'http://zenduty.s3.amazonaws.com/media/logos/386_Zenduty_Logo_DA-Thumbnail_03.png'
+    url: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9Ii05OC4zIDE3My43IDIwNi4zIDUzLjIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgLTk4LjMgMTczLjcgMjA2LjMgNTMuMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCgkuc3Qwe2ZpbGw6IzBGMTcyQTt9DQoJLnN0MXtmaWxsOiNGRDlBMDA7fQ0KPC9zdHlsZT4NCjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0tMjksMjEwLjJoNi4zYzIuNywwLDQuOSwyLjIsNC45LDQuOWgtMTguMWMwLTUuMyw0LjEtOS40LDcuOS0xMy4xbDMuOC0zLjdoLTcuMWMtMi41LDAtNC42LTIuMS00LjYtNC42aDE4DQoJYzAsNS4zLTQuMSw5LjQtNy44LDEzLjJMLTI5LDIxMC4yeiIvPg0KPHBhdGggY2xhc3M9InN0MCIgZD0iTTMuNywyMDUuOGgtMTUuNWMwLjEsMS41LDAuNiwyLjcsMS42LDMuNmMwLjksMC45LDIuMSwxLjIsMy41LDEuMmMyLDAsMy40LTAuOSw0LjMtMi41aDUuOA0KCWMtMC42LDItMS44LDMuNi0zLjUsNC45Yy0xLjgsMS4yLTMuOSwyLTYuNCwyYy0yLDAtMy45LTAuNS01LjUtMS40Yy0xLjYtMC45LTIuOS0yLjEtMy44LTMuN2MtMC45LTEuNi0xLjQtMy40LTEuNC01LjcNCgljMC0yLjEsMC41LTQuMSwxLjQtNS43YzAuOS0xLjYsMi4xLTIuOCwzLjgtMy43YzEuNi0wLjksMy40LTEuNCw1LjUtMS40YzIsMCwzLjgsMC40LDUuNCwxLjJjMS42LDAuOSwyLjgsMi4xLDMuNywzLjYNCgljMC45LDEuNiwxLjMsMy4zLDEuMyw1LjRDMy44LDIwNC42LDMuOCwyMDUuMiwzLjcsMjA1Ljh6IE0tMS43LDIwMi4yYzAtMS40LTAuNS0yLjUtMS41LTMuMmMtMS0wLjktMi4xLTEuMi0zLjUtMS4yDQoJYy0xLjQsMC0yLjQsMC40LTMuNCwxLjJjLTAuOSwwLjctMS41LDEuOC0xLjYsMy4zaDEwLjFWMjAyLjJ6Ii8+DQo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMjcuOSwxOTguNGMwLjktMS42LDItMi45LDMuNS0zLjhjMS41LTAuOSwzLjEtMS40LDQuOS0xLjRjMS40LDAsMi42LDAuMywzLjksMC45YzEuMywwLjYsMi4zLDEuNCwzLDIuNHYtMTYuNw0KCWg1LjR2MzVoLTUuNHYtMy4xYy0wLjYsMS0xLjYsMS45LTIuOCwyLjVjLTEuMywwLjYtMi42LDEtNC4yLDFjLTEuOCwwLTMuNC0wLjUtNC45LTEuNGMtMS41LTAuOS0yLjYtMi4zLTMuNS0zLjkNCgljLTAuOS0xLjYtMS4zLTMuNS0xLjMtNS44QzI2LjYsMjAyLDI3LDIwMCwyNy45LDE5OC40eiBNNDIuNSwyMDAuOWMtMC41LTAuOS0xLjMtMS42LTItMi4xYy0wLjktMC41LTEuOC0wLjgtMi44LTAuOA0KCWMtMSwwLTEuOSwwLjMtMi44LDAuOGMtMC45LDAuNS0xLjUsMS4xLTIsMi4xYy0wLjUsMC45LTAuOCwyLTAuOCwzLjNjMCwxLjMsMC4zLDIuNCwwLjgsMy40YzAuNSwxLDEuMywxLjYsMiwyLjENCgljMC45LDAuNSwxLjgsMC44LDIuOCwwLjhjMSwwLDEuOS0wLjMsMi44LTAuOGMwLjktMC41LDEuNS0xLjMsMi0yLjFjMC41LTAuOSwwLjgtMiwwLjgtMy40UzQzLDIwMS44LDQyLjUsMjAwLjl6Ii8+DQo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMjUuNCwyMDQuM3YxMC42aC01di0xMC42YzAtMi0wLjUtMy41LTEuNS00LjVjLTEtMS4xLTIuMS0xLjYtMy41LTEuNnMtMi41LDAuNS0zLjUsMS42DQoJYy0wLjksMS0xLjQsMi42LTEuNCw0LjV2MTAuNkg1LjV2LTEwLjZjMC0yLjEsMC41LTQsMS4zLTUuN2MwLjktMS42LDItMi45LDMuNS0zLjhzMy4xLTEuNCw1LTEuNHMzLjUsMC41LDUsMS40DQoJYzEuNSwwLjksMi42LDIuMSwzLjUsMy44QzI0LjksMjAwLjMsMjUuNCwyMDIuMiwyNS40LDIwNC4zeiIvPg0KPHBhdGggY2xhc3M9InN0MCIgZD0iTTUxLjMsMjA0LjF2LTEwLjRoNXYxMC40YzAsMiwwLjUsMy41LDEuNSw0LjVjMSwxLjEsMi4xLDEuNiwzLjUsMS42YzEuNCwwLDIuNS0wLjUsMy41LTEuNg0KCWMwLjktMSwxLjQtMi42LDEuNC00LjV2LTEwLjRoNC45djEwLjRjMCwyLjEtMC41LDQtMS4zLDUuN2MtMC45LDEuNi0yLDIuOS0zLjUsMy44Yy0xLjUsMC45LTMuMSwxLjQtNSwxLjRzLTMuNS0wLjUtNS0xLjQNCgljLTEuNS0wLjktMi42LTIuMS0zLjUtMy44QzUxLjcsMjA4LjEsNTEuMywyMDYuMiw1MS4zLDIwNC4xeiIvPg0KPHBhdGggY2xhc3M9InN0MCIgZD0iTTgwLjcsMTk4djEwLjJjMCwwLjgsMC4xLDEuMywwLjUsMS41YzAuNCwwLjQsMC45LDAuNSwxLjgsMC41aDIuNXY0LjVoLTMuNGMtNC41LDAtNi44LTIuMS02LjgtNi41VjE5OGgtNS4xDQoJdi00LjRoNS4xdi04LjdoNS40djguN2g0LjhsMi42LDQuNEg4MC43eiIvPg0KPHBhdGggY2xhc3M9InN0MCIgZD0iTTEwNy40LDE5My42bC04LjcsMjAuNmwtNSwxMS44aC01LjdsNS4xLTExLjhsLTguNC0yMC42aDZsNS40LDE0LjdsNS41LTE0LjdIMTA3LjR6Ii8+DQo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNLTY2LjksMTg5LjJjLTEuOSwwLTQuNy0yLjEtNC43LTQuOHYtMy42YzAtMi43LDAuOC00LjgsNC43LTQuOGMzLjksMCw0LjcsMi4xLDQuNyw0Ljh2My42DQoJQy02Mi4yLDE4Ny4xLTY1LDE4OS4yLTY2LjksMTg5LjJ6Ii8+DQo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNLTM3LjcsMjIzaC0yMS41bDMuOC0xMS40bDAuNy0xLjhjNC4yLDEuNywxMy4xLDcuMiwxNy43LDExLjZDLTM2LjQsMjIyLjEtMzYuOCwyMjMtMzcuNywyMjN6Ii8+DQo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNLTU3LjMsMTkyLjlsLTE1LjksMTAuNGMtNC4yLTIuNS05LjItNS45LTEyLjItOC44Yy0wLjYtMC42LTAuMi0xLjUsMC43LTEuNUgtNTcuM3oiLz4NCjxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0tNDguNiwxOTQuM2wtNiwxNS42bC0wLjcsMS44bC0zLjgsMTEuNEgtOTZjLTAuOCwwLTEuMy0wLjktMC44LTEuNWMwLjktMS4yLDEuOC0yLjMsMi43LTMuMw0KCWMyLjEtMi4yLDQuNC00LjEsNi45LTUuOGwwLjEtMC4xYzAuOC0wLjYsMS42LTEuMSwyLjQtMS42bDExLjQtNy40bDE1LjktMTAuNGg3LjdDLTQ4LjgsMTkyLjktNDguNCwxOTMuNi00OC42LDE5NC4zeiIvPg0KPC9zdmc+DQo='
   description: |
     # Introduction
     
@@ -57,7 +57,7 @@ tags:
 servers:
  - url: 'https://www.zenduty.com'
 paths:
-  '/api/account/teams':
+  '/api/account/teams/':
     # documentation for get teams
     get: 
       tags:
@@ -115,7 +115,7 @@ paths:
               $ref: '#/components/schemas/NewTeamName'
         description: New Team Name
         required: true
-  '/api/account/teams/{team_id}':
+  '/api/account/teams/{team_id}/':
       parameters: 
         - name: 'team_id'
           in: path
@@ -163,7 +163,7 @@ paths:
           '404':
             description: Not found
         
-  '/api/account/teams/{team_id}/members':
+  '/api/account/teams/{team_id}/members/':
       parameters: 
         - name: 'team_id'
           in: path
@@ -203,7 +203,7 @@ paths:
                 $ref: '#/components/schemas/UserID'
           description: New Team Details
           required: true
-  '/api/account/teams/{team_id}/members/{member_id}':
+  '/api/account/teams/{team_id}/members/{member_id}/':
       parameters: 
         - name: 'team_id'
           in: path
@@ -233,7 +233,7 @@ paths:
             description: Forbidden
           '404':
             description: Not found
-  '/api/account/teams/{team_id}/services':
+  '/api/account/teams/{team_id}/services/':
       parameters: 
         - name: 'team_id'
           in: path
@@ -296,7 +296,7 @@ paths:
                 $ref: '#/components/schemas/NewService'
           description: New Team Details
           required: true
-  '/api/account/teams/{team_id}/services/{service_id}':
+  '/api/account/teams/{team_id}/services/{service_id}/':
       parameters: 
         - name: 'team_id'
           in: path
@@ -375,7 +375,7 @@ paths:
             description: Forbidden
           '404':
             description: Not found
-  '/api/account/teams/{team_id}/services/{service_id}/integrations':
+  '/api/account/teams/{team_id}/services/{service_id}/integrations/':
       parameters: 
         - name: 'team_id'
           in: path
@@ -443,7 +443,7 @@ paths:
                 $ref: '#/components/schemas/NewIntegration'
           description: New Integration Details
           required: true
-  '/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}':
+  '/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/':
       parameters: 
         - name: 'team_id'
           in: path
@@ -485,7 +485,7 @@ paths:
             description: Forbidden
           '404':
             description: Not found
-  '/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/alerts':
+  '/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/alerts/':
       parameters: 
         - name: 'team_id'
           in: path
@@ -527,7 +527,7 @@ paths:
             description: Forbidden
           '404':
             description: Not found
-  '/api/incidents':
+  '/api/incidents/':
       get: 
         tags:
         - Incidents
@@ -603,7 +603,7 @@ paths:
                 $ref: '#/components/schemas/NewIncident'
           description: New Incident
           required: true
-  '/api/incidents/{incident_number}':
+  '/api/incidents/{incident_number}/':
       parameters:
         - name: incident_number
           in: path
@@ -660,7 +660,7 @@ paths:
             description: Forbidden
           '404':
             description: Not found
-  '/api/incidents/{incident_number}/alerts':
+  '/api/incidents/{incident_number}/alerts/':
       parameters:
         - name: incident_number
           in: path
@@ -690,7 +690,7 @@ paths:
             description: Forbidden
           '404':
             description: Not found
-  '/api/incidents/{incident_number}/note':
+  '/api/incidents/{incident_number}/note/':
       parameters:
         - name: incident_number
           in: path
@@ -721,7 +721,7 @@ paths:
           '404':
             description: Not found
      
-  '/api/events/{integration-key}':
+  '/api/events/{integration-key}/':
     parameters:
     - name: integration-key
       in: path
@@ -753,7 +753,7 @@ paths:
                 $ref: '#/components/schemas/NewEvent'
           description: New Event
           required: true
-  '/api/account/teams/{team_id}/escalation_policies':
+  '/api/account/teams/{team_id}/escalation_policies/':
     parameters: 
         - name: 'team_id'
           in: path
@@ -815,7 +815,7 @@ paths:
                 $ref: '#/components/schemas/EP'
           description: New Escalation Policy Details
           required: true
-  '/api/account/teams/{team_id}/escalation_policies/{ep_id}':
+  '/api/account/teams/{team_id}/escalation_policies/{ep_id}/':
     parameters: 
       - name: 'team_id'
         in: path
@@ -895,7 +895,7 @@ paths:
         '404':
           description: Not found 
           
-  '/api/account/teams/{team_id}/schedules':
+  '/api/account/teams/{team_id}/schedules/':
     parameters: 
         - name: 'team_id'
           in: path
@@ -957,7 +957,7 @@ paths:
                 $ref: '#/components/schemas/Schedule'
           description: New Schedule Details
           required: true
-  '/api/account/teams/{team_id}/schedules/{schedule_id}':
+  '/api/account/teams/{team_id}/schedules/{schedule_id}/':
     parameters: 
       - name: 'team_id'
         in: path
@@ -1036,7 +1036,7 @@ paths:
         '404':
           description: Not found 
 
-  '/api/account/teams/{team_id}/roles':
+  '/api/account/teams/{team_id}/roles/':
       parameters:
         - name: 'team_id'
           in: path
@@ -1096,7 +1096,7 @@ paths:
                 $ref: '#/components/schemas/Rolesref'
           description:  New Role Details
           required: true
-  '/api/account/teams/{team_id}/roles/{role_id}':
+  '/api/account/teams/{team_id}/roles/{role_id}/':
       patch:
         tags:
         - Roles
@@ -1160,7 +1160,7 @@ paths:
           '404':
             description:  Not Found
 
-  '/api/account/teams/{team_id}/tags':
+  '/api/account/teams/{team_id}/tags/':
       parameters:
         - name: 'team_id'
           in: path
@@ -1219,7 +1219,7 @@ paths:
                 $ref: '#/components/schemas/Tagsref'
           required: true
 
-  '/api/account/teams/{team_id}/tags/{tags_id}':
+  '/api/account/teams/{team_id}/tags/{tags_id}/':
       patch: 
         tags:
         - Tags
@@ -1280,7 +1280,7 @@ paths:
           '404':
             description: Not found 
 
-  '/api/account/teams/{team_id}/task_templates':
+  '/api/account/teams/{team_id}/task_templates/':
       parameters:
         - name: 'team_id'
           in: path
@@ -1340,7 +1340,7 @@ paths:
                 $ref: '#/components/schemas/TaskTemplatesref'
           required: true
 
-  '/api/account/teams/{team_id}/task_templates/{task_template_id}':
+  '/api/account/teams/{team_id}/task_templates/{task_template_id}/':
       patch: 
         tags:
         - Task Templates
@@ -1401,7 +1401,7 @@ paths:
           '404':
             description: Not found
 
-  '/api/account/teams/{team_id}/oncall':
+  '/api/account/teams/{team_id}/oncall/':
       parameters:
         - name: 'team_id'
           in: path
@@ -1855,16 +1855,18 @@ components:
           description: True or False
         entity_id:
           type: string
-          description: A unique id for the alert.If not provided, the Zenduty API will create one
+          description: A unique id for the alert.If not provided, the Zenduty API will create one. Maximum length is 32 characters
         payload:
           type: object
           description: A JSON payload containing additional information about the alert
         images: 
-          $ref: '#/components/schemas/EventImage'
-        links:
-          $ref: '#/components/schemas/EventUrl'
-        notes:
-          $ref: '#/components/schemas/EventNote'
+          type: array
+          items:
+            $ref: '#/components/schemas/EventImage'
+        urls:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventUrl'        
     NewIncident:
       type: object
       description: Custom payload for new incident
