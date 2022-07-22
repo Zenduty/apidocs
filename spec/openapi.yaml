@@ -2678,6 +2678,7 @@ paths:
                 create_incidents_for: 1
                 integration_type: 0
                 default_urgency: 1
+                webhook_url: https://www.zenduty.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
             application/xml: 
               schema: 
                 $ref: '#/components/schemas/Integration'
@@ -2706,6 +2707,7 @@ paths:
                 create_incidents_for: 1
                 integration_type: 0
                 default_urgency: 1
+                webhook_url: https://www.zenduty.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
         '400':
             description: Bad Request 
             content:
@@ -2770,6 +2772,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
+                  webhook_url: https://www.zenduty.com/api/integration/cloudwatch_v2/bf167d3d-93dc-43b6-9066-a10b0bafcc09/
                 - name: Conference bridge
                   creation_date: '2022-07-08T12:31:37.441939Z'
                   summary: Edit summary for this integration
@@ -2794,6 +2797,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
+                  webhook_url: https://www.zenduty.com/api/integration/conf/9efb306f-49b2-4b76-a428-845c7782deed/
                 - name: Jira (2-way)
                   creation_date: '2022-07-08T12:31:37.448374Z'
                   summary: Edit summary for this integration
@@ -2818,6 +2822,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
+                  webhook_url: https://www.zenduty.com/api/integration/jiracloud/5eb0fd9b-da65-4f36-8dff-f32fdd4dfdc9/
                 - name: Zoom
                   creation_date: '2022-07-08T12:31:37.453423Z'
                   summary: Edit summary for this integration
@@ -2842,6 +2847,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
+                  webhook_url: https://www.zenduty.com/api/integration/zoom/181c2f90-a04a-41e5-a7ca-a16d68296e82/
                 - name: Infra custom Integration
                   creation_date: '2022-07-08T12:52:22.906327Z'
                   summary: This is the summary for Infra custom Integration
@@ -2866,6 +2872,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
+                  webhook_url: https://www.zenduty.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
             application/xml:
               schema:
                 $ref: '#/components/schemas/Integration'
@@ -2894,6 +2901,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
+                  webhook_url: https://www.zenduty.com/api/integration/cloudwatch_v2/bf167d3d-93dc-43b6-9066-a10b0bafcc09/
                 - name: Conference bridge
                   creation_date: '2022-07-08T12:31:37.441939Z'
                   summary: Edit summary for this integration
@@ -2918,6 +2926,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
+                  webhook_url: https://www.zenduty.com/api/integration/conf/9efb306f-49b2-4b76-a428-845c7782deed/
                 - name: Jira (2-way)
                   creation_date: '2022-07-08T12:31:37.448374Z'
                   summary: Edit summary for this integration
@@ -2942,6 +2951,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
+                  webhook_url: https://www.zenduty.com/api/integration/jiracloud/5eb0fd9b-da65-4f36-8dff-f32fdd4dfdc9/
                 - name: Zoom
                   creation_date: '2022-07-08T12:31:37.453423Z'
                   summary: Edit summary for this integration
@@ -2966,6 +2976,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
+                  webhook_url: https://www.zenduty.com/api/integration/zoom/181c2f90-a04a-41e5-a7ca-a16d68296e82/
                 - name: Infra custom Integration
                   creation_date: '2022-07-08T12:52:22.906327Z'
                   summary: This is the summary for Infra custom Integration
@@ -2990,6 +3001,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
+                  webhook_url: https://www.zenduty.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
         '400':
             description: Bad Request 
             content:
@@ -3074,6 +3086,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
+                  webhook_url: https://www.zenduty.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
               application/xml:
                 schema:
                   $ref: '#/components/schemas/Integration'
@@ -3102,6 +3115,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
+                  webhook_url: https://www.zenduty.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
           '400':
             description: Bad Request 
             content:
@@ -3176,6 +3190,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
+                  webhook_url: https://www.zenduty.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
               application/xml:
                 schema:
                   $ref: '#/components/schemas/Integration'
@@ -3204,6 +3219,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
+                  webhook_url: https://www.zenduty.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
           '400':
             description: Bad Request 
             content:
@@ -7526,12 +7542,12 @@ components:
           type: array
           description: An array of Schedule Layer objects
           items:
-            $ref: '#/components/schemas/ScheduleLayer'
+            $ref: '#/components/schemas/ScheduleLayerPayload'
         overrides:
           type: array
           description: An array of Schedule Overrides objects
           items:
-            $ref: '#/components/schemas/ScheduleOverride'
+            $ref: '#/components/schemas/ScheduleOverridePayload'
           
     EP:
       type: object
@@ -7581,7 +7597,7 @@ components:
           type: string
           description: A string that represents the Escalation Policy object's description
         rules:
-          $ref: '#/components/schemas/EP_Rule'
+          $ref: '#/components/schemas/EP_RulePayload'
           
     ServiceGet:
       description: Service object schema for List and Retrieve
@@ -7810,6 +7826,9 @@ components:
           type: integer
           default: 1
           description: An integer that represents the Integration object's default_urgency. 0 is low and 1 is high.
+        webhook_url:
+          type: string
+          description: A system-generated string that represents the Integration object's webhook url
           
     IntegrationPayload:
       type: object
@@ -8692,9 +8711,6 @@ components:
             type: object
             description: Service object schema for Team Maintenance Mode object schema
             properties:
-              unique_id:
-                type: string
-                description: A system-generated string that represents the Team Maintenance Mode Service object's unique_id
               service:
                 type: string
                 description: A system-generated string that represents the Service object's unique_id
@@ -8830,9 +8846,6 @@ components:
             type: object
             description: Postmortem Incident object schema
             properties:
-              unique_id:
-                type: string
-                description: A system-generated string that represents the Postmortem Incident object's unique_id
               incident:
                 type: object
                 description: Incident object schema for a Postmortem object schema
@@ -8959,6 +8972,38 @@ components:
           type: boolean
           default: true
           description: A boolean flag that represents whether the Schedule Layer is active or not
+          
+    ScheduleLayerPayload:
+      type: object
+      description: Schedule Layer Payload object schema
+      properties:
+        shift_length:
+          type: integer
+          description: An integer that represents the Schedule Layer object's shift_length
+        restrictions: 
+          type: array
+          description: An array of Schedule Layer Restriction objects
+          items:
+            $ref: '#/components/schemas/ScheduleLayerRestrictionPayload'
+        name: 
+          type: string
+          description: A string that represents the Schedule Layer object's name
+        users: 
+          type: array
+          description: An array of Schedule Layer User objects
+          items:
+            $ref: '#/components/schemas/ScheduleLayerUserPayload'
+        rotation_start_time:
+          type: string
+          format: date-time
+          description: A formatted string that represents the Schedule Layer object's rotation_start_time
+        rotation_end_time:
+          type: string
+          format: date-time
+          description: A formatted string that represents the Schedule Layer object's rotation_end_time
+        restriction_type:
+          type: integer
+          description: An integer that represents Schedule Layer object's restriction_type. 0 for no restriction, 1 for daily restrictions and 2 for weekly restrictions
     
     ScheduleLayerRestriction:
       type: object
@@ -8978,6 +9023,21 @@ components:
           type: string
           description: A system-generated string that represents the Schedule Layer Restriction objects's unique_id
     
+    ScheduleLayerRestrictionPayload:
+      type: object
+      description: Schedule Layer Restriction Payload object schema
+      properties:
+        duration: 
+          type: integer
+          description: An integer that represents the Schedule Layer Restriction objects's duration in seconds
+        start_day_of_week:
+          type: integer
+          description: An integer that represents the Schedule Layer Restriction objects's start_day_of_week. 0 is daily and 1-7 is sunday to saturday
+        start_time_of_day:
+          type: string
+          format: time
+          description: A formatted string that represents the Schedule Layer Restriction objects's start_time_of_day 
+    
     ScheduleLayerUser:
       type: object
       description: Schedule Layer User object schema
@@ -8991,6 +9051,17 @@ components:
         unique_id:
           type: string
           description: A system-generated string that represents the Schedule Layer User objects's unique_id
+          
+    ScheduleLayerUserPayload:
+      type: object
+      description: Schedule Layer User Payload object schema
+      properties:
+        user: 
+          type: string
+          description: A system-generated string that represents the User object's username
+        position:
+          type: integer
+          description: An integer that represents the Schedule Layer User objects's position
     
     ScheduleOverride:
       type: object
@@ -9011,6 +9082,23 @@ components:
         unique_id: 
           type: string
           description: A system-generated string that represents the Schedule Overrides object's unique_id
+          
+    ScheduleOverridePayload:
+      type: object
+      description: Schedule Override Payload object schema
+      properties:
+        name: 
+          type: string
+          description: A string that represents the Schedule Overrides object's name
+        user: 
+          type: string
+          description: A string that represents the User object's username
+        start_time: 
+          type: string
+          description: A fromatted string that represents the Schedule Overrides object's start_time
+        end_time: 
+          type: string
+          description: A fromatted string that represents the Schedule Overrides object's end_time
               
     EP_Rule:
       type: object
@@ -9035,7 +9123,29 @@ components:
           description: An integer that represents the Escalation Policy Rule object's position
         unique_id:
           type: string
-          description: A system-generated string that represents Escalation Policy Rule object's unique_id.   
+          description: A system-generated string that represents Escalation Policy Rule object's unique_id.
+          
+    EP_RulePayload:
+      type: object
+      description: Escalation Policy Rule Payload object schema
+      properties:
+        delay:
+          type: integer
+          default: 0
+          description: An integer that represents the Escalation Policy Rule object's delay
+        target:
+          type: object
+          description: Escalation Policy Rule Target object schema
+          properties:
+            target_type:
+              type: integer
+              description: An integer that represents the Escalation Policy Rule Target object's target_type. 1 for Schedule and 2 for User 
+            target_id: 
+              type: string
+              description: A system-generated string that represents Escalation Policy Rule Target object's target_id. If target_type is 1 then target_id is Schedule object's unique_id and if target_type is 2 then target_id is User object's username
+        position:
+          type: integer
+          description: An integer that represents the Escalation Policy Rule object's position
               
     Application:
       description: Application object schema
