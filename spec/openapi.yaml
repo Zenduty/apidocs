@@ -9103,11 +9103,13 @@ components:
     EP_Rule:
       type: object
       description: Escalation Policy Rule object schema
+      required:
+        - delay
       properties:
         delay:
           type: integer
           default: 0
-          description: An integer that represents the Escalation Policy Rule object's delay
+          description: An integer that represents the amount of time before the escalation of the Escalation Policy object after the incident object is created. For example, t=0 is When an incident is created, if delay=5, then this Escalation Policy Rule object will be escalated at t=5.
         target:
           type: object
           description: Escalation Policy Rule Target object schema
@@ -9128,11 +9130,13 @@ components:
     EP_RulePayload:
       type: object
       description: Escalation Policy Rule Payload object schema
+      required:
+        - delay
       properties:
         delay:
           type: integer
           default: 0
-          description: An integer that represents the Escalation Policy Rule object's delay
+          description: An integer that represents the amount of time before the escalation of the Escalation Policy object after the incident object is created. For example, t=0 is When an incident is created, if delay=5, then this Escalation Policy Rule object will be escalated at t=5.
         target:
           type: object
           description: Escalation Policy Rule Target object schema
