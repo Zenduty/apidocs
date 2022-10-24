@@ -36,10 +36,16 @@ info:
 tags:
 - name: Account Member
   description: This object represents the user of the account. Each account member object has a role, which can be owner, admin, or user. Each account has a single owner, but the admins and users can be multiple.
+- name: Account Custom Role
+  description: This object represents the custom role of the account. Each custom role object has custom permissions which the account admin can set from account level permissions and assign this custom role to a particular user.
+- name: User Custom Role
+  description: This object represents the user custom role. Each user can be assigned to only one custom role.
 - name: Teams
   description: This object represents the team of the account. It lets you create different independent operational units in account. You can check out the team docs here https://docs.zenduty.com/docs/teams.
 - name: Team Members
   description: This object represents the user of the team. Each team member has a role which can be a manager or a user. You can checkout the team member docs here https://docs.zenduty.com/docs/users
+- name: Team Permissions
+  description: This object represents the permission of the team. It lets you access the particular team elements that the team has given permission to use.
 - name: Schedules
   description: This object represents the schedule of the team. You can checkout the schedule docs here https://docs.zenduty.com/docs/schedules
 - name: Escalation Policies
@@ -83,6 +89,95 @@ security:
  
  
 paths:
+
+  '/api/account/api_invite/':
+    post: 
+      tags:
+      - Account Member
+      summary: Invite User
+      description:
+        Returns an Account Member object.
+      requestBody:
+        description: Request body parameters to create the Account Member object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InviteUserPayload'
+            example: 
+              team: db61f7ed-ba78-4536-9b2d-256b135a731d
+              user_detail:
+                first_name: Michael
+                last_name: Scott
+                email: michaelscott@zenduty.com
+                role: 3
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/InviteUserPayload'
+            example: 
+              team: db61f7ed-ba78-4536-9b2d-256b135a731d
+              user_detail:
+                first_name: Michael
+                last_name: Scott
+                email: michaelscott@zenduty.com
+                role: 3
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamMember'
+              example:
+                unique_id: e6931b6d-55d7-45e4-9f30-4dbf72bbcf06
+                team: db61f7ed-ba78-4536-9b2d-256b135a731d
+                user:
+                  username: 39f4dedd-2754-4ee1-9c0c-1
+                  first_name: Michael
+                  last_name: Scott
+                  email: michaelscott@zenduty.com
+                joining_date: '2022-09-20T14:29:05.997454Z'
+                role: 2
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TeamMember'
+              example:
+                unique_id: e6931b6d-55d7-45e4-9f30-4dbf72bbcf06
+                team: db61f7ed-ba78-4536-9b2d-256b135a731d
+                user:
+                  username: 39f4dedd-2754-4ee1-9c0c-1
+                  first_name: Michael
+                  last_name: Scott
+                  email: michaelscott@zenduty.com
+                joining_date: '2022-09-20T14:29:05.997454Z'
+                role: 2
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
   
   '/api/account/members/':
     get: 
@@ -341,6 +436,529 @@ paths:
                 example:
                   detail: You do not have permission to perform this action.
           '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+                  
+  '/api/account/deleteuser/':
+    post: 
+      tags:
+      - Account Member
+      summary: Delete User
+      description:
+        Delete the specified Account Member object
+      requestBody:
+        description: Request body parameters to create the Account Member object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteUserPayload'
+            example: 
+              username: 6b2af4db-8b31-4bfb-9742-4
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DeleteUserPayload'
+            example: 
+              username: 6b2af4db-8b31-4bfb-9742-4
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+                  
+  '/api/account/custom_roles/':
+    post:
+      tags:
+        - Account Custom Role
+      summary: Create the Account Custom Role object
+      description: Create the Account Custom Role object by setting the values of all the required parameters passed in the request body.
+      requestBody:
+        description: Request body parameters to create the Account Custom Role object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountCustomRolePayload'
+            example: 
+              name: Role 1
+              description: Role 1 Description
+              permissions:
+                - sla_read
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AccountCustomRolePayload'
+            example: 
+              name: Role 1
+              description: Role 1 Description
+              permissions:
+                - sla_read
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountCustomRolePostAndPutResponse'
+              example:
+                unique_id: 97208d3e-e45d-409a-b951-4eae928a59b9
+                name: Role 1
+                description: Role 1 Description
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AccountCustomRolePostAndPutResponse'
+              example:
+                unique_id: 97208d3e-e45d-409a-b951-4eae928a59b9
+                name: Role 1
+                description: Role 1 Description
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+    get: 
+      tags:
+      - Account Custom Role
+      summary: List all Account Custom Role objects
+      description: Returns a list of Account Custom Role objects.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountCustomRole'
+              example:
+                - unique_id: ddf61a4d-6489-4665-bee6-7e21205f9d6f
+                  name: Role 1 Updated
+                  description: Role 1 Description
+                  permissions:
+                    - member_read
+                    - schedule_read
+                    - team_read
+                - unique_id: 97208d3e-e45d-409a-b951-4eae928a59b9
+                  name: Role 2
+                  description: Role 1 Description
+                  permissions:
+                    - member_read
+                    - sla_read
+                    - team_read
+                - unique_id: 0d087386-cebf-47ee-8dd3-c52f05c43128
+                  name: w4e5rty
+                  description: ew4rtyg
+                  permissions:
+                    - escalation_policy_read
+                    - incident_read
+                    - incident_role_read
+                    - member_read
+                    - priority_read
+                    - schedule_read
+                    - service_read
+                    - sla_read
+                    - tag_read
+                    - task_template_read
+                    - team_read
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AccountCustomRole'
+              example:
+                - unique_id: ddf61a4d-6489-4665-bee6-7e21205f9d6f
+                  name: Role 1 Updated
+                  description: Role 1 Description
+                  permissions:
+                    - member_read
+                    - schedule_read
+                    - team_read
+                - unique_id: 97208d3e-e45d-409a-b951-4eae928a59b9
+                  name: Role 2
+                  description: Role 1 Description
+                  permissions:
+                    - member_read
+                    - sla_read
+                    - team_read
+                - unique_id: 0d087386-cebf-47ee-8dd3-c52f05c43128
+                  name: w4e5rty
+                  description: ew4rtyg
+                  permissions:
+                    - escalation_policy_read
+                    - incident_read
+                    - incident_role_read
+                    - member_read
+                    - priority_read
+                    - schedule_read
+                    - service_read
+                    - sla_read
+                    - tag_read
+                    - task_template_read
+                    - team_read
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+                
+  '/api/account/custom_roles/{custom_role_id}/':
+      parameters: 
+        - name: 'custom_role_id'
+          in: path
+          description: unique_id of the Account Custom Role object
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Account Custom Role
+        summary: Retrieve the Account Custom Role object
+        description: Retrieve the specified Account Custom Role object.
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/AccountCustomRole'
+                example:
+                  unique_id: ddf61a4d-6489-4665-bee6-7e21205f9d6f
+                  name: Role 1 Updated
+                  description: Role 1 Description
+                  permissions:
+                    - member_read
+                    - schedule_read
+                    - team_read
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/AccountCustomRole'
+                example:
+                  unique_id: ddf61a4d-6489-4665-bee6-7e21205f9d6f
+                  name: Role 1 Updated
+                  description: Role 1 Description
+                  permissions:
+                    - member_read
+                    - schedule_read
+                    - team_read
+          '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+          '403':
+            description: Forbidden 
+            content:
+              application/json:
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml:
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+      put:
+        tags:
+          - Account Custom Role
+        summary: Update the Account Custom Role object
+        description: Updates the specified Account Custom Role object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
+        requestBody:
+          description: Request body parameters to update the Account Custom Role object
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountCustomRolePayload'
+              example:
+                name: Role Updated
+                permissions:
+                  - sla_read
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AccountCustomRolePayload'
+              example:
+                name: Role Updated
+                permissions:
+                  - sla_read
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/AccountCustomRolePostAndPutResponse'
+                example:
+                  unique_id: ddf61a4d-6489-4665-bee6-7e21205f9d6f
+                  name: Role Updated
+                  description: Role 1 Description
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/AccountCustomRolePostAndPutResponse'
+                example:
+                  unique_id: ddf61a4d-6489-4665-bee6-7e21205f9d6f
+                  name: Role Updated
+                  description: Role 1 Description
+          '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+          '403':
+            description: Forbidden 
+            content:
+              application/json:
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml:
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+      delete: 
+        tags:
+        - Account Custom Role
+        summary: Delete the Account Custom Role object
+        description: Delete the specified Account Custom Role object permanently. 
+        responses: 
+          '204':
+            description: Success
+          '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+          '403':
+            description: Forbidden 
+            content:
+              application/json: 
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml: 
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: 
+                example:
+                  detail: Not Found.
+              application/xml: 
+                example:
+                  detail: Not Found.
+                  
+  '/api/account/users/{username}/custom_role/':
+    parameters: 
+        - name: 'username'
+          in: path
+          description: username of the User object
+          schema:
+            type: string
+          required: true
+    post:
+      tags:
+        - User Custom Role
+      summary: Create the User Custom Role object
+      description: Create the User Custom Role object by setting the values of all the required parameters passed in the request body.
+      requestBody:
+        description: Request body parameters to create the User Custom Role object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCustomRolePayload'
+            example: 
+              custom_role: ddf61a4d-6489-4665-bee6-7e21205f9d6f
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/UserCustomRolePayload'
+            example: 
+              custom_role: ddf61a4d-6489-4665-bee6-7e21205f9d6f
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserCustomRole'
+              example:
+                user: 6278fd1d-7e7c-486a-80e3-5
+                custom_role: ddf61a4d-6489-4665-bee6-7e21205f9d6f
+                custom_role_details:
+                  name: Role Updated
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserCustomRole'
+              example:
+                user: 6278fd1d-7e7c-486a-80e3-5
+                custom_role: ddf61a4d-6489-4665-bee6-7e21205f9d6f
+                custom_role_details:
+                  name: Role Updated
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+    get: 
+      tags:
+      - User Custom Role
+      summary: List all User Custom Role objects
+      description: Returns a list of User Custom Role objects.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserCustomRole'
+              example:
+                user: 6278fd1d-7e7c-486a-80e3-5
+                custom_role: ddf61a4d-6489-4665-bee6-7e21205f9d6f
+                custom_role_details:
+                  name: Role Updated
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserCustomRole'
+              example:
+                user: 6278fd1d-7e7c-486a-80e3-5
+                custom_role: ddf61a4d-6489-4665-bee6-7e21205f9d6f
+                custom_role_details:
+                  name: Role Updated
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
             description: Not Found 
             content:
               application/json:
@@ -1228,6 +1846,179 @@ paths:
                 example:
                   detail: Not Found.
               application/xml: 
+                example:
+                  detail: Not Found.
+                  
+  '/api/account/teams/{}/permissions/':
+    parameters: 
+    - name: 'team_id'
+      in: path
+      description: unique_id of the Team object
+      schema:
+        type: string
+      required: true
+    get: 
+      tags:
+      - Team Permissions
+      summary: Retrieve Team Permission object
+      description: Returns a particular Team Permission object.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamPermission'
+              example:
+                unique_id: 5f9a92c2-ddf2-4e71-862c-b4bbe959df24
+                account_permissions:
+                  - schedule_read
+                  - member_read
+                  - team_read
+                  - sla_read
+                  - incident_read
+                  - incident_role_read
+                  - escalation_policy_read
+                  - tag_read
+                  - service_read
+                  - task_template_read
+                  - priority_read
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TeamPermission'
+              example:
+                unique_id: 5f9a92c2-ddf2-4e71-862c-b4bbe959df24
+                account_permissions:
+                  - schedule_read
+                  - member_read
+                  - team_read
+                  - sla_read
+                  - incident_read
+                  - incident_role_read
+                  - escalation_policy_read
+                  - tag_read
+                  - service_read
+                  - task_template_read
+                  - priority_read
+        '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+    put:
+      tags:
+        - Team Permissions
+      summary: Update the Team Permission object
+      description: Update the Team Permission object by setting the values of all the required parameters passed in the request body.
+      requestBody:
+        description: Request body parameters to update the Team Permission object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamPermissionPayload'
+            example:
+              account_permissions:
+                - member_read
+                - schedule_read
+                - team_read
+                - sla_read
+                - incident_read
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/TeamPermissionPayload'
+            example:
+              account_permissions:
+                - member_read
+                - schedule_read
+                - team_read
+                - sla_read
+                - incident_read
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamPermission'
+              example:
+                unique_id: 5f9a92c2-ddf2-4e71-862c-b4bbe959df24
+                account_permissions:
+                  - schedule_read
+                  - member_read
+                  - team_read
+                  - sla_read
+                  - incident_read
+                  - incident_role_read
+                  - escalation_policy_read
+                  - tag_read
+                  - service_read
+                  - task_template_read
+                  - priority_read
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TeamPermission'
+              example:
+                unique_id: 5f9a92c2-ddf2-4e71-862c-b4bbe959df24
+                account_permissions:
+                  - schedule_read
+                  - member_read
+                  - team_read
+                  - sla_read
+                  - incident_read
+                  - incident_role_read
+                  - escalation_policy_read
+                  - tag_read
+                  - service_read
+                  - task_template_read
+                  - priority_read
+        '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
                 example:
                   detail: Not Found.
                   
@@ -7376,6 +8167,43 @@ components:
   schemas:
     # Object Schema 
     
+    InviteUserPayload:
+      type: object
+      description: Payload schema for the Invite User object
+      required:
+        - team
+        - user_detail
+      properties:
+        team:
+          type: string
+          description: A system-generated string that represents the Team object's unique_id
+        user_detail:
+          type: object
+          description: User object schema
+          properties:
+            first_name:
+              type: string
+              description: A string that represents the User object's first_name
+            last_name:
+              type: string
+              description: A string that represents the User object's last_name
+            email:
+              type: string
+              description: A string that represents the User object's email
+            role:
+              type: integer
+              description: An integer that represents the Account Member object's role
+          
+    DeleteUserPayload:
+      type: object
+      description: Payload schema for the Delete User object
+      required:
+        - username
+      properties:
+        username:
+          type: string
+          description: A system-generated string that represents the User object's username
+    
     AccountMember:
       type: object
       description: Account Member object schema
@@ -7417,7 +8245,82 @@ components:
           type: integer
           default: 3
           description: An integer that represents the Account Member object's role. 1 is owner, 2 is admin and 3 is user
-         
+          
+    AccountCustomRolePostAndPutResponse:
+      type: object
+      description: Account Custom Role object's put and post response schema
+      properties:
+        unique_id:
+          type: string
+          description: A system generated string that represents the Account Custom Role object's unique_id
+        name:
+          type: string
+          description: A string that represents the unique name for Account Custom Role object
+        description:
+          type: string
+          description: A string that represents the description for Account Custom Role object
+          
+    AccountCustomRole:
+      type: object
+      description: Account Custom Role object's schema
+      properties:
+        unique_id:
+          type: string
+          description: A system generated string that represents the Account Custom Role object's unique_id
+        name:
+          type: string
+          description: A string that represents the unique name for Account Custom Role object
+        description:
+          type: string
+          description: A string that represents the description for Account Custom Role object
+        permissions:
+          type: string
+          description: An array of account level permissions
+          
+    AccountCustomRolePayload:
+      type: object
+      description: Payload schema for the Account Custom Role object
+      required:
+        - permissions
+      properties:
+        name:
+          type: string
+          description: A string that represents the unique name for Account Custom Role object
+        description:
+          type: string
+          description: A string that represents the description for Account Custom Role object
+        permissions:
+          type: string
+          description: An array of account level permissions
+          
+    UserCustomRole:
+      type: object
+      description: User Custom Role object's schema
+      properties:
+        user:
+          type: string
+          description: A system generated string that represents the user object's username
+        custom_role:
+          type: string
+          description: A system generated string that represents the Account Custom Role object's unique_id
+        custom_role_details:
+          type: object
+          description: Custom Role detail's object schema
+          properties:
+            name:
+              type: string
+              description: A string that represents the name for Account Custom Role object
+          
+    UserCustomRolePayload:
+      type: object
+      description: Payload schema for the User Custom Role object
+      required:
+        - custom_role
+      properties:
+        custom_role:
+          type: string
+          description: A system-generated string that represents the User Custom Role object's unique_id
+    
     Team:
       type: object
       description: Team object schema
@@ -7486,6 +8389,27 @@ components:
           type: integer
           default: 2
           description: An integer that represents the Team Member object's role. 1 is manager and 2 is user
+          
+    TeamPermission:
+      type: object
+      description: Team Permission object's schema
+      properties:
+        unique_id:
+          type: string
+          description: A system generated string that represents the Team object's unique_id
+        account_permissions:
+          type: string
+          description: An array of team level permissions
+    
+    TeamPermissionPayload:
+      type: object
+      description: Payload schema for the Team Permission object
+      required:
+        - account_permissions
+      properties:
+        account_permissions:
+          type: string
+          description: An array of team level permissions
           
     Schedule:
       type: object
@@ -9103,11 +10027,13 @@ components:
     EP_Rule:
       type: object
       description: Escalation Policy Rule object schema
+      required:
+        - delay
       properties:
         delay:
           type: integer
           default: 0
-          description: An integer that represents the Escalation Policy Rule object's delay
+          description: An integer that represents the amount of time before the escalation of the Escalation Policy object after the incident object is created. For example, t=0 is When an incident is created, if delay=5, then this Escalation Policy Rule object will be escalated at t=5.
         target:
           type: object
           description: Escalation Policy Rule Target object schema
@@ -9128,11 +10054,13 @@ components:
     EP_RulePayload:
       type: object
       description: Escalation Policy Rule Payload object schema
+      required:
+        - delay
       properties:
         delay:
           type: integer
           default: 0
-          description: An integer that represents the Escalation Policy Rule object's delay
+          description: An integer that represents the amount of time before the escalation of the Escalation Policy object after the incident object is created. For example, t=0 is When an incident is created, if delay=5, then this Escalation Policy Rule object will be escalated at t=5.
         target:
           type: object
           description: Escalation Policy Rule Target object schema
@@ -9269,4 +10197,3 @@ components:
       type: http
       scheme: bearer
       bearerFormat: Token <api_key>
-    
