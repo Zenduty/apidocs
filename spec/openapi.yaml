@@ -82,6 +82,8 @@ tags:
   description: This object represents the postmortem of the incident. You can checkout the postmortem docs here https://docs.zenduty.com/docs/incidentpostmortem
 - name: OnCall
   description: This object represents the user who is oncall.
+- name: Global Router
+  description: This object represents the Global Router of the Account. You can checkout the global alert routing docs here https://docs.zenduty.com/docs/globalalertrouting
   
 servers:
  - url: 'https://www.zenduty.com'
@@ -7981,7 +7983,7 @@ paths:
       tags:
       - Postmortem
       summary: List all Postmortem objects
-      description: Returns a list of Team objects.
+      description: Returns a list of Postmortem objects.
       responses:
         '200':
           description: OK
@@ -8411,6 +8413,329 @@ paths:
               example:
                 detail: You do not have permission to perform this action.
         '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+                  
+  '/api/v2/account/events/router/':
+    post:
+      tags:
+        - Global Router
+      summary: Create the Global Router object
+      description: Create the Global Router object by setting the values of all the required parameters passed in the request body.
+      requestBody:
+        description: Request body parameters to create the Global Router object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GlobalRouterPayload'
+            example:
+              name: Infra Global Router
+              description: This is Infra Global Router for this account
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GlobalRouterPayload'
+            example:
+              name: Infra Global Router
+              description: This is Infra Global Router for this account
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalRouter'
+              example:
+                unique_id: b0c1867f-dfd2-4cb3-a298-0b9f322fe716
+                name: Infra Global Router
+                description: This is Infra Global Router for this account
+                account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                is_enabled: true
+                integration_key: cb1de2f2-bb17-4a6c-8a80-03739ca0a911
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GlobalRouter'
+              example:
+                unique_id: b0c1867f-dfd2-4cb3-a298-0b9f322fe716
+                name: Infra Global Router
+                description: This is Infra Global Router for this account
+                account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                is_enabled: true
+                integration_key: cb1de2f2-bb17-4a6c-8a80-03739ca0a911
+        '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json: 
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml: 
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+    get: 
+      tags:
+      - Global Router
+      summary: List all Global Router objects
+      description: Returns a list of Global Router objects.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalRouter'
+              example:
+               - unique_id: e9be034e-6076-4953-a315-9a3666ffe774
+                 name: Default
+                 description: testing
+                 account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                 is_enabled: true
+                 integration_key: e29c214c-3397-4b92-b4f4-dd63135ad214
+               - unique_id: 0dfb3150-456c-4f34-884f-23d449ae7561
+                 name: Default-2
+                 description: testing
+                 account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                 is_enabled: true
+                 integration_key: 5d3b2210-6849-42a4-b268-c8f44a5e50f5
+               - unique_id: b0c1867f-dfd2-4cb3-a298-0b9f322fe716
+                 name: Infra Global Router
+                 description: This is Infra Global Router for this account
+                 account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                 is_enabled: true
+                 integration_key: cb1de2f2-bb17-4a6c-8a80-03739ca0a911
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GlobalRouter'
+              example:
+               - unique_id: e9be034e-6076-4953-a315-9a3666ffe774
+                 name: Default
+                 description: testing
+                 account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                 is_enabled: true
+                 integration_key: e29c214c-3397-4b92-b4f4-dd63135ad214
+               - unique_id: 0dfb3150-456c-4f34-884f-23d449ae7561
+                 name: Default-2
+                 description: testing
+                 account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                 is_enabled: true
+                 integration_key: 5d3b2210-6849-42a4-b268-c8f44a5e50f5
+               - unique_id: b0c1867f-dfd2-4cb3-a298-0b9f322fe716
+                 name: Infra Global Router
+                 description: This is Infra Global Router for this account
+                 account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                 is_enabled: true
+                 integration_key: cb1de2f2-bb17-4a6c-8a80-03739ca0a911
+        '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+                
+  '/api/v2/account/events/router/{router_id}/':
+      parameters: 
+        - name: 'router_id'
+          in: path
+          description: unique_id of the Global Router object
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Global Router
+        summary: Retrieve the Global Router object
+        description: Retrieve the specified Global Router object.
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/GlobalRouter'
+                example:
+                  unique_id: b0c1867f-dfd2-4cb3-a298-0b9f322fe716
+                  name: Infra Global Router
+                  description: This is Infra Global Router for this account
+                  account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                  is_enabled: true
+                  integration_key: cb1de2f2-bb17-4a6c-8a80-03739ca0a911
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/GlobalRouter'
+                example:
+                  unique_id: b0c1867f-dfd2-4cb3-a298-0b9f322fe716
+                  name: Infra Global Router
+                  description: This is Infra Global Router for this account
+                  account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                  is_enabled: true
+                  integration_key: cb1de2f2-bb17-4a6c-8a80-03739ca0a911
+          '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+          '403':
+            description: Forbidden 
+            content:
+              application/json:
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml:
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+      put:
+        tags:
+          - Global Router
+        summary: Update the Global Router data
+        description: Updates the specified Global Router object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
+        requestBody:
+          description: Request body parameters to update the Global Router object
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalRouterPayload'
+              example:
+                name: Infra Global Router Updated
+                description: This is Infra Global Router Updated for this account
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GlobalRouterPayload'
+              example:
+                name: Infra Global Router Updated
+                description: This is Infra Global Router Updated for this account
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: 
+                schema: 
+                  $ref: '#/components/schemas/GlobalRouter'
+                example:
+                  unique_id: b0c1867f-dfd2-4cb3-a298-0b9f322fe716
+                  name: Infra Global Router Updated
+                  description: This is Infra Global Router Updated for this account
+                  account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                  is_enabled: true
+                  integration_key: cb1de2f2-bb17-4a6c-8a80-03739ca0a911
+              application/xml: 
+                schema: 
+                  $ref: '#/components/schemas/GlobalRouter'
+                example:
+                  unique_id: b0c1867f-dfd2-4cb3-a298-0b9f322fe716
+                  name: Infra Global Router Updated
+                  description: This is Infra Global Router Updated for this account
+                  account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                  is_enabled: true
+                  integration_key: cb1de2f2-bb17-4a6c-8a80-03739ca0a911
+          '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+          '403':
+            description: Forbidden 
+            content:
+              application/json:
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml:
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+      delete: 
+        tags:
+        - Global Router
+        summary: Delete the Global RouterPostmortem data
+        description: Delete the specified Global Router object permanently.
+        responses:
+          '204':
+            description: Success
+          '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+          '403':
+            description: Forbidden 
+            content:
+              application/json:
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml:
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
             description: Not Found 
             content:
               application/json:
@@ -9406,7 +9731,7 @@ components:
           description: A string that represents the Incident Note object's note data
           
     IncidentTag:
-      description: Incident Note object schema
+      description: Incident Tag object schema
       type: object
       properties:
         unique_id: 
@@ -10124,6 +10449,40 @@ components:
               description: A string that represents the Team object's name
         user:
           $ref: '#/components/schemas/User'
+          
+    GlobalRouter:
+        description: Global Router object schema
+        type: object
+        properties:
+          unique_id: 
+            type: string
+            description: A system-generated string that represents the Incident Tag object's unique_id
+          name:
+            type: string
+            description: A string that represents the Global Router object's name
+          description:
+            type: string
+            description: A string that represents the Global Router object's description
+          account: 
+            type: string
+            description: A system-generated string that represents the Account object's unique_id
+          is_enabled: 
+            type: boolean
+            description: A boolean tag that represents weather the Global Router object's is enabled or not
+          integration_key:
+            type: string
+            description: A system-generated string that represents the Integration object's integration_key
+        
+    GlobalRouterPayload:
+      type: object
+      description: Payload schema for the Global Router object
+      properties:
+        name:
+          type: string
+          description: A string that represents the Global Router object's name
+        description:
+          type: string
+          description: A string that represents the Global Router object's description
     
 
 
