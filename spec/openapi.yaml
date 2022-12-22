@@ -61,7 +61,9 @@ tags:
 - name: Incident Roles
   description: This object represents the incident role of the incident. You can checkout the incident role docs here https://docs.zenduty.com/docs/incidentroles
 - name: Incident Notes
-  description: This object represents the incident note of the incident. 
+  description: This object represents the incident note of the incident.
+- name: Incident Tags
+  description: This object represents the incident tag of the incident.
 - name: Events
   description: This object represents the event of the integration.
 - name: Incident Alerts
@@ -5723,6 +5725,264 @@ paths:
                 example:
                   detail: Not Found.
                   
+  '/api/incidents/{incident_number}/tags/':
+    parameters: 
+    - name: 'incident_number'
+      in: path
+      description: incident_number of the Incident object
+      schema:
+        type: string
+      required: true
+    post:
+      tags:
+        - Incident Tags
+      summary: Create the Incident Tag object
+      description: Create the Incident Tag object by setting the values of all the required parameters passed in the request body.
+      requestBody:
+        description: Request body parameters to create the Incident Tag object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IncidentTagPayload'
+            example:
+              team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/IncidentTagPayload'
+            example:
+              team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/IncidentTag'
+              example:
+                unique_id: 6dba6488-d330-4cbc-bd1b-5a6d912464f8
+                incident: 27
+                team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                name: Team 1 Tag 1
+                color: magenta
+                tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                creation_date: '2022-12-22T08:33:22.130596Z'
+            application/xml: 
+              schema: 
+                $ref: '#/components/schemas/IncidentTag'
+              example:
+                unique_id: 6dba6488-d330-4cbc-bd1b-5a6d912464f8
+                incident: 27
+                team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                name: Team 1 Tag 1
+                color: magenta
+                tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                creation_date: '2022-12-22T08:33:22.130596Z'
+        '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+    get: 
+      tags:
+      - Incident Tags
+      summary: List all Incident Tag objects
+      description: Returns a list of Incident Tag objects. The Incident Tag objects are sorted by creation_date, with the most recent Incident Note object appearing last.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/IncidentTag'
+              example:
+               - unique_id: 749d39aa-59c5-4719-b300-0c04ad677af5
+                 incident: 27
+                 creation_date: '2022-12-22T08:23:10.905923Z'
+                 name: Team 1 Tag 4
+                 color: cyan
+                 tag_id: 2778cd89-fa68-42bd-8bac-2cdcc569b8bb
+                 team_tag: 2778cd89-fa68-42bd-8bac-2cdcc569b8bb
+               - unique_id: 6dba6488-d330-4cbc-bd1b-5a6d912464f8
+                 incident: 27
+                 creation_date: '2022-12-22T08:33:22.130596Z'
+                 name: Team 1 Tag 1
+                 color: magenta
+                 tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                 team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+            application/xml: 
+              schema: 
+                $ref: '#/components/schemas/IncidentTag'
+              example:
+               - unique_id: 749d39aa-59c5-4719-b300-0c04ad677af5
+                 incident: 27
+                 creation_date: '2022-12-22T08:23:10.905923Z'
+                 name: Team 1 Tag 4
+                 color: cyan
+                 tag_id: 2778cd89-fa68-42bd-8bac-2cdcc569b8bb
+                 team_tag: 2778cd89-fa68-42bd-8bac-2cdcc569b8bb
+               - unique_id: 6dba6488-d330-4cbc-bd1b-5a6d912464f8
+                 incident: 27
+                 creation_date: '2022-12-22T08:33:22.130596Z'
+                 name: Team 1 Tag 1
+                 color: magenta
+                 tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                 team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+        '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+                
+  '/api/incidents/{incident_number}/tags/{tag_unique_id}':
+      parameters: 
+        - name: 'incident_number'
+          in: path
+          description: incident_number of the Incident object
+          schema:
+            type: string
+          required: true
+        - name: 'tag_unique_id'
+          in: path
+          description: unique_id of the Incident Tag object
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Incident Tags
+        summary: Retrieve the Incident Tag object
+        description: Retrieve the specified Incident Tag object.
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/IncidentTag'
+                example:
+                  unique_id: 6dba6488-d330-4cbc-bd1b-5a6d912464f8
+                  incident: 27
+                  creation_date: '2022-12-22T08:33:22.130596Z'
+                  name: Team 1 Tag 1
+                  color: magenta
+                  tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                  team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/IncidentTag'
+                example:
+                  unique_id: 6dba6488-d330-4cbc-bd1b-5a6d912464f8
+                  incident: 27
+                  creation_date: '2022-12-22T08:33:22.130596Z'
+                  name: Team 1 Tag 1
+                  color: magenta
+                  tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                  team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+          '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+          '403':
+            description: Forbidden 
+            content:
+              application/json:
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml:
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+      delete: 
+        tags:
+        - Incident Tags
+        summary: Delete the Incident Tag object
+        description: Delete the specified Incident Tag object permanently.
+        responses:
+          '204':
+            description: Success
+          '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+          '403':
+            description: Forbidden 
+            content:
+              application/json:
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml:
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: 
+                example:
+                  detail: Not Found.
+              application/xml: 
+                example:
+                  detail: Not Found.
+                  
   '/api/events/{integration_key}/':
     parameters: 
     - name: 'integration_key'
@@ -9144,6 +9404,41 @@ components:
         note:
           type: string
           description: A string that represents the Incident Note object's note data
+          
+    IncidentTag:
+      description: Incident Note object schema
+      type: object
+      properties:
+        unique_id: 
+          type: string
+          description: A system-generated string that represents the Incident Tag object's unique_id
+        incident:
+          type: integer
+          description: An integer that represents the Incident object's incident_number
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Incident Tag object's creation_date
+        name:
+          type: string
+          description: A string that represents the Incident Tag object's name
+        color:
+          type: string
+          description: A string that represents the Incident Tag object's color
+        tag_id:
+          type: string
+          description: A system-generated string that represents the Team Tag object's unique_id
+        team_tag:
+          type: string
+          description: A system-generated string that represents the Team Tag object's unique_id
+        
+    IncidentTagPayload:
+      type: object
+      description: Payload schema for the Incident Tag object
+      properties:
+        team_tag:
+          type: string
+          description: A system-generated string that represents the Team Tag object's unique_id
         
     Event:
       type: object
