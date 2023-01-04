@@ -503,7 +503,7 @@ paths:
                 example:
                   detail: Not Found.
                   
-  '/api/account/custom_roles/':
+  '/api/account/customroles/':
     post:
       tags:
         - Account Custom Role
@@ -677,7 +677,7 @@ paths:
                 example:
                   detail: Not Found.
                 
-  '/api/account/custom_roles/{custom_role_id}/':
+  '/api/account/customroles/{custom_role_id}/':
       parameters: 
         - name: 'custom_role_id'
           in: path
@@ -847,7 +847,7 @@ paths:
                 example:
                   detail: Not Found.
                   
-  '/api/account/users/{username}/custom_role/':
+  '/api/account/users/{username}/customroles/':
     parameters: 
         - name: 'username'
           in: path
