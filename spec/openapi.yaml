@@ -61,7 +61,9 @@ tags:
 - name: Incident Roles
   description: This object represents the incident role of the incident. You can checkout the incident role docs here https://docs.zenduty.com/docs/incidentroles
 - name: Incident Notes
-  description: This object represents the incident note of the incident. 
+  description: This object represents the incident note of the incident.
+- name: Incident Tags
+  description: This object represents the incident tag of the incident.
 - name: Events
   description: This object represents the event of the integration.
 - name: Incident Alerts
@@ -80,6 +82,10 @@ tags:
   description: This object represents the postmortem of the incident. You can checkout the postmortem docs here https://docs.zenduty.com/docs/incidentpostmortem
 - name: OnCall
   description: This object represents the user who is oncall.
+- name: Global Router
+  description: This object represents the Global Router of the Account. You can checkout the global alert routing docs here https://docs.zenduty.com/docs/globalalertrouting
+- name: Global Router Rules
+  description: The Rules of the Global Router in an Account are represented by this object. Visit this link to view the documentation for the global alert routing rules https://docs.zenduty.com/docs/globalalertrouting
   
 servers:
  - url: 'https://www.zenduty.com'
@@ -5723,6 +5729,264 @@ paths:
                 example:
                   detail: Not Found.
                   
+  '/api/incidents/{incident_number}/tags/':
+    parameters: 
+    - name: 'incident_number'
+      in: path
+      description: incident_number of the Incident object
+      schema:
+        type: string
+      required: true
+    post:
+      tags:
+        - Incident Tags
+      summary: Create the Incident Tag object
+      description: Create the Incident Tag object by setting the values of all the required parameters passed in the request body.
+      requestBody:
+        description: Request body parameters to create the Incident Tag object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IncidentTagPayload'
+            example:
+              team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/IncidentTagPayload'
+            example:
+              team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/IncidentTag'
+              example:
+                unique_id: 6dba6488-d330-4cbc-bd1b-5a6d912464f8
+                incident: 27
+                team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                name: Team 1 Tag 1
+                color: magenta
+                tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                creation_date: '2022-12-22T08:33:22.130596Z'
+            application/xml: 
+              schema: 
+                $ref: '#/components/schemas/IncidentTag'
+              example:
+                unique_id: 6dba6488-d330-4cbc-bd1b-5a6d912464f8
+                incident: 27
+                team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                name: Team 1 Tag 1
+                color: magenta
+                tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                creation_date: '2022-12-22T08:33:22.130596Z'
+        '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+    get: 
+      tags:
+      - Incident Tags
+      summary: List all Incident Tag objects
+      description: Returns a list of Incident Tag objects. The Incident Tag objects are sorted by creation_date, with the most recent Incident Note object appearing last.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/IncidentTag'
+              example:
+               - unique_id: 749d39aa-59c5-4719-b300-0c04ad677af5
+                 incident: 27
+                 creation_date: '2022-12-22T08:23:10.905923Z'
+                 name: Team 1 Tag 4
+                 color: cyan
+                 tag_id: 2778cd89-fa68-42bd-8bac-2cdcc569b8bb
+                 team_tag: 2778cd89-fa68-42bd-8bac-2cdcc569b8bb
+               - unique_id: 6dba6488-d330-4cbc-bd1b-5a6d912464f8
+                 incident: 27
+                 creation_date: '2022-12-22T08:33:22.130596Z'
+                 name: Team 1 Tag 1
+                 color: magenta
+                 tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                 team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+            application/xml: 
+              schema: 
+                $ref: '#/components/schemas/IncidentTag'
+              example:
+               - unique_id: 749d39aa-59c5-4719-b300-0c04ad677af5
+                 incident: 27
+                 creation_date: '2022-12-22T08:23:10.905923Z'
+                 name: Team 1 Tag 4
+                 color: cyan
+                 tag_id: 2778cd89-fa68-42bd-8bac-2cdcc569b8bb
+                 team_tag: 2778cd89-fa68-42bd-8bac-2cdcc569b8bb
+               - unique_id: 6dba6488-d330-4cbc-bd1b-5a6d912464f8
+                 incident: 27
+                 creation_date: '2022-12-22T08:33:22.130596Z'
+                 name: Team 1 Tag 1
+                 color: magenta
+                 tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                 team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+        '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+                
+  '/api/incidents/{incident_number}/tags/{tag_unique_id}':
+      parameters: 
+        - name: 'incident_number'
+          in: path
+          description: incident_number of the Incident object
+          schema:
+            type: string
+          required: true
+        - name: 'tag_unique_id'
+          in: path
+          description: unique_id of the Incident Tag object
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Incident Tags
+        summary: Retrieve the Incident Tag object
+        description: Retrieve the specified Incident Tag object.
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/IncidentTag'
+                example:
+                  unique_id: 6dba6488-d330-4cbc-bd1b-5a6d912464f8
+                  incident: 27
+                  creation_date: '2022-12-22T08:33:22.130596Z'
+                  name: Team 1 Tag 1
+                  color: magenta
+                  tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                  team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/IncidentTag'
+                example:
+                  unique_id: 6dba6488-d330-4cbc-bd1b-5a6d912464f8
+                  incident: 27
+                  creation_date: '2022-12-22T08:33:22.130596Z'
+                  name: Team 1 Tag 1
+                  color: magenta
+                  tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                  team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+          '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+          '403':
+            description: Forbidden 
+            content:
+              application/json:
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml:
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+      delete: 
+        tags:
+        - Incident Tags
+        summary: Delete the Incident Tag object
+        description: Delete the specified Incident Tag object permanently.
+        responses:
+          '204':
+            description: Success
+          '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+          '403':
+            description: Forbidden 
+            content:
+              application/json:
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml:
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json: 
+                example:
+                  detail: Not Found.
+              application/xml: 
+                example:
+                  detail: Not Found.
+                  
   '/api/events/{integration_key}/':
     parameters: 
     - name: 'integration_key'
@@ -7721,7 +7985,7 @@ paths:
       tags:
       - Postmortem
       summary: List all Postmortem objects
-      description: Returns a list of Team objects.
+      description: Returns a list of Postmortem objects.
       responses:
         '200':
           description: OK
@@ -8151,6 +8415,959 @@ paths:
               example:
                 detail: You do not have permission to perform this action.
         '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+                  
+  '/api/v2/account/events/router/':
+    post:
+      tags:
+        - Global Router
+      summary: Create the Global Router object
+      description: Create the Global Router object by setting the values of all the required parameters passed in the request body.
+      requestBody:
+        description: Request body parameters to create the Global Router object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GlobalRouterPayload'
+            example:
+              name: Infra Global Router
+              description: This is Infra Global Router for this account
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GlobalRouterPayload'
+            example:
+              name: Infra Global Router
+              description: This is Infra Global Router for this account
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalRouter'
+              example:
+                unique_id: b0c1867f-dfd2-4cb3-a298-0b9f322fe716
+                name: Infra Global Router
+                description: This is Infra Global Router for this account
+                account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                is_enabled: true
+                integration_key: cb1de2f2-bb17-4a6c-8a80-03739ca0a911
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GlobalRouter'
+              example:
+                unique_id: b0c1867f-dfd2-4cb3-a298-0b9f322fe716
+                name: Infra Global Router
+                description: This is Infra Global Router for this account
+                account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                is_enabled: true
+                integration_key: cb1de2f2-bb17-4a6c-8a80-03739ca0a911
+        '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json: 
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml: 
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+    get: 
+      tags:
+      - Global Router
+      summary: List all Global Router objects
+      description: Returns a list of Global Router objects.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalRouter'
+              example:
+               - unique_id: e9be034e-6076-4953-a315-9a3666ffe774
+                 name: Default
+                 description: testing
+                 account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                 is_enabled: true
+                 integration_key: e29c214c-3397-4b92-b4f4-dd63135ad214
+               - unique_id: 0dfb3150-456c-4f34-884f-23d449ae7561
+                 name: Default-2
+                 description: testing
+                 account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                 is_enabled: true
+                 integration_key: 5d3b2210-6849-42a4-b268-c8f44a5e50f5
+               - unique_id: b0c1867f-dfd2-4cb3-a298-0b9f322fe716
+                 name: Infra Global Router
+                 description: This is Infra Global Router for this account
+                 account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                 is_enabled: true
+                 integration_key: cb1de2f2-bb17-4a6c-8a80-03739ca0a911
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GlobalRouter'
+              example:
+               - unique_id: e9be034e-6076-4953-a315-9a3666ffe774
+                 name: Default
+                 description: testing
+                 account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                 is_enabled: true
+                 integration_key: e29c214c-3397-4b92-b4f4-dd63135ad214
+               - unique_id: 0dfb3150-456c-4f34-884f-23d449ae7561
+                 name: Default-2
+                 description: testing
+                 account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                 is_enabled: true
+                 integration_key: 5d3b2210-6849-42a4-b268-c8f44a5e50f5
+               - unique_id: b0c1867f-dfd2-4cb3-a298-0b9f322fe716
+                 name: Infra Global Router
+                 description: This is Infra Global Router for this account
+                 account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                 is_enabled: true
+                 integration_key: cb1de2f2-bb17-4a6c-8a80-03739ca0a911
+        '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+                
+  '/api/v2/account/events/router/{router_id}/':
+    parameters: 
+      - name: 'router_id'
+        in: path
+        description: unique_id of the Global Router object
+        schema:
+          type: string
+        required: true
+    get: 
+      tags:
+      - Global Router
+      summary: Retrieve the Global Router object
+      description: Retrieve the specified Global Router object.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalRouter'
+              example:
+                unique_id: b0c1867f-dfd2-4cb3-a298-0b9f322fe716
+                name: Infra Global Router
+                description: This is Infra Global Router for this account
+                account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                is_enabled: true
+                integration_key: cb1de2f2-bb17-4a6c-8a80-03739ca0a911
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GlobalRouter'
+              example:
+                unique_id: b0c1867f-dfd2-4cb3-a298-0b9f322fe716
+                name: Infra Global Router
+                description: This is Infra Global Router for this account
+                account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                is_enabled: true
+                integration_key: cb1de2f2-bb17-4a6c-8a80-03739ca0a911
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+          description: Not Found 
+          content:
+            application/json:
+              example:
+                detail: Not Found.
+            application/xml:
+              example:
+                detail: Not Found.
+    put:
+      tags:
+        - Global Router
+      summary: Update the Global Router data
+      description: Updates the specified Global Router object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
+      requestBody:
+        description: Request body parameters to update the Global Router object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GlobalRouterPayload'
+            example:
+              name: Infra Global Router Updated
+              description: This is Infra Global Router Updated for this account
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GlobalRouterPayload'
+            example:
+              name: Infra Global Router Updated
+              description: This is Infra Global Router Updated for this account
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/GlobalRouter'
+              example:
+                unique_id: b0c1867f-dfd2-4cb3-a298-0b9f322fe716
+                name: Infra Global Router Updated
+                description: This is Infra Global Router Updated for this account
+                account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                is_enabled: true
+                integration_key: cb1de2f2-bb17-4a6c-8a80-03739ca0a911
+            application/xml: 
+              schema: 
+                $ref: '#/components/schemas/GlobalRouter'
+              example:
+                unique_id: b0c1867f-dfd2-4cb3-a298-0b9f322fe716
+                name: Infra Global Router Updated
+                description: This is Infra Global Router Updated for this account
+                account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                is_enabled: true
+                integration_key: cb1de2f2-bb17-4a6c-8a80-03739ca0a911
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+          description: Not Found 
+          content:
+            application/json:
+              example:
+                detail: Not Found.
+            application/xml:
+              example:
+                detail: Not Found.
+    delete: 
+      tags:
+      - Global Router
+      summary: Delete the Global Router  data
+      description: Delete the specified Global Router object permanently.
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+          description: Not Found 
+          content:
+            application/json:
+              example:
+                detail: Not Found.
+            application/xml:
+              example:
+                detail: Not Found.
+                  
+  '/api/v2/account/events/router/{router_id}/rulesets/':
+    parameters: 
+        - name: 'router_id'
+          in: path
+          description: unique_id of the Global Router object
+          schema:
+            type: string
+          required: true
+    post:
+      tags:
+        - Global Router Rule
+      summary: Create the Global Router Rule object
+      description: Create the Global Router Rule object by setting the values of all the required parameters passed in the request body.
+      requestBody:
+        description: Request body parameters to create the Global Router Rule object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GlobalRouterRulePayload'
+            example:
+              name: Rule for Grafana Integration
+              actions:
+                - action_type: 0
+                  integration: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+              rule_json: '{"type":"group","id":"9a99988a-0123-4456-b89a-b1607f326fd8","children1":{"898aa9ba-0123-4456-b89a-b16a429f5d94":{"type":"rule","id":"898aa9ba-0123-4456-b89a-b16a429f5d94","properties":{"field":"alert.payload","operator":"payloadsearch","value":["$.commonLabels.alertname","grafana"],"valueSrc":["value","value"],"operatorOptions":{"ploperator":"equal"},"valueType":["text","text"]},"path":["9a99988a-0123-4456-b89a-b1607f326fd8","898aa9ba-0123-4456-b89a-b16a429f5d94"]}},"properties":{"conjunction":"AND","not":false},"path":["9a99988a-0123-4456-b89a-b1607f326fd8"]}'
+              
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/GlobalRouterRulePayload'
+            example:
+              name: Rule for Grafana Integration
+              actions:
+                - action_type: 0
+                  integration: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+              rule_json: '{"type":"group","id":"9a99988a-0123-4456-b89a-b1607f326fd8","children1":{"898aa9ba-0123-4456-b89a-b16a429f5d94":{"type":"rule","id":"898aa9ba-0123-4456-b89a-b16a429f5d94","properties":{"field":"alert.payload","operator":"payloadsearch","value":["$.commonLabels.alertname","grafana"],"valueSrc":["value","value"],"operatorOptions":{"ploperator":"equal"},"valueType":["text","text"]},"path":["9a99988a-0123-4456-b89a-b1607f326fd8","898aa9ba-0123-4456-b89a-b16a429f5d94"]}},"properties":{"conjunction":"AND","not":false},"path":["9a99988a-0123-4456-b89a-b1607f326fd8"]}'
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalRouterRule'
+              example:
+                unique_id: 4c9924cc-d051-4e58-978b-d673a7de540a
+                name: Rule for Grafana Integration
+                position: 7
+                rule_json: '{"type":"group","id":"9a99988a-0123-4456-b89a-b1607f326fd8","children1":{"898aa9ba-0123-4456-b89a-b16a429f5d94":{"type":"rule","id":"898aa9ba-0123-4456-b89a-b16a429f5d94","properties":{"field":"alert.payload","operator":"payloadsearch","value":["$.commonLabels.alertname","grafana"],"valueSrc":["value","value"],"operatorOptions":{"ploperator":"equal"},"valueType":["text","text"]},"path":["9a99988a-0123-4456-b89a-b1607f326fd8","898aa9ba-0123-4456-b89a-b16a429f5d94"]}},"properties":{"conjunction":"AND","not":false},"path":["9a99988a-0123-4456-b89a-b1607f326fd8"]}'
+                actions:
+                  - unique_id: fb742645-dc2f-4b76-bf44-8a0a8aa48e09
+                    action_type: 0
+                    service:
+                      name: Team 1 Service 1
+                      unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                    team:
+                      name: Team 1
+                      unique_id: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                    integration_obj:
+                      unique_id: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+                      name: Anodot
+                router: e9be034e-6076-4953-a315-9a3666ffe774
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GlobalRouterRule'
+              example:
+                unique_id: b0c1867f-dfd2-4cb3-a298-0b9f322fe716
+                name: Infra Global Router
+                description: This is Infra Global Router for this account
+                account: 61fb2d9e-088b-471f-a6d7-872c03cf483d
+                is_enabled: true
+                integration_key: cb1de2f2-bb17-4a6c-8a80-03739ca0a911
+        '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json: 
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml: 
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+    get: 
+      tags:
+      - Global Router Rule 
+      summary: List all Global Router Rule objects
+      description: Returns a list of Global Router Rule objects.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalRouterRule'
+              example:
+              - unique_id: 12edd6c5-2217-4b53-b635-83083f420dd8
+                name: position 1
+                position: 1
+                rule_json: '{"type":"group","id":"9a99988a-0123-4456-b89a-b1607f326fd8","children1":{"8bbbbaba-cdef-4012-b456-7184d20607aa":{"type":"rule","id":"8bbbbaba-cdef-4012-b456-7184d20607aa","properties":{"field":"alert.payload","operator":"payloadsearch","value":["$.payload.summary","testing"],"valueSrc":["value","value"],"operatorOptions":{"ploperator":"equal"},"valueType":["text","text"]},"path":["9a99988a-0123-4456-b89a-b1607f326fd8","8bbbbaba-cdef-4012-b456-7184d20607aa"]}},"properties":{"conjunction":"AND","not":false},"path":["9a99988a-0123-4456-b89a-b1607f326fd8"]}'
+                actions:
+                  - unique_id: 6d90b452-6b5f-4ea1-8b58-9ad091aba040
+                    action_type: 0
+                    service:
+                      name: Team 1 Service 1
+                      unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                    team:
+                      name: Team 1
+                      unique_id: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                    integration_obj:
+                      unique_id: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+                      name: Anodot
+                  - unique_id: be64664d-ab1d-419a-ab50-d48b05cbc1e6
+                    action_type: 0
+                    service:
+                      name: Team 1 Service 1
+                      unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                    team:
+                      name: Team 1
+                      unique_id: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                    integration_obj:
+                      unique_id: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+                      name: Anodot
+                router: e9be034e-6076-4953-a315-9a3666ffe774
+              - unique_id: 4c9924cc-d051-4e58-978b-d673a7de540a
+                name: Rule for Grafana Integration
+                position: 2
+                rule_json: '{"type":"group","id":"9a99988a-0123-4456-b89a-b1607f326fd8","children1":{"898aa9ba-0123-4456-b89a-b16a429f5d94":{"type":"rule","id":"898aa9ba-0123-4456-b89a-b16a429f5d94","properties":{"field":"alert.payload","operator":"payloadsearch","value":["$.commonLabels.alertname","grafana"],"valueSrc":["value","value"],"operatorOptions":{"ploperator":"equal"},"valueType":["text","text"]},"path":["9a99988a-0123-4456-b89a-b1607f326fd8","898aa9ba-0123-4456-b89a-b16a429f5d94"]}},"properties":{"conjunction":"AND","not":false},"path":["9a99988a-0123-4456-b89a-b1607f326fd8"]}'
+                actions:
+                  - unique_id: fb742645-dc2f-4b76-bf44-8a0a8aa48e09
+                    action_type: 0
+                    service:
+                      name: Team 1 Service 1
+                      unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                    team:
+                      name: Team 1
+                      unique_id: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                    integration_obj:
+                      unique_id: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+                      name: Anodot
+                router: e9be034e-6076-4953-a315-9a3666ffe774
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GlobalRouterRule'
+              example:
+              - unique_id: 12edd6c5-2217-4b53-b635-83083f420dd8
+                name: position 1
+                position: 1
+                rule_json: '{"type":"group","id":"9a99988a-0123-4456-b89a-b1607f326fd8","children1":{"8bbbbaba-cdef-4012-b456-7184d20607aa":{"type":"rule","id":"8bbbbaba-cdef-4012-b456-7184d20607aa","properties":{"field":"alert.payload","operator":"payloadsearch","value":["$.payload.summary","testing"],"valueSrc":["value","value"],"operatorOptions":{"ploperator":"equal"},"valueType":["text","text"]},"path":["9a99988a-0123-4456-b89a-b1607f326fd8","8bbbbaba-cdef-4012-b456-7184d20607aa"]}},"properties":{"conjunction":"AND","not":false},"path":["9a99988a-0123-4456-b89a-b1607f326fd8"]}'
+                actions:
+                  - unique_id: 6d90b452-6b5f-4ea1-8b58-9ad091aba040
+                    action_type: 0
+                    service:
+                      name: Team 1 Service 1
+                      unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                    team:
+                      name: Team 1
+                      unique_id: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                    integration_obj:
+                      unique_id: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+                      name: Anodot
+                  - unique_id: be64664d-ab1d-419a-ab50-d48b05cbc1e6
+                    action_type: 0
+                    service:
+                      name: Team 1 Service 1
+                      unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                    team:
+                      name: Team 1
+                      unique_id: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                    integration_obj:
+                      unique_id: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+                      name: Anodot
+                router: e9be034e-6076-4953-a315-9a3666ffe774
+              - unique_id: 4c9924cc-d051-4e58-978b-d673a7de540a
+                name: Rule for Grafana Integration
+                position: 2
+                rule_json: '{"type":"group","id":"9a99988a-0123-4456-b89a-b1607f326fd8","children1":{"898aa9ba-0123-4456-b89a-b16a429f5d94":{"type":"rule","id":"898aa9ba-0123-4456-b89a-b16a429f5d94","properties":{"field":"alert.payload","operator":"payloadsearch","value":["$.commonLabels.alertname","grafana"],"valueSrc":["value","value"],"operatorOptions":{"ploperator":"equal"},"valueType":["text","text"]},"path":["9a99988a-0123-4456-b89a-b1607f326fd8","898aa9ba-0123-4456-b89a-b16a429f5d94"]}},"properties":{"conjunction":"AND","not":false},"path":["9a99988a-0123-4456-b89a-b1607f326fd8"]}'
+                actions:
+                  - unique_id: fb742645-dc2f-4b76-bf44-8a0a8aa48e09
+                    action_type: 0
+                    service:
+                      name: Team 1 Service 1
+                      unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                    team:
+                      name: Team 1
+                      unique_id: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                    integration_obj:
+                      unique_id: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+                      name: Anodot
+                router: e9be034e-6076-4953-a315-9a3666ffe774
+        '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed. 
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+    put:
+        tags:
+          - Global Router Rule
+        summary: Update the Global Router Rule object
+        description: Updates the position of the Global Router Rule object by setting the position and rule unique id passed in the request body
+        requestBody:
+          description: Request body parameters to update the position of Global Router Rule object
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalRouterRulePositionPayload'
+              example:
+                rule: 12edd6c5-2217-4b53-b635-83083f420dd8
+                position: 1
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GlobalRouterRulePositionPayload'
+              example:
+                rule: 12edd6c5-2217-4b53-b635-83083f420dd8
+                position: 1
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: 
+                schema: 
+                  $ref: '#/components/schemas/GlobalRouterRule'
+                example:
+                  - unique_id: 12edd6c5-2217-4b53-b635-83083f420dd8
+                    name: position 1
+                    position: 1
+                    rule_json: '{"type":"group","id":"9a99988a-0123-4456-b89a-b1607f326fd8","children1":{"8bbbbaba-cdef-4012-b456-7184d20607aa":{"type":"rule","id":"8bbbbaba-cdef-4012-b456-7184d20607aa","properties":{"field":"alert.payload","operator":"payloadsearch","value":["$.payload.summary","testing"],"valueSrc":["value","value"],"operatorOptions":{"ploperator":"equal"},"valueType":["text","text"]},"path":["9a99988a-0123-4456-b89a-b1607f326fd8","8bbbbaba-cdef-4012-b456-7184d20607aa"]}},"properties":{"conjunction":"AND","not":false},"path":["9a99988a-0123-4456-b89a-b1607f326fd8"]}'
+                    actions:
+                      - unique_id: 6d90b452-6b5f-4ea1-8b58-9ad091aba040
+                        action_type: 0
+                        service:
+                          name: Team 1 Service 1
+                          unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                        team:
+                          name: Team 1
+                          unique_id: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                        integration_obj:
+                          unique_id: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+                          name: Anodot
+                      - unique_id: be64664d-ab1d-419a-ab50-d48b05cbc1e6
+                        action_type: 0
+                        service:
+                          name: Team 1 Service 1
+                          unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                        team:
+                          name: Team 1
+                          unique_id: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                        integration_obj:
+                          unique_id: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+                          name: Anodot
+                    router: e9be034e-6076-4953-a315-9a3666ffe774
+                  - unique_id: c757e713-e2c4-40f1-813a-6c82b487d9b2
+                    name: position 2
+                    position: 2
+                    rule_json: '{"type":"group","id":"9a99988a-0123-4456-b89a-b1607f326fd8","children1":{"8bbbbaba-cdef-4012-b456-7184d20607aa":{"type":"rule","id":"8bbbbaba-cdef-4012-b456-7184d20607aa","properties":{"field":"alert.payload","operator":"payloadsearch","value":["$.payload.summary","testing"],"valueSrc":["value","value"],"operatorOptions":{"ploperator":"equal"},"valueType":["text","text"]},"path":["9a99988a-0123-4456-b89a-b1607f326fd8","8bbbbaba-cdef-4012-b456-7184d20607aa"]}},"properties":{"conjunction":"AND","not":false},"path":["9a99988a-0123-4456-b89a-b1607f326fd8"]}'
+                    actions:
+                      - unique_id: 69efe5d0-450e-4842-98ce-2bd4235ed4f7
+                        action_type: 0
+                        service:
+                          name: Team 1 Service 1
+                          unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                        team:
+                          name: Team 1
+                          unique_id: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                        integration_obj:
+                          unique_id: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+                          name: Anodot
+                      - unique_id: ca20dc3c-bbd8-467d-8aba-ad50547858c2
+                        action_type: 0
+                        service:
+                          name: Team 1 Service 1
+                          unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                        team:
+                          name: Team 1
+                          unique_id: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                        integration_obj:
+                          unique_id: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+                          name: Anodot
+                    router: e9be034e-6076-4953-a315-9a3666ffe774
+              application/xml: 
+                schema: 
+                  $ref: '#/components/schemas/GlobalRouterRule'
+                example:
+                  - unique_id: 12edd6c5-2217-4b53-b635-83083f420dd8
+                    name: position 1
+                    position: 1
+                    rule_json: '{"type":"group","id":"9a99988a-0123-4456-b89a-b1607f326fd8","children1":{"8bbbbaba-cdef-4012-b456-7184d20607aa":{"type":"rule","id":"8bbbbaba-cdef-4012-b456-7184d20607aa","properties":{"field":"alert.payload","operator":"payloadsearch","value":["$.payload.summary","testing"],"valueSrc":["value","value"],"operatorOptions":{"ploperator":"equal"},"valueType":["text","text"]},"path":["9a99988a-0123-4456-b89a-b1607f326fd8","8bbbbaba-cdef-4012-b456-7184d20607aa"]}},"properties":{"conjunction":"AND","not":false},"path":["9a99988a-0123-4456-b89a-b1607f326fd8"]}'
+                    actions:
+                      - unique_id: 6d90b452-6b5f-4ea1-8b58-9ad091aba040
+                        action_type: 0
+                        service:
+                          name: Team 1 Service 1
+                          unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                        team:
+                          name: Team 1
+                          unique_id: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                        integration_obj:
+                          unique_id: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+                          name: Anodot
+                      - unique_id: be64664d-ab1d-419a-ab50-d48b05cbc1e6
+                        action_type: 0
+                        service:
+                          name: Team 1 Service 1
+                          unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                        team:
+                          name: Team 1
+                          unique_id: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                        integration_obj:
+                          unique_id: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+                          name: Anodot
+                    router: e9be034e-6076-4953-a315-9a3666ffe774
+                  - unique_id: c757e713-e2c4-40f1-813a-6c82b487d9b2
+                    name: position 2
+                    position: 2
+                    rule_json: '{"type":"group","id":"9a99988a-0123-4456-b89a-b1607f326fd8","children1":{"8bbbbaba-cdef-4012-b456-7184d20607aa":{"type":"rule","id":"8bbbbaba-cdef-4012-b456-7184d20607aa","properties":{"field":"alert.payload","operator":"payloadsearch","value":["$.payload.summary","testing"],"valueSrc":["value","value"],"operatorOptions":{"ploperator":"equal"},"valueType":["text","text"]},"path":["9a99988a-0123-4456-b89a-b1607f326fd8","8bbbbaba-cdef-4012-b456-7184d20607aa"]}},"properties":{"conjunction":"AND","not":false},"path":["9a99988a-0123-4456-b89a-b1607f326fd8"]}'
+                    actions:
+                      - unique_id: 69efe5d0-450e-4842-98ce-2bd4235ed4f7
+                        action_type: 0
+                        service:
+                          name: Team 1 Service 1
+                          unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                        team:
+                          name: Team 1
+                          unique_id: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                        integration_obj:
+                          unique_id: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+                          name: Anodot
+                      - unique_id: ca20dc3c-bbd8-467d-8aba-ad50547858c2
+                        action_type: 0
+                        service:
+                          name: Team 1 Service 1
+                          unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                        team:
+                          name: Team 1
+                          unique_id: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                        integration_obj:
+                          unique_id: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+                          name: Anodot
+                    router: e9be034e-6076-4953-a315-9a3666ffe774
+          '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+          '403':
+            description: Forbidden 
+            content:
+              application/json:
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml:
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+                
+  '/api/v2/account/events/router/{router_id}/rulesets/{ruleset_id}/':
+      parameters: 
+        - name: 'router_id'
+          in: path
+          description: unique_id of the Global Router object
+          schema:
+            type: string
+          required: true
+        - name: 'ruleset_id'
+          in: path
+          description: unique_id of the Global Router Rule object
+          schema:
+            type: string
+          required: true
+      get: 
+        tags:
+        - Global Router Rule
+        summary: Retrieve the Global Router Rule object
+        description: Retrieve the specified Global Router Rule object.
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/GlobalRouterRule'
+                example:
+                  unique_id: 4c9924cc-d051-4e58-978b-d673a7de540a
+                  name: Rule for Grafana Integration
+                  position: 2
+                  rule_json: '{"type":"group","id":"9a99988a-0123-4456-b89a-b1607f326fd8","children1":{"898aa9ba-0123-4456-b89a-b16a429f5d94":{"type":"rule","id":"898aa9ba-0123-4456-b89a-b16a429f5d94","properties":{"field":"alert.payload","operator":"payloadsearch","value":["$.commonLabels.alertname","grafana"],"valueSrc":["value","value"],"operatorOptions":{"ploperator":"equal"},"valueType":["text","text"]},"path":["9a99988a-0123-4456-b89a-b1607f326fd8","898aa9ba-0123-4456-b89a-b16a429f5d94"]}},"properties":{"conjunction":"AND","not":false},"path":["9a99988a-0123-4456-b89a-b1607f326fd8"]}'
+                  actions:
+                    - unique_id: fb742645-dc2f-4b76-bf44-8a0a8aa48e09
+                      action_type: 0
+                      service:
+                        name: Team 1 Service 1
+                        unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                      team:
+                        name: Team 1
+                        unique_id: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                      integration_obj:
+                        unique_id: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+                        name: Anodot
+                  router: e9be034e-6076-4953-a315-9a3666ffe774
+              application/xml:
+                schema:
+                  $ref: '#/components/schemas/GlobalRouterRule'
+                example:
+                  unique_id: 4c9924cc-d051-4e58-978b-d673a7de540a
+                  name: Rule for Grafana Integration
+                  position: 2
+                  rule_json: '{"type":"group","id":"9a99988a-0123-4456-b89a-b1607f326fd8","children1":{"898aa9ba-0123-4456-b89a-b16a429f5d94":{"type":"rule","id":"898aa9ba-0123-4456-b89a-b16a429f5d94","properties":{"field":"alert.payload","operator":"payloadsearch","value":["$.commonLabels.alertname","grafana"],"valueSrc":["value","value"],"operatorOptions":{"ploperator":"equal"},"valueType":["text","text"]},"path":["9a99988a-0123-4456-b89a-b1607f326fd8","898aa9ba-0123-4456-b89a-b16a429f5d94"]}},"properties":{"conjunction":"AND","not":false},"path":["9a99988a-0123-4456-b89a-b1607f326fd8"]}'
+                  actions:
+                    - unique_id: fb742645-dc2f-4b76-bf44-8a0a8aa48e09
+                      action_type: 0
+                      service:
+                        name: Team 1 Service 1
+                        unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                      team:
+                        name: Team 1
+                        unique_id: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                      integration_obj:
+                        unique_id: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+                        name: Anodot
+                  router: e9be034e-6076-4953-a315-9a3666ffe774
+          '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+          '403':
+            description: Forbidden 
+            content:
+              application/json:
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml:
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+      put:
+        tags:
+          - Global Router Rule
+        summary: Update the Global Router Rule data
+        description: Updates the specified Global Router Rule object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
+        requestBody:
+          description: Request body parameters to update the Global Router Rule object
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalRouterRulePayload'
+              example:
+                name: Rule for Grafana Integration Updated
+                rule_json: '{"type":"group","id":"9a99988a-0123-4456-b89a-b1607f326fd8","children1":{"898aa9ba-0123-4456-b89a-b16a429f5d94":{"type":"rule","id":"898aa9ba-0123-4456-b89a-b16a429f5d94","properties":{"field":"alert.payload","operator":"payloadsearch","value":["$.commonLabels.alertname","grafana"],"valueSrc":["value","value"],"operatorOptions":{"ploperator":"equal"},"valueType":["text","text"]},"path":["9a99988a-0123-4456-b89a-b1607f326fd8","898aa9ba-0123-4456-b89a-b16a429f5d94"]}},"properties":{"conjunction":"AND","not":false},"path":["9a99988a-0123-4456-b89a-b1607f326fd8"]}'
+                actions:
+                  - action_type: 0
+                    integration: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GlobalRouterRulePayload'
+              example:
+                name: Rule for Grafana Integration Updated
+                rule_json: '{"type":"group","id":"9a99988a-0123-4456-b89a-b1607f326fd8","children1":{"898aa9ba-0123-4456-b89a-b16a429f5d94":{"type":"rule","id":"898aa9ba-0123-4456-b89a-b16a429f5d94","properties":{"field":"alert.payload","operator":"payloadsearch","value":["$.commonLabels.alertname","grafana"],"valueSrc":["value","value"],"operatorOptions":{"ploperator":"equal"},"valueType":["text","text"]},"path":["9a99988a-0123-4456-b89a-b1607f326fd8","898aa9ba-0123-4456-b89a-b16a429f5d94"]}},"properties":{"conjunction":"AND","not":false},"path":["9a99988a-0123-4456-b89a-b1607f326fd8"]}'
+                actions:
+                  - action_type: 0
+                    integration: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json: 
+                schema: 
+                  $ref: '#/components/schemas/GlobalRouterRule'
+                example:
+                  unique_id: 4c9924cc-d051-4e58-978b-d673a7de540a
+                  name: Rule for Grafana Integration Updated
+                  position: 2
+                  rule_json: '{"type":"group","id":"9a99988a-0123-4456-b89a-b1607f326fd8","children1":{"898aa9ba-0123-4456-b89a-b16a429f5d94":{"type":"rule","id":"898aa9ba-0123-4456-b89a-b16a429f5d94","properties":{"field":"alert.payload","operator":"payloadsearch","value":["$.commonLabels.alertname","grafana"],"valueSrc":["value","value"],"operatorOptions":{"ploperator":"equal"},"valueType":["text","text"]},"path":["9a99988a-0123-4456-b89a-b1607f326fd8","898aa9ba-0123-4456-b89a-b16a429f5d94"]}},"properties":{"conjunction":"AND","not":false},"path":["9a99988a-0123-4456-b89a-b1607f326fd8"]}'
+                  actions:
+                    - unique_id: d926e67a-60ae-4ed4-8ece-b93c31da6bc7
+                      action_type: 0
+                      service:
+                        name: Team 1 Service 1
+                        unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                      team:
+                        name: Team 1
+                        unique_id: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                      integration_obj:
+                        unique_id: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+                        name: Anodot
+                  router: e9be034e-6076-4953-a315-9a3666ffe774
+              application/xml: 
+                schema: 
+                  $ref: '#/components/schemas/GlobalRouterRule'
+                example:
+                  unique_id: 4c9924cc-d051-4e58-978b-d673a7de540a
+                  name: Rule for Grafana Integration Updated
+                  position: 2
+                  rule_json: '{"type":"group","id":"9a99988a-0123-4456-b89a-b1607f326fd8","children1":{"898aa9ba-0123-4456-b89a-b16a429f5d94":{"type":"rule","id":"898aa9ba-0123-4456-b89a-b16a429f5d94","properties":{"field":"alert.payload","operator":"payloadsearch","value":["$.commonLabels.alertname","grafana"],"valueSrc":["value","value"],"operatorOptions":{"ploperator":"equal"},"valueType":["text","text"]},"path":["9a99988a-0123-4456-b89a-b1607f326fd8","898aa9ba-0123-4456-b89a-b16a429f5d94"]}},"properties":{"conjunction":"AND","not":false},"path":["9a99988a-0123-4456-b89a-b1607f326fd8"]}'
+                  actions:
+                    - unique_id: d926e67a-60ae-4ed4-8ece-b93c31da6bc7
+                      action_type: 0
+                      service:
+                        name: Team 1 Service 1
+                        unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                      team:
+                        name: Team 1
+                        unique_id: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                      integration_obj:
+                        unique_id: 0c4e939d-6d54-401e-ad83-6114368bdd0b
+                        name: Anodot
+                  router: e9be034e-6076-4953-a315-9a3666ffe774
+          '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+          '403':
+            description: Forbidden 
+            content:
+              application/json:
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml:
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+      delete: 
+        tags:
+        - Global Router Rule
+        summary: Delete the Global Router Rule data
+        description: Delete the specified Global Router Rule object permanently.
+        responses:
+          '204':
+            description: Success
+          '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+          '403':
+            description: Forbidden 
+            content:
+              application/json:
+                example:
+                  detail: You do not have permission to perform this action.
+              application/xml:
+                example:
+                  detail: You do not have permission to perform this action.
+          '404':
             description: Not Found 
             content:
               application/json:
@@ -9144,6 +10361,41 @@ components:
         note:
           type: string
           description: A string that represents the Incident Note object's note data
+          
+    IncidentTag:
+      description: Incident Tag object schema
+      type: object
+      properties:
+        unique_id: 
+          type: string
+          description: A system-generated string that represents the Incident Tag object's unique_id
+        incident:
+          type: integer
+          description: An integer that represents the Incident object's incident_number
+        creation_date: 
+          type: string
+          format: date-time
+          description: A formatted string that represents the Incident Tag object's creation_date
+        name:
+          type: string
+          description: A string that represents the Incident Tag object's name
+        color:
+          type: string
+          description: A string that represents the Incident Tag object's color
+        tag_id:
+          type: string
+          description: A system-generated string that represents the Team Tag object's unique_id
+        team_tag:
+          type: string
+          description: A system-generated string that represents the Team Tag object's unique_id
+        
+    IncidentTagPayload:
+      type: object
+      description: Payload schema for the Incident Tag object
+      properties:
+        team_tag:
+          type: string
+          description: A system-generated string that represents the Team Tag object's unique_id
         
     Event:
       type: object
@@ -9829,6 +11081,92 @@ components:
               description: A string that represents the Team object's name
         user:
           $ref: '#/components/schemas/User'
+          
+    GlobalRouter:
+        description: Global Router object schema
+        type: object
+        properties:
+          unique_id: 
+            type: string
+            description: A system-generated string that represents the Global Router object's unique_id
+          name:
+            type: string
+            description: A string that represents the Global Router object's name
+          description:
+            type: string
+            description: A string that represents the Global Router object's description
+          account: 
+            type: string
+            description: A system-generated string that represents the Account object's unique_id
+          is_enabled: 
+            type: boolean
+            description: A boolean tag that represents weather the Global Router object's is enabled or not
+          integration_key:
+            type: string
+            description: A system-generated string that represents the Integration object's integration_key
+        
+    GlobalRouterPayload:
+      type: object
+      description: Payload schema for the Global Router object
+      properties:
+        name:
+          type: string
+          description: A string that represents the Global Router object's name
+        description:
+          type: string
+          description: A string that represents the Global Router object's description
+          
+    GlobalRouterRule:
+      description: Global Router Rule object schema
+      type: object
+      properties:
+        unique_id: 
+          type: string
+          description: A system-generated string that represents the Global Router Rule object's unique_id
+        name:
+          type: string
+          description: A string that represents the Global Router Rule object's name
+        position:
+          type: integer
+          description: An integer that represents the Global Router Rule object's position
+        rule_json:
+          type: string
+          description: A string that represents the rule json of Global Router Rule object
+        actions: 
+          type: array
+          description: An array of Global Router Rule Action objects
+          items:
+            $ref: '#/components/schemas/GlobalRouterRuleAction'
+        router:
+          type: string
+          description: A system-generated string that represents the Global Router object's unique_id
+        
+    GlobalRouterRulePayload:
+      description: Payload schema for Global Router Rule object
+      type: object
+      properties:
+        name:
+          type: string
+          description: A string that represents the Global Router Rule object's name
+        rule_json:
+          type: string
+          description: A string that represents the rule json of Global Router Rule object
+        actions: 
+          type: array
+          description: An array of Global Router Rule Action objects
+          items:
+            $ref: '#/components/schemas/GlobalRouterRuleActionPayload'
+          
+    GlobalRouterRulePositionPayload:
+      type: object
+      description: Payload schema for the Global Router Rule position update object
+      properties:
+        rule:
+          type: string
+          description: A system generated string that represents the unique id of the Global Router Rule object
+        position:
+          type: integer
+          description: An integer that represents that position of the Global Router Rule object
     
 
 
@@ -10172,6 +11510,60 @@ components:
         note_text:
           type: string
           description: A string that represents the Event Note object's note_text
+          
+    GlobalRouterRuleAction:
+      type: object
+      description: Global Router Rule Action object schema
+      properties:
+        unique_id:
+          type: string
+          description: A system generated string that represents the unique id of Global Router Rule object
+        action_type: 
+          type: integer
+          description: An integer that represents the action type of the Global Router Rule Action object
+        service: 
+          type: object
+          description: Service object for Global Router Rule Action object
+          properties:
+            name:
+              type: string
+              description: A string that represents name of the Service object
+            unique_id:
+              type: string
+              description: A system generated string that represents the unique_id of the Service object
+        team: 
+          type: object
+          description: Team object for Global Router Rule Action object
+          properties:
+            name:
+              type: string
+              description: A string that represents name of the Team object
+            unique_id:
+              type: string
+              description: A system generated string that represents the unique_id of the Team object
+        integration_obj: 
+          type: object
+          description: Integration object for Global Router Rule Action object
+          properties:
+            name:
+              type: string
+              description: A string that represents name of the Integration object
+            unique_id:
+              type: string
+              description: A system generated string that represents the unique_id of the Integration object
+              
+    GlobalRouterRuleActionPayload:
+      type: object
+      description: Payload schema for Global Router Rule Action object
+      properties:
+        action_type: 
+          type: integer
+          description: An integer that represents the action type of the Global Router Rule Action object
+        integration: 
+          type: string
+          description: A system generated string that represents the unique id of the integration object
+              
+        
             
     
             
