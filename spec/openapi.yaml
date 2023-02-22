@@ -8302,15 +8302,15 @@ paths:
     get: 
       tags:
       - OnCall
-      summary: List all OnCall objects
-      description: Returns a list of Team objects.
+      summary: List all Escalation Policy OnCall object's in a Team V1
+      description: Returns all OnCall Users of a Team Escalation Policies.
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema: 
-                $ref: '#/components/schemas/OnCall'
+                $ref: '#/components/schemas/EscalationPolicyOnCallV1'
               example:
                - escalation_policy:
                    name: Default Escalation Policy
@@ -8354,7 +8354,7 @@ paths:
                      last_name: Krishnakumar
             application/xml:
               schema: 
-                $ref: '#/components/schemas/OnCall'
+                $ref: '#/components/schemas/EscalationPolicyOnCallV1'
               example:
                - escalation_policy:
                    name: Default Escalation Policy
@@ -8396,6 +8396,517 @@ paths:
                      first_name: Vishwa
                      email: vishwa@yellowant.com
                      last_name: Krishnakumar
+        '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json: 
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml: 
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+                  
+  '/api/v2/account/teams/{team_id}/oncall/':
+    parameters: 
+    - name: 'team_id'
+      in: path
+      description: Unique ID of a Team
+      schema:
+        type: string
+      required: true
+    get: 
+      tags:
+      - OnCall
+      summary: List all Escalation Policy OnCall object's in a Team V2
+      description: Returns all OnCall Users of a Team Escalation Policies.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/EscalationPolicyOnCallV2'
+              example:
+               - unique_id: 0c9120eb-12a7-4daa-a23b-64e208dcb6a3
+                 name: Default Escalation Policy
+                 oncalls:
+                   - ep_rule: 5bf14fc1-67a5-4f51-bc7b-33be2f4454c4
+                     position: 1
+                     delay: 0
+                     oncalls:
+                       - username: d24b310c-b9b2-4cc7-aa4b-4
+                         first_name: Nitin
+                         last_name: Chavan
+                         email: initinbc@gmail.com
+                   - ep_rule: f433c672-fa4b-40c8-92cc-2641c0705f54
+                     position: 2
+                     delay: 2
+                     oncalls:
+                       - username: b115be42-9c4f-4277-a885-9
+                         first_name: Deepak .D
+                         last_name: Kumar
+                         email: deepakdx7@gmail.com
+                       - username: fc02c22a-da4b-4807-bbf7-5
+                         first_name: Ankur
+                         last_name: Rawal
+                         email: ankurrawalnitk@gmail.com
+                   - ep_rule: a24ffd7e-adb9-4c2e-ac6a-6320988f8c98
+                     position: 3
+                     delay: 4
+                     oncalls:
+                       - username: fc02c22a-da4b-4807-bbf7-5
+                         first_name: Ankur
+                         last_name: Rawal
+                         email: ankurrawalnitk@gmail.com
+               - unique_id: 77fefd9e-e96c-4992-a63b-8995f2740cf1
+                 name: TEST DELAY
+                 oncalls:
+                   - ep_rule: cee87bfb-85d4-420e-b7aa-25b9e25b53c7
+                     position: 1
+                     delay: 0
+                     oncalls:
+                       - username: 259d67f8-c975-4403-b9b8-8
+                         first_name: Michael
+                         last_name: Scott
+                         email: dheerukreddy@gmail.com
+                       - username: 18e76e66-7c24-4daa-9c58-e
+                         first_name: nithin
+                         last_name: ' '
+                         email: nithin@zenduty.com
+                       - username: b115be42-9c4f-4277-a885-9
+                         first_name: Deepak .D
+                         last_name: Kumar
+                         email: deepakdx7@gmail.com
+                   - ep_rule: 03dc65e5-268a-41df-aae4-6313cad3d8a6
+                     position: 2
+                     delay: 2
+                     oncalls:
+                       - username: fc02c22a-da4b-4807-bbf7-5
+                         first_name: Ankur
+                         last_name: Rawal
+                         email: ankurrawalnitk@gmail.com
+                   - ep_rule: 43ade01e-6443-4ab7-91c9-5d9061b509da
+                     position: 3
+                     delay: 5
+                     oncalls:
+                       - username: b115be42-9c4f-4277-a885-9
+                         first_name: Deepak .D
+                         last_name: Kumar
+                         email: deepakdx7@gmail.com
+                       - username: fc02c22a-da4b-4807-bbf7-5
+                         first_name: Ankur
+                         last_name: Rawal
+                         email: ankurrawalnitk@gmail.com
+               - unique_id: 7c8e75dd-ad6a-46a8-98e4-70bd4416462a
+                 name: Test schedule deletion
+                 oncalls:
+                   - ep_rule: 54c082b4-9a38-43d6-889f-2d2f70725af5
+                     position: 1
+                     delay: 0
+                     oncalls: []
+                   - ep_rule: fb0fa91c-cc3d-4090-9c68-e1801b6318c7
+                     position: 2
+                     delay: 1
+                     oncalls:
+                       - username: b115be42-9c4f-4277-a885-9
+                         first_name: Deepak .D
+                         last_name: Kumar
+                         email: deepakdx7@gmail.com
+                       - username: fc02c22a-da4b-4807-bbf7-5
+                         first_name: Ankur
+                         last_name: Rawal
+                         email: ankurrawalnitk@gmail.com
+               - unique_id: 83ea11e4-52cb-46f6-9f55-b0037c792078
+                 name: test preserve resolve incident
+                 oncalls:
+                   - ep_rule: e33daa6b-2814-4e5b-ac1d-0feef28c4aad
+                     position: 1
+                     delay: 0
+                     oncalls:
+                       - username: 08a4805c-8f07-4221-85c2-1
+                         first_name: Test
+                         last_name: Rajput
+                         email: anshulrajput229@gmail.com
+            application/xml:
+              schema: 
+                $ref: '#/components/schemas/EscalationPolicyOnCallV2'
+              example:
+               - unique_id: 0c9120eb-12a7-4daa-a23b-64e208dcb6a3
+                 name: Default Escalation Policy
+                 oncalls:
+                   - ep_rule: 5bf14fc1-67a5-4f51-bc7b-33be2f4454c4
+                     position: 1
+                     delay: 0
+                     oncalls:
+                       - username: d24b310c-b9b2-4cc7-aa4b-4
+                         first_name: Nitin
+                         last_name: Chavan
+                         email: initinbc@gmail.com
+                   - ep_rule: f433c672-fa4b-40c8-92cc-2641c0705f54
+                     position: 2
+                     delay: 2
+                     oncalls:
+                       - username: b115be42-9c4f-4277-a885-9
+                         first_name: Deepak .D
+                         last_name: Kumar
+                         email: deepakdx7@gmail.com
+                       - username: fc02c22a-da4b-4807-bbf7-5
+                         first_name: Ankur
+                         last_name: Rawal
+                         email: ankurrawalnitk@gmail.com
+                   - ep_rule: a24ffd7e-adb9-4c2e-ac6a-6320988f8c98
+                     position: 3
+                     delay: 4
+                     oncalls:
+                       - username: fc02c22a-da4b-4807-bbf7-5
+                         first_name: Ankur
+                         last_name: Rawal
+                         email: ankurrawalnitk@gmail.com
+               - unique_id: 77fefd9e-e96c-4992-a63b-8995f2740cf1
+                 name: TEST DELAY
+                 oncalls:
+                   - ep_rule: cee87bfb-85d4-420e-b7aa-25b9e25b53c7
+                     position: 1
+                     delay: 0
+                     oncalls:
+                       - username: 259d67f8-c975-4403-b9b8-8
+                         first_name: Michael
+                         last_name: Scott
+                         email: dheerukreddy@gmail.com
+                       - username: 18e76e66-7c24-4daa-9c58-e
+                         first_name: nithin
+                         last_name: ' '
+                         email: nithin@zenduty.com
+                       - username: b115be42-9c4f-4277-a885-9
+                         first_name: Deepak .D
+                         last_name: Kumar
+                         email: deepakdx7@gmail.com
+                   - ep_rule: 03dc65e5-268a-41df-aae4-6313cad3d8a6
+                     position: 2
+                     delay: 2
+                     oncalls:
+                       - username: fc02c22a-da4b-4807-bbf7-5
+                         first_name: Ankur
+                         last_name: Rawal
+                         email: ankurrawalnitk@gmail.com
+                   - ep_rule: 43ade01e-6443-4ab7-91c9-5d9061b509da
+                     position: 3
+                     delay: 5
+                     oncalls:
+                       - username: b115be42-9c4f-4277-a885-9
+                         first_name: Deepak .D
+                         last_name: Kumar
+                         email: deepakdx7@gmail.com
+                       - username: fc02c22a-da4b-4807-bbf7-5
+                         first_name: Ankur
+                         last_name: Rawal
+                         email: ankurrawalnitk@gmail.com
+               - unique_id: 7c8e75dd-ad6a-46a8-98e4-70bd4416462a
+                 name: Test schedule deletion
+                 oncalls:
+                   - ep_rule: 54c082b4-9a38-43d6-889f-2d2f70725af5
+                     position: 1
+                     delay: 0
+                     oncalls: []
+                   - ep_rule: fb0fa91c-cc3d-4090-9c68-e1801b6318c7
+                     position: 2
+                     delay: 1
+                     oncalls:
+                       - username: b115be42-9c4f-4277-a885-9
+                         first_name: Deepak .D
+                         last_name: Kumar
+                         email: deepakdx7@gmail.com
+                       - username: fc02c22a-da4b-4807-bbf7-5
+                         first_name: Ankur
+                         last_name: Rawal
+                         email: ankurrawalnitk@gmail.com
+               - unique_id: 83ea11e4-52cb-46f6-9f55-b0037c792078
+                 name: test preserve resolve incident
+                 oncalls:
+                   - ep_rule: e33daa6b-2814-4e5b-ac1d-0feef28c4aad
+                     position: 1
+                     delay: 0
+                     oncalls:
+                       - username: 08a4805c-8f07-4221-85c2-1
+                         first_name: Test
+                         last_name: Rajput
+                         email: anshulrajput229@gmail.com
+        '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json: 
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml: 
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+                  
+  '/api/v2/account/teams/{team_id}/escalation_policies/{ep_id}/oncall/':
+    parameters: 
+    - name: 'team_id'
+      in: path
+      description: Unique ID of a Team
+      schema:
+        type: string
+      required: true
+    - name: 'ep_id'
+      in: path
+      description: Unique ID of an Escalation Policy
+      schema:
+        type: string
+      required: true
+    get: 
+      tags:
+      - OnCall
+      summary: Retrieve Escalation Policy OnCall object in an Escalation Policy
+      description: Returns all OnCall Users of an Escalation Policy.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/EscalationPolicyOnCallV2'
+              example:
+               - unique_id: 77fefd9e-e96c-4992-a63b-8995f2740cf1
+                 name: TEST DELAY
+                 oncalls:
+                   - ep_rule: cee87bfb-85d4-420e-b7aa-25b9e25b53c7
+                     position: 1
+                     delay: 0
+                     oncalls:
+                       - username: 259d67f8-c975-4403-b9b8-8
+                         first_name: Michael
+                         last_name: Scott
+                         email: dheerukreddy@gmail.com
+                       - username: 18e76e66-7c24-4daa-9c58-e
+                         first_name: nithin
+                         last_name: ' '
+                         email: nithin@zenduty.com
+                       - username: b115be42-9c4f-4277-a885-9
+                         first_name: Deepak .D
+                         last_name: Kumar
+                         email: deepakdx7@gmail.com
+                   - ep_rule: 03dc65e5-268a-41df-aae4-6313cad3d8a6
+                     position: 2
+                     delay: 2
+                     oncalls:
+                       - username: fc02c22a-da4b-4807-bbf7-5
+                         first_name: Ankur
+                         last_name: Rawal
+                         email: ankurrawalnitk@gmail.com
+                   - ep_rule: 43ade01e-6443-4ab7-91c9-5d9061b509da
+                     position: 3
+                     delay: 5
+                     oncalls:
+                       - username: b115be42-9c4f-4277-a885-9
+                         first_name: Deepak .D
+                         last_name: Kumar
+                         email: deepakdx7@gmail.com
+                       - username: fc02c22a-da4b-4807-bbf7-5
+                         first_name: Ankur
+                         last_name: Rawal
+                         email: ankurrawalnitk@gmail.com
+            application/xml:
+              schema: 
+                $ref: '#/components/schemas/EscalationPolicyOnCallV2'
+              example:
+               - unique_id: 77fefd9e-e96c-4992-a63b-8995f2740cf1
+                 name: TEST DELAY
+                 oncalls:
+                   - ep_rule: cee87bfb-85d4-420e-b7aa-25b9e25b53c7
+                     position: 1
+                     delay: 0
+                     oncalls:
+                       - username: 259d67f8-c975-4403-b9b8-8
+                         first_name: Michael
+                         last_name: Scott
+                         email: dheerukreddy@gmail.com
+                       - username: 18e76e66-7c24-4daa-9c58-e
+                         first_name: nithin
+                         last_name: ' '
+                         email: nithin@zenduty.com
+                       - username: b115be42-9c4f-4277-a885-9
+                         first_name: Deepak .D
+                         last_name: Kumar
+                         email: deepakdx7@gmail.com
+                   - ep_rule: 03dc65e5-268a-41df-aae4-6313cad3d8a6
+                     position: 2
+                     delay: 2
+                     oncalls:
+                       - username: fc02c22a-da4b-4807-bbf7-5
+                         first_name: Ankur
+                         last_name: Rawal
+                         email: ankurrawalnitk@gmail.com
+                   - ep_rule: 43ade01e-6443-4ab7-91c9-5d9061b509da
+                     position: 3
+                     delay: 5
+                     oncalls:
+                       - username: b115be42-9c4f-4277-a885-9
+                         first_name: Deepak .D
+                         last_name: Kumar
+                         email: deepakdx7@gmail.com
+                       - username: fc02c22a-da4b-4807-bbf7-5
+                         first_name: Ankur
+                         last_name: Rawal
+                         email: ankurrawalnitk@gmail.com
+        '400':
+            description: Bad Request 
+            content:
+              application/json:
+                example:
+                  detail: This request can not be processed.
+              application/xml:
+                example:
+                  detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json: 
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml: 
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+                  
+  '/api/v2/account/teams/{team_id}/services/{service_id}/oncall/':
+    parameters: 
+    - name: 'team_id'
+      in: path
+      description: Unique ID of a Team
+      schema:
+        type: string
+      required: true
+    - name: 'service_id'
+      in: path
+      description: Unique ID of a Service
+      schema:
+        type: string
+      required: true
+    get: 
+      tags:
+      - OnCall
+      summary: Retrieve Escalation Policy OnCall object in a Service
+      description: Returns all OnCall Users of a Service Escalation Policy.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/EscalationPolicyOnCallV2'
+              example:
+               - unique_id: 0c9120eb-12a7-4daa-a23b-64e208dcb6a3
+                 name: Default Escalation Policy
+                 oncalls:
+                   - ep_rule: 5bf14fc1-67a5-4f51-bc7b-33be2f4454c4
+                     position: 1
+                     delay: 0
+                     oncalls:
+                       - username: d24b310c-b9b2-4cc7-aa4b-4
+                         first_name: Nitin
+                         last_name: Chavan
+                         email: initinbc@gmail.com
+                   - ep_rule: f433c672-fa4b-40c8-92cc-2641c0705f54
+                     position: 2
+                     delay: 2
+                     oncalls:
+                       - username: b115be42-9c4f-4277-a885-9
+                         first_name: Deepak .D
+                         last_name: Kumar
+                         email: deepakdx7@gmail.com
+                       - username: fc02c22a-da4b-4807-bbf7-5
+                         first_name: Ankur
+                         last_name: Rawal
+                         email: ankurrawalnitk@gmail.com
+                   - ep_rule: a24ffd7e-adb9-4c2e-ac6a-6320988f8c98
+                     position: 3
+                     delay: 4
+                     oncalls:
+                       - username: fc02c22a-da4b-4807-bbf7-5
+                         first_name: Ankur
+                         last_name: Rawal
+                         email: ankurrawalnitk@gmail.com
+            application/xml:
+              schema: 
+                $ref: '#/components/schemas/EscalationPolicyOnCallV2'
+              example:
+               - unique_id: 0c9120eb-12a7-4daa-a23b-64e208dcb6a3
+                 name: Default Escalation Policy
+                 oncalls:
+                   - ep_rule: 5bf14fc1-67a5-4f51-bc7b-33be2f4454c4
+                     position: 1
+                     delay: 0
+                     oncalls:
+                       - username: d24b310c-b9b2-4cc7-aa4b-4
+                         first_name: Nitin
+                         last_name: Chavan
+                         email: initinbc@gmail.com
+                   - ep_rule: f433c672-fa4b-40c8-92cc-2641c0705f54
+                     position: 2
+                     delay: 2
+                     oncalls:
+                       - username: b115be42-9c4f-4277-a885-9
+                         first_name: Deepak .D
+                         last_name: Kumar
+                         email: deepakdx7@gmail.com
+                       - username: fc02c22a-da4b-4807-bbf7-5
+                         first_name: Ankur
+                         last_name: Rawal
+                         email: ankurrawalnitk@gmail.com
+                   - ep_rule: a24ffd7e-adb9-4c2e-ac6a-6320988f8c98
+                     position: 3
+                     delay: 4
+                     oncalls:
+                       - username: fc02c22a-da4b-4807-bbf7-5
+                         first_name: Ankur
+                         last_name: Rawal
+                         email: ankurrawalnitk@gmail.com
         '400':
             description: Bad Request 
             content:
@@ -8757,7 +9268,7 @@ paths:
           required: true
     post:
       tags:
-        - Global Router Rule
+        - Global Router Rules
       summary: Create the Global Router Rule object
       description: Create the Global Router Rule object by setting the values of all the required parameters passed in the request body.
       requestBody:
@@ -8847,7 +9358,7 @@ paths:
                   detail: Not Found.
     get: 
       tags:
-      - Global Router Rule 
+      - Global Router Rules 
       summary: List all Global Router Rule objects
       description: Returns a list of Global Router Rule objects.
       responses:
@@ -8978,7 +9489,7 @@ paths:
                   detail: Not Found.
     put:
         tags:
-          - Global Router Rule
+          - Global Router Rules
         summary: Update the Global Router Rule object
         description: Updates the position of the Global Router Rule object by setting the position and rule unique id passed in the request body
         requestBody:
@@ -9165,7 +9676,7 @@ paths:
           required: true
       get: 
         tags:
-        - Global Router Rule
+        - Global Router Rules
         summary: Retrieve the Global Router Rule object
         description: Retrieve the specified Global Router Rule object.
         responses:
@@ -9243,7 +9754,7 @@ paths:
                   detail: Not Found.
       put:
         tags:
-          - Global Router Rule
+          - Global Router Rules
         summary: Update the Global Router Rule data
         description: Updates the specified Global Router Rule object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
         requestBody:
@@ -9343,7 +9854,7 @@ paths:
                   detail: Not Found.
       delete: 
         tags:
-        - Global Router Rule
+        - Global Router Rules
         summary: Delete the Global Router Rule data
         description: Delete the specified Global Router Rule object permanently.
         responses:
@@ -11043,9 +11554,9 @@ components:
           default: 0
           description: An integer that represents the Postmortem object's download_status. 1 is uninitiated, 2 is initiated, 3 is finished and 4 is error
           
-    OnCall:
+    EscalationPolicyOnCallV1:
       type: object
-      description: OnCall object schema
+      description: Team OnCall object schema v1
       properties:
         escalation_policy:
           type: object
@@ -11081,6 +11592,22 @@ components:
               description: A string that represents the Team object's name
         user:
           $ref: '#/components/schemas/User'
+          
+    EscalationPolicyOnCallV2:
+      type: object
+      description: Team OnCall object schema v2
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Escalation Policy object's unique_id
+        name:
+          type: string
+          description: A string that represents the Escalation Policy object's name
+        oncalls: 
+          type: array
+          description: An array of Escalation Policy Rule OnCall objects
+          items:
+            $ref: '#/components/schemas/EscalationPolicyRuleOnCall'
           
     GlobalRouter:
         description: Global Router object schema
@@ -11562,6 +12089,25 @@ components:
         integration: 
           type: string
           description: A system generated string that represents the unique id of the integration object
+          
+    EscalationPolicyRuleOnCall:
+      type: object
+      description: Escalation Policy OnCall object schema
+      properties:
+        ep_rule:
+          type: string
+          description: A system-generated string that represents the Escalation Policy object's unique_id
+        position:
+          type: integer
+          description: An integer that represents the Escalation Policy Rule object's position in an Escalation Policy
+        delay:
+          type: integer
+          description: An integer that represents the Escalation Policy Rule object's delay in an Escalation Policy
+        oncalls: 
+          type: array
+          description: An array of User objects who is on call in an Escalation Policy Rule
+          items:
+            $ref: '#/components/schemas/User'
               
         
             
