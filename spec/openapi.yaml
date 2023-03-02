@@ -40,6 +40,12 @@ tags:
   description: This object represents the custom role of the account. Each custom role object has custom permissions which the account admin can set from account level permissions and assign this custom role to a particular user.
 - name: User Custom Role
   description: This object represents the user custom role. Each user can be assigned to only one custom role.
+- name: Notification Rule
+  description: This object represents the user notification rule. A user can have notification rule for high urgency and low urgency incidents.
+- name: Forwarding Rule
+  description: This object represents the user forwarding rule. A user can forward his notification to the other account members in case of an incident occur.
+- name: Contact Method
+  description: This object represents one of the following communication channels(Email, SMS, Phone Call, Slack, Microsoft Team, Google Chat). A user can add multiple contacts methods.
 - name: Teams
   description: This object represents the team of the account. It lets you create different independent operational units in account. You can check out the team docs here https://docs.zenduty.com/docs/teams.
 - name: Team Members
@@ -946,6 +952,809 @@ paths:
                 custom_role: ddf61a4d-6489-4665-bee6-7e21205f9d6f
                 custom_role_details:
                   name: Role Updated
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+                  
+  '/api/account/users/{username}/notification_rules/':
+    parameters: 
+        - name: 'username'
+          in: path
+          description: username of the User object
+          schema:
+            type: string
+          required: true
+    post:
+      tags:
+        - Notification Rule
+      summary: Create the User Notification Rule object
+      description: Create the User Notification Rule object by setting the values of all the required parameters passed in the request body.
+      requestBody:
+        description: Request body parameters to create the User Notification Rule object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserNotificationRulePayload'
+            example: 
+              start_delay: 0
+              contact: caabda03-5e15-4cf1-b293-fab41b688ac7
+              urgency: 1
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/UserNotificationRulePayload'
+            example: 
+              start_delay: 0
+              contact: caabda03-5e15-4cf1-b293-fab41b688ac7
+              urgency: 1
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNotificationRule'
+              example:
+                creation_date: '2023-03-01T15:28:35.582391Z'
+                start_delay: 0
+                type: ''
+                unique_id: 3433edb5-f589-4227-baa5-a6646d93e76b
+                contact: caabda03-5e15-4cf1-b293-fab41b688ac7
+                urgency: 1
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserNotificationRule'
+              example:
+                creation_date: '2023-03-01T15:28:35.582391Z'
+                start_delay: 0
+                type: ''
+                unique_id: 3433edb5-f589-4227-baa5-a6646d93e76b
+                contact: caabda03-5e15-4cf1-b293-fab41b688ac7
+                urgency: 1
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+    get: 
+      tags:
+      - Notification Rule
+      summary: List all User Notification Rule objects
+      description: Returns a list of User Notification Rule objects.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNotificationRule'
+              example:
+                - creation_date: '2023-03-01T15:20:45.565595Z'
+                  start_delay: 0
+                  type: ''
+                  unique_id: 1d757ec0-39d3-4cd0-9536-7e0bb3e2665c
+                  contact: 374d3e48-b4bd-438d-8e18-d69ddeadd183
+                  urgency: 1
+                - creation_date: '2023-03-01T15:20:45.922128Z'
+                  start_delay: 0
+                  type: ''
+                  unique_id: 68ed337e-8481-4cca-81da-b35342660377
+                  contact: caabda03-5e15-4cf1-b293-fab41b688ac7
+                  urgency: 1
+                - creation_date: '2023-03-01T15:28:35.582391Z'
+                  start_delay: 5
+                  type: ''
+                  unique_id: 3433edb5-f589-4227-baa5-a6646d93e76b
+                  contact: caabda03-5e15-4cf1-b293-fab41b688ac7
+                  urgency: 1
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserNotificationRule'
+              example:
+                - creation_date: '2023-03-01T15:20:45.565595Z'
+                  start_delay: 0
+                  type: ''
+                  unique_id: 1d757ec0-39d3-4cd0-9536-7e0bb3e2665c
+                  contact: 374d3e48-b4bd-438d-8e18-d69ddeadd183
+                  urgency: 1
+                - creation_date: '2023-03-01T15:20:45.922128Z'
+                  start_delay: 0
+                  type: ''
+                  unique_id: 68ed337e-8481-4cca-81da-b35342660377
+                  contact: caabda03-5e15-4cf1-b293-fab41b688ac7
+                  urgency: 1
+                - creation_date: '2023-03-01T15:28:35.582391Z'
+                  start_delay: 5
+                  type: ''
+                  unique_id: 3433edb5-f589-4227-baa5-a6646d93e76b
+                  contact: caabda03-5e15-4cf1-b293-fab41b688ac7
+                  urgency: 1
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+                  
+  '/api/account/users/{username}/notification_rules/{notification_rule_id}/':
+    parameters: 
+        - name: 'username'
+          in: path
+          description: username of the User object
+          schema:
+            type: string
+          required: true
+        - name: 'notification_rule_id'
+          in: path
+          description: unique_id of the User Notification Rule object
+          schema:
+            type: string
+          required: true
+    get:
+      tags:
+        - Notification Rule
+      summary: Retrieve the User Notification Rule object
+      description: Retrieve the specified User Notification Rule object.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNotificationRule'
+              example:
+                creation_date: '2023-03-01T15:20:45.565595Z'
+                start_delay: 5
+                type: ''
+                unique_id: 1d757ec0-39d3-4cd0-9536-7e0bb3e2665c
+                contact: 374d3e48-b4bd-438d-8e18-d69ddeadd183
+                urgency: 1
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserNotificationRule'
+              example:
+                creation_date: '2023-03-01T15:20:45.565595Z'
+                start_delay: 5
+                type: ''
+                unique_id: 1d757ec0-39d3-4cd0-9536-7e0bb3e2665c
+                contact: 374d3e48-b4bd-438d-8e18-d69ddeadd183
+                urgency: 1
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+    delete: 
+      tags:
+      - Notification Rule
+      summary: Delete the User Notification Rule object
+      description: Delete the specified User Notification Rule object permanently.
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+                  
+  '/api/account/users/{username}/forwarding_rules/':
+    parameters: 
+        - name: 'username'
+          in: path
+          description: username of the User object
+          schema:
+            type: string
+          required: true
+    post:
+      tags:
+        - Forwarding Rule
+      summary: Create the User Forwarding Rule object
+      description: Create the User Forwarding Rule object by setting the values of all the required parameters passed in the request body.
+      requestBody:
+        description: Request body parameters to create the User Forwarding Rule object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserForwardingRulePayload'
+            example: 
+              from_date: '2023-03-01T16:37:58.654Z'
+              to_date: '2023-03-01T16:37:58.654Z'
+              time_zone: UTC
+              to_user: 7e26fed1-f11c-4e78-afc6-a
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/UserForwardingRulePayload'
+            example: 
+              from_date: '2023-03-01T16:37:58.654Z'
+              to_date: '2023-03-01T16:37:58.654Z'
+              time_zone: UTC
+              to_user: 7e26fed1-f11c-4e78-afc6-a
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserForwardingRule'
+              example:
+                creation_date: '2023-03-01T16:43:00.031310Z'
+                unique_id: 8bd02ac2-07fe-4d32-a37f-e1def9673746
+                time_zone: UTC
+                from_date: '2023-03-01T16:37:58.654000Z'
+                to_date: '2023-03-01T16:37:58.654000Z'
+                to_user: 7e26fed1-f11c-4e78-afc6-a
+                created_by: 7e26fed1-f11c-4e78-afc6-a
+                user: 4f9f41eb-4252-462e-9e33-6
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserForwardingRule'
+              example:
+                creation_date: '2023-03-01T16:43:00.031310Z'
+                unique_id: 8bd02ac2-07fe-4d32-a37f-e1def9673746
+                time_zone: UTC
+                from_date: '2023-03-01T16:37:58.654000Z'
+                to_date: '2023-03-01T16:37:58.654000Z'
+                to_user: 7e26fed1-f11c-4e78-afc6-a
+                created_by: 7e26fed1-f11c-4e78-afc6-a
+                user: 4f9f41eb-4252-462e-9e33-6
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+    get: 
+      tags:
+      - Forwarding Rule
+      summary: List all User Forwarding Rule objects
+      description: Returns a list of User Forwarding Rule objects.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserForwardingRule'
+              example:
+                - creation_date: '2023-03-01T16:38:22.540374Z'
+                  unique_id: a6011d7c-3a44-4cab-8580-a410881f4ff9
+                  time_zone: UTC
+                  from_date: '2023-03-01T16:37:58.654000Z'
+                  to_date: '2023-03-01T16:37:58.654000Z'
+                  to_user: 7e26fed1-f11c-4e78-afc6-a
+                  created_by: 7e26fed1-f11c-4e78-afc6-a
+                  user: 4f9f41eb-4252-462e-9e33-6
+                - creation_date: '2023-03-01T16:44:31.446633Z'
+                  unique_id: e2c523b9-af2b-4e66-a3fd-338bd7ffc641
+                  time_zone: UTC
+                  from_date: '2023-03-01T16:44:22.757000Z'
+                  to_date: '2023-03-01T16:44:22.757000Z'
+                  to_user: 25692874-e54d-4101-bbfc-7
+                  created_by: 7e26fed1-f11c-4e78-afc6-a
+                  user: 4f9f41eb-4252-462e-9e33-6
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserForwardingRule'
+              example:
+                - creation_date: '2023-03-01T16:38:22.540374Z'
+                  unique_id: a6011d7c-3a44-4cab-8580-a410881f4ff9
+                  time_zone: UTC
+                  from_date: '2023-03-01T16:37:58.654000Z'
+                  to_date: '2023-03-01T16:37:58.654000Z'
+                  to_user: 7e26fed1-f11c-4e78-afc6-a
+                  created_by: 7e26fed1-f11c-4e78-afc6-a
+                  user: 4f9f41eb-4252-462e-9e33-6
+                - creation_date: '2023-03-01T16:44:31.446633Z'
+                  unique_id: e2c523b9-af2b-4e66-a3fd-338bd7ffc641
+                  time_zone: UTC
+                  from_date: '2023-03-01T16:44:22.757000Z'
+                  to_date: '2023-03-01T16:44:22.757000Z'
+                  to_user: 25692874-e54d-4101-bbfc-7
+                  created_by: 7e26fed1-f11c-4e78-afc6-a
+                  user: 4f9f41eb-4252-462e-9e33-6
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+                  
+  '/api/account/users/{username}/forwarding_rules/{forwarding_rule_id}/':
+    parameters: 
+        - name: 'username'
+          in: path
+          description: username of the User object
+          schema:
+            type: string
+          required: true
+        - name: 'forwarding_rule_id'
+          in: path
+          description: unique_id of the User Forwarding Rule object
+          schema:
+            type: string
+          required: true
+    get:
+      tags:
+        - Forwarding Rule
+      summary: Retrieve the User Forwarding Rule object
+      description: Retrieve the specified User Forwarding Rule object.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserForwardingRule'
+              example:
+                creation_date: '2023-03-01T16:38:22.540374Z'
+                unique_id: a6011d7c-3a44-4cab-8580-a410881f4ff9
+                time_zone: UTC
+                from_date: '2023-03-01T16:37:58.654000Z'
+                to_date: '2023-03-01T16:37:58.654000Z'
+                to_user: 7e26fed1-f11c-4e78-afc6-a
+                created_by: 7e26fed1-f11c-4e78-afc6-a
+                user: 4f9f41eb-4252-462e-9e33-6
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserForwardingRule'
+              example:
+                creation_date: '2023-03-01T16:38:22.540374Z'
+                unique_id: a6011d7c-3a44-4cab-8580-a410881f4ff9
+                time_zone: UTC
+                from_date: '2023-03-01T16:37:58.654000Z'
+                to_date: '2023-03-01T16:37:58.654000Z'
+                to_user: 7e26fed1-f11c-4e78-afc6-a
+                created_by: 7e26fed1-f11c-4e78-afc6-a
+                user: 4f9f41eb-4252-462e-9e33-6
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+    delete: 
+      tags:
+      - Forwarding Rule
+      summary: Delete the User Forwarding Rule object
+      description: Delete the specified User Forwarding Rule object permanently.
+      responses:
+        '204':
+          description: Success
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+                  
+  '/api/account/users/{username}/contacts/':
+    parameters: 
+        - name: 'username'
+          in: path
+          description: username of the User object
+          schema:
+            type: string
+          required: true
+    post:
+      tags:
+        - Contact Method
+      summary: Create the User Contact Method object
+      description: Create the User Contact Method object by setting the values of all the required parameters passed in the request body. A user can only create email contact method through API.
+      requestBody:
+        description: Request body parameters to create the User Contact Method object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserContactMethodPayload'
+            example: 
+              name: Secondary Email
+              value: anshulrajput229@gmail.com
+              contact_type: 1
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/UserContactMethodPayload'
+            example: 
+              name: Secondary Email
+              value: anshulrajput229@gmail.com
+              contact_type: 1
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserContactMethod'
+              example:
+                name: Secondary Email
+                creation_date: '2023-03-02'
+                contact_type: 1
+                value: anshulrajput229@gmail.com
+                unique_id: 8a862f18-9332-4d08-90ad-06c070803c05
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserContactMethod'
+              example:
+                name: Secondary Email
+                creation_date: '2023-03-02'
+                contact_type: 1
+                value: anshulrajput229@gmail.com
+                unique_id: 8a862f18-9332-4d08-90ad-06c070803c05
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+    get: 
+      tags:
+      - Contact Method
+      summary: List all User Contact Method objects
+      description: Returns a list of User Contact Method objects.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserContactMethod'
+              example:
+                - name: Primary Email
+                  creation_date: '2023-02-14'
+                  contact_type: 1
+                  value: user@three.com
+                  unique_id: 374d3e48-b4bd-438d-8e18-d69ddeadd183
+                - name: Primary
+                  creation_date: '2023-03-01'
+                  contact_type: 2
+                  value: +91 86993 62839
+                  unique_id: caabda03-5e15-4cf1-b293-fab41b688ac7
+                - name: Secondary Email
+                  creation_date: '2023-03-02'
+                  contact_type: 1
+                  value: anshulrajput229@gmail.com
+                  unique_id: 8a862f18-9332-4d08-90ad-06c070803c05
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserContactMethod'
+              example:
+                - name: Primary Email
+                  creation_date: '2023-02-14'
+                  contact_type: 1
+                  value: user@three.com
+                  unique_id: 374d3e48-b4bd-438d-8e18-d69ddeadd183
+                - name: Primary
+                  creation_date: '2023-03-01'
+                  contact_type: 2
+                  value: +91 86993 62839
+                  unique_id: caabda03-5e15-4cf1-b293-fab41b688ac7
+                - name: Secondary Email
+                  creation_date: '2023-03-02'
+                  contact_type: 1
+                  value: anshulrajput229@gmail.com
+                  unique_id: 8a862f18-9332-4d08-90ad-06c070803c05
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml: # operation response mime type
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+                  
+  '/api/account/users/{username}/contacts/{contact_id}/':
+    parameters: 
+        - name: 'username'
+          in: path
+          description: username of the User object
+          schema:
+            type: string
+          required: true
+        - name: 'contact_id'
+          in: path
+          description: unique_id of the User Contact Method object
+          schema:
+            type: string
+          required: true
+    get:
+      tags:
+        - Contact Method
+      summary: Retrieve the User Contact Method object
+      description: Retrieve the specified User Contact Method object.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserContactMethod'
+              example:
+                name: Primary Email
+                creation_date: '2023-02-14'
+                contact_type: 1
+                value: user@three.com
+                unique_id: 374d3e48-b4bd-438d-8e18-d69ddeadd183
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserContactMethod'
+              example:
+                name: Primary Email
+                creation_date: '2023-02-14'
+                contact_type: 1
+                value: user@three.com
+                unique_id: 374d3e48-b4bd-438d-8e18-d69ddeadd183
+        '400':
+          description: Bad Request 
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        '403':
+          description: Forbidden 
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        '404':
+            description: Not Found 
+            content:
+              application/json:
+                example:
+                  detail: Not Found.
+              application/xml:
+                example:
+                  detail: Not Found.
+    delete: 
+      tags:
+      - Contact Method
+      summary: Delete the User Contact Method object
+      description: Delete the specified User Contact Method object permanently.
+      responses:
+        '204':
+          description: Success
         '400':
           description: Bad Request 
           content:
@@ -4400,7 +5209,80 @@ paths:
               application/xml:
                 example:
                   detail: Not Found.
-    get: 
+    get:
+      parameters: 
+        - in: query
+          name: 'page'
+          description: pagination page number
+          schema:
+            type: integer
+        - in: query
+          name: 'status'
+          description: status of the Incident object. -1 for open incidents(triggered and acknowledged), 0 for all incidents(triggered, acknowledged and resolved), 1 for triggered incidents, 2 for ackonwleded incidents and 3 for resolved incidents.
+          schema:
+            type: integer
+        - in: query
+          name: 'team_ids'
+          description: This query parameter represents an array Team object's unique_id and filter incidents based on Team object whose unique_id passed in array.
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: 'all_teams'
+          description: This query parameter can be 0 or 1. 0 means filter incidents based on all teams and 0 means filter incidents based on user team.
+          schema:
+            type: integer
+        - in: query
+          name: 'service_ids'
+          description: This query parameter represents an array Service object's unique_id and filter incidents based on Service object whose unique_id passed in array.
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: 'user_ids'
+          description: This query parameter represents an array User object's username and filter incidents based on assigned_to User object whose username passed in array.
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: 'priority_name'
+          description: This query parameter represents Priority object's name and filter incidents based on Priority object.
+          schema:
+            type: string
+        - in: query
+          name: 'priority_ids'
+          description: This query parameter represents an array Priority object's unique_id and filter incidents based on Priority object whose unique_id passed in array.
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: 'tag_ids'
+          description: This query parameter represents an array Team Tag object's unique_id and filter incidents based on Team Tag object whose unique_id passed in array.
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: 'sla_ids'
+          description: This query parameter represents an array Team SLA object's unique_id and filter incidents based on Team SLA object whose unique_id passed in array.
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: 'from_date'
+          description: This query parameter represents from_date and filter incidents based on creation_date greater than from_date
+          schema:
+            type: string
+        - in: query
+          name: 'to_date'
+          description: This query parameter represents to_date and filter incidents based on creation_date less than to_date
+          schema:
+            type: string
       tags:
       - Incidents
       summary: List all Incident objects
@@ -10048,7 +10930,141 @@ components:
         custom_role:
           type: string
           description: A system-generated string that represents the User Custom Role object's unique_id
-    
+          
+    UserNotificationRule:
+      type: object
+      description: User Notification Rule object's schema
+      properties:
+        creation_date:
+          type: string
+          format: date-time
+          description: A formatted string that represents the User Notification Rule object's creation_date
+        start_delay:
+          type: integer
+          description: An integer that represents the User Notification Rule object's delay field in minutes.
+        type:
+          type: string
+          description: A string that represents the User Notification Rule object's type
+        unique_id:
+          type: string
+          description: A system-generated string that represents the User Notification Rule object's unique_id
+        contact:
+          type: string
+          description: A system-generated string that represents the User Contact Method object's unique_id
+        urgency:
+          type: integer
+          description: An integer that represents the User Notification Rule object's urgency field. 1 is for high urgency incidents and 2 is for low urgency incidents.
+              
+    UserNotificationRulePayload:
+      type: object
+      description: Payload schema for the User Notification Rule object
+      required:
+        - contact
+      properties:
+        contact:
+          type: string
+          description: A system-generated string that represents the User Contact Method object's unique_id
+        start_delay:
+          type: integer
+          description: An integer that represents the User Notification Rule object's delay field in minutes.
+        urgency:
+          type: integer
+          description: An integer that represents the User Notification Rule object's urgency field. 1 is for high urgency incidents and 2 is for low urgency incidents.
+          
+    UserForwardingRule:
+      type: object
+      description: User Forwarding Rule object's schema
+      properties:
+        creation_date:
+          type: string
+          format: date-time
+          description: A formatted string that represents the User Forwarding Rule object's creation_date
+        unique_id:
+          type: string
+          description: A system-generated string that represents the User Forwarding Rule object's unique_id
+        time_zone:
+          type: string
+          description: A formatted string that represents the User Forwarding Rule object's time zone. You can check out the time zone list here https://timezonedb.com/time-zones
+        from_date:
+          type: string
+          format: date-time
+          description: A formatted string that represents the User Forwarding Rule object's from_date field
+        to_date:
+          type: string
+          format: date-time
+          description: A formatted string that represents the User Forwarding Rule object's to_date field
+        to_user:
+          type: string
+          description: A system-generated string that represents the User object's username
+        created_by:
+          type: string
+          description: A system-generated string that represents the User object's username
+        user:
+          type: string
+          description: A system-generated string that represents the User object's username
+              
+    UserForwardingRulePayload:
+      type: object
+      description: Payload schema for the User Forwarding Rule object
+      required:
+        - from_date
+        - to_date
+        - to_user
+      properties:
+        from_date:
+          type: string
+          format: date-time
+          description: A formatted string that represents the User Forwarding Rule object's from_date field
+        to_date:
+          type: string
+          format: date-time
+          description: A formatted string that represents the User Forwarding Rule object's to_date field
+        time_zone:
+          type: string
+          description: A formatted string that represents the User Forwarding Rule object's time zone. You can check out the time zone list here https://timezonedb.com/time-zones
+        to_user:
+          type: string
+          description: A system-generated string that represents the User object's username
+          
+    UserContactMethod:
+      type: object
+      description: User Contact Method object's schema
+      properties:
+        name:
+          type: string
+          description: A string that represents the User Contact Method object's name field
+        creation_date:
+          type: string
+          format: date-time
+          description: A formatted string that represents the User Contact Method object's creation_date
+        contact_type:
+          type: integer
+          description: An integer that represents the User Contact Method object's contact_type field. 1 is for Email, 2 is for SMS, 3 is for Phone Call, 4 is for Slack, 5 is for MS Teams and 6 is for Google Chat
+        value:
+          type: string
+          description: A formatted string that represents the User Contact Method object's value field. value can be Email ID, Phone Number, Slack ID, Microsoft ID, Google Chat ID.
+        unique_id:
+          type: string
+          description: A system-generated string that represents the User Contact Method object's unique_id
+              
+    UserContactMethodPayload:
+      type: object
+      description: Payload schema for the User Contact Method object
+      required:
+        - name
+        - value
+        - contact_type
+      properties:
+        name:
+          type: string
+          description: A string that represents the User Contact Method object's name field
+        value:
+          type: string
+          description: A formatted string that represents the User Contact Method object's value field. value can be Email ID, Phone Number, Slack ID, Microsoft ID, Google Chat ID.
+        contact_type:
+          type: integer
+          description: An integer that represents the User Contact Method object's contact_type field. 1 is for Email, 2 is for SMS, 3 is for Phone Call, 4 is for Slack, 5 is for MS Teams and 6 is for Google Chat
+        
     Team:
       type: object
       description: Team object schema
