@@ -5213,74 +5213,74 @@ paths:
       parameters: 
         - in: query
           name: 'page'
-          description: pagination page number
+          description: pagination page number. example - `page=1`
           schema:
             type: integer
         - in: query
           name: 'status'
-          description: Status of the Incident object. For open incidents(triggered and acknowledged) use `-1`, for all incidents(triggered, acknowledged and resolved) use `0`, for triggered incidents use `1`, for acknowledged incidents use `2` and for resolved incidents use `3`.
+          description: Status of the Incident object. For open incidents(triggered and acknowledged) use `-1`, for all incidents(triggered, acknowledged and resolved) use `0`, for triggered incidents use `1`, for acknowledged incidents use `2` and for resolved incidents use `3`. example - `status=1`
           schema:
             type: integer
         - in: query
           name: 'team_ids'
-          description: Represents an array of the Team object's unique_ids and filters incidents based on the Team objects whose unique_ids were passed in the array.
+          description: Represents an array of the Team object's unique_ids and filters incidents based on the Team objects whose unique_ids were passed in the array. example - `team_ids=[“e09a815d-5c23-4575-a346-e25bdbd4dbdb”, “3756a74b-5012-4f8b-94e3-ccd5f1ead4c7"]`
           schema:
             type: array
             items:
               type: string
         - in: query
           name: 'all_teams'
-          description: This query parameter can be `0` or `1`. To filter incidents based on all teams use `0` and to filter incidents based on the teams the requesting user belongs to, use `1`.
+          description: This query parameter can be `0` or `1`. To filter incidents based on all teams use `0` and to filter incidents based on the teams the requesting user belongs to, use `1`. example - `all_teams=1`
           schema:
             type: integer
         - in: query
           name: 'service_ids'
-          description: Represents an array of the Service object's unique_ids and filters incidents based on the Service objects whose unique_ids were passed in the array.
+          description: Represents an array of the Service object's unique_ids and filters incidents based on the Service objects whose unique_ids were passed in the array. example - `service_ids=[“d1a764f1-458a-4a5a-bf2e-93d5332b1059”, “57997fbb-00ac-4a17-83f8-34fd49c28498", “8e729ff5-04ec-4d7e-b48c-226a0bb2933c”]`
           schema:
             type: array
             items:
               type: string
         - in: query
           name: 'user_ids'
-          description: Represents an array of the User object's usernames and filters incidents based on the assigned_to User object whose usernames were passed in the array.
+          description: Represents an array of the User object's usernames and filters incidents based on the assigned_to User object whose usernames were passed in the array. example - `user_ids=[“259d67f8-c975-4403-b9b8-8", “08a4805c-8f07-4221-85c2-1”, “b115be42-9c4f-4277-a885-9"]`
           schema:
             type: array
             items:
               type: string
         - in: query
           name: 'priority_name'
-          description: Represents the Priority object's name and filters incidents based on the passed Priority object.
+          description: Represents the Priority object's name and filters incidents based on the passed Priority object. example - `priority_name=p1`
           schema:
             type: string
         - in: query
           name: 'priority_ids'
-          description: Represents an array of the Priority object's unique_ids and filters incidents based on the Priority objects whose unique_ids were passed in the array.
+          description: Represents an array of the Priority object's unique_ids and filters incidents based on the Priority objects whose unique_ids were passed in the array. example - `priority_ids=[“9a29f200-b360-47ae-a9d2-1ef6e5f55765", “115ed500-00e0-4baf-807b-fad306e22712”]`
           schema:
             type: array
             items:
               type: string
         - in: query
           name: 'tag_ids'
-          description: Represents an array of the Team Tag object's unique_ids and filters incidents based on the Team Tag objects whose unique_ids were passed in the array.
+          description: Represents an array of the Team Tag object's unique_ids and filters incidents based on the Team Tag objects whose unique_ids were passed in the array. example - `tag_ids=[“88c04d0b-271d-4d7d-bffd-a3dcaabd8c9c”, “410dc2dd-c1df-4004-aea1-fb55cd9c8afe”]`
           schema:
             type: array
             items:
               type: string
         - in: query
           name: 'sla_ids'
-          description: Represents an array of the Team SLA object's unique_ids and filters incidents based on the Team SLA objects whose unique_ids were passed in the array.
+          description: Represents an array of the Team SLA object's unique_ids and filters incidents based on the Team SLA objects whose unique_ids were passed in the array. example - `sla_ids=[“646d32ee-d044-4171-bef8-3d7e884fa872", “dc287c19-582c-498b-82b6-3b81c33bc0dd”]`
           schema:
             type: array
             items:
               type: string
         - in: query
           name: 'from_date'
-          description: Represents from_date and filters incidents whose creation_date is greater than the specified from_date
+          description: Represents from_date and filters incidents whose creation_date is greater than the specified from_date. example - `from_date="2023-02-01"`
           schema:
             type: string
         - in: query
           name: 'to_date'
-          description: Represents to_date and filters incidents whose creation_date is lesser than the specified to_date
+          description: Represents to_date and filters incidents whose creation_date is lesser than the specified to_date. example - `to_date="2023-03-06"`
           schema:
             type: string
       tags:
