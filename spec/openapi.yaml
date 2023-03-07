@@ -35,57 +35,57 @@ info:
 # The order of the tags can be used to reflect on their order by the parsing tools.
 tags:
 - name: Account Member
-  description: This object represents the user of the account. Each account member object has a role, which can be owner, admin, or user. Each account has a single owner, but the admins and users can be multiple.
+  description: This object represents a user of the account. Each account member object has a role, which can be owner, admin, or user. Each account has a single owner, but the admins and users can be multiple.
 - name: Account Custom Role
-  description: This object represents the custom role of the account. Each custom role object has custom permissions which the account admin can set from account level permissions and assign this custom role to a particular user.
+  description: This object represents a custom role of the account. Each custom role object has custom permissions, which the account admin can set from account level permissions and assign this custom role to a particular user.
 - name: User Custom Role
-  description: This object represents the user custom role. Each user can be assigned to only one custom role.
-- name: Notification Rule
-  description: This object represents the user notification rule. A user can have notification rule for high urgency and low urgency incidents.
-- name: Forwarding Rule
-  description: This object represents the user forwarding rule. A user can forward his notification to the other account members in case of an incident occur.
-- name: Contact Method
+  description: This object represents a user's custom role. Each user can be assigned to only one custom role.
+- name: Notification Rules
+  description: This object represents a user's notification rules. A user can have notification rules for high urgency and low urgency incidents.
+- name: Forwarding Rules
+  description: This object represents a user's forwarding rules. A user can forward his notifications to the other account members in case an incident occurs.
+- name: Contact Methods
   description: This object represents one of the following communication channels(Email, SMS, Phone Call, Slack, Microsoft Team, Google Chat). A user can add multiple contacts methods.
 - name: Teams
-  description: This object represents the team of the account. It lets you create different independent operational units in account. You can check out the team docs here https://docs.zenduty.com/docs/teams.
+  description: This object represents a team of the account. It lets you create different independent operational units in the account. You can check out the team docs here https://docs.zenduty.com/docs/teams.
 - name: Team Members
-  description: This object represents the user of the team. Each team member has a role which can be a manager or a user. You can checkout the team member docs here https://docs.zenduty.com/docs/users
+  description: This object represents the users of a team. Each team member has a role which can be a manager or a user. You can checkout the team member docs here https://docs.zenduty.com/docs/users
 - name: Team Permissions
-  description: This object represents the permission of the team. It lets you access the particular team elements that the team has given permission to use.
+  description: This object represents the permissions of a team. It lets you access the particular team elements that the team has given permissions to use.
 - name: Schedules
-  description: This object represents the schedule of the team. You can checkout the schedule docs here https://docs.zenduty.com/docs/schedules
+  description: This object represents the schedule of a team. You can checkout the schedule docs here https://docs.zenduty.com/docs/schedules
 - name: Escalation Policies
-  description: This object represents the escalation policy of the team. You can checkout the escalation policy docs here https://docs.zenduty.com/docs/escalationpolicies
+  description: This object represents the escalation policy of a team. You can checkout the escalation policy docs here https://docs.zenduty.com/docs/escalationpolicies
 - name: Services
-  description: This object represents the service of the team. You can checkout the service docs here https://docs.zenduty.com/docs/services
+  description: This object represents the services associated with a team. You can checkout the services docs here https://docs.zenduty.com/docs/services
 - name: Integrations
-  description: This object represents the integration of the service. You can checkout the integration docs here https://docs.zenduty.com/docs/integrations
+  description: This object represents the integrations associated with a service. You can checkout the integration docs here https://docs.zenduty.com/docs/integrations
 - name: Integration Alerts
-  description: This object represents the integration alert of the integration
+  description: This object represents the integration alerts of an integration
 - name: Incidents
-  description: This object represents the incident of the account. You can checkout the incident docs here https://docs.zenduty.com/docs/incidents
+  description: This object represents the incidents of the account. You can checkout the incident docs here https://docs.zenduty.com/docs/incidents
 - name: Incident Roles
-  description: This object represents the incident role of the incident. You can checkout the incident role docs here https://docs.zenduty.com/docs/incidentroles
+  description: This object represents the incident roles of an incident. You can checkout the incident role docs here https://docs.zenduty.com/docs/incidentroles
 - name: Incident Notes
-  description: This object represents the incident note of the incident.
+  description: This object represents the incident notes of an incident.
 - name: Incident Tags
-  description: This object represents the incident tag of the incident.
+  description: This object represents the incident tags of an incident.
 - name: Events
-  description: This object represents the event of the integration.
+  description: This object represents the events of an integration.
 - name: Incident Alerts
-  description: This object represents the incident alert of the incident.
+  description: This object represents the incident alerts of an incident.
 - name: Tags
-  description: This object represents the tag of the incident. You can checkout the tag docs here https://docs.zenduty.com/docs/incidenttags
+  description: This object represents the tags of an incident. You can checkout the tag docs here https://docs.zenduty.com/docs/incidenttags
 - name: Task Templates
-  description: This object represents the task template of the team. You can checkout the task template docs here https://docs.zenduty.com/docs/tasktemplates
+  description: This object represents the task templates of the team. You can checkout the task template docs here https://docs.zenduty.com/docs/tasktemplates
 - name: Priorities
-  description: This object represents the priority of the incident. You can checkout the priority docs here https://docs.zenduty.com/docs/incidentpriority
+  description: This object represents the priority of an incident. You can checkout the priority docs here https://docs.zenduty.com/docs/incidentpriority
 - name: SLA
-  description: This object represents the sla of the incident. You can checkout the sla docs here https://docs.zenduty.com/docs/incidentsla
+  description: This object represents the SLA of an incident. You can checkout the SLA docs here https://docs.zenduty.com/docs/incidentsla
 - name: Team Maintenance Mode
-  description: This object represents the maintenance mode of the team. You can checkout the team maintenance mode docs here https://docs.zenduty.com/docs/maintenancewindows
+  description: This object represents the maintenance mode of a team. You can checkout the team maintenance mode docs here https://docs.zenduty.com/docs/maintenancewindows
 - name: Postmortem
-  description: This object represents the postmortem of the incident. You can checkout the postmortem docs here https://docs.zenduty.com/docs/incidentpostmortem
+  description: This object represents the postmortem of an incident. You can checkout the postmortem docs here https://docs.zenduty.com/docs/incidentpostmortem
 - name: OnCall
   description: This object represents the user who is oncall.
 - name: Global Router
@@ -990,9 +990,9 @@ paths:
           required: true
     post:
       tags:
-        - Notification Rule
-      summary: Create the User Notification Rule object
-      description: Create the User Notification Rule object by setting the values of all the required parameters passed in the request body.
+        - Notification Rules
+      summary: Create the User Notification Rules object
+      description: Create the User Notification Rules object by setting the values of all the required parameters passed in the request body.
       requestBody:
         description: Request body parameters to create the User Notification Rule object
         required: true
@@ -1064,8 +1064,8 @@ paths:
                   detail: Not Found.
     get: 
       tags:
-      - Notification Rule
-      summary: List all User Notification Rule objects
+      - Notification Rules
+      summary: List all Users' Notification Rule objects
       description: Returns a list of User Notification Rule objects.
       responses:
         '200':
@@ -1159,9 +1159,9 @@ paths:
           required: true
     get:
       tags:
-        - Notification Rule
+        - Notification Rules
       summary: Retrieve the User Notification Rule object
-      description: Retrieve the specified User Notification Rule object.
+      description: Retrieve the specified User's Notification Rule object.
       responses:
         '200':
           description: OK
@@ -1215,9 +1215,9 @@ paths:
                   detail: Not Found.
     delete: 
       tags:
-      - Notification Rule
-      summary: Delete the User Notification Rule object
-      description: Delete the specified User Notification Rule object permanently.
+      - Notification Rules
+      summary: Delete the User Notification Rules object
+      description: Delete the specified User Notification Rules object permanently.
       responses:
         '204':
           description: Success
@@ -1259,11 +1259,11 @@ paths:
           required: true
     post:
       tags:
-        - Forwarding Rule
-      summary: Create the User Forwarding Rule object
-      description: Create the User Forwarding Rule object by setting the values of all the required parameters passed in the request body.
+        - Forwarding Rules
+      summary: Create the User Forwarding Rules object
+      description: Create the User's Forwarding Rules object by setting the values of all the required parameters passed in the request body.
       requestBody:
-        description: Request body parameters to create the User Forwarding Rule object
+        description: Request body parameters to create the User Forwarding Rules object
         required: true
         content:
           application/json:
@@ -1339,7 +1339,7 @@ paths:
                   detail: Not Found.
     get: 
       tags:
-      - Forwarding Rule
+      - Forwarding Rules
       summary: List all User Forwarding Rule objects
       description: Returns a list of User Forwarding Rule objects.
       responses:
@@ -1424,15 +1424,15 @@ paths:
           required: true
         - name: 'forwarding_rule_id'
           in: path
-          description: unique_id of the User Forwarding Rule object
+          description: unique_id of the User Forwarding Rules object
           schema:
             type: string
           required: true
     get:
       tags:
-        - Forwarding Rule
-      summary: Retrieve the User Forwarding Rule object
-      description: Retrieve the specified User Forwarding Rule object.
+        - Forwarding Rules
+      summary: Retrieve the User Forwarding Rules object
+      description: Retrieve the specified User's Forwarding Rules object.
       responses:
         '200':
           description: OK
@@ -1490,9 +1490,9 @@ paths:
                   detail: Not Found.
     delete: 
       tags:
-      - Forwarding Rule
+      - Forwarding Rules
       summary: Delete the User Forwarding Rule object
-      description: Delete the specified User Forwarding Rule object permanently.
+      description: Delete the specified User's Forwarding Rules object permanently.
       responses:
         '204':
           description: Success
@@ -1534,11 +1534,11 @@ paths:
           required: true
     post:
       tags:
-        - Contact Method
-      summary: Create the User Contact Method object
-      description: Create the User Contact Method object by setting the values of all the required parameters passed in the request body. A user can only create email contact method through API.
+        - Contact Methods
+      summary: Create the User Contact Methods object
+      description: Create the User Contact Methods object by setting the values of all the required parameters passed in the request body. A user can only create email Contact Methods through API.
       requestBody:
-        description: Request body parameters to create the User Contact Method object
+        description: Request body parameters to create the User Contact Methods object
         required: true
         content:
           application/json:
@@ -1606,7 +1606,7 @@ paths:
                   detail: Not Found.
     get: 
       tags:
-      - Contact Method
+      - Contact Methods
       summary: List all User Contact Method objects
       description: Returns a list of User Contact Method objects.
       responses:
@@ -1689,15 +1689,15 @@ paths:
           required: true
         - name: 'contact_id'
           in: path
-          description: unique_id of the User Contact Method object
+          description: unique_id of the User Contact Methods object
           schema:
             type: string
           required: true
     get:
       tags:
-        - Contact Method
-      summary: Retrieve the User Contact Method object
-      description: Retrieve the specified User Contact Method object.
+        - Contact Methods
+      summary: Retrieve the User Contact Methods object
+      description: Retrieve the specified User's Contact Methods object.
       responses:
         '200':
           description: OK
@@ -1749,9 +1749,9 @@ paths:
                   detail: Not Found.
     delete: 
       tags:
-      - Contact Method
-      summary: Delete the User Contact Method object
-      description: Delete the specified User Contact Method object permanently.
+      - Contact Methods
+      summary: Delete the User Contact Methods object
+      description: Delete the specified User's Contact Methods object permanently.
       responses:
         '204':
           description: Success
@@ -5213,74 +5213,74 @@ paths:
       parameters: 
         - in: query
           name: 'page'
-          description: pagination page number
+          description: pagination page number. example - `page=1`
           schema:
             type: integer
         - in: query
           name: 'status'
-          description: status of the Incident object. -1 for open incidents(triggered and acknowledged), 0 for all incidents(triggered, acknowledged and resolved), 1 for triggered incidents, 2 for ackonwleded incidents and 3 for resolved incidents.
+          description: Status of the Incident object. For open incidents(triggered and acknowledged) use `-1`, for all incidents(triggered, acknowledged and resolved) use `0`, for triggered incidents use `1`, for acknowledged incidents use `2` and for resolved incidents use `3`. example - `status=1`
           schema:
             type: integer
         - in: query
           name: 'team_ids'
-          description: This query parameter represents an array Team object's unique_id and filter incidents based on Team object whose unique_id passed in array.
+          description: Represents an array of the Team object's unique_ids and filters incidents based on the Team objects whose unique_ids were passed in the array. example - `team_ids=[“e09a815d-5c23-4575-a346-e25bdbd4dbdb”, “3756a74b-5012-4f8b-94e3-ccd5f1ead4c7"]`
           schema:
             type: array
             items:
               type: string
         - in: query
           name: 'all_teams'
-          description: This query parameter can be 0 or 1. 0 means filter incidents based on all teams and 0 means filter incidents based on user team.
+          description: This query parameter can be `0` or `1`. To filter incidents based on all teams use `0` and to filter incidents based on the teams the requesting user belongs to, use `1`. example - `all_teams=1`
           schema:
             type: integer
         - in: query
           name: 'service_ids'
-          description: This query parameter represents an array Service object's unique_id and filter incidents based on Service object whose unique_id passed in array.
+          description: Represents an array of the Service object's unique_ids and filters incidents based on the Service objects whose unique_ids were passed in the array. example - `service_ids=[“d1a764f1-458a-4a5a-bf2e-93d5332b1059”, “57997fbb-00ac-4a17-83f8-34fd49c28498", “8e729ff5-04ec-4d7e-b48c-226a0bb2933c”]`
           schema:
             type: array
             items:
               type: string
         - in: query
           name: 'user_ids'
-          description: This query parameter represents an array User object's username and filter incidents based on assigned_to User object whose username passed in array.
+          description: Represents an array of the User object's usernames and filters incidents based on the assigned_to User object whose usernames were passed in the array. example - `user_ids=[“259d67f8-c975-4403-b9b8-8", “08a4805c-8f07-4221-85c2-1”, “b115be42-9c4f-4277-a885-9"]`
           schema:
             type: array
             items:
               type: string
         - in: query
           name: 'priority_name'
-          description: This query parameter represents Priority object's name and filter incidents based on Priority object.
+          description: Represents the Priority object's name and filters incidents based on the passed Priority object. example - `priority_name=p1`
           schema:
             type: string
         - in: query
           name: 'priority_ids'
-          description: This query parameter represents an array Priority object's unique_id and filter incidents based on Priority object whose unique_id passed in array.
+          description: Represents an array of the Priority object's unique_ids and filters incidents based on the Priority objects whose unique_ids were passed in the array. example - `priority_ids=[“9a29f200-b360-47ae-a9d2-1ef6e5f55765", “115ed500-00e0-4baf-807b-fad306e22712”]`
           schema:
             type: array
             items:
               type: string
         - in: query
           name: 'tag_ids'
-          description: This query parameter represents an array Team Tag object's unique_id and filter incidents based on Team Tag object whose unique_id passed in array.
+          description: Represents an array of the Team Tag object's unique_ids and filters incidents based on the Team Tag objects whose unique_ids were passed in the array. example - `tag_ids=[“88c04d0b-271d-4d7d-bffd-a3dcaabd8c9c”, “410dc2dd-c1df-4004-aea1-fb55cd9c8afe”]`
           schema:
             type: array
             items:
               type: string
         - in: query
           name: 'sla_ids'
-          description: This query parameter represents an array Team SLA object's unique_id and filter incidents based on Team SLA object whose unique_id passed in array.
+          description: Represents an array of the Team SLA object's unique_ids and filters incidents based on the Team SLA objects whose unique_ids were passed in the array. example - `sla_ids=[“646d32ee-d044-4171-bef8-3d7e884fa872", “dc287c19-582c-498b-82b6-3b81c33bc0dd”]`
           schema:
             type: array
             items:
               type: string
         - in: query
           name: 'from_date'
-          description: This query parameter represents from_date and filter incidents based on creation_date greater than from_date
+          description: Represents from_date and filters incidents whose creation_date is greater than the specified from_date. example - `from_date="2023-02-01"`
           schema:
             type: string
         - in: query
           name: 'to_date'
-          description: This query parameter represents to_date and filter incidents based on creation_date less than to_date
+          description: Represents to_date and filters incidents whose creation_date is lesser than the specified to_date. example - `to_date="2023-03-06"`
           schema:
             type: string
       tags:
@@ -10933,31 +10933,31 @@ components:
           
     UserNotificationRule:
       type: object
-      description: User Notification Rule object's schema
+      description: User Notification Rules object's schema
       properties:
         creation_date:
           type: string
           format: date-time
-          description: A formatted string that represents the User Notification Rule object's creation_date
+          description: A formatted string that represents the User Notification Rules object's creation_date
         start_delay:
           type: integer
-          description: An integer that represents the User Notification Rule object's delay field in minutes.
+          description: An integer that represents the User Notification Rules object's delay field in minutes.
         type:
           type: string
-          description: A string that represents the User Notification Rule object's type
+          description: A string that represents the User Notification Rules object's type
         unique_id:
           type: string
-          description: A system-generated string that represents the User Notification Rule object's unique_id
+          description: A system-generated string that represents the User Notification Rules object's unique_id
         contact:
           type: string
           description: A system-generated string that represents the User Contact Method object's unique_id
         urgency:
           type: integer
-          description: An integer that represents the User Notification Rule object's urgency field. 1 is for high urgency incidents and 2 is for low urgency incidents.
+          description: An integer that represents the User Notification Rules object's urgency field. 1 is for high urgency incidents and 2 is for low urgency incidents.
               
     UserNotificationRulePayload:
       type: object
-      description: Payload schema for the User Notification Rule object
+      description: Payload schema for the User Notification Rules object
       required:
         - contact
       properties:
@@ -10966,10 +10966,10 @@ components:
           description: A system-generated string that represents the User Contact Method object's unique_id
         start_delay:
           type: integer
-          description: An integer that represents the User Notification Rule object's delay field in minutes.
+          description: An integer that represents the User Notification Rules object's delay field in minutes.
         urgency:
           type: integer
-          description: An integer that represents the User Notification Rule object's urgency field. 1 is for high urgency incidents and 2 is for low urgency incidents.
+          description: An integer that represents the User Notification Rules object's urgency field. 1 is for high urgency incidents and 2 is for low urgency incidents.
           
     UserForwardingRule:
       type: object
@@ -11005,7 +11005,7 @@ components:
               
     UserForwardingRulePayload:
       type: object
-      description: Payload schema for the User Forwarding Rule object
+      description: Payload schema for the User Forwarding Rules object
       required:
         - from_date
         - to_date
@@ -11049,7 +11049,7 @@ components:
               
     UserContactMethodPayload:
       type: object
-      description: Payload schema for the User Contact Method object
+      description: Payload schema for the User Contact Methods object
       required:
         - name
         - value
