@@ -11512,7 +11512,7 @@ components:
           description: A string that represents the Integration object's summary
         application: 
           type: string
-          description: A system-generated string that represents the Application object's unique_id
+          description: A system-generated string that represents the Application object's unique_id. To get application id, vist https://www.zenduty.com/api/account/applications/ and get unique_id of the application.
         is_enabled:
           type: boolean
           default: true
