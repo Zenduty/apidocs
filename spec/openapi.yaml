@@ -6953,6 +6953,7 @@ paths:
                 }
                 ]
                 notes: []
+                incident_created: false
             application/xml:
               schema:
                 $ref: '#/components/schemas/Event'
@@ -6985,6 +6986,7 @@ paths:
                 }
                 ]
                 notes: []
+                incident_created: false
         '400':
             description: Bad Request 
             content:
@@ -12042,6 +12044,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EventNote'
+        incident_created:
+          type: boolean
+          description: A boolean flag that represents whether the Incident Alert object created an incident or not.
             
     EventPayload:
       type: object
