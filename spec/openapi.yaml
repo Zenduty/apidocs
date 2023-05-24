@@ -6892,12 +6892,30 @@ paths:
             example:
               alert_type: info
               message: This is info alert
+              summary: This is the incident summary
+              suppressed: false
+              entity_id: 12345
+              payload: {
+                "status": "ACME Payments are failing",
+                "severity": "1",
+                "project": "kubeprod"
+              }
+              urls: [{"link_url": "https://www.example.com/alerts/12345/","link_text": "Alert URL"}]
           application/xml:
             schema:
               $ref: '#/components/schemas/EventPayload'
             example:
               alert_type: info
               message: This is info alert
+              summary: This is the incident summary
+              suppressed: false
+              entity_id: 12345
+              payload: {
+                "status": "ACME Payments are failing",
+                "severity": "1",
+                "project": "kubeprod"
+              }
+              urls: [{"link_url": "https://www.example.com/alerts/1234/","link_text": "Alert URL"}]
       responses:
         '201':
           description: OK
@@ -6906,56 +6924,69 @@ paths:
               schema:
                 $ref: '#/components/schemas/Event'
               example:
-                integration_object:
-                  name: Cloudwatch V2
-                  creation_date: '2022-07-08T12:31:37.435711Z'
-                  summary: Edit summary for this integration
-                  unique_id: de8830c5-8596-4ab6-937e-8d5df08499d8
-                  service: 191f5e2c-515e-4ee0-b501-3a292f8dae2f
-                  team: 61010821-08aa-4098-94f8-f88f1990b54a
-                  integration_key: bf167d3d-93dc-43b6-9066-a10b0bafcc09
+                integration_object: 
+                  name: "API"
+                  creation_date: "2022-11-14T14:08:56.089450Z"
+                  summary: "Zenduty API integration"
+                  unique_id: "828361de-681f-4f00-9420-07a185a83e46"
+                  service: "1587103f-6ed2-4eac-8a56-866128df036f"
+                  team: "db61f7ed-ba78-4536-9b2d-256b135a731d"
+                  integration_key: "082a1af8-064c-40a2-a99c-bc9c27d2042d"
                   is_enabled: true
                   integration_type: 0
-                summary: ''
+                summary: "This is the incident summary"
                 incident: null
-                creation_date: '2022-07-08T14:03:35.888446Z'
-                message: This is info alert
-                integration: de8830c5-8596-4ab6-937e-8d5df08499d8
+                creation_date: "2023-04-05T12:40:35.405170Z"
+                message: "This is info alert"
+                integration: "828361de-681f-4f00-9420-07a185a83e46"
                 suppressed: false
-                entity_id: 284d45d5-0ddc-4916-a7a6-2d4c8366
-                payload: '{}'
-                alert_type: '0'
-                unique_id: gfgMqtZAMNaGiwHQKRdbgV
+                entity_id: "12345"
+                payload: {}
+                alert_type: "0"
+                unique_id: "hD5dKNDyFDVADEYdrLViM7"
                 images: []
-                urls: []
+                urls: [{
+                  "unique_id": "b7cc93a2-6f64-46c6-bed7-2dd0504917f6",
+                  "link_url": "https://www.example.com/alerts/1234/",
+                  "link_text": "Alert URL"
+                  
+                }
+                ]
                 notes: []
+                incident_created: false
             application/xml:
               schema:
                 $ref: '#/components/schemas/Event'
               example:
-                integration_object:
-                  name: Cloudwatch V2
-                  creation_date: '2022-07-08T12:31:37.435711Z'
-                  summary: Edit summary for this integration
-                  unique_id: de8830c5-8596-4ab6-937e-8d5df08499d8
-                  service: 191f5e2c-515e-4ee0-b501-3a292f8dae2f
-                  team: 61010821-08aa-4098-94f8-f88f1990b54a
-                  integration_key: bf167d3d-93dc-43b6-9066-a10b0bafcc09
+                integration_object: 
+                  name: "API"
+                  creation_date: "2022-11-14T14:08:56.089450Z"
+                  summary: "Zenduty API integration"
+                  unique_id: "828361de-681f-4f00-9420-07a185a83e46"
+                  service: "1587103f-6ed2-4eac-8a56-866128df036f"
+                  team: "db61f7ed-ba78-4536-9b2d-256b135a731d"
+                  integration_key: "082a1af8-064c-40a2-a99c-bc9c27d2042d"
                   is_enabled: true
                   integration_type: 0
-                summary: ''
+                summary: "This is the incident summary"
                 incident: null
-                creation_date: '2022-07-08T14:03:35.888446Z'
-                message: This is info alert
-                integration: de8830c5-8596-4ab6-937e-8d5df08499d8
+                creation_date: "2023-04-05T12:40:35.405170Z"
+                message: "This is info alert"
+                integration: "828361de-681f-4f00-9420-07a185a83e46"
                 suppressed: false
-                entity_id: 284d45d5-0ddc-4916-a7a6-2d4c8366
-                payload: '{}'
-                alert_type: '0'
-                unique_id: gfgMqtZAMNaGiwHQKRdbgV
+                entity_id: "12345"
+                payload: {}
+                alert_type: "0"
+                unique_id: "hD5dKNDyFDVADEYdrLViM7"
                 images: []
-                urls: []
+                urls: [{
+                  "unique_id": "b7cc93a2-6f64-46c6-bed7-2dd0504917f6",
+                  "link_url": "https://www.example.com/alerts/1234/",
+                  "link_text": "Alert URL"
+                }
+                ]
                 notes: []
+                incident_created: false
         '400':
             description: Bad Request 
             content:
@@ -10900,8 +10931,10 @@ components:
           type: string
           description: A string that represents the description for Account Custom Role object
         permissions:
-          type: string
+          type: array
           description: An array of account level permissions
+          items:
+            type: string
           
     UserCustomRole:
       type: object
@@ -11142,8 +11175,10 @@ components:
           type: string
           description: A system generated string that represents the Team object's unique_id
         account_permissions:
-          type: string
+          type: array
           description: An array of team level permissions
+          items:
+            type: string
     
     TeamPermissionPayload:
       type: object
@@ -11152,8 +11187,10 @@ components:
         - account_permissions
       properties:
         account_permissions:
-          type: string
+          type: array
           description: An array of team level permissions
+          items:
+            type: string
           
     Schedule:
       type: object
@@ -12007,6 +12044,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EventNote'
+        incident_created:
+          type: boolean
+          description: A boolean flag that represents whether the Incident Alert object created an incident or not.
             
     EventPayload:
       type: object
@@ -12024,7 +12064,23 @@ components:
         alert_type:
           type: string
           default: info
-          description: A pre-defined string that represents the Event object's alert_type. Choices - critical, acknowledged, resolved, error, warning, info. 
+          description: A pre-defined string that represents the Event object's alert_type. Choices - `critical`, `acknowledged`, `resolved`, `error`, `warning`, `info`. 
+        suppressed:
+          type: boolean
+          default: false
+          description: A boolean flag that represents whether the object is suppressed or not, can be `true` or `false`.
+        entity_id:
+          type: string
+          description: A unique id for the alert. If not provided, the Zenduty API will create one.
+        payload:
+          type: object
+          description: A JSON payload containing additional information about the alert.
+        urls:
+          type: array
+          description: An array containing JSON schema of urls related to alerts.
+          items:
+            type: string
+          
             
     IncidentAlert:
       type: object
