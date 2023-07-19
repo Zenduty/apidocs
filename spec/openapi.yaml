@@ -10986,7 +10986,7 @@ components:
           description: A system-generated string that represents the User Contact Method object's unique_id
         urgency:
           type: integer
-          description: An integer that represents the User Notification Rules object's urgency field. 1 is for high urgency incidents and 2 is for low urgency incidents.
+          description: An integer that represents the User Notification Rules object's urgency field. 1 is for high urgency incidents and 0 is for low urgency incidents.
               
     UserNotificationRulePayload:
       type: object
@@ -11002,7 +11002,7 @@ components:
           description: An integer that represents the User Notification Rules object's delay field in minutes.
         urgency:
           type: integer
-          description: An integer that represents the User Notification Rules object's urgency field. 1 is for high urgency incidents and 2 is for low urgency incidents.
+          description: An integer that represents the User Notification Rules object's urgency field. 1 is for high urgency incidents and 0 is for low urgency incidents.
           
     UserForwardingRule:
       type: object
