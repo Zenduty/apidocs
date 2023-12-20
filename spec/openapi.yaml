@@ -6893,7 +6893,6 @@ paths:
               alert_type: info
               message: This is info alert
               summary: This is the incident summary
-              suppressed: false
               entity_id: 12345
               payload: {
                 "status": "ACME Payments are failing",
@@ -6908,7 +6907,6 @@ paths:
               alert_type: info
               message: This is info alert
               summary: This is the incident summary
-              suppressed: false
               entity_id: 12345
               payload: {
                 "status": "ACME Payments are failing",
@@ -12065,10 +12063,6 @@ components:
           type: string
           default: info
           description: A pre-defined string that represents the Event object's alert_type. Choices - `critical`, `acknowledged`, `resolved`, `error`, `warning`, `info`. 
-        suppressed:
-          type: boolean
-          default: false
-          description: A boolean flag that represents whether the object is suppressed or not, can be `true` or `false`.
         entity_id:
           type: string
           description: A unique id for the alert. If not provided, the Zenduty API will create one.
