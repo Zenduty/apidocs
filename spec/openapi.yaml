@@ -2332,7 +2332,7 @@ paths:
     post:
       tags:
         - Team Members
-      summary: Create the Team Member object
+      summary: Add user to Team
       description: Create the Team Member object by setting the values of all the required parameters passed in the request body.
       requestBody:
         description: Request body parameters to create the Team Member object
@@ -11945,7 +11945,8 @@ components:
         - user
       properties:
         user:
-          $ref: "#/components/schemas/User"
+          type: string
+          description: A string that represents the User's username
         role:
           type: integer
           default: 2
