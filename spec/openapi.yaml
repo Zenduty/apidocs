@@ -5641,11 +5641,11 @@ paths:
               example:
                 detail: Not Found.
 
-  "/api/incidents/{incident_identifier}/":
+  "/api/incidents/{unique_id}/":
     parameters:
-      - name: "incident_identifier"
+      - name: "unique_id"
         in: path
-        description: incident_number or incident_unique_id of the Incident object
+        description: unique_id of the Incident object, incident_number will be deprecated in future.
         schema:
           type: string
         required: true
