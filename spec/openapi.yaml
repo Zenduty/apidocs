@@ -5641,11 +5641,11 @@ paths:
               example:
                 detail: Not Found.
 
-  "/api/incidents/{incident_number}/":
+  "/api/incidents/{unique_id}/":
     parameters:
-      - name: "incident_number"
+      - name: "unique_id"
         in: path
-        description: incident_number of the Incident object
+        description: unique_id of the Incident object, incident_number will be deprecated in future.
         schema:
           type: string
         required: true
@@ -10812,7 +10812,7 @@ paths:
               example:
                 detail: Not Found.
 
-  "api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/transformers/":
+  "/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/transformers/":
     parameters:
       - name: "team_id"
         in: path
@@ -11078,7 +11078,7 @@ paths:
               example:
                 detail: Not Found.
 
-  "api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/transformers/{transformers_id}/":
+  "/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/transformers/{transformers_id}/":
     parameters:
       - name: "team_id"
         in: path
@@ -11379,11 +11379,6 @@ paths:
           schema:
             type: integer
             description: Unique identifier of the incident
-        - name: unique_id
-          in: path
-          schema:
-            type: string
-            description: Unique identifier of the Incident Responder
         - name: unique_id
           in: query
           schema:
