@@ -11367,28 +11367,18 @@ paths:
                 detail: Not Found.
 
   "/api/incidents/{incident_number}/responders/":
+    parameters:
+      - name: "incident_number"
+        in: path
+        description: Incident nmuber of the Incident object
+        schema:
+          type: string
+        required: true
     get:
       tags:
         - Incident Responders
       summary: List all Incident Responders objects
       description: Returns a list of Incident Responders objects.
-      parameters:
-        - name: incident_number
-          in: path
-          required: true
-          schema:
-            type: integer
-            description: Unique identifier of the incident
-        - name: unique_id
-          in: path
-          schema:
-            type: string
-            description: Unique identifier of the Incident Responder
-        - name: unique_id
-          in: query
-          schema:
-            type: string
-            description: Unique identifier of the Incident Responder
       responses:
         "200":
           description: A list of Incident Responders
@@ -11409,13 +11399,6 @@ paths:
         - Incident Responders
       summary: Add an Incident Responder
       description: Add an Incident Responder to the incident
-      parameters:
-        - name: incident_number
-          in: path
-          required: true
-          schema:
-            type: integer
-            description: Unique identifier of the incident
       requestBody:
         description: Payload to add an Incident Responder
         required: true
@@ -11470,24 +11453,24 @@ paths:
                 detail: You do not have permission to perform this action.
 
   "/api/incidents/{incident_number}/responders/{unique_id}/":
+    parameters:
+      - name: "incident_number"
+        in: path
+        description: Incident nmuber of the Incident object
+        schema:
+          type: string
+        required: true
+      - name: "unique_id"
+        in: path
+        description: unique_id of the Incident Responder Object
+        schema:
+          type: string
+        required: true
     get:
       tags:
         - Incident Responders
       summary: Retrieve an Incident Responder
       description: Retrieve details of an Incident Responder
-      parameters:
-        - name: incident_number
-          in: path
-          required: true
-          schema:
-            type: integer
-            description: Unique identifier of the incident
-        - name: unique_id
-          in: path
-          required: true
-          schema:
-            type: string
-            description: Unique identifier of the Incident Responder
       responses:
         "200":
           description: OK
@@ -11520,19 +11503,6 @@ paths:
         - Incident Responders
       summary: Delete an Incident Responder
       description: Delete an Incident Responder from the incident
-      parameters:
-        - name: incident_number
-          in: path
-          required: true
-          schema:
-            type: integer
-            description: Unique identifier of the incident
-        - name: unique_id
-          in: path
-          required: true
-          schema:
-            type: string
-            description: Unique identifier of the Incident Responder
       responses:
         "204":
           description: No Content
