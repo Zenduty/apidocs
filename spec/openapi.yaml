@@ -5038,6 +5038,364 @@ paths:
               example:
                 detail: Not Found.
 
+  "/api/incidents/filter":
+    post:
+      parameters:
+        - in: query
+          name: "page"
+          description: pagination page number. example - `page=1`
+          schema:
+            type: integer
+        - in: query
+          name: "page_size"
+          description: number of incidents per page. example - `page_size=10`
+          schema:
+            type: integer
+      tags:
+        - Incidents
+      summary: List all Incident objects(filtered)
+      description: Returns a list of filtered Incident objects. The Incident objects are sorted by creation_date, with the most recent Incident object appearing last. for pagination please use 'next' and 'previous' links in the response.
+      requestBody:
+        description: Request body parameters to filter the Incident objects
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IncidentFilterPayload"
+            example:
+              status: 1
+              team_ids:
+                - 4cce18ea-57c5-4beb-bca8-60dc7a68ae3a
+                - 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+              all_teams: 1
+              service_ids:
+                - 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+              user_ids:
+                - 7e26fed1-f11c-4e78-afc6-a
+              priority_name: ''
+              priority_ids:
+                - 7064efff-55f2-448b-92e5-a3a53179aa76
+              tag_ids:
+                - bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+              sla_ids:
+                - f14a16aa-15d1-49a1-be27-0c266b15c7fa
+              from_date: []
+              to_date: []
+              postmortem_filter: -1
+              escalation_policy_ids:
+                - 52fe68d3-cead-40b3-b0ac-d616d38d8e32
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/IncidentFilterPayload"
+            example:
+              status: 1
+              team_ids:
+                - 4cce18ea-57c5-4beb-bca8-60dc7a68ae3a
+                - 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+              all_teams: 1
+              service_ids:
+                - 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+              user_ids:
+                - 7e26fed1-f11c-4e78-afc6-a
+              priority_name: ''
+              priority_ids:
+                - 7064efff-55f2-448b-92e5-a3a53179aa76
+              tag_ids:
+                - bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+              sla_ids:
+                - f14a16aa-15d1-49a1-be27-0c266b15c7fa
+              from_date: []
+              to_date: []
+              postmortem_filter: -1
+              escalation_policy_ids:
+                - 52fe68d3-cead-40b3-b0ac-d616d38d8e32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IncidentFilter"
+              example:
+                next: "http://localhost:8000/api/incidents/filter/?page=2&page_size=10"
+                previous: "http://localhost:8000/api/incidents/filter/?page=2&page_size=10"
+                results:
+                  - incident_number: 255
+                    creation_date: '2023-10-26T14:22:56.338690Z'
+                    status: 1
+                    unique_id: aYfQPqqEUGvoMPftRAMSaB
+                    sla: f14a16aa-15d1-49a1-be27-0c266b15c7fa
+                    service_object:
+                      name: Main
+                      unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                      team: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                      team_name: Backend
+                    title: '[P-21041]Browser monitor global outage'
+                    assigned_to_name: Anshul Rajput
+                    tags:
+                      - unique_id: 4b2634c6-2c7c-40ea-9a30-020dfddee187
+                        incident: 255
+                        creation_date: '2023-10-26T14:22:56.475799Z'
+                        name: Team 1 Tag 1
+                        color: magenta
+                        tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                        team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                    sla_object:
+                      unique_id: f14a16aa-15d1-49a1-be27-0c266b15c7fa
+                      name: Team 1 SLA 1
+                      is_active: true
+                      acknowledge_time: 5
+                      resolve_time: 30
+                      creation_date: '2022-10-11T11:42:46.438776Z'
+                    team_priority_object:
+                      unique_id: 7064efff-55f2-448b-92e5-a3a53179aa76
+                      name: Team 1 Priority 1
+                      description: This is Team 1 Priority 1
+                      color: magenta
+                    is_child_incident: false
+                    postmortems: []
+                    is_parent_incident: false
+                    assigned_to: 7e26fed1-f11c-4e78-afc6-a
+                    acknowledged_date: null
+                    resolved_date: null
+                    snooze_time: null
+                    snoozed_till: null
+                  - incident_number: 254
+                    creation_date: '2023-10-26T14:21:28.828936Z'
+                    status: 1
+                    unique_id: 7ze6Q9YAgvVTUAkQntrViC
+                    sla: f14a16aa-15d1-49a1-be27-0c266b15c7fa
+                    service_object:
+                      name: Main
+                      unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                      team: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                      team_name: Backend
+                    title: '[P-21041]Browser monitor global outage'
+                    assigned_to_name: Anshul Rajput
+                    tags:
+                      - unique_id: 93f008cf-f55d-4348-9091-f1e70e3a92a6
+                        incident: 254
+                        creation_date: '2023-10-26T14:21:29.017156Z'
+                        name: Team 1 Tag 1
+                        color: magenta
+                        tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                        team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                    sla_object:
+                      unique_id: f14a16aa-15d1-49a1-be27-0c266b15c7fa
+                      name: Team 1 SLA 1
+                      is_active: true
+                      acknowledge_time: 5
+                      resolve_time: 30
+                      creation_date: '2022-10-11T11:42:46.438776Z'
+                    team_priority_object:
+                      unique_id: 7064efff-55f2-448b-92e5-a3a53179aa76
+                      name: Team 1 Priority 1
+                      description: This is Team 1 Priority 1
+                      color: magenta
+                    is_child_incident: false
+                    postmortems: []
+                    is_parent_incident: false
+                    assigned_to: 7e26fed1-f11c-4e78-afc6-a
+                    acknowledged_date: null
+                    resolved_date: null
+                    snooze_time: null
+                    snoozed_till: null
+                  - incident_number: 253
+                    creation_date: '2023-10-26T14:20:18.980264Z'
+                    status: 1
+                    unique_id: fAe5HrVSR8JfigxvB5p9eF
+                    sla: f14a16aa-15d1-49a1-be27-0c266b15c7fa
+                    service_object:
+                      name: Main
+                      unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                      team: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                      team_name: Backend
+                    title: '[P-21041]Browser monitor global outage'
+                    assigned_to_name: Anshul Rajput
+                    tags:
+                      - unique_id: 6d2dadec-69a7-45f7-a2fb-99cc32a38419
+                        incident: 253
+                        creation_date: '2023-10-26T14:20:19.168974Z'
+                        name: Team 1 Tag 1
+                        color: magenta
+                        tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                        team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                    sla_object:
+                      unique_id: f14a16aa-15d1-49a1-be27-0c266b15c7fa
+                      name: Team 1 SLA 1
+                      is_active: true
+                      acknowledge_time: 5
+                      resolve_time: 30
+                      creation_date: '2022-10-11T11:42:46.438776Z'
+                    team_priority_object:
+                      unique_id: 7064efff-55f2-448b-92e5-a3a53179aa76
+                      name: Team 1 Priority 1
+                      description: This is Team 1 Priority 1
+                      color: magenta
+                    is_child_incident: false
+                    postmortems: []
+                    is_parent_incident: false
+                    assigned_to: 7e26fed1-f11c-4e78-afc6-a
+                    acknowledged_date: null
+                    resolved_date: null
+                    snooze_time: null
+                    snoozed_till: null
+                
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/IncidentFilter"
+              example:
+                next: "http://localhost:8000/api/incidents/filter/?page=2&page_size=10"
+                previous: "http://localhost:8000/api/incidents/filter/?page=2&page_size=10"
+                results:
+                  - incident_number: 255
+                    creation_date: '2023-10-26T14:22:56.338690Z'
+                    status: 1
+                    unique_id: aYfQPqqEUGvoMPftRAMSaB
+                    sla: f14a16aa-15d1-49a1-be27-0c266b15c7fa
+                    service_object:
+                      name: Main
+                      unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                      team: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                      team_name: Backend
+                    title: '[P-21041]Browser monitor global outage'
+                    assigned_to_name: Anshul Rajput
+                    tags:
+                      - unique_id: 4b2634c6-2c7c-40ea-9a30-020dfddee187
+                        incident: 255
+                        creation_date: '2023-10-26T14:22:56.475799Z'
+                        name: Team 1 Tag 1
+                        color: magenta
+                        tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                        team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                    sla_object:
+                      unique_id: f14a16aa-15d1-49a1-be27-0c266b15c7fa
+                      name: Team 1 SLA 1
+                      is_active: true
+                      acknowledge_time: 5
+                      resolve_time: 30
+                      creation_date: '2022-10-11T11:42:46.438776Z'
+                    team_priority_object:
+                      unique_id: 7064efff-55f2-448b-92e5-a3a53179aa76
+                      name: Team 1 Priority 1
+                      description: This is Team 1 Priority 1
+                      color: magenta
+                    is_child_incident: false
+                    postmortems: []
+                    is_parent_incident: false
+                    assigned_to: 7e26fed1-f11c-4e78-afc6-a
+                    acknowledged_date: null
+                    resolved_date: null
+                    snooze_time: null
+                    snoozed_till: null
+                  - incident_number: 254
+                    creation_date: '2023-10-26T14:21:28.828936Z'
+                    status: 1
+                    unique_id: 7ze6Q9YAgvVTUAkQntrViC
+                    sla: f14a16aa-15d1-49a1-be27-0c266b15c7fa
+                    service_object:
+                      name: Main
+                      unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                      team: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                      team_name: Backend
+                    title: '[P-21041]Browser monitor global outage'
+                    assigned_to_name: Anshul Rajput
+                    tags:
+                      - unique_id: 93f008cf-f55d-4348-9091-f1e70e3a92a6
+                        incident: 254
+                        creation_date: '2023-10-26T14:21:29.017156Z'
+                        name: Team 1 Tag 1
+                        color: magenta
+                        tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                        team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                    sla_object:
+                      unique_id: f14a16aa-15d1-49a1-be27-0c266b15c7fa
+                      name: Team 1 SLA 1
+                      is_active: true
+                      acknowledge_time: 5
+                      resolve_time: 30
+                      creation_date: '2022-10-11T11:42:46.438776Z'
+                    team_priority_object:
+                      unique_id: 7064efff-55f2-448b-92e5-a3a53179aa76
+                      name: Team 1 Priority 1
+                      description: This is Team 1 Priority 1
+                      color: magenta
+                    is_child_incident: false
+                    postmortems: []
+                    is_parent_incident: false
+                    assigned_to: 7e26fed1-f11c-4e78-afc6-a
+                    acknowledged_date: null
+                    resolved_date: null
+                    snooze_time: null
+                    snoozed_till: null
+                  - incident_number: 253
+                    creation_date: '2023-10-26T14:20:18.980264Z'
+                    status: 1
+                    unique_id: fAe5HrVSR8JfigxvB5p9eF
+                    sla: f14a16aa-15d1-49a1-be27-0c266b15c7fa
+                    service_object:
+                      name: Main
+                      unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
+                      team: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
+                      team_name: Backend
+                    title: '[P-21041]Browser monitor global outage'
+                    assigned_to_name: Anshul Rajput
+                    tags:
+                      - unique_id: 6d2dadec-69a7-45f7-a2fb-99cc32a38419
+                        incident: 253
+                        creation_date: '2023-10-26T14:20:19.168974Z'
+                        name: Team 1 Tag 1
+                        color: magenta
+                        tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                        team_tag: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
+                    sla_object:
+                      unique_id: f14a16aa-15d1-49a1-be27-0c266b15c7fa
+                      name: Team 1 SLA 1
+                      is_active: true
+                      acknowledge_time: 5
+                      resolve_time: 30
+                      creation_date: '2022-10-11T11:42:46.438776Z'
+                    team_priority_object:
+                      unique_id: 7064efff-55f2-448b-92e5-a3a53179aa76
+                      name: Team 1 Priority 1
+                      description: This is Team 1 Priority 1
+                      color: magenta
+                    is_child_incident: false
+                    postmortems: []
+                    is_parent_incident: false
+                    assigned_to: 7e26fed1-f11c-4e78-afc6-a
+                    acknowledged_date: null
+                    resolved_date: null
+                    snooze_time: null
+                    snoozed_till: null
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              example:
+                detail: Not Found.
+            application/xml:
+              example:
+                detail: Not Found.
+
   "/api/incidents/":
     post:
       tags:
@@ -12402,6 +12760,240 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/EventNote"
+            
+    IncidentFilterPayload:
+      type: object
+      description: Payload schema for the Incident object
+      properties:
+        all_teams:
+          type: integer
+          default: 1
+          description: This query parameter can be `0` or `1`. To filter incidents based on all teams use `0` and to filter incidents based on the teams the requesting user belongs to, use `1`. example - `all_teams=1`
+        escalation_policy_ids:
+          type: array
+          description: A list of escalation policy unique ids
+          items:
+            type: string
+            description: unique_id of an Escalation Policy
+        from_date:
+          type: string
+          default: []
+          description: Represents from_date and filters incidents whose creation_date is greater than the specified from_date. example - `from_date="2023-02-01"`
+        postmortem_filter:
+          type: integer
+          default: -1
+          description: An integer that represents weather the postmortem is attached to the incident or not 
+        priority_ids:
+          type: array
+          description: A list of Team Priority unique ids
+          items:
+            type: string
+            description: unique_id of a Team Priority object
+        priority_name:
+          type: string
+          description: Name of the Team priroty object
+        service_ids:
+          type: array
+          description: A list of Service unique ids
+          items:
+            type: string
+            description: unique_id of a Service object
+        sla_ids:
+          type: array
+          description: A list of Team SLA unique ids
+          items:
+            type: string
+            description: unique_id of a Team SLA object
+        status:
+          type: integer
+          default: 1
+          description: Status of the Incident object. For open incidents(triggered and acknowledged) use `-1`, for all incidents(triggered, acknowledged and resolved) use `0`, for triggered incidents use `1`, for acknowledged incidents use `2` and for resolved incidents use `3`. example - `status=1`
+        tag_ids:
+          type: array
+          description: A list of Team Tag unique ids
+          items:
+            type: string
+            description: unique_id of a Team Tag object
+        team_ids:
+          type: array
+          description: A list of Team unique ids
+          items:
+            type: string
+            description: unique_id of a Team object
+        to_date:
+          type: string
+          default: []
+          description: Represents to_date and filters incidents whose creation_date is lesser than the specified to_date. example - `to_date="2023-02-01"`
+        user_ids:
+          type: array
+          description: A list of User usernames
+          items:
+            type: string
+            description: username of an User object
+            
+    IncidentFilter:
+      type: object
+      description: Incident filter object schema
+      properties:
+        count:
+          type: integer
+          nullable: true
+          description: Please note -> this filed will always be null and will be removed in future version. For pagination, please use the `next` and `previous` fields.
+        next:
+          type: string
+          nullable: true
+          description: Link to the next page.
+        previous:
+          type: string
+          nullable: true
+          description: Link to the previous page.
+        results:
+          type: array
+          description: A list of filtered incident objects.
+          items:
+            $ref: "#/components/schemas/IncidentFilterObject"
+            
+    IncidentFilterObject:
+      type: object
+      description: Incident object schema
+      properties:
+        incident_number:
+          type: integer
+          description: An integer that represents the Incident object's incident_number
+        creation_date:
+          type: string
+          format: date-time
+          description: A formatted string that represents the Incident object's creation_date
+        status:
+          type: integer
+          default: 1
+          description: An integer that represents the Incident object's status. 1 is triggered, 2 is acknowledged and 3 is resolved
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Incident object's unique_id
+        sla:
+          type: string
+          description: A system-generated string that represents the SLA object's unique_id
+        service_object:
+          $ref: "#/components/schemas/ServicePostPut"
+        title:
+          type: string
+          description: A string that represents the Incident object's title
+        assigned_to_name:
+          type: string
+          description: A string that represents the User object's full name
+        tags:
+          type: array
+          description: An array of Incident Tag objects
+          items:
+            type: object
+            description: Incident Tag object schema for Incident object schema
+            properties:
+              unique_id:
+                type: string
+                description: A system-generated string that represents the Incident Tag object's unique_id
+              incident:
+                type: integer
+                description: An integer that represents the the Incident object's incident_number
+              creation_date:
+                type: string
+                format: date-time
+                description: A formatted string that represents the Tag object's creation_date
+              name:
+                type: string
+                description: A string that represents the Tag object's name
+              color:
+                type: string
+                description: A string that represents the Tag object's color
+              tag_id:
+                type: string
+                description: A system-generated string that represents the Tag object's unique_id
+              team_tag:
+                type: string
+                description: A system-generated string that represents the Tag object's unique_id
+        sla_object:
+          type: object
+          description: SLA object schema for Incident object schema
+          properties:
+            unique_id:
+              type: string
+              description: A system-generated string that represents the SLA object's unique_id
+            name:
+              type: string
+              description: A string that represents the SLA object's name
+            is_active:
+              type: boolean
+              default: true
+              description: A boolean flag that represents whether the SLA object is active or not.
+            acknowledge_time:
+              type: integer
+              description: An integer that represents the SLA object's acknowledge_time
+            resolve_time:
+              type: integer
+              description: An integer that represents the SLA object's resolve_time
+            creation_date:
+              type: string
+              format: date-time
+              description: A formatted string that represents the SLA object's creation_date
+        team_priority_object:
+          type: object
+          description: Priority object schema for Incident object schema
+          properties:
+            unique_id:
+              type: string
+              description: A system-generated string that represents the Priority object's unique_id
+            name:
+              type: string
+              description: A string that represents the Priority object's name
+            description:
+              type: string
+              description: A string that represents the Priority object's description
+            color:
+              type: string
+              description: A string that represents the Priority object's color
+        is_child_incident:
+          type: boolean
+          description: A boolean flag that represents whether the Incident has a child incident or not.
+        postmortems:
+          type: array
+          description: A list of postmortems objects.
+          items:
+            $ref: "#/components/schemas/IncidentFilterPostmortemObject"
+        is_parent_incident:
+          type: boolean
+          description: A boolean flag that represents whether the Incident has a parent incident or not.
+        assigned_to:
+          type: string
+          description: A system-generated string that represents the User object's username
+        acknowledged_date:
+          type: string
+          format: date-time
+          description: A formatted string that represents the Incident object's acknowledged_date
+        resolved_date:
+          type: string
+          format: date-time
+          description: A formatted string that represents the Incident object's resolved_date
+        snooze_time:
+          type: string
+          nullable: true
+          format: date-time
+          description: A formatted string that represents the Incident object's snooze_time
+        snoozed_till:
+          type: string
+          nullable: true
+          format: date-time
+          description: A formatted string that represents till when the Incident object's will be snoozed
+          
+    IncidentFilterPostmortemObject:
+      type: object
+      description: Postmortem object schema
+      properties:
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Postmortem object's unique_id
+        title:
+          type: string
+          description: A string that represents the Postmortem object's title
 
     Incident:
       type: object
