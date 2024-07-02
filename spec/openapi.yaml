@@ -4211,7 +4211,7 @@ paths:
               example:
                 detail: Not Found.
 
-  "/api/account/teams/{}/services/{service_id}/integrations":
+  "/api/account/teams/{}/services/{service_id}/integrations/":
     parameters:
       - name: "team_id"
         in: path
@@ -4632,7 +4632,7 @@ paths:
               example:
                 detail: Not Found.
 
-  "/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}":
+  "/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/":
     parameters:
       - name: "team_id"
         in: path
@@ -5038,7 +5038,7 @@ paths:
               example:
                 detail: Not Found.
 
-  "/api/incidents/filter":
+  "/api/incidents/filter/":
     post:
       parameters:
         - in: query
@@ -6354,7 +6354,7 @@ paths:
               example:
                 detail: Not Found.
 
-  "/api/incidents/{incident_number}/note/{note_unique_id}":
+  "/api/incidents/{incident_number}/note/{note_unique_id}/":
     parameters:
       - name: "incident_number"
         in: path
@@ -6680,7 +6680,7 @@ paths:
               example:
                 detail: Not Found.
 
-  "/api/incidents/{incident_number}/tags/{tag_unique_id}":
+  "/api/incidents/{incident_number}/tags/{tag_unique_id}/":
     parameters:
       - name: "incident_number"
         in: path
