@@ -4884,7 +4884,111 @@ paths:
             application/xml:
               example:
                 detail: Not Found.
-
+  "/api/account/regenerate_integration_key/":
+    post:
+      tags:
+        - Integrations
+      summary: Regenerate the Integration key
+      description: Regenerates the integration key.
+      requestBody:
+        description: The integration's unique ID
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+            example: "84753076-129d-4706-a957-a7c751ca7ab1"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Integration"
+              example:
+                name: AWS GuardDuty
+                creation_date: '2024-07-01T10:16:32.036085Z'
+                summary: AWS GuardDuty Integration
+                unique_id: 84753076-129d-4706-a957-a7c751ca7ab1
+                service: 34da0237-9825-454a-9297-3a23a4b78795
+                application: bb399bc6-9098-4afd-91d7-3cec4d8282eb
+                application_reference:
+                  name: AWS GuardDuty
+                  icon_url: https://media-assets-cdn.zenduty.com/assets/integrations/new_logos/guardduty.png
+                  summary: AWS GuardDuty Integration
+                  description: AWS GuardDuty Integration
+                  unique_id: bb399bc6-9098-4afd-91d7-3cec4d8282eb
+                  availability_plan_id: 4
+                  setup_instructions: "To integrate Zenduty with AWS GuardDuty, follow the steps below..."
+                  extension: guardduty
+                  application_type: 0
+                  categories: Cloud Monitoring,Server/Network Monitoring
+                  documentation_link: https://docs.zenduty.com/docs/guardduty
+                  is_active: 1
+                integration_key: c89e320f-a975-47e4-8437-1169e91eeed7
+                created_by: 39569d4b-6540-4b64-a086-6
+                is_enabled: true
+                create_incidents_for: 1
+                integration_type: 0
+                default_urgency: 1
+                webhook_url: https://www.zenduty.com/api/integration/guardduty/c89e320f-a975-47e4-8437-1169e91eeed7/
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Integration"
+              example:
+                name: AWS GuardDuty
+                creation_date: '2024-07-01T10:16:32.036085Z'
+                summary: AWS GuardDuty Integration
+                unique_id: 84753076-129d-4706-a957-a7c751ca7ab1
+                service: 34da0237-9825-454a-9297-3a23a4b78795
+                application: bb399bc6-9098-4afd-91d7-3cec4d8282eb
+                application_reference:
+                  name: AWS GuardDuty
+                  icon_url: https://media-assets-cdn.zenduty.com/assets/integrations/new_logos/guardduty.png
+                  summary: AWS GuardDuty Integration
+                  description: AWS GuardDuty Integration
+                  unique_id: bb399bc6-9098-4afd-91d7-3cec4d8282eb
+                  availability_plan_id: 4
+                  setup_instructions: "To integrate Zenduty with AWS GuardDuty, follow the steps below..."
+                  extension: guardduty
+                  application_type: 0
+                  categories: Cloud Monitoring,Server/Network Monitoring
+                  documentation_link: https://docs.zenduty.com/docs/guardduty
+                  is_active: 1
+                integration_key: c89e320f-a975-47e4-8437-1169e91eeed7
+                created_by: 39569d4b-6540-4b64-a086-6
+                is_enabled: true
+                create_incidents_for: 1
+                integration_type: 0
+                default_urgency: 1
+                webhook_url: https://www.zenduty.com/api/integration/guardduty/c89e320f-a975-47e4-8437-1169e91eeed7/
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              example:
+                error: "User does not have permission to regenerate integration key"
+            application/xml:
+              example:
+                error: "User does not have permission to regenerate integration key"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              example:
+                detail: Not Found.
+            application/xml:
+              example:
+                detail: Not Found.
   "/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/alerts/":
     parameters:
       - name: "team_id"
