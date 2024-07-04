@@ -4896,10 +4896,9 @@ paths:
         description: The integration's unique ID
         required: true
         content:
-          text/plain:
-            schema:
-              type: string
-            example: "84753076-129d-4706-a957-a7c751ca7ab1"
+          application/json:
+            example:
+              integration_unique_id: "84753076-129d-4706-a957-a7c751ca7ab1"
       responses:
         "200":
           description: OK
