@@ -5155,7 +5155,7 @@ paths:
             type: integer
         - in: query
           name: "page_size"
-          description: number of incidents per page. example - `page_size=10`
+          description: number of incidents per page (default = 10, max = 50) example - `page_size=10` 
           schema:
             type: integer
       tags:
