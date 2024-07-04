@@ -4897,6 +4897,8 @@ paths:
         required: true
         content:
           application/json:
+            schema:
+              $ref: "#/components/schemas/IntegrationKeyRegenerationPayload"
             example:
               integration_unique_id: "84753076-129d-4706-a957-a7c751ca7ab1"
       responses:
@@ -12604,7 +12606,13 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/EventNote"
-            
+    IntegrationKeyRegenerationPayload:
+      type: object
+      description: Payload schema for the regenerating the key of the Integration
+      properties:
+        integration_unique_id:
+          type: string
+          description: A string that represents the relevant Integration's unique ID     
     IncidentFilterPayload:
       type: object
       description: Payload schema for the Incident object
