@@ -3812,6 +3812,7 @@ paths:
                 team_priority: 6d100d52-998b-41c8-8928-a7e3aa68e329
                 task_template: 8d2640ca-c6ef-45f0-be5f-61dedcf85032
                 acknowledgement_timeout: 0
+                acknowledgement_timeout_enabled: false
                 status: 1
                 escalation_policy: 9ea1f98d-b5a3-4d72-8057-2f5f3d743a44
                 team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -3833,6 +3834,7 @@ paths:
                 team_priority: 6d100d52-998b-41c8-8928-a7e3aa68e329
                 task_template: 8d2640ca-c6ef-45f0-be5f-61dedcf85032
                 acknowledgement_timeout: 0
+                acknowledgement_timeout_enabled: false
                 status: 1
                 escalation_policy: 9ea1f98d-b5a3-4d72-8057-2f5f3d743a44
                 team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -3889,6 +3891,7 @@ paths:
                   team_priority: 6d100d52-998b-41c8-8928-a7e3aa68e329
                   task_template: 8d2640ca-c6ef-45f0-be5f-61dedcf85032
                   acknowledgement_timeout: 0
+                  acknowledgement_timeout_enabled: false
                   status: 1
                   escalation_policy: 9ea1f98d-b5a3-4d72-8057-2f5f3d743a44
                   team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -3906,6 +3909,7 @@ paths:
                   team_priority: 6d100d52-998b-41c8-8928-a7e3aa68e329
                   task_template: 8d2640ca-c6ef-45f0-be5f-61dedcf85032
                   acknowledgement_timeout: 0
+                  acknowledgement_timeout_enabled: false
                   status: 1
                   escalation_policy: 9ea1f98d-b5a3-4d72-8057-2f5f3d743a44
                   team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -3927,6 +3931,7 @@ paths:
                   team_priority: 6d100d52-998b-41c8-8928-a7e3aa68e329
                   task_template: 8d2640ca-c6ef-45f0-be5f-61dedcf85032
                   acknowledgement_timeout: 0
+                  acknowledgement_timeout_enabled: false
                   status: 1
                   escalation_policy: 9ea1f98d-b5a3-4d72-8057-2f5f3d743a44
                   team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -3944,6 +3949,7 @@ paths:
                   team_priority: 6d100d52-998b-41c8-8928-a7e3aa68e329
                   task_template: 8d2640ca-c6ef-45f0-be5f-61dedcf85032
                   acknowledgement_timeout: 0
+                  acknowledgement_timeout_enabled: false
                   status: 1
                   escalation_policy: 9ea1f98d-b5a3-4d72-8057-2f5f3d743a44
                   team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -4016,6 +4022,7 @@ paths:
                 team_priority: 6d100d52-998b-41c8-8928-a7e3aa68e329
                 task_template: 8d2640ca-c6ef-45f0-be5f-61dedcf85032
                 acknowledgement_timeout: 0
+                acknowledgement_timeout_enabled: false
                 status: 1
                 escalation_policy: 9ea1f98d-b5a3-4d72-8057-2f5f3d743a44
                 team: 61010821-08aa-4098-94f8-f88f1990b54a
@@ -12135,10 +12142,14 @@ components:
         task_template:
           type: string
           description: A system-generated string that represents the Task Template object's unique_id
-        acknowlegement_timeout:
+        acknowledgement_timeout_enabled:
+          type: boolean
+          default: false
+          description: An boolean flag that represents whether a service has acknowledgement timeout is enabled. If true, the "acknowledgement_timeout" field value needs to be set
+        acknowledgement_timeout:
           type: integer
-          default: 0
-          description: An integer that represents the timeout for acknowledging an Incident
+          default: 600
+          description: An integer that represents the acknowledgement timeout value in seconds. If an incident is acknowledged and unresolved within this time window, the incident will be retriggered. This value must be above 600 seconds.
         status:
           type: integer
           default: 1
