@@ -11024,7 +11024,7 @@ paths:
               example:
                 detail: Not Found.
 
-  "api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/transformers/":
+  "/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/transformers/":
     parameters:
       - name: "team_id"
         in: path
