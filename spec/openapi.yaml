@@ -14,18 +14,18 @@ info:
     # Introduction
 
     Zenduty is a cutting edge platform for incident management. With high level automation, Zenduty enables faster and better incident resolution keeping developers first.
-      
-      
+
+
       Javascript Libraries: https://github.com/Zenduty/zenduty-js
-      
+
       Ruby Libraries: https://github.com/Zenduty/zenduty-ruby
-      
+
       Python Libraries: https://github.com/Zenduty/zenduty-python-sdk
 
       Postman Collection for Zenduty API: https://github.com/Zenduty/zenduty-api-postman.git
-      
+
       Account-level roles and permissions: https://docs.zenduty.com/docs/users#account-level-roles-and-permissions
-      
+
       Team-level roles and permissions: https://docs.zenduty.com/docs/users#team-level-roles-and-permissions
 
 # A list of tags used by the specification with additional metadata.
@@ -4917,7 +4917,7 @@ paths:
                 $ref: "#/components/schemas/Integration"
               example:
                 name: AWS GuardDuty
-                creation_date: '2024-07-01T10:16:32.036085Z'
+                creation_date: "2024-07-01T10:16:32.036085Z"
                 summary: AWS GuardDuty Integration
                 unique_id: 84753076-129d-4706-a957-a7c751ca7ab1
                 service: 34da0237-9825-454a-9297-3a23a4b78795
@@ -4947,7 +4947,7 @@ paths:
                 $ref: "#/components/schemas/Integration"
               example:
                 name: AWS GuardDuty
-                creation_date: '2024-07-01T10:16:32.036085Z'
+                creation_date: "2024-07-01T10:16:32.036085Z"
                 summary: AWS GuardDuty Integration
                 unique_id: 84753076-129d-4706-a957-a7c751ca7ab1
                 service: 34da0237-9825-454a-9297-3a23a4b78795
@@ -5162,7 +5162,7 @@ paths:
             type: integer
         - in: query
           name: "page_size"
-          description: number of incidents per page (default = 10, max = 50) example - `page_size=10` 
+          description: number of incidents per page (default = 10, max = 50) example - `page_size=10`
           schema:
             type: integer
       tags:
@@ -5186,7 +5186,7 @@ paths:
                 - 32a7c77f-aa0a-49de-ab52-e52f0aa77888
               user_ids:
                 - 7e26fed1-f11c-4e78-afc6-a
-              priority_name: ''
+              priority_name: ""
               priority_ids:
                 - 7064efff-55f2-448b-92e5-a3a53179aa76
               tag_ids:
@@ -5211,7 +5211,7 @@ paths:
                 - 32a7c77f-aa0a-49de-ab52-e52f0aa77888
               user_ids:
                 - 7e26fed1-f11c-4e78-afc6-a
-              priority_name: ''
+              priority_name: ""
               priority_ids:
                 - 7064efff-55f2-448b-92e5-a3a53179aa76
               tag_ids:
@@ -5235,7 +5235,7 @@ paths:
                 previous: "https://www.zenduty.com/api/incidents/filter/?page=2&page_size=10"
                 results:
                   - incident_number: 255
-                    creation_date: '2023-10-26T14:22:56.338690Z'
+                    creation_date: "2023-10-26T14:22:56.338690Z"
                     status: 1
                     unique_id: aYfQPqqEUGvoMPftRAMSaB
                     sla: f14a16aa-15d1-49a1-be27-0c266b15c7fa
@@ -5244,12 +5244,12 @@ paths:
                       unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
                       team: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
                       team_name: Backend
-                    title: '[P-21041]Browser monitor global outage'
+                    title: "[P-21041]Browser monitor global outage"
                     assigned_to_name: Michael Scott
                     tags:
                       - unique_id: 4b2634c6-2c7c-40ea-9a30-020dfddee187
                         incident: 255
-                        creation_date: '2023-10-26T14:22:56.475799Z'
+                        creation_date: "2023-10-26T14:22:56.475799Z"
                         name: TAG
                         color: magenta
                         tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
@@ -5260,7 +5260,7 @@ paths:
                       is_active: true
                       acknowledge_time: 5
                       resolve_time: 30
-                      creation_date: '2022-10-11T11:42:46.438776Z'
+                      creation_date: "2022-10-11T11:42:46.438776Z"
                     team_priority_object:
                       unique_id: 7064efff-55f2-448b-92e5-a3a53179aa76
                       name: P1
@@ -5275,7 +5275,7 @@ paths:
                     snooze_time: null
                     snoozed_till: null
                   - incident_number: 254
-                    creation_date: '2023-10-26T14:21:28.828936Z'
+                    creation_date: "2023-10-26T14:21:28.828936Z"
                     status: 1
                     unique_id: 7ze6Q9YAgvVTUAkQntrViC
                     sla: f14a16aa-15d1-49a1-be27-0c266b15c7fa
@@ -5284,12 +5284,12 @@ paths:
                       unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
                       team: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
                       team_name: Backend
-                    title: '[P-21041]Browser monitor global outage'
+                    title: "[P-21041]Browser monitor global outage"
                     assigned_to_name: Michael Scott
                     tags:
                       - unique_id: 93f008cf-f55d-4348-9091-f1e70e3a92a6
                         incident: 254
-                        creation_date: '2023-10-26T14:21:29.017156Z'
+                        creation_date: "2023-10-26T14:21:29.017156Z"
                         name: TAG
                         color: magenta
                         tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
@@ -5300,7 +5300,7 @@ paths:
                       is_active: true
                       acknowledge_time: 5
                       resolve_time: 30
-                      creation_date: '2022-10-11T11:42:46.438776Z'
+                      creation_date: "2022-10-11T11:42:46.438776Z"
                     team_priority_object:
                       unique_id: 7064efff-55f2-448b-92e5-a3a53179aa76
                       name: P1
@@ -5315,7 +5315,7 @@ paths:
                     snooze_time: null
                     snoozed_till: null
                   - incident_number: 253
-                    creation_date: '2023-10-26T14:20:18.980264Z'
+                    creation_date: "2023-10-26T14:20:18.980264Z"
                     status: 1
                     unique_id: fAe5HrVSR8JfigxvB5p9eF
                     sla: f14a16aa-15d1-49a1-be27-0c266b15c7fa
@@ -5324,12 +5324,12 @@ paths:
                       unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
                       team: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
                       team_name: Backend
-                    title: '[P-21041]Browser monitor global outage'
+                    title: "[P-21041]Browser monitor global outage"
                     assigned_to_name: Michael Scott
                     tags:
                       - unique_id: 6d2dadec-69a7-45f7-a2fb-99cc32a38419
                         incident: 253
-                        creation_date: '2023-10-26T14:20:19.168974Z'
+                        creation_date: "2023-10-26T14:20:19.168974Z"
                         name: TAG
                         color: magenta
                         tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
@@ -5340,7 +5340,7 @@ paths:
                       is_active: true
                       acknowledge_time: 5
                       resolve_time: 30
-                      creation_date: '2022-10-11T11:42:46.438776Z'
+                      creation_date: "2022-10-11T11:42:46.438776Z"
                     team_priority_object:
                       unique_id: 7064efff-55f2-448b-92e5-a3a53179aa76
                       name: P1
@@ -5354,7 +5354,7 @@ paths:
                     resolved_date: null
                     snooze_time: null
                     snoozed_till: null
-                
+
             application/xml:
               schema:
                 $ref: "#/components/schemas/IncidentFilter"
@@ -5363,7 +5363,7 @@ paths:
                 previous: "https://www.zenduty.com/api/incidents/filter/?page=2&page_size=10"
                 results:
                   - incident_number: 255
-                    creation_date: '2023-10-26T14:22:56.338690Z'
+                    creation_date: "2023-10-26T14:22:56.338690Z"
                     status: 1
                     unique_id: aYfQPqqEUGvoMPftRAMSaB
                     sla: f14a16aa-15d1-49a1-be27-0c266b15c7fa
@@ -5372,12 +5372,12 @@ paths:
                       unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
                       team: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
                       team_name: Backend
-                    title: '[P-21041]Browser monitor global outage'
+                    title: "[P-21041]Browser monitor global outage"
                     assigned_to_name: Michael Scott
                     tags:
                       - unique_id: 4b2634c6-2c7c-40ea-9a30-020dfddee187
                         incident: 255
-                        creation_date: '2023-10-26T14:22:56.475799Z'
+                        creation_date: "2023-10-26T14:22:56.475799Z"
                         name: TAG
                         color: magenta
                         tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
@@ -5388,7 +5388,7 @@ paths:
                       is_active: true
                       acknowledge_time: 5
                       resolve_time: 30
-                      creation_date: '2022-10-11T11:42:46.438776Z'
+                      creation_date: "2022-10-11T11:42:46.438776Z"
                     team_priority_object:
                       unique_id: 7064efff-55f2-448b-92e5-a3a53179aa76
                       name: P1
@@ -5403,7 +5403,7 @@ paths:
                     snooze_time: null
                     snoozed_till: null
                   - incident_number: 254
-                    creation_date: '2023-10-26T14:21:28.828936Z'
+                    creation_date: "2023-10-26T14:21:28.828936Z"
                     status: 1
                     unique_id: 7ze6Q9YAgvVTUAkQntrViC
                     sla: f14a16aa-15d1-49a1-be27-0c266b15c7fa
@@ -5412,12 +5412,12 @@ paths:
                       unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
                       team: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
                       team_name: Backend
-                    title: '[P-21041]Browser monitor global outage'
+                    title: "[P-21041]Browser monitor global outage"
                     assigned_to_name: Michael Scott
                     tags:
                       - unique_id: 93f008cf-f55d-4348-9091-f1e70e3a92a6
                         incident: 254
-                        creation_date: '2023-10-26T14:21:29.017156Z'
+                        creation_date: "2023-10-26T14:21:29.017156Z"
                         name: TAG
                         color: magenta
                         tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
@@ -5428,7 +5428,7 @@ paths:
                       is_active: true
                       acknowledge_time: 5
                       resolve_time: 30
-                      creation_date: '2022-10-11T11:42:46.438776Z'
+                      creation_date: "2022-10-11T11:42:46.438776Z"
                     team_priority_object:
                       unique_id: 7064efff-55f2-448b-92e5-a3a53179aa76
                       name: P1
@@ -5443,7 +5443,7 @@ paths:
                     snooze_time: null
                     snoozed_till: null
                   - incident_number: 253
-                    creation_date: '2023-10-26T14:20:18.980264Z'
+                    creation_date: "2023-10-26T14:20:18.980264Z"
                     status: 1
                     unique_id: fAe5HrVSR8JfigxvB5p9eF
                     sla: f14a16aa-15d1-49a1-be27-0c266b15c7fa
@@ -5452,12 +5452,12 @@ paths:
                       unique_id: 32a7c77f-aa0a-49de-ab52-e52f0aa77888
                       team: 91fd3cc0-ebd6-43b8-aab3-67a05762ba0c
                       team_name: Backend
-                    title: '[P-21041]Browser monitor global outage'
+                    title: "[P-21041]Browser monitor global outage"
                     assigned_to_name: Michael Scott
                     tags:
                       - unique_id: 6d2dadec-69a7-45f7-a2fb-99cc32a38419
                         incident: 253
-                        creation_date: '2023-10-26T14:20:19.168974Z'
+                        creation_date: "2023-10-26T14:20:19.168974Z"
                         name: TAG
                         color: magenta
                         tag_id: bc56a5d1-3ec3-4802-9f6a-3f93519ec2a4
@@ -5468,7 +5468,7 @@ paths:
                       is_active: true
                       acknowledge_time: 5
                       resolve_time: 30
-                      creation_date: '2022-10-11T11:42:46.438776Z'
+                      creation_date: "2022-10-11T11:42:46.438776Z"
                     team_priority_object:
                       unique_id: 7064efff-55f2-448b-92e5-a3a53179aa76
                       name: P1
@@ -5509,7 +5509,6 @@ paths:
             application/xml:
               example:
                 detail: Not Found.
-
 
   "/api/incidents/":
     post:
@@ -5678,15 +5677,15 @@ paths:
             application/xml:
               example:
                 detail: Not Found.
-  "/api/incidents/{unique_id}/":  
+  "/api/incidents/{unique_id}/":
     patch:
       parameters:
-      - name: "unique_id"
-        in: path
-        description: A system-generated string that represents the Incident object's unique ID
-        schema:
-          type: string
-        required: true
+        - name: "unique_id"
+          in: path
+          description: A system-generated string that represents the Incident object's unique ID
+          schema:
+            type: string
+          required: true
       tags:
         - Incidents
       summary: Update the Incident object
@@ -12328,11 +12327,11 @@ components:
         collation:
           type: integer
           default: 0
-          description: An integer that represents the Service object's collation type. 0 is off, 1 is time-based, and 2 is intelligence.
+          description: An integer that represents the Service object's collation type. 0 is off, 1 is time-based.
         collation_time:
           type: integer
           default: 0
-          description: An integer that represents the Service object's collation_time
+          description: An integer that represents the Service object's collation_time. When collation is turned on it needs to be greater than 1 minute & less than 1440 minutes.
 
     ServicePostPut:
       description: Service object schema for Create and Update
@@ -12387,11 +12386,11 @@ components:
         collation_time:
           type: integer
           default: 0
-          description: An integer that represents the Service object's collation_time
+          description: An integer that represents the Service object's collation_time. When collation is turned on it needs to be greater than 1 minute & less than 1440 minutes.
         collation:
           type: integer
           default: 0
-          description: An integer that represents the Service object's collation type. 0 is off, 1 is time-based, and 2 is intelligence.
+          description: An integer that represents the Service object's collation type. 0 is off, 1 is time-based.
         under_maintenance:
           type: boolean
           default: false
@@ -12449,11 +12448,11 @@ components:
         collation:
           type: integer
           default: 0
-          description: An integer that represents the Service object's collation type. 0 is off, 1 is time-based, and 2 is intelligence.
+          description: An integer that represents the Service object's collation type. 0 is off, 1 is time-based.
         collation_time:
           type: integer
           default: 0
-          description: An integer that represents the Service object's collation_time
+          description: An integer that represents the Service object's collation_time. When collation is turned on it needs to be greater than 1 minute & less than 1440 minutes.
 
     Integration:
       description: Integration object schema
@@ -12624,7 +12623,7 @@ components:
       properties:
         integration_unique_id:
           type: string
-          description: A string that represents the relevant Integration's unique ID     
+          description: A string that represents the relevant Integration's unique ID
     IncidentFilterPayload:
       type: object
       description: Payload schema for the Incident object
@@ -12646,7 +12645,7 @@ components:
         postmortem_filter:
           type: integer
           default: -1
-          description: An integer that represents weather the postmortem is attached to the incident or not 
+          description: An integer that represents weather the postmortem is attached to the incident or not
         priority_ids:
           type: array
           description: A list of Team Priority unique ids
@@ -12694,7 +12693,7 @@ components:
           items:
             type: string
             description: username of an User object
-            
+
     IncidentFilter:
       type: object
       description: Incident filter object schema
@@ -12716,7 +12715,7 @@ components:
           description: A list of filtered incident objects.
           items:
             $ref: "#/components/schemas/IncidentFilterObject"
-            
+
     IncidentFilterObject:
       type: object
       description: Incident object schema
@@ -12847,7 +12846,7 @@ components:
           nullable: true
           format: date-time
           description: A formatted string that represents till when the Incident object's will be snoozed
-          
+
     IncidentFilterPostmortemObject:
       type: object
       description: Postmortem object schema
