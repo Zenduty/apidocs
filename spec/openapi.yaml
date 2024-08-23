@@ -98,7 +98,6 @@ tags:
 
 servers:
   - url: "https://www.zenduty.com"
-
 security:
   - bearerAuth: []
 
@@ -7239,6 +7238,8 @@ paths:
                 detail: Not Found.
                 
   "/integration/{account_id}/generic/{integration_key}/":
+    servers:
+      - url: https://events.zenduty.com
     parameters:
       - name: "account_id"
         in: path
@@ -7340,6 +7341,8 @@ paths:
                 detail: Not Found.
   
   "/api/alert/status/{trace_id}/":
+    servers:
+      - url: https://events.zenduty.com
     parameters:
       - name: "trace_id"
         in: path
