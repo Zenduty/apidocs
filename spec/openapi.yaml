@@ -98,7 +98,6 @@ tags:
 
 servers:
   - url: "https://www.zenduty.com"
-
 security:
   - bearerAuth: []
 
@@ -7085,6 +7084,7 @@ paths:
           type: string
         required: true
     post:
+      deprecated: true  
       tags:
         - Events
       summary: Create the Event object
@@ -7236,7 +7236,175 @@ paths:
             application/xml:
               example:
                 detail: Not Found.
-
+                
+  "/integration/{account_id}/generic/{integration_key}/":
+    servers:
+      - url: https://events.zenduty.com
+    parameters:
+      - name: "account_id"
+        in: path
+        description: 5 character long account identifier
+        schema:
+          type: string
+        required: true
+      - name: "integration_key"
+        in: path
+        description: integration_key of the Integration object
+        schema:
+          type: string
+        required: true
+    post:
+      tags:
+        - Events
+      summary: Create the Event object
+      description: Create the Event object by setting the values of all the required parameters passed in the request body.
+      requestBody:
+        description: Request body parameters to create the Event object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EventPayload"
+            example:
+              alert_type: info
+              message: This is info alert
+              summary: This is the incident summary
+              entity_id: 12345
+              payload:
+                {
+                  "status": "ACME Payments are failing",
+                  "severity": "1",
+                  "project": "kubeprod",
+                }
+              urls:
+                [
+                  {
+                    "link_url": "https://www.example.com/alerts/12345/",
+                    "link_text": "Alert URL",
+                  },
+                ]
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/EventPayload"
+            example:
+              alert_type: info
+              message: This is info alert
+              summary: This is the incident summary
+              entity_id: 12345
+              payload:
+                {
+                  "status": "ACME Payments are failing",
+                  "severity": "1",
+                  "project": "kubeprod",
+                }
+              urls:
+                [
+                  {
+                    "link_url": "https://www.example.com/alerts/1234/",
+                    "link_text": "Alert URL",
+                  },
+                ]
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EventV3"
+              example:
+                message: "success"
+                trace_id: "2f7c427c-3dd4-4bfc-84c5-74a1fb936df7"
+                
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/EventV3"
+              example:
+                message: "success"
+                trace_id: "174f924aeb6ef4c944e20ebb9d71c2db"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              example:
+                error: This request can not be processed.
+            application/xml:
+              example:
+                error: This request can not be processed.
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              example:
+                detail: Not Found.
+            application/xml:
+              example:
+                detail: Not Found.
+  
+  "/api/alert/status/{trace_id}/":
+    servers:
+      - url: https://events.zenduty.com
+    parameters:
+      - name: "trace_id"
+        in: path
+        description: trace id of the alert object
+        schema:
+          type: string
+        required: true
+    get:
+      tags:
+        - Events
+      summary: Get the status of an Alert
+      description: Get the Alert object for specific trace id.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AlertStatus"
+              example:
+                status: "completed"
+                alert: "JVPDBpGdpBQgRKdTGz2Qir"
+                integration:
+                  name: "API"
+                incident:
+                  incident_number: 123
+                  unique_id: "22cWPt3h3REvZCkHVHNsfm"
+                suppressed: false
+                is_incident_created: false
+                
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/AlertStatus"
+              example:
+                status: "completed"
+                alert: "JVPDBpGdpBQgRKdTGz2Qir"
+                integration:
+                  name: "API"
+                incident:
+                  incident_number: 123
+                  unique_id: "22cWPt3h3REvZCkHVHNsfm"
+                suppressed: false
+                is_incident_created: false
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              example:
+                detail: Not Found.
+            application/xml:
+              example:
+                detail: Not Found.
+              
   "/api/incidents/{incident_number}/alerts/":
     parameters:
       - name: "incident_number"
@@ -13257,7 +13425,57 @@ components:
         incident_created:
           type: boolean
           description: A boolean flag that represents whether the Incident Alert object created an incident or not.
-
+    
+    EventV3:
+      type: object
+      description: Event object schema
+      properties:
+        message: 
+          description: success if alert processed successfully
+          type: string
+        trace_id: 
+          description: unique id to trace an alert
+          type: string
+    AlertStatus:
+      type: object
+      description: Alert Status object schema
+      properties:
+        status:
+          description: Status of an Alert. Possible statuses are queued, completed and failed
+          type: string
+        alert:
+          description: unique_id of an alert object
+          type: string
+        integration:
+          $ref: "#/components/schemas/AlertStatusIntegration"
+        incident:
+          $ref: "#/components/schemas/AlertStatusIncident"
+        is_incident_created:
+          type: boolean
+          description: A boolean flag that represents whether the Incident Alert object created an incident or not.
+        suppressed:
+          type: boolean
+          description: A boolean flag that represents whether the Event object is suppressed or not
+        error:
+          description: short error message if any error in alert creation
+          type: string
+    AlertStatusIntegration:
+      type: object
+      description: Integration schema for Alert Status object
+      properties:
+        name:
+          type: string
+          description: A string that represents the name of an Integration object
+    AlertStatusIncident:
+      type: object
+      description: Incident schema for Alert Status object
+      properties:
+        incident_number:
+          type: integer
+          description: A integer that represents the number of an Incident object
+        unique_id:
+          type: string
+          description: A string that represents the unique_id of an Incident object
     EventPayload:
       type: object
       description: Payload schema for the Event object
