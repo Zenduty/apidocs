@@ -3285,7 +3285,7 @@ paths:
               example:
                 detail: Not Found.
 
-  "/api/account/teams/{}/schedules/{}/overrides/":
+  "/api/v2/account/teams/{}/schedules/{}/overrides/":
     parameters:
       - name: "team_id"
         in: path
