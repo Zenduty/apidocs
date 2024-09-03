@@ -51,6 +51,10 @@ tags:
     description: This object represents the permissions of a team. It lets you access the particular team elements that the team has given permissions to use.
   - name: Schedules
     description: This object represents the schedule of a team. You can checkout the schedule docs here https://docs.zenduty.com/docs/schedules
+
+  - name: Schedule Overrides
+    description: This object represents the Override of a schedule. You can checkout the schedule docs here https://docs.zenduty.com/docs/schedules/#schedule-override
+
   - name: Escalation Policies
     description: This object represents the escalation policy of a team. You can checkout the escalation policy docs here https://docs.zenduty.com/docs/escalationpolicies
   - name: Services
@@ -3253,6 +3257,73 @@ paths:
       responses:
         "204":
           description: Success
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              example:
+                detail: Not Found.
+            application/xml:
+              example:
+                detail: Not Found.
+
+  "/api/account/teams/{}/schedules/{}/overrides/":
+    parameters:
+      - name: "team_id"
+        in: path
+        description: unique_id of the Team object
+        schema:
+          type: string
+        required: true
+      - name: "schedule_id"
+        in: path
+        description: unique_id of the Schedule object
+        schema:
+          type: string
+        required: true
+    get:
+      tags:
+        - Schedule Overrides
+      summary: List all Schedule overrides objects 
+      description: Returns a list of Schedule override objects with overridden users and their respective start and end times. refer to overridden_details object key
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Schedule"
+              example:
+                - name: Override for Anshul
+                  user: 507dfda0-a1fd-40e5-943a-e
+                  start_time: "2022-07-09T05:57:14Z"
+                  end_time: "2022-07-10T05:57:14Z"
+                  unique_id: b4492ce7-7d6e-4ed1-8f41-e7c8bf4f4dfe
+                  overridden_details:
+                    -"1e57f783-cbd6-4021-811f-e": [
+                        {
+                            "start_time": 1725349884.0,
+                            "end_time": 1725388199.0
+                        }
+                    ]
         "400":
           description: Bad Request
           content:
