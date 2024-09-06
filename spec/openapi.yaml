@@ -5230,11 +5230,6 @@ paths:
           description: pagination page number. example - `page=1`
           schema:
             type: integer
-        - in: query
-          name: "page_size"
-          description: number of incidents per page (default = 10, max = 50) example - `page_size=10`
-          schema:
-            type: integer
       tags:
         - Incidents
       summary: List all Incident objects(filtered)
@@ -12870,7 +12865,7 @@ components:
         all_teams:
           type: integer
           default: 1
-          description: This query parameter can be `0` or `1`. To filter incidents based on all teams use `0` and to filter incidents based on the teams the requesting user belongs to, use `1`. example - `all_teams=1`
+          description: This query parameter can be `0` or `1`. To filter incidents based on all teams use `1` and to filter incidents based on the teams the requesting user belongs to, use `0`. example - `all_teams=1`
         escalation_policy_ids:
           type: array
           description: A list of escalation policy unique ids
