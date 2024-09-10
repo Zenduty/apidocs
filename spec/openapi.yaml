@@ -53,7 +53,7 @@ tags:
     description: This object represents the schedule of a team. You can checkout the schedule docs here https://docs.zenduty.com/docs/schedules
 
   - name: Schedule Overrides
-    description: This object represents the Override of a schedule. You can checkout the schedule docs here https://docs.zenduty.com/docs/schedules/#schedule-override
+    description: This object represents the Override of a Schedule. You can checkout the Schedule Override docs here https://docs.zenduty.com/docs/schedules/#schedule-override
 
   - name: Escalation Policies
     description: This object represents the escalation policy of a team. You can checkout the escalation policy docs here https://docs.zenduty.com/docs/escalationpolicies
@@ -3299,20 +3299,94 @@ paths:
         schema:
           type: string
         required: true
+    post:
+      tags:
+        - Schedule Overrides
+      summary: Create the Schedule Override object
+      description: Create the Schedule Override object by setting the values of all the required parameters passed in the request body.
+      requestBody:
+        description: Request body parameters to create the Schedule Overrides object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ScheduleOverridePayload"
+            example:
+              name: "Override for Michael"
+              user: "507dfda0-a1fd-40e5-943a-e"
+              start_time: "2022-07-09T05:57:14Z"
+              end_time: "2022-07-10T05:57:14Z"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/ScheduleOverridePayload"
+            example:
+              name: "Override for Michael"
+              user: "507dfda0-a1fd-40e5-943a-e"
+              start_time: "2022-07-09T05:57:14Z"
+              end_time: "2022-07-10T05:57:14Z"
+      responses:
+        "201":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduleOverride"
+              example:
+                  name: "Override for Michael"
+                  user: "507dfda0-a1fd-40e5-943a-e"
+                  start_time: "2022-07-09T05:57:14Z"
+                  end_time: "2022-07-10T05:57:14Z"
+                  unique_id: "b4492ce7-7d6e-4ed1-8f41-e7c8bf4f4dfe"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/ScheduleOverride"
+              example:
+                  name: "Override for Michael"
+                  user: "507dfda0-a1fd-40e5-943a-e"
+                  start_time: "2022-07-09T05:57:14Z"
+                  end_time: "2022-07-10T05:57:14Z"
+                  unique_id: "b4492ce7-7d6e-4ed1-8f41-e7c8bf4f4dfe"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              example:
+                detail: Not Found.
+            application/xml:
+              example:
+                detail: Not Found.
     get:
       tags:
         - Schedule Overrides
-      summary: List all Schedule overrides objects 
-      description: Returns a list of Schedule override objects with overridden users and their respective start and end times. refer to overridden_details object key
+      summary: List all Schedule overrides objects
+      description: Returns a list of Schedule override objects with overridden users and their respective start and end times. Refer to overridden_details key in response object
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Schedule"
+                $ref: "#/components/schemas/ScheduleOverrideList"
               example:
-                - name: Override for Anshul
+                - name: Override for Michael
                   user: 507dfda0-a1fd-40e5-943a-e
                   start_time: "2022-07-09T05:57:14Z"
                   end_time: "2022-07-10T05:57:14Z"
@@ -14479,6 +14553,29 @@ components:
         end_time:
           type: string
           description: A fromatted string that represents the Schedule Overrides object's end_time
+
+    ScheduleOverrideList:
+      type: object
+      description: Schedule Override List object schema
+      properties:
+        name:
+          type: string
+          description: A string that represents the Schedule Overrides object's name
+        user:
+          type: string
+          description: A string that represents the User object's username
+        start_time:
+          type: string
+          description: A fromatted string that represents the Schedule Overrides object's start_time
+        end_time:
+          type: string
+          description: A fromatted string that represents the Schedule Overrides object's end_time
+        overridden_details:
+          type: string
+          description: A string that represents the Overridden details of the Schedule Overrides object
+        unique_id:
+          type: string
+          description: A system-generated string that represents the Schedule Overrides object's unique_id
 
     EP_Rule:
       type: object
