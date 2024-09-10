@@ -3303,7 +3303,7 @@ paths:
       tags:
         - Schedule Overrides
       summary: Create the Schedule Override object
-      description: Create the Schedule Override object by setting the values of all the required parameters passed in the request body.
+      description: Create the Schedule Override object by setting the values of all the required parameters passed in the request body. (Note - Rate limits are 1/sec and 20/minute)
       requestBody:
         description: Request body parameters to create the Schedule Overrides object
         required: true
