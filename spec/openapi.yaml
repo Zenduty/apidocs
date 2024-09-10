@@ -3376,8 +3376,9 @@ paths:
     get:
       tags:
         - Schedule Overrides
-      summary: List all Schedule overrides objects
-      description: Returns a list of Schedule override objects with overridden users and their respective start and end times. Refer to overridden_details key in response object
+      summary: List all Schedule overrides objects 
+      description: Returns a list of Schedule override objects with overridden users and their respective start and end times. refer to overridden_details object key (Note - Rate limits are 1/sec and 20/minute)
+
       responses:
         "200":
           description: OK
