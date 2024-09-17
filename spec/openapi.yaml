@@ -2838,7 +2838,7 @@ paths:
               example:
                 detail: Not Found.
 
-  "/api/account/teams/{}/schedule/":
+  "/api/account/teams/{}/schedules/":
     parameters:
       - name: "team_id"
         in: path
