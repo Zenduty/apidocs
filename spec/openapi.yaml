@@ -3332,20 +3332,20 @@ paths:
               schema:
                 $ref: "#/components/schemas/ScheduleOverride"
               example:
-                  name: "Override for Michael"
-                  user: "507dfda0-a1fd-40e5-943a-e"
-                  start_time: "2022-07-09T05:57:14Z"
-                  end_time: "2022-07-10T05:57:14Z"
-                  unique_id: "b4492ce7-7d6e-4ed1-8f41-e7c8bf4f4dfe"
+                name: "Override for Michael"
+                user: "507dfda0-a1fd-40e5-943a-e"
+                start_time: "2022-07-09T05:57:14Z"
+                end_time: "2022-07-10T05:57:14Z"
+                unique_id: "b4492ce7-7d6e-4ed1-8f41-e7c8bf4f4dfe"
             application/xml:
               schema:
                 $ref: "#/components/schemas/ScheduleOverride"
               example:
-                  name: "Override for Michael"
-                  user: "507dfda0-a1fd-40e5-943a-e"
-                  start_time: "2022-07-09T05:57:14Z"
-                  end_time: "2022-07-10T05:57:14Z"
-                  unique_id: "b4492ce7-7d6e-4ed1-8f41-e7c8bf4f4dfe"
+                name: "Override for Michael"
+                user: "507dfda0-a1fd-40e5-943a-e"
+                start_time: "2022-07-09T05:57:14Z"
+                end_time: "2022-07-10T05:57:14Z"
+                unique_id: "b4492ce7-7d6e-4ed1-8f41-e7c8bf4f4dfe"
         "400":
           description: Bad Request
           content:
@@ -3376,7 +3376,7 @@ paths:
     get:
       tags:
         - Schedule Overrides
-      summary: List all Schedule overrides objects 
+      summary: List all Schedule overrides objects
       description: Returns a list of Schedule override objects with overridden users and their respective start and end times. refer to overridden_details object key (Note - Rate limits are 1/sec and 20/minute)
 
       responses:
@@ -3393,12 +3393,8 @@ paths:
                   end_time: "2022-07-10T05:57:14Z"
                   unique_id: b4492ce7-7d6e-4ed1-8f41-e7c8bf4f4dfe
                   overridden_details:
-                    -"1e57f783-cbd6-4021-811f-e": [
-                        {
-                            "start_time": 1725349884.0,
-                            "end_time": 1725388199.0
-                        }
-                    ]
+                    -"1e57f783-cbd6-4021-811f-e":
+                      [{ "start_time": 1725349884.0, "end_time": 1725388199.0 }]
         "400":
           description: Bad Request
           content:
@@ -7225,7 +7221,7 @@ paths:
           type: string
         required: true
     post:
-      deprecated: true  
+      deprecated: true
       tags:
         - Events
       summary: Create the Event object
@@ -7377,7 +7373,7 @@ paths:
             application/xml:
               example:
                 detail: Not Found.
-                
+
   "/integration/{account_id}/generic/{integration_key}/":
     servers:
       - url: https://events.zenduty.com
@@ -7405,7 +7401,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EventPayload"
+              $ref: "#/components/schemas/GenericEventPayload"
             example:
               alert_type: info
               message: This is info alert
@@ -7424,9 +7420,28 @@ paths:
                     "link_text": "Alert URL",
                   },
                 ]
+              sla: "cfb927ec-8316-4464-8770-deca07f75b49"
+              escalation_policy: "272841e2-2cbf-40a8-9a9a-64227fd3d722"
+              priority: "b535c8c0-7c75-4911-a9c6-27a3be2f2da9"
+              stakeholders:
+                {
+                  users:
+                    ["85e1569d-79a4-4205-850f-a", "b80daf25-8a47-4365-baa4-0"],
+                  teams:
+                    [
+                      "4a106e05-09af-4aef-9439-40c6f4aaff0f",
+                      "c1de7905-352f-424a-b8d0-f84406f76314",
+                    ],
+                  emails: ["maryjane@sharklasers.com"],
+                }
+              "tags":
+                [
+                  "bdb4f470-b04b-4036-b8a4-5b66d9097b25",
+                  "ee99cc9c-a8ef-4a69-937c-07379e99d853",
+                ]
           application/xml:
             schema:
-              $ref: "#/components/schemas/EventPayload"
+              $ref: "#/components/schemas/GenericEventPayload"
             example:
               alert_type: info
               message: This is info alert
@@ -7445,6 +7460,25 @@ paths:
                     "link_text": "Alert URL",
                   },
                 ]
+              sla: "cfb927ec-8316-4464-8770-deca07f75b49"
+              escalation_policy: "272841e2-2cbf-40a8-9a9a-64227fd3d722"
+              priority: "b535c8c0-7c75-4911-a9c6-27a3be2f2da9"
+              stakeholders:
+                {
+                  users:
+                    ["85e1569d-79a4-4205-850f-a", "b80daf25-8a47-4365-baa4-0"],
+                  teams:
+                    [
+                      "4a106e05-09af-4aef-9439-40c6f4aaff0f",
+                      "c1de7905-352f-424a-b8d0-f84406f76314",
+                    ],
+                  emails: ["maryjane@sharklasers.com"],
+                }
+              "tags":
+                [
+                  "bdb4f470-b04b-4036-b8a4-5b66d9097b25",
+                  "ee99cc9c-a8ef-4a69-937c-07379e99d853",
+                ]
       responses:
         "200":
           description: OK
@@ -7455,7 +7489,7 @@ paths:
               example:
                 message: "success"
                 trace_id: "2f7c427c-3dd4-4bfc-84c5-74a1fb936df7"
-                
+
             application/xml:
               schema:
                 $ref: "#/components/schemas/EventV3"
@@ -7480,7 +7514,7 @@ paths:
             application/xml:
               example:
                 detail: Not Found.
-  
+
   "/api/alert/status/{trace_id}/":
     servers:
       - url: https://events.zenduty.com
@@ -7513,7 +7547,7 @@ paths:
                   unique_id: "22cWPt3h3REvZCkHVHNsfm"
                 suppressed: false
                 is_incident_created: false
-                
+
             application/xml:
               schema:
                 $ref: "#/components/schemas/AlertStatus"
@@ -7545,7 +7579,7 @@ paths:
             application/xml:
               example:
                 detail: Not Found.
-              
+
   "/api/incidents/{incident_number}/alerts/":
     parameters:
       - name: "incident_number"
@@ -13566,15 +13600,15 @@ components:
         incident_created:
           type: boolean
           description: A boolean flag that represents whether the Incident Alert object created an incident or not.
-    
+
     EventV3:
       type: object
       description: Event object schema
       properties:
-        message: 
+        message:
           description: success if alert processed successfully
           type: string
-        trace_id: 
+        trace_id:
           description: unique id to trace an alert
           type: string
     AlertStatus:
@@ -13643,6 +13677,71 @@ components:
         urls:
           type: array
           description: An array containing JSON schema of urls related to alerts.
+          items:
+            type: string
+
+    GenericEventPayload:
+      type: object
+      description: Payload schema for the Generic Event object
+      required:
+        - message
+        - alert_type
+      properties:
+        message:
+          type: string
+          description: A string that represents the Event object's message
+        summary:
+          type: string
+          description: A string that represents the Event object's summary
+        alert_type:
+          type: string
+          default: info
+          description: A pre-defined string that represents the Event object's alert_type. Choices - `critical`, `acknowledged`, `resolved`, `error`, `warning`, `info`.
+        entity_id:
+          type: string
+          description: A unique id for the alert. If not provided, the Zenduty API will create one.
+        payload:
+          type: object
+          description: A JSON payload containing additional information about the alert.
+        urls:
+          type: array
+          description: An array containing JSON schema of urls related to alerts.
+          items:
+            type: string
+        sla:
+          type: string
+          description: A unique id for the SLA object. If not provided or provided invalid unique_id, the Zenduty will ignore the provided value.
+        escalation_policy:
+          type: string
+          description: A unique id for the alert. If not provided or provided invalid unique_id, the Zenduty will ignore the provided value.
+        priority:
+          type: string
+          description: A unique id for the alert. If not provided or provided invalid unique_id, the Zenduty will ignore the provided value.
+        tags:
+          type: array
+          description: An array containing unique_id for the tag objects.
+          items:
+            type: string
+        stakeholders:
+          $ref: "#/components/schemas/Stakeholder"
+
+    Stakeholder:
+      type: object
+      description: Incident stakeholder object schema
+      properties:
+        users:
+          type: array
+          description: An array containing Users username.
+          items:
+            type: string
+        teams:
+          type: array
+          description: An array containing unique_id for team objects.
+          items:
+            type: string
+        emails:
+          type: array
+          description: An array containing email ids.
           items:
             type: string
 
