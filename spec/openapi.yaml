@@ -7490,7 +7490,7 @@ paths:
               "stakeholder_comms":
                 {
                   "subject": "New incident #12345 triggered",
-                  "body": "New incident #12345 triggered and concern team is on it. Will share more info later as an when we get",
+                  "body": "We’re currently experiencing an incident affecting [service name]. Our team is actively working on it, and we’ll provide updates as soon as we have more information.",
                   "timezone": "UTC",
                   "created_by": "85e1569d-79a4-4205-850f-a",
                 }
