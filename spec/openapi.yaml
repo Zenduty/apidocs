@@ -7439,6 +7439,14 @@ paths:
                   "bdb4f470-b04b-4036-b8a4-5b66d9097b25",
                   "ee99cc9c-a8ef-4a69-937c-07379e99d853",
                 ]
+              "stakeholder_comms":
+                {
+                  "subject": "New incident #12345 triggered",
+                  "body": "We’re currently experiencing an incident affecting [service name]. Our team is actively working on it, and we’ll provide updates as soon as we have more information.",
+                  "timezone": "UTC",
+                  "created_by": "85e1569d-79a4-4205-850f-a",
+                }
+
           application/xml:
             schema:
               $ref: "#/components/schemas/GenericEventPayload"
@@ -7479,6 +7487,13 @@ paths:
                   "bdb4f470-b04b-4036-b8a4-5b66d9097b25",
                   "ee99cc9c-a8ef-4a69-937c-07379e99d853",
                 ]
+              "stakeholder_comms":
+                {
+                  "subject": "New incident #12345 triggered",
+                  "body": "New incident #12345 triggered and concern team is on it. Will share more info later as an when we get",
+                  "timezone": "UTC",
+                  "created_by": "85e1569d-79a4-4205-850f-a",
+                }
       responses:
         "200":
           description: OK
@@ -13724,6 +13739,8 @@ components:
             type: string
         stakeholders:
           $ref: "#/components/schemas/Stakeholder"
+        stakeholders_comms:
+          $ref: "#/components/schemas/StakeholderMessage"
 
     Stakeholder:
       type: object
@@ -13742,6 +13759,31 @@ components:
         emails:
           type: array
           description: An array containing email ids.
+          items:
+            type: string
+
+    StakeholderMessage:
+      type: object
+      description: Stakeholder message object schema
+      properties:
+        subject:
+          type: string
+          description: Subject of the stakeholder communication email
+          items:
+            type: string
+        body:
+          type: string
+          description: Body of the stakeholder communication email
+          items:
+            type: string
+        timezone:
+          type: array
+          description: Timezone in which datetime object will be converted in email body
+          items:
+            type: string
+        created_by:
+          type: array
+          description: User's username who's sending communication
           items:
             type: string
 
