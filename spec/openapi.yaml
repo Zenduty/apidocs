@@ -7442,7 +7442,7 @@ paths:
               "stakeholder_comms":
                 {
                   "subject": "New incident #12345 triggered",
-                  "body": "We’re currently experiencing an incident affecting [service name]. Our team is actively working on it, and we’ll provide updates as soon as we have more information.",
+                  "body": "We’re currently experiencing an incident affecting billing. Our team is actively working on it, and we’ll provide updates as soon as we have more information.",
                   "timezone": "UTC",
                   "created_by": "85e1569d-79a4-4205-850f-a",
                 }
@@ -7490,7 +7490,7 @@ paths:
               "stakeholder_comms":
                 {
                   "subject": "New incident #12345 triggered",
-                  "body": "We’re currently experiencing an incident affecting [service name]. Our team is actively working on it, and we’ll provide updates as soon as we have more information.",
+                  "body": "We’re currently experiencing an incident affecting billing. Our team is actively working on it, and we’ll provide updates as soon as we have more information.",
                   "timezone": "UTC",
                   "created_by": "85e1569d-79a4-4205-850f-a",
                 }
@@ -13777,12 +13777,12 @@ components:
           items:
             type: string
         timezone:
-          type: array
+          type: string
           description: Timezone in which datetime object will be converted in email body
           items:
             type: string
         created_by:
-          type: array
+          type: string
           description: User's username who's sending communication
           items:
             type: string
