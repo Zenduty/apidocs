@@ -63,8 +63,6 @@ tags:
     description: This object represents the integrations associated with a service. You can checkout the integration docs here https://docs.zenduty.com/docs/integrations
   - name: Incidents
     description: This object represents the incidents of the account. You can checkout the incident docs here https://docs.zenduty.com/docs/incidents
-  - name: Incidents (Deprecated)
-    description: These endpoints are deprecated and will no longer receive maintenance. Please use the [new endpoints](#tag/Incidents), which utilize the Incident ID.
   - name: Incident Roles
     description: This object represents the incident roles of an incident. You can checkout the incident role docs here https://docs.zenduty.com/docs/incidentroles
   - name: Incident Notes
@@ -5841,9 +5839,8 @@ paths:
           type: string
         required: true
     get:
-      deprecated: true
       tags:
-        - Incidents (Deprecated)
+        - Incidents
       summary: Retrieve the Incident object
       description: Retrieves the specified Incident object.
       responses:
@@ -5989,173 +5986,6 @@ paths:
               example:
                 detail: Not Found.
             application/xml: # operation response mime type
-              example:
-                detail: Not Found.
-    put:
-      deprecated: true
-      tags:
-        - Incidents (Deprecated)
-      summary: Update the Incident object
-      description: Updates the specified Incident object by setting the values of the parameters passed in the request body. Any parameters not provided will be left unchanged.
-      requestBody:
-        description: Request body parameters to update the Incident object
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/IncidentPayload"
-            example:
-              title: Modified Production Incident
-              service: 191f5e2c-515e-4ee0-b501-3a292f8dae2f
-          application/xml:
-            schema:
-              $ref: "#/components/schemas/IncidentPayload"
-            example:
-              title: Modified Production Incident
-              service: 191f5e2c-515e-4ee0-b501-3a292f8dae2f
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Incident"
-              example:
-                summary: ""
-                incident_number: 3
-                creation_date: "2022-07-08T13:21:25.846623Z"
-                status: 1
-                unique_id: uJVWfdAeoPDm3pk2gG2URn
-                service_object:
-                  name: Infra Service
-                  creation_date: "2022-07-08T12:31:37.429973Z"
-                  summary: ""
-                  description: This is the description for Infra Service
-                  unique_id: 191f5e2c-515e-4ee0-b501-3a292f8dae2f
-                  auto_resolve_timeout: 0
-                  created_by: 216bba3d-7268-4a8e-89e9-6
-                  team_priority: 6d100d52-998b-41c8-8928-a7e3aa68e329
-                  task_template: 8d2640ca-c6ef-45f0-be5f-61dedcf85032
-                  acknowledgement_timeout: 0
-                  status: 1
-                  escalation_policy: 9ea1f98d-b5a3-4d72-8057-2f5f3d743a44
-                  team: 61010821-08aa-4098-94f8-f88f1990b54a
-                  sla: b3c6af23-2b9e-414e-9706-bbf3af76828c
-                  collation_time: 2
-                  collation: 1
-                  under_maintenance: false
-                title: Modified Production Incident
-                incident_key: Q5NmEbsgc4ZjLknsw97VZJ
-                service: 191f5e2c-515e-4ee0-b501-3a292f8dae2f
-                urgency: 1
-                merged_with: null
-                assigned_to: 507dfda0-a1fd-40e5-943a-e
-                escalation_policy: 9ea1f98d-b5a3-4d72-8057-2f5f3d743a44
-                escalation_policy_object:
-                  unique_id: 9ea1f98d-b5a3-4d72-8057-2f5f3d743a44
-                  name: Infra Escalation Policy
-                assigned_to_name: Mary Jane
-                resolved_date: null
-                acknowledged_date: null
-                context_window_start: null
-                context_window_end: null
-                tags: []
-                sla: b3c6af23-2b9e-414e-9706-bbf3af76828c
-                sla_object:
-                  unique_id: b3c6af23-2b9e-414e-9706-bbf3af76828c
-                  name: Infra SLA
-                  is_active: true
-                  acknowledge_time: 30
-                  resolve_time: 60
-                  creation_date: "2022-07-08T12:29:08.545605Z"
-                team_priority: 6d100d52-998b-41c8-8928-a7e3aa68e329
-                team_priority_object:
-                  unique_id: 6d100d52-998b-41c8-8928-a7e3aa68e329
-                  name: Infra Priority
-                  description: This is the description for Infra Priority
-                  color: orange
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Incident"
-              example:
-                summary: ""
-                incident_number: 3
-                creation_date: "2022-07-08T13:21:25.846623Z"
-                status: 1
-                unique_id: uJVWfdAeoPDm3pk2gG2URn
-                service_object:
-                  name: Infra Service
-                  creation_date: "2022-07-08T12:31:37.429973Z"
-                  summary: ""
-                  description: This is the description for Infra Service
-                  unique_id: 191f5e2c-515e-4ee0-b501-3a292f8dae2f
-                  auto_resolve_timeout: 0
-                  created_by: 216bba3d-7268-4a8e-89e9-6
-                  team_priority: 6d100d52-998b-41c8-8928-a7e3aa68e329
-                  task_template: 8d2640ca-c6ef-45f0-be5f-61dedcf85032
-                  acknowledgement_timeout: 0
-                  status: 1
-                  escalation_policy: 9ea1f98d-b5a3-4d72-8057-2f5f3d743a44
-                  team: 61010821-08aa-4098-94f8-f88f1990b54a
-                  sla: b3c6af23-2b9e-414e-9706-bbf3af76828c
-                  collation_time: 2
-                  collation: 1
-                  under_maintenance: false
-                title: Modified Production Incident
-                incident_key: Q5NmEbsgc4ZjLknsw97VZJ
-                service: 191f5e2c-515e-4ee0-b501-3a292f8dae2f
-                urgency: 1
-                merged_with: null
-                assigned_to: 507dfda0-a1fd-40e5-943a-e
-                escalation_policy: 9ea1f98d-b5a3-4d72-8057-2f5f3d743a44
-                escalation_policy_object:
-                  unique_id: 9ea1f98d-b5a3-4d72-8057-2f5f3d743a44
-                  name: Infra Escalation Policy
-                assigned_to_name: Mary Jane
-                resolved_date: null
-                acknowledged_date: null
-                context_window_start: null
-                context_window_end: null
-                tags: []
-                sla: b3c6af23-2b9e-414e-9706-bbf3af76828c
-                sla_object:
-                  unique_id: b3c6af23-2b9e-414e-9706-bbf3af76828c
-                  name: Infra SLA
-                  is_active: true
-                  acknowledge_time: 30
-                  resolve_time: 60
-                  creation_date: "2022-07-08T12:29:08.545605Z"
-                team_priority: 6d100d52-998b-41c8-8928-a7e3aa68e329
-                team_priority_object:
-                  unique_id: 6d100d52-998b-41c8-8928-a7e3aa68e329
-                  name: Infra Priority
-                  description: This is the description for Infra Priority
-                  color: orange
-        "400":
-          description: Bad Request
-          content:
-            application/json:
-              example:
-                detail: This request can not be processed.
-            application/xml:
-              example:
-                detail: This request can not be processed.
-        "403":
-          description: Forbidden
-          content:
-            application/json:
-              example:
-                detail: You do not have permission to perform this action.
-            application/xml:
-              example:
-                detail: You do not have permission to perform this action.
-        "404":
-          description: Not Found
-          content:
-            application/json:
-              example:
-                detail: Not Found.
-            application/xml:
               example:
                 detail: Not Found.
 
