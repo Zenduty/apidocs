@@ -11615,7 +11615,7 @@ paths:
     parameters:
       - name: "incident_number"
         in: path
-        description: Incident nmuber of the Incident object
+        description: Incident number of the Incident object
         schema:
           type: string
         required: true
@@ -11645,19 +11645,37 @@ paths:
       summary: Add an Incident Responder
       description: Add an Incident Responder to the incident
       requestBody:
-        description: Payload to add an Incident Responder
+        description: Payload to add an Incident Responder. Either user OR escalation_policy must be provided
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/IncidentResponderPayload"
-            example:
-              user: "85b563c8-18d0-4668-9462-9"
+              oneOf:
+                - $ref: "#/components/schemas/IncidentResponderUserPayload"
+                - $ref: "#/components/schemas/IncidentResponderEscalationPolicyPayload"
+            examples:
+              user_example:
+                summary: Add user as responder
+                value:
+                  user: "85b563c8-18d0-4668-9462-9"
+              escalation_policy_example:
+                summary: Add escalation policy as responder
+                value:
+                  escalation_policy: "4a106e05-09af-4aef-9439-40c6f4aaff0f"
           application/xml:
             schema:
-              $ref: "#/components/schemas/IncidentResponderPayload"
-            example:
-              user: "85b563c8-18d0-4668-9462-9"
+              oneOf:
+                - $ref: "#/components/schemas/IncidentResponderUserPayload"
+                - $ref: "#/components/schemas/IncidentResponderEscalationPolicyPayload"
+            examples:
+              user_example:
+                summary: Add user as responder
+                value:
+                  user: "85b563c8-18d0-4668-9462-9"
+              escalation_policy_example:
+                summary: Add escalation policy as responder
+                value:
+                  escalation_policy: "4a106e05-09af-4aef-9439-40c6f4aaff0f"
       responses:
         "201":
           description: OK
@@ -11701,7 +11719,7 @@ paths:
     parameters:
       - name: "incident_number"
         in: path
-        description: Incident nmuber of the Incident object
+        description: Incident number of the Incident object
         schema:
           type: string
         required: true
@@ -11802,11 +11820,37 @@ components:
 
     IncidentResponderPayload:
       type: object
+      description: Either user OR escalation_policy must be provided
+      properties:
+        user:
+          type: string
+          description: Unique identifier of the User object
+        escalation_policy:
+          type: string
+          description: Unique identifier of the Escalation Policy object
+
+    IncidentResponderUserPayload:
+      title: User
+      type: object
+      description: Payload to add a user as Incident Responder
+      required:
+        - user
       properties:
         user:
           type: string
           description: Unique identifier of the User object
 
+    IncidentResponderEscalationPolicyPayload:
+      title: Escalation Policy
+      type: object
+      description: Payload to add an escalation policy as Incident Responder
+      required:
+        - escalation_policy
+      properties:
+        escalation_policy:
+          type: string
+          description: Unique identifier of the Escalation Policy object
+      
     InviteUserPayload:
       type: object
       description: Payload schema for the Invite User object
