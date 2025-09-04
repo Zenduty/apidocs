@@ -5676,12 +5676,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/IncidentPayload"
+              $ref: "#/components/schemas/IncidentUpdatePayload"
             example:
               status: 2
           application/xml:
             schema:
-              $ref: "#/components/schemas/IncidentPayload"
+              $ref: "#/components/schemas/IncidentUpdatePayload"
             example:
               status: 2
       responses:
@@ -13152,6 +13152,36 @@ components:
         team_priority:
           type: string
           description: A system-generated string that represents the Priority object's unique_id
+
+    IncidentUpdatePayload:
+      type: object
+      description: Payload schema for updating an Incident object. At least one parameter must be provided in the request body.
+      properties:
+        summary:
+          type: string
+          description: A string that represents the Incident object's summary
+        status:
+          type: integer
+          default: 1
+          description: An integer that represents the Incident object's status. 1 is triggered, 2 is acknowledged and 3 is resolved
+        title:
+          type: string
+          description: A string that represents the Incident object's title
+        assigned_to:
+          type: string
+          description: A system-generated string that represents the User object's username
+        escalation_policy:
+          type: string
+          description: A system-generated string that represents the Escalation Policy object's unique_id
+        sla:
+          type: string
+          description: A system-generated string that represents the SLA object's unique_id
+        team_priority:
+          type: string
+          description: A system-generated string that represents the Priority object's unique_id
+        urgency:
+          type: integer
+          description: An integer that represents the Incident object's urgency field. 1 is for high urgency incidents and 0 is for low urgency incidents.
 
     IncidentRoleGet:
       type: object
