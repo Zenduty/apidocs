@@ -5159,13 +5159,13 @@ paths:
                 $ref: "#/components/schemas/IntegrationMetadata"
               example:
                 team:
-                  name: Backend Test
-                  unique_id: 15704fac-f608-40eb-947a-d1b81729c60b
+                  name: Backend
+                  unique_id: 15404fac-f608-40eb-947a-d1b81729d40b
                 service:
-                  name: New Testing Service
+                  name: Demo Service
                   unique_id: 7e9f1add-645f-4acd-99d5-7cf51fdca3ce
                 integration:
-                  unique_id: 64ba4711-d8e3-4714-a5af-d375be243441
+                  unique_id: 24ga3711-d8e3-4714-a5af-d355be143341
                   name: Generic Integration
                   extension: generic
             application/xml:
@@ -5173,13 +5173,13 @@ paths:
                 $ref: "#/components/schemas/IntegrationMetadata"
               example:
                 team:
-                    name: Backend Test
-                    unique_id: 15704fac-f608-40eb-947a-d1b81729c60b
+                    name: Backend
+                    unique_id: 15404fac-f608-40eb-947a-d1b81729d40b
                 service:
-                  name: New Testing Service
+                  name: Demo Service
                   unique_id: 7e9f1add-645f-4acd-99d5-7cf51fdca3ce
                 integration:
-                  unique_id: 64ba4711-d8e3-4714-a5af-d375be243441
+                  unique_id: 24ga3711-d8e3-4714-a5af-d355be143341
                   name: Generic Integration
                   extension: generic
         "400":
