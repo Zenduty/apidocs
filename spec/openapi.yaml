@@ -5136,6 +5136,79 @@ paths:
             application/xml:
               example:
                 detail: Not Found.
+                
+  "/api/account/integration-metadata/{integration_key}/":
+    parameters:
+      - name: "integration_key"
+        in: path
+        description: integration_key of the Integration object
+        schema:
+          type: string
+        required: true
+    get:
+      tags:
+        - Integrations
+      summary: Fetch metadata of the Integration object
+      description: Returns an object that contains metadata of the Integration object.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IntegrationMetadata"
+              example:
+                team:
+                  name: Backend
+                  unique_id: 15404fac-f608-40eb-947a-d1b81729d40b
+                service:
+                  name: Demo Service
+                  unique_id: 7e9f1add-645f-4acd-99d5-7cf51fdca3ce
+                integration:
+                  unique_id: 24ga3711-d8e3-4714-a5af-d355be143341
+                  name: Generic Integration
+                  extension: generic
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/IntegrationMetadata"
+              example:
+                team:
+                    name: Backend
+                    unique_id: 15404fac-f608-40eb-947a-d1b81729d40b
+                service:
+                  name: Demo Service
+                  unique_id: 7e9f1add-645f-4acd-99d5-7cf51fdca3ce
+                integration:
+                  unique_id: 24ga3711-d8e3-4714-a5af-d355be143341
+                  name: Generic Integration
+                  extension: generic
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              example:
+                detail: This request can not be processed.
+            application/xml:
+              example:
+                detail: This request can not be processed.
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+            application/xml:
+              example:
+                detail: You do not have permission to perform this action.
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              example:
+                detail: Not Found.
+            application/xml:
+              example:
+                detail: Not Found.
 
   "/api/incidents/filter/":
     post:
@@ -12617,6 +12690,44 @@ components:
         webhook_url:
           type: string
           description: A system-generated string that represents the Integration object's webhook url
+          
+    IntegrationMetadata:
+      description: Integration Metadata object schema
+      type: object
+      properties:
+        team:
+          type: object
+          description: Response team schema for the Integration metadata 
+          properties:
+            name:
+              type: string
+              description: A string that represents the Team object's name.
+            unique_id:
+              type: string
+              description: A string that represents the Team object's unique_id.
+        service:
+          type: object
+          description: Response service schema for the Integration metadata 
+          properties:
+            name:
+              type: string
+              description: A string that represents the Service object's name.
+            unique_id:
+              type: string
+              description: A string that represents the Service object's unique_id.
+        integration:
+          type: object
+          description: Response integration schema for the Integration metadata 
+          properties:
+            unique_id:
+              type: string
+              description: A string that represents the Integration object's unique_id.
+            name:
+              type: string
+              description: A string that represents the Integration object's name.
+            extension:
+              type: string
+              description: A string that represents the Integration object's extension.
 
     IntegrationPayload:
       type: object
