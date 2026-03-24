@@ -95,6 +95,8 @@ tags:
     description: The Rules of the Global Router in an Account are represented by this object. Visit this link to view the documentation for the global alert routing rules https://docs.zenduty.com/docs/globalalertrouting
   - name: Alert Rules
     description: Alert Rules in Zenduty are advanced conditions for incoming alerts. They dictate how Zenduty handles alerts and their incidents upon receipt, altering behavior and routing based on predefined rules and actions set by the user within Zenduty Integrations.Visit this link to view the documentation for the alert rules https://www.zenduty.com/docs/alertrules/
+  - name: Analytics
+    description: These endpoints provide incident analytics for your account. All analytics endpoints accept POST requests with optional filter parameters and return metrics such as incident counts, MTTA, and MTTR.
 
 servers:
   - url: "https://www.zenduty.com"
@@ -5136,7 +5138,7 @@ paths:
             application/xml:
               example:
                 detail: Not Found.
-                
+
   "/api/account/integration-metadata/{integration_key}/":
     parameters:
       - name: "integration_key"
@@ -5173,8 +5175,8 @@ paths:
                 $ref: "#/components/schemas/IntegrationMetadata"
               example:
                 team:
-                    name: Backend
-                    unique_id: 15404fac-f608-40eb-947a-d1b81729d40b
+                  name: Backend
+                  unique_id: 15404fac-f608-40eb-947a-d1b81729d40b
                 service:
                   name: Demo Service
                   unique_id: 7e9f1add-645f-4acd-99d5-7cf51fdca3ce
@@ -11396,7 +11398,7 @@ paths:
               example:
                 detail: Not Found.
 
-  "api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/transformers/{transformers_id}/":
+  "/api/account/teams/{team_id}/services/{service_id}/integrations/{integration_id}/transformers/{transformers_id}/":
     parameters:
       - name: "team_id"
         in: path
@@ -11865,6 +11867,222 @@ paths:
         "404":
           description: Incident Responder not found
 
+  "/api/v2/account/analytics/incident_stats/":
+    post:
+      tags:
+        - Analytics
+      summary: Get Incident Stats
+      description: Returns incident counts for the account and the requesting user.
+      requestBody:
+        description: Optional filter parameters
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyticsRequestBody"
+            example:
+              from_date: "2025-09-24"
+              to_date: "2025-12-23"
+              team_ids: []
+              service_ids: []
+              user_ids: []
+              priority_ids: []
+              sla_ids: []
+              escalation_policy_ids: []
+              tag_ids: []
+              urgency: ""
+              child_incident: "include"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IncidentStatsResponse"
+              example:
+                total_incidents: 150
+                total_triggered_incidents: 20
+                total_acknowledged_incidents: 30
+                total_resolved_incidents: 100
+                user_total_incidents: 40
+                user_triggered_incidents: 5
+                user_acknowledged_incidents: 10
+                user_resolved_incidents: 25
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+
+  "/api/v2/account/analytics/team_analytics/":
+    post:
+      tags:
+        - Analytics
+      summary: Get Team Analytics
+      description: Returns incident metrics for each team.
+      requestBody:
+        description: Optional filter parameters
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyticsRequestBody"
+            example:
+              from_date: "2025-09-24"
+              to_date: "2025-12-23"
+              team_ids: []
+              service_ids: []
+              user_ids: []
+              priority_ids: []
+              sla_ids: []
+              escalation_policy_ids: []
+              tag_ids: []
+              urgency: ""
+              child_incident: "include"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TeamAnalyticsResponse"
+              example:
+                all_teams:
+                  total_incidents: 500
+                  total_acknowledged: 400
+                  total_resolved: 300
+                  mtta_seconds: 120.5
+                  mttr_seconds: 3600.0
+                team_records:
+                  - team:
+                      name: Platform Team
+                      unique_id: abc-def-123
+                    total_incidents: 100
+                    total_acknowledged: 80
+                    total_resolved: 60
+                    mtta_seconds: 90.2
+                    mttr_seconds: 2400.0
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+
+  "/api/v2/account/analytics/service_analytics/":
+    post:
+      tags:
+        - Analytics
+      summary: Get Service Analytics
+      description: Returns incident metrics for each service.
+      requestBody:
+        description: Optional filter parameters
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyticsRequestBody"
+            example:
+              from_date: "2025-09-24"
+              to_date: "2025-12-23"
+              team_ids: []
+              service_ids: []
+              user_ids: []
+              priority_ids: []
+              sla_ids: []
+              escalation_policy_ids: []
+              tag_ids: []
+              urgency: ""
+              child_incident: "include"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServiceAnalyticsResponse"
+              example:
+                all_services:
+                  total_incidents: 500
+                  total_acknowledged: 400
+                  total_resolved: 300
+                  mtta_seconds: 120.5
+                  mttr_seconds: 3600.0
+                service_records:
+                  - team:
+                      name: Platform Team
+                      unique_id: abc-def-123
+                    service:
+                      name: API Gateway
+                      unique_id: xyz-789
+                    total_incidents: 100
+                    total_acknowledged: 80
+                    total_resolved: 60
+                    mtta_seconds: 90.2
+                    mttr_seconds: 2400.0
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+
+  "/api/v2/account/analytics/user_analytics/":
+    post:
+      tags:
+        - Analytics
+      summary: Get User Analytics
+      description: Returns incident metrics for each user.
+      requestBody:
+        description: Optional filter parameters
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnalyticsRequestBody"
+            example:
+              from_date: "2025-09-24"
+              to_date: "2025-12-23"
+              team_ids: []
+              service_ids: []
+              user_ids: []
+              priority_ids: []
+              sla_ids: []
+              escalation_policy_ids: []
+              tag_ids: []
+              urgency: ""
+              child_incident: "include"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserAnalyticsResponse"
+              example:
+                all_users:
+                  total_incidents: 500
+                  total_acknowledged: 400
+                  total_resolved: 300
+                  mtta_seconds: 120.5
+                  mttr_seconds: 3600.0
+                user_records:
+                  - user:
+                      full_name: Jane Doe
+                      username: jane.doe
+                    total_incidents: 100
+                    total_acknowledged: 80
+                    total_resolved: 60
+                    mtta_seconds: 90.2
+                    mttr_seconds: 2400.0
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              example:
+                detail: You do not have permission to perform this action.
+
 # ----------------------------------------------------------------------------------------------
 
 # An object to hold reusable parts that can be used across the spec
@@ -11924,8 +12142,6 @@ components:
           format: date-time
           description: Date and time when the Incident Responder was added
 
-
-
     IncidentResponderPayload:
       type: object
       description: Either user OR escalation_policy must be provided
@@ -11958,7 +12174,7 @@ components:
         escalation_policy:
           type: string
           description: Unique identifier of the Escalation Policy object
-      
+
     InviteUserPayload:
       type: object
       description: Payload schema for the Invite User object
@@ -12690,14 +12906,14 @@ components:
         webhook_url:
           type: string
           description: A system-generated string that represents the Integration object's webhook url
-          
+
     IntegrationMetadata:
       description: Integration Metadata object schema
       type: object
       properties:
         team:
           type: object
-          description: Response team schema for the Integration metadata 
+          description: Response team schema for the Integration metadata
           properties:
             name:
               type: string
@@ -12707,7 +12923,7 @@ components:
               description: A string that represents the Team object's unique_id.
         service:
           type: object
-          description: Response service schema for the Integration metadata 
+          description: Response service schema for the Integration metadata
           properties:
             name:
               type: string
@@ -12717,7 +12933,7 @@ components:
               description: A string that represents the Service object's unique_id.
         integration:
           type: object
-          description: Response integration schema for the Integration metadata 
+          description: Response integration schema for the Integration metadata
           properties:
             unique_id:
               type: string
@@ -14933,6 +15149,256 @@ components:
         unique_id:
           type: string
           description: A system-generated string that represents the Incident Responders object's unique_id
+
+    AnalyticsRequestBody:
+      type: object
+      description: Common request body for all analytics endpoints. All fields are optional.
+      properties:
+        from_date:
+          type: string
+          format: date
+          description: Start date in YYYY-MM-DD format
+          example: "2025-09-24"
+        to_date:
+          type: string
+          format: date
+          description: End date in YYYY-MM-DD format
+          example: "2025-12-23"
+        team_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: List of team unique_id UUIDs. Empty array means all accessible teams.
+        service_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: List of service unique_id UUIDs.
+        user_ids:
+          type: array
+          items:
+            type: string
+          description: List of usernames. Use "Unassigned" to filter unassigned incidents.
+        priority_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: List of team priority unique_id UUIDs.
+        sla_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: List of SLA unique_id UUIDs.
+        escalation_policy_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: List of escalation policy unique_id UUIDs.
+        tag_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: List of team tag unique_id UUIDs.
+        urgency:
+          description: "0 for low, 1 for high."
+          example: "1"
+        child_incident:
+          type: string
+          description: Set to "exclude" to exclude merged child incidents. Any other value has no effect.
+          example: "include"
+        tta:
+          type: number
+          description: Time-to-acknowledge threshold in seconds. Requires tta_comparator.
+        tta_comparator:
+          type: string
+          enum:
+            - gt
+            - lt
+          description: Required if tta is set.
+        ttr:
+          type: number
+          description: Time-to-resolve threshold in seconds. Requires ttr_comparator. Must be >= tta if both are set.
+        ttr_comparator:
+          type: string
+          enum:
+            - gt
+            - lt
+          description: Required if ttr is set.
+
+    IncidentStatsResponse:
+      type: object
+      description: Aggregate incident counts for the account and for the requesting user.
+      properties:
+        total_incidents:
+          type: integer
+          description: Total incidents matching filters.
+        total_triggered_incidents:
+          type: integer
+          description: Incidents with status = triggered (1).
+        total_acknowledged_incidents:
+          type: integer
+          description: Incidents with status = acknowledged (2).
+        total_resolved_incidents:
+          type: integer
+          description: Incidents with status = resolved (3).
+        user_total_incidents:
+          type: integer
+          description: Incidents assigned to the requesting user.
+        user_triggered_incidents:
+          type: integer
+          description: User's incidents with status = triggered.
+        user_acknowledged_incidents:
+          type: integer
+          description: User's incidents with status = acknowledged.
+        user_resolved_incidents:
+          type: integer
+          description: User's incidents with status = resolved.
+
+    AnalyticsTeamInfo:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Team name.
+        unique_id:
+          type: string
+          format: uuid
+          description: Team unique identifier.
+
+    AnalyticsServiceInfo:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Service name.
+        unique_id:
+          type: string
+          format: uuid
+          description: Service unique identifier.
+
+    AnalyticsUserInfo:
+      type: object
+      properties:
+        full_name:
+          type: string
+          description: User's full name (first + last name).
+        username:
+          type: string
+          description: Username.
+
+    AnalyticsMetrics:
+      type: object
+      description: Common analytics metrics.
+      properties:
+        total_incidents:
+          type: integer
+          description: Total incidents.
+        total_acknowledged:
+          type: integer
+          description: Incidents with status > 1 (acknowledged or resolved).
+        total_resolved:
+          type: integer
+          description: Incidents with status = 3.
+        mtta_seconds:
+          type: number
+          format: float
+          description: Weighted average Mean Time to Acknowledge in seconds.
+        mttr_seconds:
+          type: number
+          format: float
+          description: Weighted average Mean Time to Resolve in seconds.
+
+    TeamAnalyticsRecord:
+      type: object
+      properties:
+        team:
+          $ref: "#/components/schemas/AnalyticsTeamInfo"
+        total_incidents:
+          type: integer
+        total_acknowledged:
+          type: integer
+        total_resolved:
+          type: integer
+        mtta_seconds:
+          type: number
+          format: float
+        mttr_seconds:
+          type: number
+          format: float
+
+    TeamAnalyticsResponse:
+      type: object
+      properties:
+        all_teams:
+          $ref: "#/components/schemas/AnalyticsMetrics"
+        team_records:
+          type: array
+          items:
+            $ref: "#/components/schemas/TeamAnalyticsRecord"
+
+    ServiceAnalyticsRecord:
+      type: object
+      properties:
+        team:
+          $ref: "#/components/schemas/AnalyticsTeamInfo"
+        service:
+          $ref: "#/components/schemas/AnalyticsServiceInfo"
+        total_incidents:
+          type: integer
+        total_acknowledged:
+          type: integer
+        total_resolved:
+          type: integer
+        mtta_seconds:
+          type: number
+          format: float
+        mttr_seconds:
+          type: number
+          format: float
+
+    ServiceAnalyticsResponse:
+      type: object
+      properties:
+        all_services:
+          $ref: "#/components/schemas/AnalyticsMetrics"
+        service_records:
+          type: array
+          items:
+            $ref: "#/components/schemas/ServiceAnalyticsRecord"
+
+    UserAnalyticsRecord:
+      type: object
+      properties:
+        user:
+          $ref: "#/components/schemas/AnalyticsUserInfo"
+        total_incidents:
+          type: integer
+        total_acknowledged:
+          type: integer
+        total_resolved:
+          type: integer
+        mtta_seconds:
+          type: number
+          format: float
+        mttr_seconds:
+          type: number
+          format: float
+
+    UserAnalyticsResponse:
+      type: object
+      properties:
+        all_users:
+          $ref: "#/components/schemas/AnalyticsMetrics"
+        user_records:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserAnalyticsRecord"
 
   headers:
     ExpiresAfter:
