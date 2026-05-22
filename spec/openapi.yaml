@@ -8773,8 +8773,7 @@ paths:
             example:
               name: New Infra Team Maintenance
               services:
-                - unique_id: 9b5a0301-3325-49b6-b54c-71d79a50c82d
-                  service: 191f5e2c-515e-4ee0-b501-3a292f8dae2f
+                - service: 191f5e2c-515e-4ee0-b501-3a292f8dae2f
               start_time: "2022-07-08T18:06:00Z"
               end_time: "2022-07-15T18:06:00Z"
           application/xml:
@@ -8783,8 +8782,7 @@ paths:
             example:
               name: New Infra Team Maintenance
               services:
-                - unique_id: 9b5a0301-3325-49b6-b54c-71d79a50c82d
-                  service: 191f5e2c-515e-4ee0-b501-3a292f8dae2f
+                - service: 191f5e2c-515e-4ee0-b501-3a292f8dae2f
               start_time: "2022-07-08T18:06:00Z"
               end_time: "2022-07-15T18:06:00Z"
       responses:
@@ -9032,8 +9030,7 @@ paths:
             example:
               name: Modified Infra Team Maintenance
               services:
-                - unique_id: 9b5a0301-3325-49b6-b54c-71d79a50c82d
-                  service: 191f5e2c-515e-4ee0-b501-3a292f8dae2f
+                - service: 191f5e2c-515e-4ee0-b501-3a292f8dae2f
               start_time: "2022-07-08T18:06:00Z"
               end_time: "2022-07-15T18:06:00Z"
       responses:
