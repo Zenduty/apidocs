@@ -2,10 +2,10 @@ openapi: 3.0.0
 
 info:
   version: "1.1.0" # Your API version
-  title: Zenduty
+  title: Xurrent IMR
   termsOfService: "https://zenduty.com"
   contact:
-    email: vishwa@zenduty.com
+    email: support@xurrent.com
   license:
     name: Apache 2.0
   x-logo:
@@ -13,7 +13,7 @@ info:
   description: |
     # Introduction
 
-    Zenduty is a cutting edge platform for incident management. With high level automation, Zenduty enables faster and better incident resolution keeping developers first.
+    Xurrent IMR is a cutting edge platform for incident management. With high level automation, Xurrent IMR enables faster and better incident resolution keeping developers first.
 
 
       Javascript Libraries: https://github.com/Zenduty/zenduty-js
@@ -22,7 +22,7 @@ info:
 
       Python Libraries: https://github.com/Zenduty/zenduty-python-sdk
 
-      Postman Collection for Zenduty API: https://github.com/Zenduty/zenduty-api-postman.git
+      Postman Collection for Xurrent IMR API: https://github.com/Zenduty/zenduty-api-postman.git
 
       Account-level roles and permissions: https://docs.zenduty.com/docs/users#account-level-roles-and-permissions
 
@@ -94,12 +94,15 @@ tags:
   - name: Global Router Rules
     description: The Rules of the Global Router in an Account are represented by this object. Visit this link to view the documentation for the global alert routing rules https://docs.zenduty.com/docs/globalalertrouting
   - name: Alert Rules
-    description: Alert Rules in Zenduty are advanced conditions for incoming alerts. They dictate how Zenduty handles alerts and their incidents upon receipt, altering behavior and routing based on predefined rules and actions set by the user within Zenduty Integrations.Visit this link to view the documentation for the alert rules https://www.zenduty.com/docs/alertrules/
+    description: Alert Rules in Xurrent IMR are advanced conditions for incoming alerts. They dictate how Xurrent IMR handles alerts and their incidents upon receipt, altering behavior and routing based on predefined rules and actions set by the user within Xurrent IMR Integrations.Visit this link to view the documentation for the alert rules https://imr.xurrent.com/docs/alertrules/
   - name: Analytics
     description: These endpoints provide incident analytics for your account. All analytics endpoints accept POST requests with optional filter parameters and return metrics such as incident counts, MTTA, and MTTR.
 
 servers:
-  - url: "https://www.zenduty.com"
+  - url: "https://imr.xurrent.com"
+    description: US / Global
+  - url: "https://imr.eu.xurrent.com"
+    description: EU
 security:
   - bearerAuth: []
 
@@ -4428,7 +4431,7 @@ paths:
                 create_incidents_for: 1
                 integration_type: 0
                 default_urgency: 1
-                webhook_url: https://www.zenduty.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
+                webhook_url: https://imr.xurrent.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
             application/xml:
               schema:
                 $ref: "#/components/schemas/Integration"
@@ -4457,7 +4460,7 @@ paths:
                 create_incidents_for: 1
                 integration_type: 0
                 default_urgency: 1
-                webhook_url: https://www.zenduty.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
+                webhook_url: https://imr.xurrent.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
         "400":
           description: Bad Request
           content:
@@ -4522,7 +4525,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
-                  webhook_url: https://www.zenduty.com/api/integration/cloudwatch_v2/bf167d3d-93dc-43b6-9066-a10b0bafcc09/
+                  webhook_url: https://imr.xurrent.com/api/integration/cloudwatch_v2/bf167d3d-93dc-43b6-9066-a10b0bafcc09/
                 - name: Conference bridge
                   creation_date: "2022-07-08T12:31:37.441939Z"
                   summary: Edit summary for this integration
@@ -4547,7 +4550,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
-                  webhook_url: https://www.zenduty.com/api/integration/conf/9efb306f-49b2-4b76-a428-845c7782deed/
+                  webhook_url: https://imr.xurrent.com/api/integration/conf/9efb306f-49b2-4b76-a428-845c7782deed/
                 - name: Jira (2-way)
                   creation_date: "2022-07-08T12:31:37.448374Z"
                   summary: Edit summary for this integration
@@ -4572,7 +4575,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
-                  webhook_url: https://www.zenduty.com/api/integration/jiracloud/5eb0fd9b-da65-4f36-8dff-f32fdd4dfdc9/
+                  webhook_url: https://imr.xurrent.com/api/integration/jiracloud/5eb0fd9b-da65-4f36-8dff-f32fdd4dfdc9/
                 - name: Zoom
                   creation_date: "2022-07-08T12:31:37.453423Z"
                   summary: Edit summary for this integration
@@ -4597,7 +4600,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
-                  webhook_url: https://www.zenduty.com/api/integration/zoom/181c2f90-a04a-41e5-a7ca-a16d68296e82/
+                  webhook_url: https://imr.xurrent.com/api/integration/zoom/181c2f90-a04a-41e5-a7ca-a16d68296e82/
                 - name: Infra custom Integration
                   creation_date: "2022-07-08T12:52:22.906327Z"
                   summary: This is the summary for Infra custom Integration
@@ -4622,7 +4625,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
-                  webhook_url: https://www.zenduty.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
+                  webhook_url: https://imr.xurrent.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
             application/xml:
               schema:
                 $ref: "#/components/schemas/Integration"
@@ -4651,7 +4654,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
-                  webhook_url: https://www.zenduty.com/api/integration/cloudwatch_v2/bf167d3d-93dc-43b6-9066-a10b0bafcc09/
+                  webhook_url: https://imr.xurrent.com/api/integration/cloudwatch_v2/bf167d3d-93dc-43b6-9066-a10b0bafcc09/
                 - name: Conference bridge
                   creation_date: "2022-07-08T12:31:37.441939Z"
                   summary: Edit summary for this integration
@@ -4676,7 +4679,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
-                  webhook_url: https://www.zenduty.com/api/integration/conf/9efb306f-49b2-4b76-a428-845c7782deed/
+                  webhook_url: https://imr.xurrent.com/api/integration/conf/9efb306f-49b2-4b76-a428-845c7782deed/
                 - name: Jira (2-way)
                   creation_date: "2022-07-08T12:31:37.448374Z"
                   summary: Edit summary for this integration
@@ -4701,7 +4704,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
-                  webhook_url: https://www.zenduty.com/api/integration/jiracloud/5eb0fd9b-da65-4f36-8dff-f32fdd4dfdc9/
+                  webhook_url: https://imr.xurrent.com/api/integration/jiracloud/5eb0fd9b-da65-4f36-8dff-f32fdd4dfdc9/
                 - name: Zoom
                   creation_date: "2022-07-08T12:31:37.453423Z"
                   summary: Edit summary for this integration
@@ -4726,7 +4729,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
-                  webhook_url: https://www.zenduty.com/api/integration/zoom/181c2f90-a04a-41e5-a7ca-a16d68296e82/
+                  webhook_url: https://imr.xurrent.com/api/integration/zoom/181c2f90-a04a-41e5-a7ca-a16d68296e82/
                 - name: Infra custom Integration
                   creation_date: "2022-07-08T12:52:22.906327Z"
                   summary: This is the summary for Infra custom Integration
@@ -4751,7 +4754,7 @@ paths:
                   create_incidents_for: 1
                   integration_type: 0
                   default_urgency: 1
-                  webhook_url: https://www.zenduty.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
+                  webhook_url: https://imr.xurrent.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
         "400":
           description: Bad Request
           content:
@@ -4836,7 +4839,7 @@ paths:
                 create_incidents_for: 1
                 integration_type: 0
                 default_urgency: 1
-                webhook_url: https://www.zenduty.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
+                webhook_url: https://imr.xurrent.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
             application/xml:
               schema:
                 $ref: "#/components/schemas/Integration"
@@ -4865,7 +4868,7 @@ paths:
                 create_incidents_for: 1
                 integration_type: 0
                 default_urgency: 1
-                webhook_url: https://www.zenduty.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
+                webhook_url: https://imr.xurrent.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
         "400":
           description: Bad Request
           content:
@@ -4940,7 +4943,7 @@ paths:
                 create_incidents_for: 1
                 integration_type: 0
                 default_urgency: 1
-                webhook_url: https://www.zenduty.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
+                webhook_url: https://imr.xurrent.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
             application/xml:
               schema:
                 $ref: "#/components/schemas/Integration"
@@ -4969,7 +4972,7 @@ paths:
                 create_incidents_for: 1
                 integration_type: 0
                 default_urgency: 1
-                webhook_url: https://www.zenduty.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
+                webhook_url: https://imr.xurrent.com/api/integration/cloudwatch_v2/5f306dae-b327-4ba9-8f3a-ab4cffd57645/
         "400":
           description: Bad Request
           content:
@@ -5068,7 +5071,7 @@ paths:
                   description: AWS GuardDuty Integration
                   unique_id: bb399bc6-9098-4afd-91d7-3cec4d8282eb
                   availability_plan_id: 4
-                  setup_instructions: "To integrate Zenduty with AWS GuardDuty, follow the steps below..."
+                  setup_instructions: "To integrate Xurrent IMR with AWS GuardDuty, follow the steps below..."
                   extension: guardduty
                   application_type: 0
                   categories: Cloud Monitoring,Server/Network Monitoring
@@ -5080,7 +5083,7 @@ paths:
                 create_incidents_for: 1
                 integration_type: 0
                 default_urgency: 1
-                webhook_url: https://www.zenduty.com/api/integration/guardduty/c89e320f-a975-47e4-8437-1169e91eeed7/
+                webhook_url: https://imr.xurrent.com/api/integration/guardduty/c89e320f-a975-47e4-8437-1169e91eeed7/
             application/xml:
               schema:
                 $ref: "#/components/schemas/Integration"
@@ -5098,7 +5101,7 @@ paths:
                   description: AWS GuardDuty Integration
                   unique_id: bb399bc6-9098-4afd-91d7-3cec4d8282eb
                   availability_plan_id: 4
-                  setup_instructions: "To integrate Zenduty with AWS GuardDuty, follow the steps below..."
+                  setup_instructions: "To integrate Xurrent IMR with AWS GuardDuty, follow the steps below..."
                   extension: guardduty
                   application_type: 0
                   categories: Cloud Monitoring,Server/Network Monitoring
@@ -5110,7 +5113,7 @@ paths:
                 create_incidents_for: 1
                 integration_type: 0
                 default_urgency: 1
-                webhook_url: https://www.zenduty.com/api/integration/guardduty/c89e320f-a975-47e4-8437-1169e91eeed7/
+                webhook_url: https://imr.xurrent.com/api/integration/guardduty/c89e320f-a975-47e4-8437-1169e91eeed7/
         "400":
           description: Bad Request
           content:
@@ -5286,8 +5289,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/IncidentFilter"
               example:
-                next: "https://www.zenduty.com/api/incidents/filter/?page=4&page_size=10"
-                previous: "https://www.zenduty.com/api/incidents/filter/?page=2&page_size=10"
+                next: "https://imr.xurrent.com/api/incidents/filter/?page=4&page_size=10"
+                previous: "https://imr.xurrent.com/api/incidents/filter/?page=2&page_size=10"
                 results:
                   - incident_number: 255
                     creation_date: "2023-10-26T14:22:56.338690Z"
@@ -5414,8 +5417,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/IncidentFilter"
               example:
-                next: "https://www.zenduty.com/api/incidents/filter/?page=4&page_size=10"
-                previous: "https://www.zenduty.com/api/incidents/filter/?page=2&page_size=10"
+                next: "https://imr.xurrent.com/api/incidents/filter/?page=4&page_size=10"
+                previous: "https://imr.xurrent.com/api/incidents/filter/?page=2&page_size=10"
                 results:
                   - incident_number: 255
                     creation_date: "2023-10-26T14:22:56.338690Z"
@@ -7034,7 +7037,7 @@ paths:
                 integration_object:
                   name: "API"
                   creation_date: "2022-11-14T14:08:56.089450Z"
-                  summary: "Zenduty API integration"
+                  summary: "Xurrent IMR API integration"
                   unique_id: "828361de-681f-4f00-9420-07a185a83e46"
                   service: "1587103f-6ed2-4eac-8a56-866128df036f"
                   team: "db61f7ed-ba78-4536-9b2d-256b135a731d"
@@ -7069,7 +7072,7 @@ paths:
                 integration_object:
                   name: "API"
                   creation_date: "2022-11-14T14:08:56.089450Z"
-                  summary: "Zenduty API integration"
+                  summary: "Xurrent IMR API integration"
                   unique_id: "828361de-681f-4f00-9420-07a185a83e46"
                   service: "1587103f-6ed2-4eac-8a56-866128df036f"
                   team: "db61f7ed-ba78-4536-9b2d-256b135a731d"
@@ -7127,7 +7130,10 @@ paths:
 
   "/integration/{account_id}/generic/{integration_key}/":
     servers:
-      - url: https://events.zenduty.com
+      - url: https://events.imr.xurrent.com
+        description: US / Global
+      - url: https://events.imr.eu.xurrent.com
+        description: EU
     parameters:
       - name: "account_id"
         in: path
@@ -7283,7 +7289,10 @@ paths:
 
   "/api/alert/status/{trace_id}/":
     servers:
-      - url: https://events.zenduty.com
+      - url: https://events.imr.xurrent.com
+        description: US / Global
+      - url: https://events.imr.eu.xurrent.com
+        description: EU
     parameters:
       - name: "trace_id"
         in: path
@@ -11166,7 +11175,7 @@ paths:
                 - unique_id: 992d6573-fb54-4a2b-8d5a-82619d477c3e
                   action_type: 9
                   key: ""
-                  value: "{{summary}} https://www.zenduty.com/docs/alertrules/"
+                  value: "{{summary}} https://imr.xurrent.com/docs/alertrules/"
                   escalation_policy: null
                   schedule: null
                   assign_to: null
@@ -11181,7 +11190,7 @@ paths:
                 - unique_id: 992d6573-fb54-4a2b-8d5a-82619d477c3e
                   action_type: 9
                   key: ""
-                  value: "{{summary}} https://www.zenduty.com/docs/alertrules/"
+                  value: "{{summary}} https://imr.xurrent.com/docs/alertrules/"
                   escalation_policy: null
                   schedule: null
                   assign_to: null
@@ -11206,7 +11215,7 @@ paths:
                   - unique_id: 13eddca2-38a2-4efd-a8a9-08adcb036416
                     action_type: 9
                     key: ""
-                    value: "{{summary}} https://www.zenduty.com/docs/alertrules/"
+                    value: "{{summary}} https://imr.xurrent.com/docs/alertrules/"
                     value_reference_name: null
                     escalation_policy: null
                     escalation_policy_name: null
@@ -11231,7 +11240,7 @@ paths:
                   - unique_id: 13eddca2-38a2-4efd-a8a9-08adcb036416
                     action_type: 9
                     key: ""
-                    value: "{{summary}} https://www.zenduty.com/docs/alertrules/"
+                    value: "{{summary}} https://imr.xurrent.com/docs/alertrules/"
                     value_reference_name: null
                     escalation_policy: null
                     escalation_policy_name: null
@@ -11292,7 +11301,7 @@ paths:
                     - unique_id: 13eddca2-38a2-4efd-a8a9-08adcb036416
                       action_type: 9
                       key: ""
-                      value: "{{summary}} https://www.zenduty.com/docs/alertrules/"
+                      value: "{{summary}} https://imr.xurrent.com/docs/alertrules/"
                       value_reference_name: null
                       escalation_policy: null
                       escalation_policy_name: null
@@ -11338,7 +11347,7 @@ paths:
                     - unique_id: 13eddca2-38a2-4efd-a8a9-08adcb036416
                       action_type: 9
                       key: ""
-                      value: "{{summary}} https://www.zenduty.com/docs/alertrules/"
+                      value: "{{summary}} https://imr.xurrent.com/docs/alertrules/"
                       value_reference_name: null
                       escalation_policy: null
                       escalation_policy_name: null
@@ -11444,7 +11453,7 @@ paths:
                   - unique_id: 13eddca2-38a2-4efd-a8a9-08adcb036416
                     action_type: 9
                     key: ""
-                    value: "{{summary}} https://www.zenduty.com/docs/alertrules/"
+                    value: "{{summary}} https://imr.xurrent.com/docs/alertrules/"
                     value_reference_name: null
                     escalation_policy: null
                     escalation_policy_name: null
@@ -11469,7 +11478,7 @@ paths:
                   - unique_id: 13eddca2-38a2-4efd-a8a9-08adcb036416
                     action_type: 9
                     key: ""
-                    value: "{{summary}} https://www.zenduty.com/docs/alertrules/"
+                    value: "{{summary}} https://imr.xurrent.com/docs/alertrules/"
                     value_reference_name: null
                     escalation_policy: null
                     escalation_policy_name: null
@@ -11530,7 +11539,7 @@ paths:
                 - unique_id: 13eddca2-38a2-4efd-a8a9-08adcb036416
                   action_type: 9
                   key: ""
-                  value: "{{summary}} https://www.zenduty.com/docs/alertrules/"
+                  value: "{{summary}} https://imr.xurrent.com/docs/alertrules/"
                   value_reference_name: null
                   escalation_policy: null
                   escalation_policy_name: null
@@ -11555,7 +11564,7 @@ paths:
                 - unique_id: 13eddca2-38a2-4efd-a8a9-08adcb036416
                   action_type: 9
                   key: ""
-                  value: "{{summary}} https://www.zenduty.com/docs/alertrules/"
+                  value: "{{summary}} https://imr.xurrent.com/docs/alertrules/"
                   value_reference_name: null
                   escalation_policy: null
                   escalation_policy_name: null
@@ -11584,7 +11593,7 @@ paths:
                   - unique_id: c6d6028b-74f3-4f51-b748-b14f207e380f
                     action_type: 9
                     key: ""
-                    value: "{{summary}} https://www.zenduty.com/docs/alertrules/"
+                    value: "{{summary}} https://imr.xurrent.com/docs/alertrules/"
                     value_reference_name: null
                     escalation_policy: null
                     escalation_policy_name: null
@@ -11609,7 +11618,7 @@ paths:
                   - unique_id: c6d6028b-74f3-4f51-b748-b14f207e380f
                     action_type: 9
                     key: ""
-                    value: "{{summary}} https://www.zenduty.com/docs/alertrules/"
+                    value: "{{summary}} https://imr.xurrent.com/docs/alertrules/"
                     value_reference_name: null
                     escalation_policy: null
                     escalation_policy_name: null
@@ -12956,7 +12965,7 @@ components:
           description: A string that represents the Integration object's summary
         application:
           type: string
-          description: A system-generated string that represents the Application object's unique_id. To get application id, vist https://www.zenduty.com/api/account/applications/ and get unique_id of the application.
+          description: A system-generated string that represents the Application object's unique_id. To get application id, vist https://imr.xurrent.com/api/account/applications/ and get unique_id of the application.
         is_enabled:
           type: boolean
           default: true
@@ -13794,7 +13803,7 @@ components:
           description: A pre-defined string that represents the Event object's alert_type. Choices - `critical`, `acknowledged`, `resolved`, `error`, `warning`, `info`.
         entity_id:
           type: string
-          description: A unique id for the alert. If not provided, the Zenduty API will create one.
+          description: A unique id for the alert. If not provided, the Xurrent IMR API will create one.
         payload:
           type: object
           description: A JSON payload containing additional information about the alert.
@@ -13823,7 +13832,7 @@ components:
           description: A pre-defined string that represents the Event object's alert_type. Choices - `critical`, `acknowledged`, `resolved`, `error`, `warning`, `info`.
         entity_id:
           type: string
-          description: A unique id for the alert. If not provided, the Zenduty API will create one.
+          description: A unique id for the alert. If not provided, the Xurrent IMR API will create one.
         payload:
           type: object
           description: A JSON payload containing additional information about the alert.
@@ -13834,13 +13843,13 @@ components:
             type: string
         sla:
           type: string
-          description: A unique id for the SLA object. If not provided or provided invalid unique_id, the Zenduty will ignore the provided value.
+          description: A unique id for the SLA object. If not provided or provided invalid unique_id, the Xurrent IMR will ignore the provided value.
         escalation_policy:
           type: string
-          description: A unique id for the alert. If not provided or provided invalid unique_id, the Zenduty will ignore the provided value.
+          description: A unique id for the alert. If not provided or provided invalid unique_id, the Xurrent IMR will ignore the provided value.
         priority:
           type: string
-          description: A unique id for the alert. If not provided or provided invalid unique_id, the Zenduty will ignore the provided value.
+          description: A unique id for the alert. If not provided or provided invalid unique_id, the Xurrent IMR will ignore the provided value.
         tags:
           type: array
           description: An array containing unique_id for the tag objects.
