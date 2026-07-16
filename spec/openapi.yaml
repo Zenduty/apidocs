@@ -13078,7 +13078,7 @@ components:
         from_date:
           type: string
           default: []
-          description: Represents from_date and filters incidents whose creation_date is greater than the specified from_date. example - `from_date="2023-02-01"`
+          description: Filters incidents created on or after this value. Accepts a date (`YYYY-MM-DD`), which includes the whole day, or a datetime (`YYYY-MM-DD HH:MM:SS` or ISO 8601) for an exact lower bound. example - `from_date="2023-02-01"` or `from_date="2023-02-01 09:30:00"`
         postmortem_filter:
           type: integer
           default: -1
@@ -13123,7 +13123,7 @@ components:
         to_date:
           type: string
           default: []
-          description: Represents to_date and filters incidents whose creation_date is lesser than the specified to_date. example - `to_date="2023-02-01"`
+          description: Filters incidents created on or before this value. Accepts a date (`YYYY-MM-DD`), which includes the whole day, or a datetime (`YYYY-MM-DD HH:MM:SS` or ISO 8601) for an exact upper bound. example - `to_date="2023-02-28"` or `to_date="2023-02-28 18:00:00"`
         user_ids:
           type: array
           description: A list of User usernames
@@ -15153,14 +15153,16 @@ components:
       properties:
         from_date:
           type: string
-          format: date
-          description: Start date in YYYY-MM-DD format
+          description: Start of the date range. Accepts a date (`YYYY-MM-DD`), which includes the whole day, or a datetime (`YYYY-MM-DD HH:MM:SS` or ISO 8601) for an exact lower bound.
           example: "2025-09-24"
         to_date:
           type: string
-          format: date
-          description: End date in YYYY-MM-DD format
+          description: End of the date range. Accepts a date (`YYYY-MM-DD`), which includes the whole day, or a datetime (`YYYY-MM-DD HH:MM:SS` or ISO 8601) for an exact upper bound.
           example: "2025-12-23"
+        time_zone:
+          type: string
+          description: IANA timezone name (e.g. `Asia/Kolkata`) used to bucket results by local day or hour. Defaults to UTC if omitted or invalid.
+          example: "UTC"
         team_ids:
           type: array
           items:
