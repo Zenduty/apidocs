@@ -94,7 +94,7 @@ tags:
   - name: Global Router Rules
     description: The Rules of the Global Router in an Account are represented by this object. Visit this link to view the documentation for the global alert routing rules https://docs.zenduty.com/docs/globalalertrouting
   - name: Alert Rules
-    description: Alert Rules in Zenduty are advanced conditions for incoming alerts. They dictate how Zenduty handles alerts and their incidents upon receipt, altering behavior and routing based on predefined rules and actions set by the user within Zenduty Integrations.Visit this link to view the documentation for the alert rules https://www.zenduty.com/docs/alertrules/
+    description: Alert Rules in Zenduty are advanced conditions for incoming alerts. They dictate how Zenduty handles alerts and their incidents upon receipt, altering behavior and routing based on predefined rules and actions set by the user within Zenduty Integrations. Actions include delaying notifications until a release time (action_type 19) and creating an incident only after more than a set number of matching alerts arrive within a time window (action_type 20). See the AlertTransformerAction schema for the full list of action types. Visit this link to view the documentation for the alert rules https://www.zenduty.com/docs/alertrules/
   - name: Analytics
     description: These endpoints provide incident analytics for your account. All analytics endpoints accept POST requests with optional filter parameters and return metrics such as incident counts, MTTA, and MTTR.
 
@@ -15057,13 +15057,52 @@ components:
           description: A system-generated string that represents the Alert Transformer Action object's unique_id
         action_type:
           type: integer
-          description: An integer that represents the Alert Transformer Action object's action_type in an Alert Rule
+          enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+          description: |
+            An integer that represents the Alert Transformer Action object's action_type in an Alert Rule.
+
+            | action_type | Action | `key` / `value` |
+            |---|---|---|
+            | 1 | Change alert type | `value` is the alert type as an integer |
+            | 2 | Add note | `value` is the note text |
+            | 3 | Suppress alert | no value |
+            | 4 | Assign escalation policy | `escalation_policy` unique_id |
+            | 5 | Assign schedule | `schedule` unique_id |
+            | 6 | Assign user | `assign_to` username |
+            | 7 | Change urgency | `value` is `low` or `high` |
+            | 8 | Change message | `value` is the new message (supports `{{field}}` templates) |
+            | 9 | Change summary | `value` is the new summary (supports `{{field}}` templates) |
+            | 10 | Change entity id | `value` is the new entity_id |
+            | 11 | Assign role user | `key` is the Team Role unique_id, `value` is the username |
+            | 12 | Add tag | `value` is a comma-separated list of Tag unique_ids or tag names |
+            | 13 | Create task | `value` is a JSON-encoded task `{"title", "description", "due_in"}` (`due_in` in minutes, `-1` for no due time) |
+            | 14 | Assign SLA | `sla` unique_id |
+            | 15 | Assign team priority | `team_priority` unique_id |
+            | 16 | Assign task template | `task_template` unique_id |
+            | 17 | Add responder | `value` is a username or Schedule unique_id |
+            | 18 | Change entity id hash | no value |
+            | 19 | Delay notifications | `value` is a JSON-encoded config object, see below |
+            | 20 | Create incident on threshold | `value` is a JSON-encoded config object, see below |
+
+            **19 — Delay notifications.** Holds notifications for the incident until a release time. `value` is a JSON string:
+            `{"release_time": "09:00", "release_timezone": "Asia/Kolkata", "release_day_mode": "next_weekday", "release_days": [0, 1, 2, 3, 4]}`
+            - `release_time` (required) — `HH:MM`, 24-hour, in `release_timezone`.
+            - `release_timezone` — IANA name, defaults to `UTC`.
+            - `release_day_mode` (required) — one of `same_day` (release today at `release_time`, or tomorrow if that has passed), `next_weekday` (next day in `release_days`, default Mon–Fri), `next_day_in_set` (next day in `release_days`, required), `next_specific_day` (`release_days` must hold exactly one day).
+            - `release_days` — list of weekday integers, `0` = Monday … `6` = Sunday.
+
+            **20 — Create incident on threshold.** Matching alerts are stored as suppressed until **more than** `threshold_count` of them arrive within a rolling `time_window`; the next alert then creates one incident, and further matching alerts are appended to it until it is resolved. `value` is a JSON string:
+            `{"threshold_count": 9, "time_window": 90}`
+            - `threshold_count` (required) — integer, 1 to 100. The incident is created on the `threshold_count + 1`th alert in the window.
+            - `time_window` (required) — rolling window in minutes, 1 to 1440.
+
+            Only alerts that would create an incident on the integration are counted. A rule may hold only one action of type 20, and it cannot be combined with action type 3 (Suppress alert). Editing or deleting the rule resets its window.
         key:
           type: string
           description: A string that represents the Alert Transformer Action object's key
         value:
           type: string
-          description: A system-generated string that represents the User object username or Schedule object unique_id
+          description: A string whose meaning depends on action_type (see the action_type table). For action types 19 and 20 it is a JSON-encoded configuration object.
         value_reference_name:
           type: string
           description: A string that represents the name of the responder(user or schedule)
@@ -15098,13 +15137,52 @@ components:
       properties:
         action_type:
           type: integer
-          description: An integer that represents the Alert Transformer Action object's action_type in an Alert Rule
+          enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+          description: |
+            An integer that represents the Alert Transformer Action object's action_type in an Alert Rule.
+
+            | action_type | Action | `key` / `value` |
+            |---|---|---|
+            | 1 | Change alert type | `value` is the alert type as an integer |
+            | 2 | Add note | `value` is the note text |
+            | 3 | Suppress alert | no value |
+            | 4 | Assign escalation policy | `escalation_policy` unique_id |
+            | 5 | Assign schedule | `schedule` unique_id |
+            | 6 | Assign user | `assign_to` username |
+            | 7 | Change urgency | `value` is `low` or `high` |
+            | 8 | Change message | `value` is the new message (supports `{{field}}` templates) |
+            | 9 | Change summary | `value` is the new summary (supports `{{field}}` templates) |
+            | 10 | Change entity id | `value` is the new entity_id |
+            | 11 | Assign role user | `key` is the Team Role unique_id, `value` is the username |
+            | 12 | Add tag | `value` is a comma-separated list of Tag unique_ids or tag names |
+            | 13 | Create task | `value` is a JSON-encoded task `{"title", "description", "due_in"}` (`due_in` in minutes, `-1` for no due time) |
+            | 14 | Assign SLA | `sla` unique_id |
+            | 15 | Assign team priority | `team_priority` unique_id |
+            | 16 | Assign task template | `task_template` unique_id |
+            | 17 | Add responder | `value` is a username or Schedule unique_id |
+            | 18 | Change entity id hash | no value |
+            | 19 | Delay notifications | `value` is a JSON-encoded config object, see below |
+            | 20 | Create incident on threshold | `value` is a JSON-encoded config object, see below |
+
+            **19 — Delay notifications.** Holds notifications for the incident until a release time. `value` is a JSON string:
+            `{"release_time": "09:00", "release_timezone": "Asia/Kolkata", "release_day_mode": "next_weekday", "release_days": [0, 1, 2, 3, 4]}`
+            - `release_time` (required) — `HH:MM`, 24-hour, in `release_timezone`.
+            - `release_timezone` — IANA name, defaults to `UTC`.
+            - `release_day_mode` (required) — one of `same_day` (release today at `release_time`, or tomorrow if that has passed), `next_weekday` (next day in `release_days`, default Mon–Fri), `next_day_in_set` (next day in `release_days`, required), `next_specific_day` (`release_days` must hold exactly one day).
+            - `release_days` — list of weekday integers, `0` = Monday … `6` = Sunday.
+
+            **20 — Create incident on threshold.** Matching alerts are stored as suppressed until **more than** `threshold_count` of them arrive within a rolling `time_window`; the next alert then creates one incident, and further matching alerts are appended to it until it is resolved. `value` is a JSON string:
+            `{"threshold_count": 9, "time_window": 90}`
+            - `threshold_count` (required) — integer, 1 to 100. The incident is created on the `threshold_count + 1`th alert in the window.
+            - `time_window` (required) — rolling window in minutes, 1 to 1440.
+
+            Only alerts that would create an incident on the integration are counted. A rule may hold only one action of type 20, and it cannot be combined with action type 3 (Suppress alert). Editing or deleting the rule resets its window.
         key:
           type: string
           description: A string that represents the Alert Transformer Action object's key
         value:
           type: string
-          description: A system-generated string that represents the User object username or Schedule object unique_id
+          description: A string whose meaning depends on action_type (see the action_type table). For action types 19 and 20 it is a JSON-encoded configuration object.
         value_reference_name:
           type: string
           description: A string that represents the name of the responder(user or schedule)
