@@ -1,3 +1,5 @@
+# Pinned: Redoc 3.x standalone bundle uses import.meta and breaks as a classic <script>
+redocURL: https://cdn.jsdelivr.net/npm/redoc@2.5.4/bundles/redoc.standalone.js
 theme:
   colors:
     primary:
